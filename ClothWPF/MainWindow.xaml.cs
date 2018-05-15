@@ -24,5 +24,15 @@ namespace ClothWPF
         {
             InitializeComponent();
         }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btn_Login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
