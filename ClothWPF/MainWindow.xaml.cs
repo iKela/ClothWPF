@@ -34,5 +34,9 @@ namespace ClothWPF
         {
 
         }
+        private void btn_Help_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
