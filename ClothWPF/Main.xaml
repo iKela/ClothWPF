@@ -6,36 +6,123 @@
         xmlns:local="clr-namespace:ClothWPF"
         xmlns:loc="clr-namespace:ClothWPF.Classes"
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="200" Width="800" FontFamily="Times New Roman" WindowStartupLocation="Manual" Initialized="Window_Initialized">
-    <Grid >
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="Manual" Initialized="Window_Initialized">
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btn_ShowHamburger">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btn_HideHamburger">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="LightGray">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="120*"/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid  Background="#FF31A1FF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}"/>
-            <StackPanel Grid.Column="1">
-                <TextBlock/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <ComboBox Width="120" Margin="10 0 0 0" FontSize="18" HorizontalAlignment="Center">
+                    <ComboBoxItem>Склад №1</ComboBoxItem>
+                    <ComboBoxItem>Склад №2</ComboBoxItem>
+                    <ComboBoxItem>Склад №3</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
-            <Button Grid.Column="2" Style="{StaticResource MainButtonStyle}">
-                
+            <Button Grid.Column="2" Style="{StaticResource MainButtonStyle}" Height="30" VerticalAlignment="Top">
+
             </Button>
-            <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}">
-                
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
+                <Menu VerticalAlignment="Bottom">
+                    <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
+                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" Click="mi_NewArrival_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <MenuItem Name="mi_NewItem"  Header="Новий"/>
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+            <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" Background="#FF31A1FF">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock/>
+                    <TextBlock/>
+                </StackPanel>
             </Button>
+            <Button Grid.Column="4" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="user" VerticalAlignment="Center" Margin="2"/>
+                    <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                        <StackPanel>
+                            <Button Name="btn_Account" Content="Кабінет"/>
+                            <Button Name="btn_AccountSettings" Content="Налаштування"/>
+                            <Button Name="btn_Help" Content="Допомога"/>
+                            <Separator/>
+                            <Button Name="btn_Logout" Content="Вийти з облікового запису" Click="btn_Logout_Click"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button Name="btn_HideHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btn_HideHamburger_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF004AA2" Width="25" Height="25"/>
+                    </Button>
+                    <Button Name="btn_ShowHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btn_ShowHamburger_Click">
+                        <materialDesign:PackIcon Kind="Menu" Foreground="#FF004AA2" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF31A1FF">
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewList"  Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Склад" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Calendar" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Календар"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TrendingUp" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Графіки"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
         </Grid>
 
 
 
-
-        <Grid>
+        <!--<Grid>
             <Menu VerticalAlignment="Top"  Height="30">
                 <MenuItem  Header="Файл" Style="{StaticResource MeinMenuItemStyle}" >
                     <MenuItem Header="Open">
@@ -51,13 +138,15 @@
         </Grid>
         <Grid Background="Lavender" Margin="0 30 0 0">
             <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue">
-                <!--<DataGrid.Resources>
+                -->
+        <!--<DataGrid.Resources>
                     <col:ArrayList x:Key="clothes">
                         <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
                         <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
                         <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
                     </col:ArrayList>
                 </DataGrid.Resources>-->
+        <!--
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -76,7 +165,7 @@
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
 
-        </Grid>
+        </Grid>-->
     </Grid>
 
 </Window>
