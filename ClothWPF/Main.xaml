@@ -1,0 +1,82 @@
+﻿<Window x:Class="ClothWPF.Main" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClothWPF"
+        xmlns:loc="clr-namespace:ClothWPF.Classes"
+        xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="InSoP Management Software" Height="200" Width="800" FontFamily="Times New Roman" WindowStartupLocation="Manual" Initialized="Window_Initialized">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock/>
+            </StackPanel>
+            <Button Grid.Column="2" Style="{StaticResource MainButtonStyle}">
+                
+            </Button>
+            <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}">
+                
+            </Button>
+        </Grid>
+
+
+
+
+        <Grid>
+            <Menu VerticalAlignment="Top"  Height="30">
+                <MenuItem  Header="Файл" Style="{StaticResource MeinMenuItemStyle}" >
+                    <MenuItem Header="Open">
+                        <MenuItem Name="Item1"/>
+                    </MenuItem>
+                    <MenuItem Header="Вихід" />
+                </MenuItem>
+                <MenuItem Header="Склад" Style="{StaticResource MeinMenuItemStyle}">
+                    <MenuItem Name="mi_OpenWarehouse" Header="Відкрити" Click="mi_OpenWarehouse_Click" />
+                </MenuItem>
+                <MenuItem Header="Про программу" Style="{StaticResource MeinMenuItemStyle}"/>
+            </Menu>
+        </Grid>
+        <Grid Background="Lavender" Margin="0 30 0 0">
+            <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue">
+                <!--<DataGrid.Resources>
+                    <col:ArrayList x:Key="clothes">
+                        <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
+                        <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
+                        <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
+                    </col:ArrayList>
+                </DataGrid.Resources>-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                </DataGrid.Columns>
+
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Price}"/>
+                            <TextBlock Text="грн. за метер квадратний."/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+
+</Window>
