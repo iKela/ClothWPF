@@ -23,5 +23,32 @@ namespace ClothWPF
         {
             InitializeComponent();
         }
+
+        private void btn_CurrencyExhange_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void checkBox_Discount_Checked(object sender, RoutedEventArgs e)
+        {
+            grb_Price.Height = 200;
+            txt_Discount.Visibility = Visibility.Visible;
+        }
+
+        private void checkBox_Discount_Unchecked(object sender, RoutedEventArgs e)
+        {
+            grb_Price.Height = 160;
+            txt_Discount.Visibility = Visibility.Collapsed;
+        }
+
+        private void btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
