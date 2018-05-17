@@ -32,6 +32,7 @@ namespace ClothWPF
 
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Main main = new Main();
             main.Show();
         }

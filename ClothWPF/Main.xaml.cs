@@ -29,9 +29,11 @@ namespace ClothWPF
             List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             {
                 // Місце для додавання
-                new Classes.Clothes{Name="Рожа", ProductCode="87563", Price= 65, Lenght=400, Country="Ukraine"}
+                new Classes.Clothes{Name="Рожа", ProductCode="87563", Price= 65, Lenght=400, Country="Ukraine"},
+                new Classes.Clothes{Name="Авсвав", ProductCode="234", Price= 80, Lenght=600, Country="Ukraine"}
+
             };
-            //clothesGrid.ItemsSource = clothesList;
+            clothesGrid.ItemsSource = clothesList;
 
            
         }
@@ -56,6 +58,17 @@ namespace ClothWPF
         {
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
+        }
+
+        private void clothesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void mi_NewItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddProduct addProduct = new AddProduct();
+            addProduct.Show();
         }
     }
 }

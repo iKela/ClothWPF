@@ -58,13 +58,13 @@
             </Button>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
                 <Menu VerticalAlignment="Bottom">
-                    <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" Click="mi_NewArrival_Click"/>
-                    </MenuItem>
-                    <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_NewItem"  Header="Новий"/>
-                    </MenuItem>
-                </Menu>
+                        <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
+                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" Click="mi_NewArrival_Click"/>
+                        </MenuItem>
+                        <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                            <MenuItem Name="mi_NewItem"  Header="Новий" Click="mi_NewItem_Click"/>
+                        </MenuItem>
+                    </Menu>
             </StackPanel>
             <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" Background="#FF31A1FF">
                 <StackPanel Orientation="Horizontal">
@@ -86,6 +86,35 @@
                     </materialDesign:PopupBox>
                 </StackPanel>
             </Button>
+        </Grid>
+        <Grid Grid.RowSpan="2" Margin="50 50 0 0">
+            <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="clothesGrid_SelectionChanged">
+
+                <DataGrid.Resources>
+                    <col:ArrayList x:Key="clothes">
+                        <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
+                        <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
+                        <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
+                    </col:ArrayList>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                </DataGrid.Columns>
+
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Price}"/>
+                            <TextBlock Text="грн. за метер квадратний."/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
         </Grid>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2">
             <StackPanel>
@@ -119,53 +148,5 @@
                 </ListView>
             </StackPanel>
         </Grid>
-
-
-
-        <!--<Grid>
-            <Menu VerticalAlignment="Top"  Height="30">
-                <MenuItem  Header="Файл" Style="{StaticResource MeinMenuItemStyle}" >
-                    <MenuItem Header="Open">
-                        <MenuItem Name="Item1"/>
-                    </MenuItem>
-                    <MenuItem Header="Вихід" />
-                </MenuItem>
-                <MenuItem Header="Склад" Style="{StaticResource MeinMenuItemStyle}">
-                    <MenuItem Name="mi_OpenWarehouse" Header="Відкрити" Click="mi_OpenWarehouse_Click" />
-                </MenuItem>
-                <MenuItem Header="Про программу" Style="{StaticResource MeinMenuItemStyle}"/>
-            </Menu>
-        </Grid>
-        <Grid Background="Lavender" Margin="0 30 0 0">
-            <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue">
-                -->
-        <!--<DataGrid.Resources>
-                    <col:ArrayList x:Key="clothes">
-                        <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
-                        <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
-                        <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
-                    </col:ArrayList>
-                </DataGrid.Resources>-->
-        <!--
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                </DataGrid.Columns>
-
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=Price}"/>
-                            <TextBlock Text="грн. за метер квадратний."/>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid>
-
-        </Grid>-->
     </Grid>
-
 </Window>
