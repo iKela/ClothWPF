@@ -40,7 +40,8 @@ namespace ClothWPF
 
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
-
+            NewArrival newArrival = new NewArrival();
+            newArrival.Show();
         }
 
         private void btn_Logout_Click(object sender, RoutedEventArgs e)
@@ -67,7 +68,7 @@ namespace ClothWPF
 
         private void mi_NewItem_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct addProduct = new AddProduct();
+            NewProduct addProduct = new NewProduct();
             addProduct.Show();
         }
     }

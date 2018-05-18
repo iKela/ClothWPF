@@ -17,9 +17,9 @@ namespace ClothWPF
     /// <summary>
     /// Interaction logic for AddProduct.xaml
     /// </summary>
-    public partial class AddProduct : Window
+    public partial class NewProduct : Window
     {
-        public AddProduct()
+        public NewProduct()
         {
             InitializeComponent();
         }
