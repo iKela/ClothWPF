@@ -62,7 +62,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddProduct.xaml">
+    <Page Include="Arrival\NewArrival.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Arrival\AddProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -70,15 +78,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddProduct.xaml.cs">
+    <Compile Include="Arrival\NewArrival.xaml.cs">
+      <DependentUpon>NewArrival.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewProduct.xaml.cs">
+      <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Clothes.cs" />
-    <Compile Include="Classes\Control.cs" />
+    <Compile Include="Arrival\Classes\Arrival.cs" />
+    <Compile Include="General\Classes\Clothes.cs" />
+    <Compile Include="General\Classes\Control.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -119,10 +134,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Login.png" />
+    <Resource Include="General\Assets\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Help.png" />
+    <Resource Include="General\Assets\Help.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

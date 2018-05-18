@@ -18,10 +18,9 @@ namespace ClothWPF
     /// <summary>
     /// Interaction logic for AddProduct.xaml
     /// </summary>
-    public partial class AddProduct : Window
+    public partial class NewProduct : Window
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Yuriy\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
-        public AddProduct()
+        public NewProduct()
         {
             InitializeComponent();
         }
