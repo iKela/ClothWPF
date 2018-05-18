@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,11 @@ namespace ClothWPF
     /// <summary>
     /// Interaction logic for Main.xaml
     /// </summary>
+    ///
     public partial class Main : Window
     {
+        int KodProductu;
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Yuriy\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
         public Main()
         {
             InitializeComponent();
@@ -59,10 +63,13 @@ namespace ClothWPF
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
         }
-
+        public void DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            KodProductu = Convert.ToInt32(DataGrid.SelectedRows[0].Cells[0].Value);
+        }
         private void clothesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
         }
 
         private void mi_NewItem_Click(object sender, RoutedEventArgs e)
