@@ -64,9 +64,9 @@ namespace ClothWPF
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
         }
-        //public void DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+       // public void DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         //{
-        //    KodProductu = Convert.ToInt32(DataGrid.SelectedRows[0].Cells[0].Value);
+           // KodProductu = Convert.ToInt32(DataGrid.SelectedRows[0].Cells[0].Value);
         //}
         private void clothesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
