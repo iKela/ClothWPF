@@ -29,9 +29,8 @@ namespace ClothWPF
         {
             InitializeComponent();
 
-
-       
-            }
+            DataContext = new MainViewModel();
+        }
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
