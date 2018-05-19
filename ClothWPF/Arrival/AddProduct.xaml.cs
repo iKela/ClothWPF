@@ -35,7 +35,7 @@ namespace ClothWPF
             if (cmb_Name.SelectedItem != null)
             {
                 string query =
-                     "update Product " + $"set PriceDollar = '{txt_SuppierPrice.Text}', " + $"Metric = '{txt_Count.Text}', " + $"PriceRetail = '{txt_PriceRetailer.Text}', " + $"PriceWholesale = '{txt_PriceWholeSale.Text}', " + $"where Name = {cmb_Name.SelectionBoxItem}";//KodProductu = {txt_ProductCode}";
+                     "update Product " + $"set PriceDollar = '{txt_SuppierPrice.Text}', " + $"Metric = '{txt_Count.Text}', " + $"PriceRetail = '{txt_PriceRetailer.Text}', " + $"PriceWholesale = '{txt_PriceWholeSale.Text}', " + $"where Name = {cmb_Name.SelectedItem}";//KodProductu = {txt_ProductCode}";
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
