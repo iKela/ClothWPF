@@ -31,19 +31,7 @@ namespace ClothWPF
 
 
        
-            connection.Open();
-            string qwery = $"SELECT Name FROM Product";
-            SqlCommand command = new SqlCommand(qwery, connection);
-            SqlDataReader sqlReader = command.ExecuteReader();
-            while (sqlReader.Read())
-            {
-                list.Add(sqlReader["Name"].ToString());
-                //cmb_Name.Text = sqlReader["Name"].ToString();
             }
-            connection.Close();
-            sqlReader.Close();
-            this.cmb_Name.ItemsSource = list;
-        }
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -65,9 +53,9 @@ namespace ClothWPF
             string query = $"SELECT * From Product where  Name = '{cmb_Name.Text}'";
 
             connection.Open();
-            SqlDataReader sqlReader = null;
             SqlCommand command = new SqlCommand(query, connection);
-            sqlReader = command.ExecuteReader();
+            
+            SqlDataReader sqlReader = command.ExecuteReader();
             while (sqlReader.Read())
             {
                 txt_Count.Text = sqlReader["Metric"].ToString();
@@ -84,6 +72,23 @@ namespace ClothWPF
         private void cmb_Name_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            connection.Open();
+            string qwery = $"SELECT Name FROM Product";
+            SqlCommand command = new SqlCommand(qwery, connection);
+            SqlDataReader sqlReader = command.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                list.Add(sqlReader["Name"].ToString());
+                //cmb_Name.Text = sqlReader["Name"].ToString();
+            }
+            connection.Close();
+            sqlReader.Close();
+            cmb_Name.SelectedItem = true;
+            this.cmb_Name.ItemsSource = list;
         }
     }
 }
