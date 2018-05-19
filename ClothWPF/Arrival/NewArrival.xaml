@@ -64,7 +64,7 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3">
-            <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged">
+            <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
 
                 <DataGrid.Resources>
                     <!--<col:ArrayList x:Key="clothes">

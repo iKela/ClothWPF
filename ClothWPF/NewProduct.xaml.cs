@@ -20,6 +20,7 @@ namespace ClothWPF
     /// </summary>
     public partial class NewProduct : Window
     {
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Yuriy\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
         public NewProduct()
         {
             InitializeComponent();
@@ -54,25 +55,25 @@ namespace ClothWPF
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (txt_Name || txt_ProductCode || cmb_Country.SelectedItem || txt_PriceDollar);
-            //    else
-            //    {
+            try
+            {
+                if (txt_Name.Text.Length ==0  || txt_ProductCode.Text.Length == 0 || cmb_Country.SelectedItem ==null || txt_PriceDollar.Text.Length == 0) throw new Exception("Не всі поля заповнені!") ;
+                else
+                {
                     connection.Open();
-                    string qwery = $"INSERT into Product(KodProductu, Name, Price, Madein)" +
-                        $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_PriceDollar.Text}', '{cmb_Country.SelectedItem.ToString()}')";
+                    string qwery = $"INSERT into Product(KodProductu, Name, PriceDollar, PriceRetail, PriceWholesale, Country)" +
+                        $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_PriceDollar.Text}', '{txt_PriceRetail.Text}', '{txt_PriceWholesale.Text}', '{cmb_Country.SelectedItem.ToString()}')";
                     SqlCommand command = new SqlCommand(qwery, connection);
                     command.ExecuteNonQuery();
                     connection.Close();
                     MessageBox.Show("Додано!");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    connection.Close();
-            //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                connection.Close();
+            }
         }
     }
 }
