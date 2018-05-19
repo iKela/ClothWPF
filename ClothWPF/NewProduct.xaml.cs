@@ -57,16 +57,16 @@ namespace ClothWPF
             //try
             //{
             //    if (txt_Name || txt_ProductCode || cmb_Country.SelectedItem || txt_PriceDollar);
-            //    else
-            //    {
-                    connection.Open();
-                    string qwery = $"INSERT into Product(KodProductu, Name, Price, Madein)" +
-                        $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_PriceDollar.Text}', '{cmb_Country.SelectedItem.ToString()}')";
-                    SqlCommand command = new SqlCommand(qwery, connection);
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    MessageBox.Show("Додано!");
-            //    }
+            ////    else
+            ////    {
+            //        connection.Open();
+            //        string qwery = $"INSERT into Product(KodProductu, Name, Price, Madein)" +
+            //            $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_PriceDollar.Text}', '{cmb_Country.SelectedItem.ToString()}')";
+            //        SqlCommand command = new SqlCommand(qwery, connection);
+            //        command.ExecuteNonQuery();
+            //        connection.Close();
+            //        MessageBox.Show("Додано!");
+            ////    }
             //}
             //catch (Exception ex)
             //{

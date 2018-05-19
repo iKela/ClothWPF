@@ -22,11 +22,18 @@ namespace ClothWPF
         public AddProduct()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
         }
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("Hello");
         }
     }
 }
