@@ -29,17 +29,18 @@ namespace ClothWPF
 
             DataContext = new MainViewModel();
         }
-
+        //Need add on form xml (DateArrival)
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             if (cmb_Name.SelectedItem != null)
             {
-                string query =
-                     "update Product " + $"set PriceDollar = '{txt_SuppierPrice.Text}', " + $"Metric = '{txt_Count.Text}', " + $"PriceRetail = '{txt_PriceRetailer.Text}', " + $"PriceWholesale = '{txt_PriceWholeSale.Text}', " + $"where Name = {cmb_Name.SelectedItem}";//KodProductu = {txt_ProductCode}";
                 connection.Open();
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
+                string qwery = $"INSERT into Arrival(DateArrival, ManufactureDate, PriceDollar, PriceRetail, PriceWholesale, Metric)" +
+                    $"VALUES('{DateArrival.Text}', '{txt_ManufactureDate.Text}', '{txt_SuppierPrice.Text}', '{txt_PriceRetailer.Text}','{txt_Count.Text}')";
+                SqlCommand command = new SqlCommand(qwery, connection);
+                command.ExecuteNonQuery();
                 connection.Close();
+                MessageBox.Show("Додано!");
             }
             else
                 MessageBox.Show("Не вибраний продукт!");
@@ -57,7 +58,7 @@ namespace ClothWPF
             {
                 txt_Count.Text = sqlReader["Metric"].ToString();
                 // txt_Discont.Text = sqlReader["Date"].ToString();
-                // txt_ManufactureDate.Text = sqlReader["info"].ToString();
+                txt_ManufactureDate.Text = sqlReader["ManufactureDate"].ToString();
                 txt_PriceRetailer.Text = sqlReader["PriceRetail"].ToString();
                 txt_ProductCode.Text = sqlReader["KodProductu"].ToString();
                 txt_SuppierPrice.Text = sqlReader["PriceDollar"].ToString();
