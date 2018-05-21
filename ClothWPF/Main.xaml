@@ -8,7 +8,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="Manual" Initialized="Window_Initialized">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" Closed="Window_Closed">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" IsEnabled="False">
                 <ComboBox Width="120" Margin="10 0 0 0" FontSize="18" HorizontalAlignment="Center">
                     <ComboBoxItem>Склад №1</ComboBoxItem>
                     <ComboBoxItem>Склад №2</ComboBoxItem>
@@ -59,7 +59,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
                 <Menu VerticalAlignment="Bottom">
                         <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" Click="mi_NewArrival_Click"/>
+                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
                         </MenuItem>
                         <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                             <MenuItem Name="mi_NewItem"  Header="Новий" Click="mi_NewItem_Click"/>
@@ -72,7 +72,7 @@
                     <TextBlock/>
                 </StackPanel>
             </Button>
-            <Button Grid.Column="4" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="4" IsEnabled="False" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="user" VerticalAlignment="Center" Margin="2"/>
                     <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
@@ -127,22 +127,22 @@
                     </Button>
                 </Grid>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF31A1FF">
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
+                    <ListViewItem Height="60" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" >
                             <materialDesign:PackIcon Kind="ViewList"  Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Склад" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                            <TextBlock Text="Склад" ToolTip="Функціонал для управління складом." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" IsEnabled="False">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Calendar" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Календар"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                            <TextBlock Text="Календар" ToolTip="Можливість планувати робочий графік."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" IsEnabled="False">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="TrendingUp" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Графіки"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                            <TextBlock Text="Графіки" ToolTip="Графіки продаж та аналітика рентабельності." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

@@ -8,7 +8,7 @@
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF"
         mc:Ignorable="d"
-        Title="NewArrival" Height="700" Width="1300">
+        Title="Новий прихід" Height="700" Width="1300">
     <Window.Resources>
         <Style x:Key="SeparatorStyle"
            TargetType="{x:Type Border}">
@@ -57,22 +57,11 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Name="btn_AddProduct" Height="40" Width="40" Margin="10 0" Content="&#xE109;" Grid.Column="1" FontSize="30" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4" Click="btn_AddProduct_Click"/>
-            </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Name="btn_DeleteProduct" Height="40" Width="40" Margin="10,0" Content="&#xE108;" Grid.Column="1" FontSize="30" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4" Click="btn_DeleteProduct_Click"/>
+                <Button Name="btn_AddProduct" Height="40" Width="40" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" Grid.Column="1" FontSize="30" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4" Click="btn_AddProduct_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3">
             <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
-
-                <DataGrid.Resources>
-                    <!--<col:ArrayList x:Key="clothes">
-                        <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
-                        <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
-                        <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
-                    </col:ArrayList>-->
-                </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -83,6 +72,13 @@
                     <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Ціна постачальника" Binding="{Binding Path=SupplierPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Дата виготовлення" Binding="{Binding Path=ManufactureDate}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
 
                 <!--<DataGrid.RowDetailsTemplate>

@@ -32,18 +32,18 @@ namespace ClothWPF
         //Need add on form xml (DateArrival)
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            if (cmb_Name.SelectedItem != null)
-            {
-                connection.Open();
-                string qwery = $"INSERT into Arrival(DateArrival, ManufactureDate, PriceDollar, PriceRetail, PriceWholesale, Metric)" +
-                    $"VALUES('{DateArrival.Text}', '{txt_ManufactureDate.Text}', '{txt_SuppierPrice.Text}', '{txt_PriceRetailer.Text}','{txt_Count.Text}')";
-                SqlCommand command = new SqlCommand(qwery, connection);
-                command.ExecuteNonQuery();
-                connection.Close();
-                MessageBox.Show("Додано!");
-            }
-            else
-                MessageBox.Show("Не вибраний продукт!");
+            //if (cmb_Name.SelectedItem != null)
+            //{
+            //    connection.Open();
+            //    string qwery = $"INSERT into Arrival(DateArrival, ManufactureDate, PriceDollar, PriceRetail, PriceWholesale, Metric)" +
+            //        $"VALUES('{DateArrival.Text}', '{txt_ManufactureDate.Text}', '{txt_SuppierPrice.Text}', '{txt_PriceRetailer.Text}','{txt_Count.Text}')";
+            //    SqlCommand command = new SqlCommand(qwery, connection);
+            //    command.ExecuteNonQuery();
+            //    connection.Close();
+            //    MessageBox.Show("Додано!");
+            //}
+            //else
+            //    MessageBox.Show("Не вибраний продукт!");
         }
 
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,6 +75,12 @@ namespace ClothWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NewProduct newProduct = new NewProduct();
+            newProduct.Show();
         }
     }
 }

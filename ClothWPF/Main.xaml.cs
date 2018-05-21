@@ -78,5 +78,10 @@ namespace ClothWPF
             NewProduct addProduct = new NewProduct();
             addProduct.Show();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
