@@ -47,22 +47,21 @@ namespace ClothWPF
         {
 
         }
-
         private void txt_ProductCode_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (txt_Name.Text.Length ==0  || txt_ProductCode.Text.Length == 0 || cmb_Country.SelectedItem ==null || txt_PriceDollar.Text.Length == 0) throw new Exception("Не всі поля заповнені!") ;
+                if (txt_Name.Text.Length ==0  || txt_ProductCode.Text.Length == 0 || cmb_Country.SelectedItem ==null)
+                    throw new Exception("Не всі поля заповнені!") ;
                 else
                 {
                     connection.Open();
-                    string qwery = $"INSERT into Product(KodProductu, Name, PriceDollar, PriceRetail, PriceWholesale, Country)" +
-                        $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_PriceDollar.Text}', '{txt_PriceRetail.Text}', '{txt_PriceWholesale.Text}', '{cmb_Country.SelectedItem.ToString()}')";
+                    string qwery = $"INSERT into Product(KodProductu, Name, Description, Country)" +
+                        $"VALUES('{txt_ProductCode.Text}', '{txt_Name.Text}', '{txt_Description.Text}', '{cmb_Country.SelectedItem.ToString()}')";
                     SqlCommand command = new SqlCommand(qwery, connection);
                     command.ExecuteNonQuery();
                     connection.Close();

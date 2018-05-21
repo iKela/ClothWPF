@@ -64,7 +64,7 @@ namespace ClothWPF
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            UpdateProduct();
+           // UpdateProduct();
         }
     }
 }

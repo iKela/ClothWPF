@@ -35,8 +35,8 @@ namespace ClothWPF
             SqlDataReader sqlReader = command.ExecuteReader();
             while (sqlReader.Read())
             {
-                Locations.Add(sqlReader["Name"].ToString());
-                //cmb_Name.Text = sqlReader["Name"].ToString();
+                Locations.Add(sqlReader["Name, IdProduct"].ToString());
+                
             }
             connection.Close();
             sqlReader.Close();
