@@ -21,7 +21,7 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Yuriy\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iKela\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
 
         public AddProduct()
         {
@@ -34,8 +34,7 @@ namespace ClothWPF
         {
             if (cmb_Name.SelectedItem != null)
             {
-                string query =
-                     "update Product " + $"set PriceDollar = '{txt_SuppierPrice.Text}', " + $"Metric = '{txt_Count.Text}', " + $"PriceRetail = '{txt_PriceRetailer.Text}', " + $"PriceWholesale = '{txt_PriceWholeSale.Text}', " + $"where Name = {cmb_Name.SelectionBoxItem}";//KodProductu = {txt_ProductCode}";
+                string query = "update Product " + $"set PriceDollar = '{txt_SuppierPrice.Text}', " + $"Metric = '{txt_Count.Text}', " + $"PriceRetail = '{txt_PriceRetailer.Text}', " + $"PriceWholesale = '{txt_PriceWholeSale.Text}', " + $"where Name = {cmb_Name.SelectedItem}";//KodProductu = {txt_ProductCode}";
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
