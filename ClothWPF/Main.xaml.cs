@@ -35,7 +35,6 @@ namespace ClothWPF
                 // Місце для додавання
                 new Classes.Clothes{Name="Рожа", ProductCode="87563", Price= 65, Lenght=400, Country="Ukraine"},
                 new Classes.Clothes{Name="Авсвав", ProductCode="234", Price= 80, Lenght=600, Country="Ukraine"}
-
             };
             clothesGrid.ItemsSource = clothesList;
         }

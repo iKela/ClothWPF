@@ -95,10 +95,12 @@
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BindingProxy.cs" />
     <Compile Include="GridSettingsForm.xaml.cs">
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>

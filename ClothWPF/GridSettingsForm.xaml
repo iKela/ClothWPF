@@ -10,7 +10,7 @@
         <ListBox>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Name"/>
-                <CheckBox Name="checkBox_Name"/>
+                <CheckBox Name="checkBox_Name" Checked="checkBox_Name_Checked"/>
             </StackPanel>
             <CheckBox Name="checkBox_ItemCode"/>
             <CheckBox Name="checkBox_Count"/>

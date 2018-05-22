@@ -41,6 +41,16 @@
                 <Setter Property="Margin" Value="0 1 5 0"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
+
+            <Style x:Key="ColumnHeaderTextStyle" TargetType="DataGridColumnHeader">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

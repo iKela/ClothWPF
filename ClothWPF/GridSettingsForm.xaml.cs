@@ -23,5 +23,11 @@ namespace ClothWPF
         {
             InitializeComponent();
         }
+
+        private void checkBox_Name_Checked(object sender, RoutedEventArgs e)
+        {
+            MainWindowViewModel mainViewModel = new MainWindowViewModel();
+            mainViewModel.NameVisibility = false;
+        }
     }
 }
