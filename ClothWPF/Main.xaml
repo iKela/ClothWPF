@@ -59,11 +59,12 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
                 <Menu VerticalAlignment="Bottom">
                         <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
+                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
                         </MenuItem>
                         <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                            <MenuItem Name="mi_NewItem"  Header="Новий" Click="mi_NewItem_Click"/>
-                        </MenuItem>
+                            <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewItem_Click"/>
+                        <MenuItem Name="mi_AddItem" Header="Додати" Click="mi_AddItem_Click"/>
+                    </MenuItem>
                     </Menu>
             </StackPanel>
             <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" Background="#FF2196F3">
@@ -87,7 +88,7 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Grid Grid.Row="2" Margin="50 0 0 0">
+        <Grid Grid.Row="2">
             <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="clothesGrid_SelectionChanged">
 
                 <DataGrid.Resources>
@@ -100,9 +101,13 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Кількість" Binding="{Binding Path=Count}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
+                    <DataGridTextColumn Header="Роздрібна ціна" Binding="{Binding Path=RetailPrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=WholeSalePrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Закупівельна вартість($)" Binding="{Binding Path=PurchaseDolPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PurchaseUahPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                 </DataGrid.Columns>
 
@@ -116,7 +121,7 @@
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
         </Grid>
-        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2" Visibility="Collapsed">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button Name="btn_HideHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btn_HideHamburger_Click">

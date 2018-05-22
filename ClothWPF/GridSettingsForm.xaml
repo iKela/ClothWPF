@@ -1,0 +1,24 @@
+﻿<Window x:Class="ClothWPF.GridSettingsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClothWPF"
+        mc:Ignorable="d"
+        Title="GridSettingsForm" Height="300" Width="200">
+    <Grid>
+        <ListBox>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name"/>
+                <CheckBox Name="checkBox_Name"/>
+            </StackPanel>
+            <CheckBox Name="checkBox_ItemCode"/>
+            <CheckBox Name="checkBox_Count"/>
+            <CheckBox Name="checkBox_Lenght"/>
+            <CheckBox Name="checkBox_RetailPrice"/>
+            <CheckBox Name="checkBox_WholesalePrice"/>
+            <CheckBox Name="checkBox_PurchaseDolPrice"/>
+            <CheckBox Name="checkBox_PurchaseUahPrice"/>
+        </ListBox>
+    </Grid>
+</Window>

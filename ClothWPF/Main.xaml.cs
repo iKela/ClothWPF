@@ -38,8 +38,6 @@ namespace ClothWPF
 
             };
             clothesGrid.ItemsSource = clothesList;
-
-           
         }
 
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
@@ -82,6 +80,12 @@ namespace ClothWPF
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void mi_AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddItem addItem = new AddItem();
+            addItem.Show();
         }
     }
 }

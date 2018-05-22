@@ -35,7 +35,7 @@ namespace ClothWPF
             SqlDataReader sqlReader = command.ExecuteReader();
             while (sqlReader.Read())
             {
-                Locations.Add(sqlReader["Name, IdProduct"].ToString());
+                Locations.Add(sqlReader["Name"].ToString());
                 
             }
             connection.Close();
