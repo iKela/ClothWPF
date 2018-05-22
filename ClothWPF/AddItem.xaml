@@ -29,19 +29,15 @@
                         <TextBlock Text="Назва: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
                         <TextBox Name="txt_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" />
                     </StackPanel>
+                    <StackPanel>
+                        <TextBox Name="txt_Count" materialDesign:HintAssist.Hint="Кількість" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+                    </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                         <materialDesign:PackIcon Kind="Numeric" Height="20" Width="20" Margin="0 5 0 0"/>
                         <TextBlock Text="Код продукту: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
                         <TextBox Name="txt_ProductCode" Width="100" FontFamily="Timew New Roman" FontSize="14" TextChanged="txt_ProductCode_TextChanged"/>
                     </StackPanel>
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-                        <TextBlock Text="&#xE128;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0 6 5 2"/>
-                        <TextBlock Text="Країна виробник: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="0 7 0 0"/>
-                        <ComboBox Name="cmb_Country" Width="100" FontFamily="Timew New Roman" FontSize="14">
-                            <ComboBoxItem>None</ComboBoxItem>
-                            <ComboBoxItem>Україна</ComboBoxItem>
-                        </ComboBox>
-                    </StackPanel>
+                    
                 </StackPanel>
             </GroupBox>
         </Grid>
@@ -57,6 +53,14 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 20 0 0">
                         <TextBox Name="txt_Description" materialDesign:HintAssist.Hint="Опис" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="200" Height="50" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10 0 10 0">
+                        <TextBlock Text="&#xE128;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0 6 5 2"/>
+                        <TextBlock Text="Країна виробник: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="0 7 0 0"/>
+                        <ComboBox Name="cmb_Country" Width="100" FontFamily="Timew New Roman" FontSize="14">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Україна</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
