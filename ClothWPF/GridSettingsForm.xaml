@@ -5,13 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClothWPF"
         mc:Ignorable="d"
-        Title="GridSettingsForm" Height="300" Width="200">
+        Title="GridSettingsForm" Height="380" MinHeight="380" MaxHeight="380" Width="200" MinWidth="200" MaxWidth="200">
     <Grid>
-        <ListBox>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Name"/>
-                <CheckBox Name="checkBox_Name" Checked="checkBox_Name_Checked"/>
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" FontFamily="Times New Roman" FontSize="14">
+            <TextBlock Text="Назва товару" Margin="1"/>
+            <TextBlock Text="Код товару" Margin="1"/>
+            <TextBlock Text="Кількість" Margin="1"/>
+            <TextBlock Text="Метраж" Margin="1"/>
+            <TextBlock Text="Роздрібна ціна" Margin="1"/>
+            <TextBlock Text="Оптова ціна" Margin="1"/>
+            <TextBlock Text="Закупівеньна ціна($)" Margin="1"/>
+            <TextBlock Text="Закупівельна ціна(грн)" Margin="1"/>
+            <TextBlock Text="Країна виробник" Margin="1"/>
+
+        </ListBox>
+        <ListBox Grid.Column="1">
+            <CheckBox Name="checkBox_Name"/>
             <CheckBox Name="checkBox_ItemCode"/>
             <CheckBox Name="checkBox_Count"/>
             <CheckBox Name="checkBox_Lenght"/>
@@ -19,6 +32,8 @@
             <CheckBox Name="checkBox_WholesalePrice"/>
             <CheckBox Name="checkBox_PurchaseDolPrice"/>
             <CheckBox Name="checkBox_PurchaseUahPrice"/>
+            <CheckBox Name="checkBox_Country"/>
         </ListBox>
+        <Button Grid.ColumnSpan="2" Name="btn_Save" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Content="&#128190;" FontSize="20" Padding="3" Click="btn_Save_Click"/>
     </Grid>
 </Window>

@@ -46,37 +46,31 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal" IsEnabled="False">
-                <ComboBox Width="120" Margin="10 0 0 0" FontSize="18" HorizontalAlignment="Center">
+                <ComboBox Width="120" Margin="10 0 0 0" FontSize="18" HorizontalAlignment="Center" Visibility="Collapsed">
                     <ComboBoxItem>Склад №1</ComboBoxItem>
                     <ComboBoxItem>Склад №2</ComboBoxItem>
                     <ComboBoxItem>Склад №3</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <Button Grid.Column="2" Style="{StaticResource MainButtonStyle}" Height="30" VerticalAlignment="Top">
-
-            </Button>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2">
                 <Menu VerticalAlignment="Bottom">
-                        <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                            <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
-                        </MenuItem>
-                        <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                            <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewItem_Click"/>
+                    <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
+                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewItem_Click"/>
                         <MenuItem Name="mi_AddItem" Header="Додати" Click="mi_AddItem_Click"/>
                     </MenuItem>
-                    </Menu>
+                    <MenuItem Name="mi_Warehouse" Width="75" Header="Склад" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <MenuItem Name="mi_WarehouseCondition" Header="Стан складу" Click="mi_WarehouseCondition_Click"/>
+                        <MenuItem Name="mi_Settings" Header="Налаштування" Click="mi_Settings_Click"/>
+                    </MenuItem>
+                </Menu>
             </StackPanel>
-            <Button Grid.Column="3" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" Background="#FF2196F3">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock/>
-                    <TextBlock/>
-                </StackPanel>
-            </Button>
             <Button Grid.Column="4" IsEnabled="False" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="user" VerticalAlignment="Center" Margin="2"/>
@@ -114,21 +108,21 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource NameVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=ProductCode}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ItemCodeVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Кількість" Binding="{Binding Path=Count}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=Count}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128207;  Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource LenghtVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Роздрібна ціна" Binding="{Binding Path=RetailPrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128181;  Роздрібна ціна" Binding="{Binding Path=RetailPrice}" Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource RetailVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=WholeSalePrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128181;  Оптова ціна" Binding="{Binding Path=WholeSalePrice}" Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource WholeSaleVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="Закупівельна вартість($)" Binding="{Binding Path=PurchaseDolPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість($)" Binding="{Binding Path=PurchaseDolPrice}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseDolPriceProxy}}"/>
-                    <DataGridTextColumn Header="Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PurchaseUahPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PurchaseUahPrice}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseUahPriceProxy}}"/>
                     <DataGridTextColumn Header="&#127757;  Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountryVisibilityProxy}}"/>
