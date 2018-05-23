@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Permissions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Classes;
 
 namespace ClothWPF
 {
@@ -19,7 +21,8 @@ namespace ClothWPF
     /// Interaction logic for Main.xaml
     /// </summary>
     ///
-    public partial class Main : Window
+    [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+    public partial class Main : Window, IView
     {
         int KodProductu;
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iKela\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
@@ -28,6 +31,19 @@ namespace ClothWPF
             InitializeComponent();
         }
 
+        #region IView Members
+        public IViewModel ViewModel
+        {
+            get
+            {
+                return DataContext as IViewModel;
+            }
+            set
+            {
+                DataContext = value;
+            }
+        }
+        #endregion
         private void Window_Initialized(object sender, EventArgs e)
         {
             FillDataGrid();

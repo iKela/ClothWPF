@@ -82,7 +82,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login.xaml">
+    <Page Include="Authorization\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -95,6 +95,12 @@
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
+    <Compile Include="Authorization\Classes\AuthentationService.cs" />
+    <Compile Include="Authorization\Classes\AuthenticationViewModel.cs" />
+    <Compile Include="Authorization\Classes\CustomIdentity.cs" />
+    <Compile Include="Authorization\Classes\CustomPrincipal.cs" />
+    <Compile Include="Authorization\Classes\DelegateCommand.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="GridSettingsForm.xaml.cs">
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
@@ -111,7 +117,7 @@
     <Compile Include="Arrival\Classes\Arrival.cs" />
     <Compile Include="General\Classes\Clothes.cs" />
     <Compile Include="General\Classes\Control.cs" />
-    <Compile Include="Login.xaml.cs">
+    <Compile Include="Authorization\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
