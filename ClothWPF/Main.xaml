@@ -8,7 +8,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" Closed="Window_Closed">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" Closed="Window_Closed" Loaded="Window_Loaded">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -92,22 +92,23 @@
             <DataGrid x:Name="clothesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="AliceBlue" SelectionChanged="clothesGrid_SelectionChanged">
 
                 <DataGrid.Resources>
-                    <col:ArrayList x:Key="clothes">
+                   
+                    <!--<col:ArrayList x:Key="clothes">
                         <loc:Clothes Name="Бавовна" ProductCode="353412" Price="50" Lenght="500" Country="Ukraine"/>
                         <loc:Clothes Name="Текстиль" ProductCode="23452" Price="45" Lenght="385" Country="Канада"/>
                         <loc:Clothes Name="Кожа" ProductCode="87563" Price="64" Lenght="400" Country="Ukraine"/>
-                    </col:ArrayList>
+                    </col:ArrayList>-->
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=ProductCode}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Код товару" Binding="{Binding Path=Code}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Кількість" Binding="{Binding Path=Count}" Width="80" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
-                    <DataGridTextColumn Header="Роздрібна ціна" Binding="{Binding Path=RetailPrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=WholeSalePrice}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Закупівельна вартість($)" Binding="{Binding Path=PurchaseDolPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PurchaseUahPrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Роздрібна ціна" Binding="{Binding Path=PriceRetail}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=PriceWholeSale}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Закупівельна вартість($)" Binding="{Binding Path=PriceDollar}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PriceUah}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                 </DataGrid.Columns>
 
