@@ -117,6 +117,7 @@
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BindingProxy.cs" />
     <Compile Include="EfContext.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="GridSettingsForm.xaml.cs">
@@ -128,6 +129,7 @@
       <DependentUpon>201805221505227_Neew.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>

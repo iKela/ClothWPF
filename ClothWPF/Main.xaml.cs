@@ -62,6 +62,11 @@ namespace ClothWPF
 
         private void Window_Initialized(object sender, EventArgs e)
         {
+            FillDataGrid();
+        }
+        public void FillDataGrid()
+        {
+            List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             //List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             //{
             //    // Місце для додавання
@@ -146,6 +151,17 @@ namespace ClothWPF
             var product = (sender as AddItem).Product;
             _ProductFullInfo.Add(product);
             clothesGrid.Items.Refresh();
+        }
+
+        private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mi_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            GridSettingsForm gridSettingsForm = new GridSettingsForm();
+            gridSettingsForm.Show();
         }
     }
 }
