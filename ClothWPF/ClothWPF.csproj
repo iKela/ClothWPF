@@ -118,7 +118,7 @@
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="BindingProxy.cs" />
-    <Compile Include="EfContext.cs" />
+    <Compile Include="Entities\EfContext.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="GridSettingsForm.xaml.cs">
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
@@ -138,8 +138,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Arrival\Classes\Arrival.cs" />
-    <Compile Include="General\Classes\Clothes.cs" />
-    <Compile Include="General\Classes\Control.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>

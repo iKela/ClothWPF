@@ -8,15 +8,15 @@ namespace ClothWPF
     
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private bool _nameVisibility;
-        private bool _itemCodeVisibility;
-        private bool _countVisibility;
-        private bool _lenghtVisibility;
-        private bool _retailVisibility;
-        private bool _wholesaleVisibility;
-        private bool _purchaseDolPrice;
-        private bool _purchaseUahPrice;
-        private bool _countryVisibility;
+        private bool _nameVisibility = true;
+        private bool _itemCodeVisibility = true;
+        private bool _countVisibility = true;
+        private bool _lenghtVisibility = true;
+        private bool _retailVisibility = true;
+        private bool _wholesaleVisibility = true;
+        private bool _purchaseDolPrice = true;
+        private bool _purchaseUahPrice = true;
+        private bool _countryVisibility = true;
 
 
         //private bool _itemCode;

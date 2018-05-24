@@ -21,18 +21,17 @@ namespace ClothWPF
     /// </summary>
     public partial class AddItem : Window
     {
-        public Product Product { get; set; }
-        public event EventHandler ProductAdded;
-        public event EventHandler ProductUpdated;
-
+        EfContext context = new EfContext();
+      
+        public Product Productadding { get; set; }
         bool field = false;
         public AddItem()
         {
-            InitializeComponent();
+            addItem();
         }
-        private void txt_ProductCode_TextChanged(object sender, TextChangedEventArgs e)
+        public void addItem()
         {
-
+            InitializeComponent();
         }
 
         private void btn_CurrencyExhange_MouseDown(object sender, MouseButtonEventArgs e)
@@ -60,8 +59,32 @@ namespace ClothWPF
 
         }
 
+        // FUNCTION FOR UPDATE
+
+        //private void Update()
+        //{
+        //    if (Product != null)
+        //    {
+        //        var product = context.Products.Find(Product.Id);
+        //        product.Name = txt_Name.Text;
+        //        product.Code = txt_ProductCode.Text;
+        //        product.Count = count;
+        //        product.PriceDollar = priceDollar;
+        //        product.PriceUah = priceUah;
+        //        product.PriceRetail = retailerPrice;
+        //        product.PriceWholesale = wholesalePrice;
+        //        product.Country = cmb_Country.Text;
+
+        //        context.SaveChanges();
+
+        //        Product = product;
+        //        ProductUpdated(this, new EventArgs());
+        //    }
+        //    else MessageBox.Show("ERROR");
+        //}
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
+            #region Double Parse
             double count = 0;
             double wholesalePrice = 0;
             double retailerPrice = 0;
@@ -72,58 +95,31 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetail.Text, out retailerPrice);
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
             Double.TryParse(txt_PriceUah.Text, out priceUah);
+            #endregion 
+           
 
             try
             {
-                using (EfContext context = new EfContext())
+                Productadding = context.Products.Add(new Product
                 {
-                    if (Product != null)
-                    {
-                        var product = context.Products.Find(Product.Id);
-                        product.Name = txt_Name.Text;
-                        product.Code = txt_ProductCode.Text;
-                        product.Count = count;
-                        product.PriceDollar = priceDollar;
-                        product.PriceUah = priceUah;
-                        product.PriceRetail = retailerPrice;
-                        product.PriceWholesale = wholesalePrice;
-                        product.Country = cmb_Country.Text;
-
-                        context.SaveChanges();
-
-                        Product = product;
-                        ProductUpdated(this, new EventArgs());
-                    }
-                    else
-                    {
-                        Product = context.Products.Add(new Product
-                        {
-                            Name = txt_Name.Text,
-                            Code = txt_ProductCode.Text,
-                            Count = count,
-                            PriceDollar = priceDollar,
-                            PriceUah = priceUah,
-                            PriceRetail = retailerPrice,
-                            PriceWholesale = wholesalePrice,
-                            Country = cmb_Country.Text
-                        });
-                        context.SaveChanges();
-                        ProductAdded(this, new EventArgs());
-                    }
-                    MessageBox.Show("Save");
-                }
-            }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            finally
+                    Name = txt_Name.Text,
+                    Code = txt_ProductCode.Text,
+                    Count = count,
+                    PriceDollar = priceDollar,
+                    PriceUah = priceUah,
+                    PriceRetail = retailerPrice,
+                    PriceWholesale = wholesalePrice,
+                    Country = cmb_Country.Text
+                });
+                context.SaveChanges();
+                MessageBox.Show("Save");
+            }  
+            catch (Exception ex)
             {
-                Main main = new Main();
-                main.loaded();
+                MessageBox.Show(ex.Message);
             }
         }
-
+        
         private void txt_PriceDollar_TextChanged(object sender, TextChangedEventArgs e)
         {
             field = false;
