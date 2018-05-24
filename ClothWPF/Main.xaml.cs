@@ -82,7 +82,7 @@ namespace ClothWPF
         }
         public void FillDataGrid()
         {
-            List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
+            List<Classes.Clothes> clothesList = new List<Classes.Clothes>();
             //List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             //{
             //    // Місце для додавання
