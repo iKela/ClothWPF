@@ -74,7 +74,7 @@ namespace ClothWPF
         //}
         private void clothesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            MessageBox.Show(clothesGrid.SelectedIndex.ToString());
         }
 
         private void mi_NewItem_Click(object sender, RoutedEventArgs e)
