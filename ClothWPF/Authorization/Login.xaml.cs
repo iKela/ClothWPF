@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ClothWPF.Authorization.Classes;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,30 +17,34 @@ using System.Windows.Shapes;
 
 namespace ClothWPF
 {
+    public interface IView
+    {
+        IViewModel ViewModel
+        {
+            get;
+            set;
+        }
+
+        void Show();
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Window, IView
     {
-        public Login()
+        public Login(AuthenticationViewModel viewModel)
         {
+            ViewModel = viewModel;
             InitializeComponent();
         }
 
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        #region IView Members
+        public IViewModel ViewModel
         {
-
+            get { return DataContext as IViewModel; }
+            set { DataContext = value; }
         }
-
-        private void btn_Login_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            Main main = new Main();
-            main.Show();
-        }
-        private void btn_Help_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion
     }
 }
