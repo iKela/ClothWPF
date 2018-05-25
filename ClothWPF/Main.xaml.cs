@@ -64,6 +64,8 @@ namespace ClothWPF
         {
             using (EfContext context = new EfContext())
             {
+                clothesGrid.ItemsSource = null;
+                clothesGrid.Items.Clear();
                 _ProductFullInfo = new List<Product>();
                 foreach (var product in context.Products)
                 {
@@ -118,6 +120,32 @@ namespace ClothWPF
         {
             Application.Current.Shutdown();
         }
+        private void DeleteProduct()
+        {
+            if (clothesGrid.SelectedItem != null)
+            {
+                var selected = (Product)clothesGrid.SelectedItem;
+                try
+                {
+                    using (EfContext context = new EfContext())
+                    {
+                        context.Products.Remove(context.Products.Find(selected.Id));
+                        context.SaveChanges();
+                    }
+                    _ProductFullInfo.Remove(_ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id));
+                    
+             //       clothesGrid.Items.Refresh();
+             //       where xaml.Main
+             //           <DataGrid.DataContext>
+             //                 < local:ProductModel />
+             //           </ DataGrid.DataContext >
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
@@ -136,8 +164,6 @@ namespace ClothWPF
                 clothesGrid.Items.Refresh();
             }
                 addItem.ShowDialog();
-                clothesGrid.ItemsSource = null;
-                clothesGrid.Items.Clear();
                 loaded();
         }
         private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
