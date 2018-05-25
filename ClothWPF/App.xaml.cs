@@ -24,7 +24,6 @@ namespace ClothWPF
             // loginWindow.Show();
             Main log = new Main();
             log.Show();
-
         }
     }
 }
