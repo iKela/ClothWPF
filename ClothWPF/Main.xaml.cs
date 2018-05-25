@@ -127,20 +127,18 @@ namespace ClothWPF
                 addItem.Productadding = new Product { Id = selected.Id };
                 addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Name;
                 addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Code;
+                addItem.txt_Count.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
                 addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
                 addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceUah.ToString();
                 addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
                 addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
                 addItem.cmb_Country.Text = selected.Country;
-                
                 clothesGrid.Items.Refresh();
             }
-           
                 addItem.ShowDialog();
                 clothesGrid.ItemsSource = null;
                 clothesGrid.Items.Clear();
                 loaded();
- 
         }
         private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
         {
