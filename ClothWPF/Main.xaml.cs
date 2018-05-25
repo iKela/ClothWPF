@@ -14,7 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ClothWPF.Authorization;
+using ClothWPF.Authorization.Classes;
+using System.Data;
 
 namespace ClothWPF
 {
@@ -31,30 +32,6 @@ namespace ClothWPF
         {
             InitializeComponent();
             _ProductFullInfo = new List<Product>();
-            //try
-            //{
-            //        if (!context.Products.Any())
-            //        {
-            //            for (int i = 0; i < 50; i++)
-            //            {
-            //                Person person = new Person("uk");
-            //                context.Students.Add(new Student
-            //                {
-            //                    FirstNameUkr = person.FirstName,
-            //                    FirstNameEng = Translator.Translit(person.FirstName),
-            //                    LastNameUkr = person.LastName,
-            //                    LastNameEng = Translator.Translit(person.LastName),
-            //                    Email = person.Email
-            //                });
-            //            }
-            //            context.SaveChanges();
-            //        }
-                
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
 
         #region IView Members
@@ -151,7 +128,15 @@ namespace ClothWPF
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
-            addItem.ShowDialog();
+            if (clothesGrid.SelectedItem != null)
+            {
+                var selected = (Product)clothesGrid.SelectedItem;
+                addItem.Productadding = new Product { Id = selected.Id };
+                addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Name;
+                addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Code;
+                addItem.cmb_Country.Text = selected.Country;
+            }
+                addItem.ShowDialog();
             clothesGrid.ItemsSource = null;
             clothesGrid.Items.Clear();
             loaded();
