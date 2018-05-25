@@ -61,27 +61,27 @@ namespace ClothWPF
 
         // FUNCTION FOR UPDATE
 
-        //private void Update()
-        //{
-        //    if (Product != null)
-        //    {
-        //        var product = context.Products.Find(Product.Id);
-        //        product.Name = txt_Name.Text;
-        //        product.Code = txt_ProductCode.Text;
-        //        product.Count = count;
-        //        product.PriceDollar = priceDollar;
-        //        product.PriceUah = priceUah;
-        //        product.PriceRetail = retailerPrice;
-        //        product.PriceWholesale = wholesalePrice;
-        //        product.Country = cmb_Country.Text;
+        private void Update()
+        {
+            //if (Product != null)
+            //{
+            //    var product = context.Products.Find(Product.Id);
+            //    product.Name = txt_Name.Text;
+            //    product.Code = txt_ProductCode.Text;
+            //    product.Count = count;
+            //    product.PriceDollar = priceDollar;
+            //    product.PriceUah = priceUah;
+            //    product.PriceRetail = retailerPrice;
+            //    product.PriceWholesale = wholesalePrice;
+            //    product.Country = cmb_Country.Text;
 
-        //        context.SaveChanges();
+            //    context.SaveChanges();
 
-        //        Product = product;
-        //        ProductUpdated(this, new EventArgs());
-        //    }
-        //    else MessageBox.Show("ERROR");
-        //}
+            //    Product = product;
+            //    ProductUpdated(this, new EventArgs());
+            //}
+            //else MessageBox.Show("ERROR");
+        }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             #region Double Parse
@@ -96,12 +96,27 @@ namespace ClothWPF
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
             Double.TryParse(txt_PriceUah.Text, out priceUah);
             #endregion 
-           
-
             try
             {
+                if (Productadding != null)
+                {
+                    var product = context.Products.Find(Productadding.Id);
+                    product.Name = txt_Name.Text;
+                    product.Code = txt_ProductCode.Text;
+                    product.Count = count;
+                    product.PriceDollar = priceDollar;
+                    product.PriceUah = priceUah;
+                    product.PriceRetail = retailerPrice;
+                    product.PriceWholesale = wholesalePrice;
+                    product.Country = cmb_Country.Text;
+
+                    context.SaveChanges();
+                    Productadding = product;
+                }
+                else MessageBox.Show("Adding");
                 Productadding = context.Products.Add(new Product
                 {
+
                     Name = txt_Name.Text,
                     Code = txt_ProductCode.Text,
                     Count = count,

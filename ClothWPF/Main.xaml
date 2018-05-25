@@ -92,6 +92,7 @@
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
+                      SelectionMode="Single"
                   >
 
                 <DataGrid.Resources>
