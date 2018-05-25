@@ -120,7 +120,7 @@ namespace ClothWPF
         {
             Application.Current.Shutdown();
         }
-        private void DeleteProduct()
+        private void DeleteProduct(object sender, RoutedEventArgs e)
         {
             if (clothesGrid.SelectedItem != null)
             {
@@ -132,7 +132,10 @@ namespace ClothWPF
                         context.Products.Remove(context.Products.Find(selected.Id));
                         context.SaveChanges();
                     }
-                    _ProductFullInfo.Remove(_ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id));
+                    loaded();
+                    MessageBox.Show("deleted");
+
+                    //_ProductFullInfo.Remove(_ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id));
                     
              //       clothesGrid.Items.Refresh();
              //       where xaml.Main
@@ -159,7 +162,7 @@ namespace ClothWPF
                 addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
                 addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceUah.ToString();
                 addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
-                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
+                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
                 addItem.cmb_Country.Text = selected.Country;
                 clothesGrid.Items.Refresh();
             }
