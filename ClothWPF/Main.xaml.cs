@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ClothWPF.Authorization.Classes;
+using ClothWPF.Authorization;
 
 namespace ClothWPF
 {
@@ -23,7 +23,7 @@ namespace ClothWPF
     /// </summary>
     ///
     [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
-    public partial class Main : Window, IView
+    public partial class Main : Window //, IView
     {
         public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
@@ -76,7 +76,6 @@ namespace ClothWPF
         }
         public void FillDataGrid()
         {
-            List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             //List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
             //{
             //    // Місце для додавання

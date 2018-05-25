@@ -4,7 +4,7 @@ using System.Threading;
 using System.Windows.Controls;
 using System.Security;
 
-namespace ClothWPF.Authorization.Classes
+namespace ClothWPF.Authorization
 {
     public interface IViewModel { }
 
@@ -87,21 +87,21 @@ namespace ClothWPF.Authorization.Classes
                 passwordBox.Password = string.Empty; //reset
                 Status = string.Empty;
 
-                try
-                {
-                    Status = string.Empty;
-                    IView view;
-                    if (parameter == null)
-                        view = new Main();
-                    else
-                        view = new Main();
+                //try
+                //{
+                //    Status = string.Empty;
+                //    IView view;
+                //    if (parameter == null)
+                //        view = new Main();
+                //    else
+                //        view = new Main();
 
-                    view.Show();
-                }
-                catch (SecurityException)
-                {
-                    Status = "You are not authorized!";
-                }
+                //    view.Show();
+                //}
+                //catch (SecurityException)
+                //{
+                //    Status = "You are not authorized!";
+                //}
             }
             catch (UnauthorizedAccessException)
             {
@@ -144,21 +144,21 @@ namespace ClothWPF.Authorization.Classes
 
         private void ShowView(object parameter)
         {
-            try
-            {
-                Status = string.Empty;
-                IView view;
-                if (parameter == null)
-                    view = new Main();
-                else
-                    view = new Main();
+            //try
+            //{
+            //    Status = string.Empty;
+            //    IView view;
+            //    if (parameter == null)
+            //        view = new Main();
+            //    else
+            //        view = new Main();
 
-                view.Show();
-            }
-            catch (SecurityException)
-            {
-                Status = "You are not authorized!";
-            }
+            //    view.Show();
+            //}
+            //catch (SecurityException)
+            //{
+            //    Status = "You are not authorized!";
+            //}
         }
 
 

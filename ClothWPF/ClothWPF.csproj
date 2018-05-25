@@ -144,10 +144,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Arrival\Classes\Arrival.cs" />
-    <Compile Include="Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
