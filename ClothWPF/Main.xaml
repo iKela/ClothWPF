@@ -71,6 +71,9 @@
                     </MenuItem>
                 </Menu>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
+                
+            </StackPanel>
             <Button Grid.Column="4" IsEnabled="False" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="user" VerticalAlignment="Center" Margin="2"/>
@@ -127,6 +130,13 @@
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseUahPriceProxy}}"/>
                     <DataGridTextColumn Header="&#127757;  Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountryVisibilityProxy}}"/>
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="DeleteProduct"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

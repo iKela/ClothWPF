@@ -122,26 +122,18 @@ namespace ClothWPF
         }
         private void DeleteProduct(object sender, RoutedEventArgs e)
         {
+            Product obj = ((FrameworkElement)sender).DataContext as Product;
             if (clothesGrid.SelectedItem != null)
             {
-                var selected = (Product)clothesGrid.SelectedItem;
                 try
                 {
                     using (EfContext context = new EfContext())
                     {
-                        context.Products.Remove(context.Products.Find(selected.Id));
+                        context.Products.Remove(context.Products.Find(obj.Id));
                         context.SaveChanges();
                     }
                     loaded();
-                    MessageBox.Show("deleted");
-
-                    //_ProductFullInfo.Remove(_ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id));
-                    
-             //       clothesGrid.Items.Refresh();
-             //       where xaml.Main
-             //           <DataGrid.DataContext>
-             //                 < local:ProductModel />
-             //           </ DataGrid.DataContext >
+                    MessageBox.Show("Видалено");
                 }
                 catch (Exception ex)
                 {
