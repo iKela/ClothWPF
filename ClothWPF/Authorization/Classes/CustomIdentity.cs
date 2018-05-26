@@ -1,7 +1,7 @@
 ﻿using System.Security.Principal;
 
 
-namespace ClothWPF
+namespace ClothWPF.Authorization
 {
     public class CustomIdentity : IIdentity
     {

@@ -21,18 +21,17 @@ namespace ClothWPF
     /// </summary>
     public partial class AddItem : Window
     {
-        public Product Product { get; set; }
-        public event EventHandler ProductAdded;
-        public event EventHandler ProductUpdated;
-
+        //EfContext context = new EfContext();
+      
+        public Product Productadding { get; set; }
         bool field = false;
         public AddItem()
         {
-            InitializeComponent();
+            addItem();
         }
-        private void txt_ProductCode_TextChanged(object sender, TextChangedEventArgs e)
+        public void addItem()
         {
-
+            InitializeComponent();
         }
 
         private void btn_CurrencyExhange_MouseDown(object sender, MouseButtonEventArgs e)
@@ -59,9 +58,10 @@ namespace ClothWPF
         {
 
         }
-
+        
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
+            #region Double Parse
             double count = 0;
             double wholesalePrice = 0;
             double retailerPrice = 0;
@@ -72,14 +72,17 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetail.Text, out retailerPrice);
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
             Double.TryParse(txt_PriceUah.Text, out priceUah);
-
-            try
+            #endregion
+            using (EfContext context = new EfContext())
             {
-                using (EfContext context = new EfContext())
+                try
                 {
-                    if (Product != null)
+                    if (Productadding != null)
                     {
-                        var product = context.Products.Find(Product.Id);
+                        MessageBox.Show("Edit");
+                        var product = context.Products.Where(c => c.Id == Productadding.Id).FirstOrDefault();
+
+                        //var product = context.Products.Find(Productadding.Id);
                         product.Name = txt_Name.Text;
                         product.Code = txt_ProductCode.Text;
                         product.Count = count;
@@ -88,15 +91,13 @@ namespace ClothWPF
                         product.PriceRetail = retailerPrice;
                         product.PriceWholesale = wholesalePrice;
                         product.Country = cmb_Country.Text;
-
+                        Productadding = product;
                         context.SaveChanges();
-
-                        Product = product;
-                        ProductUpdated(this, new EventArgs());
                     }
                     else
                     {
-                        Product = context.Products.Add(new Product
+                        MessageBox.Show("Add");
+                        context.Products.Add(new Product
                         {
                             Name = txt_Name.Text,
                             Code = txt_ProductCode.Text,
@@ -108,22 +109,16 @@ namespace ClothWPF
                             Country = cmb_Country.Text
                         });
                         context.SaveChanges();
-                        ProductAdded(this, new EventArgs());
                     }
                     MessageBox.Show("Save");
                 }
-            }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            finally
-            {
-                Main main = new Main();
-                main.loaded();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
-
+        
         private void txt_PriceDollar_TextChanged(object sender, TextChangedEventArgs e)
         {
             field = false;

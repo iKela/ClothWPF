@@ -46,8 +46,7 @@ namespace ClothWPF
             mainViewModel.PurchaseDolPrice =  checkBox_PurchaseDolPrice.IsChecked.Value;
             mainViewModel.PurchaseUahPrice =   checkBox_PurchaseUahPrice.IsChecked.Value;
             mainViewModel.CountryVisibility = checkBox_Country.IsChecked.Value;
-            Main main = new Main();
-            main.RefreshDataGrid();         
+                 
         }
     }
 }

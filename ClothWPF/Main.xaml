@@ -8,7 +8,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" Closed="Window_Closed">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded">
     
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -92,17 +92,18 @@
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
-                      SelectionChanged="clothesGrid_SelectionChanged">
+                      SelectionMode="Single"
+                  >
 
                 <DataGrid.Resources>
-                    <local:BindingProxy x:Key="NameVisibilityProxy" Data="{Binding NameVisibility}"/>
+                    <local:BindingProxy x:Key="NameVisibilityProxy"     Data="{Binding NameVisibility}"/>
                     <local:BindingProxy x:Key="ItemCodeVisibilityProxy" Data="{Binding ItemCodeVisibility}"/>
-                    <local:BindingProxy x:Key="CountVisibilityProxy" Data="{Binding CountVisibility}"/>
-                    <local:BindingProxy x:Key="LenghtVisibilityProxy" Data="{Binding LenghtVisibility}"/>
-                    <local:BindingProxy x:Key="RetailVisibilityProxy" Data="{Binding RetailVisibility}"/>
+                    <local:BindingProxy x:Key="CountVisibilityProxy"    Data="{Binding CountVisibility}"/>
+                    <local:BindingProxy x:Key="LenghtVisibilityProxy"   Data="{Binding LenghtVisibility}"/>
+                    <local:BindingProxy x:Key="RetailVisibilityProxy"   Data="{Binding RetailVisibility}"/>
                     <local:BindingProxy x:Key="WholeSaleVisibilityProxy" Data="{Binding WholeSaleVisibility}"/>
-                    <local:BindingProxy x:Key="PurchaseDolPriceProxy" Data="{Binding PurchaseDolPrice}"/>
-                    <local:BindingProxy x:Key="PurchaseUahPriceProxy" Data="{Binding PurchaseUahPrice}"/>
+                    <local:BindingProxy x:Key="PurchaseDolPriceProxy"   Data="{Binding PurchaseDolPrice}"/>
+                    <local:BindingProxy x:Key="PurchaseUahPriceProxy"   Data="{Binding PurchaseUahPrice}"/>
                     <local:BindingProxy x:Key="CountryVisibilityProxy" Data="{Binding CountryVisibility}"/>
 
                 </DataGrid.Resources>
@@ -110,32 +111,23 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource NameVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=ProductCode}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ItemCodeVisibilityProxy}}"/>
                     <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=Count}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountVisibilityProxy}}"/>
                     <DataGridTextColumn Header="&#128207;  Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource LenghtVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="&#128181;  Роздрібна ціна" Binding="{Binding Path=RetailPrice}" Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128181;  Роздрібна ціна" Binding="{Binding Path=PriceRetail}" Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource RetailVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="&#128181;  Оптова ціна" Binding="{Binding Path=WholeSalePrice}" Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
+                    <DataGridTextColumn Header="&#128181;  Оптова ціна" Binding="{Binding Path=PriceWholesale}" Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource WholeSaleVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість($)" Binding="{Binding Path=PurchaseDolPrice}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість($)" Binding="{Binding Path=PriceDollar}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseDolPriceProxy}}"/>
-                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PurchaseUahPrice}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PriceUah}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseUahPriceProxy}}"/>
                     <DataGridTextColumn Header="&#127757;  Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountryVisibilityProxy}}"/>
                 </DataGrid.Columns>
-
-                <!--<DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=Price}"/>
-                            <TextBlock Text="грн. за метер квадратний."/>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>-->
             </DataGrid>
         </Grid>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2" Visibility="Collapsed">

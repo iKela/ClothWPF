@@ -14,7 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ClothWPF.Authorization.Classes;
+//using ClothWPF.Authorization.Classes;
+using System.Data;
+using ClothWPF.Authorization;
 
 namespace ClothWPF
 {
@@ -22,45 +24,14 @@ namespace ClothWPF
     /// Interaction logic for Main.xaml
     /// </summary>
     ///
-    [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
-    public partial class Main : Window, IView
+   // [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+    public partial class Main : Window //, IView
     {
-        private List<Product> _ProductFullInfo;
+        public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
         public Main()
-        {
+        {  
             InitializeComponent();
-            _ProductFullInfo = new List<Product>();
-            //try
-            //{
-            //    using (EfContext context = new EfContext())
-            //    {
-            //        if (!context.Products.Any())
-            //        {
-            //            for (int i = 0; i < 50; i++)
-            //            {
-            //                //Person person = new Person;
-            //                context.Products.Add(new Product
-            //                {
-            //                    Id = product.Id,
-            //                    Code = product.Code,
-            //                    Name = product.Name,
-            //                    Count = product.Count,
-            //                    PriceDollar = product.PriceDollar,
-            //                    PriceUah = product.PriceUah,
-            //                    PriceRetail = product.PriceRetail,
-            //                    PriceWholesale = product.PriceWholesale,
-            //                    Country = product.Country
-            //                });
-            //            }
-            //            context.SaveChanges();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
 
         #region IView Members
@@ -82,15 +53,8 @@ namespace ClothWPF
         }
         public void FillDataGrid()
         {
-            List<Classes.Clothes> clothesList = new List<Classes.Clothes>();
-            //List<Classes.Clothes> clothesList = new List<Classes.Clothes>()
-            //{
-            //    // Місце для додавання
-            //    new Classes.Clothes{Name="Рожа", ProductCode="87563", Price= 65, Lenght=400, Country="Ukraine"},
-            //    new Classes.Clothes{Name="Авсвав", ProductCode="234", Price= 80, Lenght=600, Country="Ukraine"}
-
-            //};
-            //clothesGrid.ItemsSource = clothesList;
+            
+           
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -98,22 +62,29 @@ namespace ClothWPF
         }
         public void loaded()
         {
-            foreach (var product in context.Products)
+            using (EfContext context = new EfContext())
             {
-                _ProductFullInfo.Add(new Product
+                clothesGrid.ItemsSource = null;
+                clothesGrid.Items.Clear();
+                _ProductFullInfo = new List<Product>();
+                foreach (var product in context.Products)
                 {
-                    Id = product.Id,
-                    Code = product.Code,
-                    Name = product.Name,
-                    Count = product.Count,
-                    PriceDollar = product.PriceDollar,
-                    PriceUah = product.PriceUah,
-                    PriceRetail = product.PriceRetail,
-                    PriceWholesale = product.PriceWholesale,
-                    Country = product.Country
-                });
+                    _ProductFullInfo.Add(new Product
+                    {
+                        Id = product.Id,
+                        Code = product.Code,
+                        Name = product.Name,
+                        Count = product.Count,
+                        PriceDollar = product.PriceDollar,
+                        PriceUah = product.PriceUah,
+                        PriceRetail = product.PriceRetail,
+                        PriceWholesale = product.PriceWholesale,
+                        Country = product.Country
+                    });
+                }
+                clothesGrid.ItemsSource = _ProductFullInfo;
             }
-            clothesGrid.ItemsSource = _ProductFullInfo;
+                
         }
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
@@ -134,12 +105,6 @@ namespace ClothWPF
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
         }
-
-        internal void Window_Loaded(AddItem addItem, EventArgs eventArgs)
-        {
-            throw new NotImplementedException();
-        }
-
         private void clothesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show(clothesGrid.SelectedIndex.ToString());
@@ -155,25 +120,59 @@ namespace ClothWPF
         {
             Application.Current.Shutdown();
         }
+        private void DeleteProduct(object sender, RoutedEventArgs e)
+        {
+            if (clothesGrid.SelectedItem != null)
+            {
+                var selected = (Product)clothesGrid.SelectedItem;
+                try
+                {
+                    using (EfContext context = new EfContext())
+                    {
+                        context.Products.Remove(context.Products.Find(selected.Id));
+                        context.SaveChanges();
+                    }
+                    loaded();
+                    MessageBox.Show("deleted");
 
+                    //_ProductFullInfo.Remove(_ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id));
+                    
+             //       clothesGrid.Items.Refresh();
+             //       where xaml.Main
+             //           <DataGrid.DataContext>
+             //                 < local:ProductModel />
+             //           </ DataGrid.DataContext >
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
-            addItem.ProductAdded += Dlg_ProductAdded;
-            addItem.ShowDialog();
+            if (clothesGrid.SelectedItem != null)
+            {
+                var selected = (Product)clothesGrid.SelectedItem;
+                addItem.Productadding = new Product { Id = selected.Id };
+                addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Name;
+                addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Code;
+                addItem.txt_Count.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
+                addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
+                addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceUah.ToString();
+                addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
+                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
+                addItem.cmb_Country.Text = selected.Country;
+                clothesGrid.Items.Refresh();
+            }
+                addItem.ShowDialog();
+                loaded();
         }
-        private void Dlg_ProductAdded(object sender, EventArgs e)
-        {
-            var product = (sender as AddItem).Product;
-            _ProductFullInfo.Add(product);
-            clothesGrid.Items.Refresh();
-        }
-
         private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void mi_Settings_Click(object sender, RoutedEventArgs e)
         {
             GridSettingsForm gridSettingsForm = new GridSettingsForm();
