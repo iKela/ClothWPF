@@ -33,7 +33,7 @@ namespace ClothWPF.Authorization
             new InternalUserData("Mark", "mark@company.com",
             "MB5PYIsbI2YzCUe34Q5ZU2VferIoI4Ttd+ydolWV0OE=", new string[] { "Administrators" }),
             new InternalUserData("John", "john@company.com",
-            "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { })
+            "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { "Users"})
         };
 
         public User AuthenticateUser(string username, string clearTextPassword)

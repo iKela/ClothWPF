@@ -20,10 +20,8 @@ namespace ClothWPF
 
             //Show the login view
             AuthenticationViewModel viewModel = new AuthenticationViewModel(new AuthenticationService());
-            //IView loginWindow = new Login(viewModel);
-            // loginWindow.Show();
-            Main log = new Main();
-            log.Show();
+            IView loginWindow = new Login(viewModel);
+            loginWindow.Show();
         }
     }
 }

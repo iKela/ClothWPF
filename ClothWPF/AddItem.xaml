@@ -57,10 +57,7 @@
                     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10 0 10 0">
                         <TextBlock Text="&#xE128;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0 6 5 2"/>
                         <TextBlock Text="Країна виробник: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="0 7 0 0"/>
-                        <ComboBox Name="cmb_Country" Width="100" FontFamily="Timew New Roman" FontSize="14">
-                            <ComboBoxItem>None</ComboBoxItem>
-                            <ComboBoxItem>Україна</ComboBoxItem>
-                        </ComboBox>
+                        <TextBox Name="cmb_Country" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

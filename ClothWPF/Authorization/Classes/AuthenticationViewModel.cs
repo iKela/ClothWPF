@@ -13,7 +13,6 @@ namespace ClothWPF.Authorization
         private readonly IAuthenticationService _authenticationService;
         private readonly DelegateCommand _loginCommand;
         private readonly DelegateCommand _logoutCommand;
-        private readonly DelegateCommand _showViewCommand;
         private string _username;
         private string _status;
 
@@ -22,7 +21,6 @@ namespace ClothWPF.Authorization
             _authenticationService = authenticationService;
             _loginCommand = new DelegateCommand(Login, CanLogin);
             _logoutCommand = new DelegateCommand(Logout, CanLogout);
-            _showViewCommand = new DelegateCommand(ShowView, null);
         }
 
         #region Properties
@@ -58,7 +56,6 @@ namespace ClothWPF.Authorization
 
         public DelegateCommand LogoutCommand { get { return _logoutCommand; } }
 
-        public DelegateCommand ShowViewCommand { get { return _showViewCommand; } }
         #endregion
 
         private void Login(object parameter)
@@ -87,25 +84,25 @@ namespace ClothWPF.Authorization
                 passwordBox.Password = string.Empty; //reset
                 Status = string.Empty;
 
-                //try
-                //{
-                //    Status = string.Empty;
-                //    IView view;
-                //    if (parameter == null)
-                //        view = new Main();
-                //    else
-                //        view = new Main();
+                try
+                {
+                    Status = string.Empty;
+                    IView view;
+                    if (parameter == null)
+                        view = new Main();
+                    else
+                        view = new Main();
 
-                //    view.Show();
-                //}
-                //catch (SecurityException)
-                //{
-                //    Status = "You are not authorized!";
-                //}
+                    view.Show();
+                }
+                catch (SecurityException)
+                {
+                    Status = "Ви не авторизовані!";
+                }
             }
             catch (UnauthorizedAccessException)
             {
-                Status = "Login failed! Please provide some valid credentials.";
+                Status = "Помилка входу! Вкажіть будь-ласка вірну інформацію.";
             }
             catch (Exception ex)
             {
@@ -142,34 +139,10 @@ namespace ClothWPF.Authorization
             get { return Thread.CurrentPrincipal.Identity.IsAuthenticated; }
         }
 
-        private void ShowView(object parameter)
-        {
-            //try
-            //{
-            //    Status = string.Empty;
-            //    IView view;
-            //    if (parameter == null)
-            //        view = new Main();
-            //    else
-            //        view = new Main();
-
-            //    view.Show();
-            //}
-            //catch (SecurityException)
-            //{
-            //    Status = "You are not authorized!";
-            //}
-        }
-
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private void NotifyPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         #endregion
     }
 }

@@ -60,6 +60,7 @@
                 <Menu VerticalAlignment="Bottom">
                     <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
                         <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
+                        <MenuItem Name="mi_GridSettings" Header="Налаштування" IsEnabled="True" ToolTip="Програмні налаштування." Click="mi_GridSettings_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewItem_Click"/>
@@ -74,11 +75,11 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
                 
             </StackPanel>
-            <Button Grid.Column="4" IsEnabled="False" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="4" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="user" VerticalAlignment="Center" Margin="2"/>
+                    <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
                     <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                        <StackPanel>
+                        <StackPanel IsEnabled="False">
                             <Button Name="btn_Account" Content="Кабінет"/>
                             <Button Name="btn_AccountSettings" Content="Налаштування"/>
                             <Button Name="btn_Help" Content="Допомога"/>
@@ -130,10 +131,13 @@
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource PurchaseUahPriceProxy}}"/>
                     <DataGridTextColumn Header="&#127757;  Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountryVisibilityProxy}}"/>
-                    <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="DeleteProduct"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
+                                    <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="DeleteProduct"/>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

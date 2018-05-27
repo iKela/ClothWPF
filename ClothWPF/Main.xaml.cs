@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Security.Permissions;
+using System.Threading;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace ClothWPF
     /// Interaction logic for Main.xaml
     /// </summary>
     ///
-   // [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
-    public partial class Main : Window //, IView
+    [PrincipalPermission(SecurityAction.Demand)]
+    public partial class Main : Window , IView
     {
         public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
@@ -33,7 +34,7 @@ namespace ClothWPF
         {  
             InitializeComponent();
         }
-
+ 
         #region IView Members
         public IViewModel ViewModel
         {
@@ -47,17 +48,9 @@ namespace ClothWPF
             }
         }
         #endregion
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-            FillDataGrid();
-        }
-        public void FillDataGrid()
-        {
-            
-           
-        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             loaded();
         }
         public void loaded()
@@ -122,31 +115,56 @@ namespace ClothWPF
         }
         private void DeleteProduct(object sender, RoutedEventArgs e)
         {
-            Product obj = ((FrameworkElement)sender).DataContext as Product;
-            if (clothesGrid.SelectedItem != null)
-            {
-                try
+                if (Thread.CurrentPrincipal.IsInRole("Administrators"))
                 {
-                    using (EfContext context = new EfContext())
+                    Product obj = ((FrameworkElement)sender).DataContext as Product;
+                    if (clothesGrid.SelectedItem != null)
                     {
-                        context.Products.Remove(context.Products.Find(obj.Id));
-                        context.SaveChanges();
+                        try
+                        {
+                            using (EfContext context = new EfContext())
+                            {
+                                context.Products.Remove(context.Products.Find(obj.Id));
+                                context.SaveChanges();
+                            }
+                            loaded();
+                            MessageBox.Show("Видалено");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
-                    loaded();
-                    MessageBox.Show("Видалено");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show("Ви не володієте правами для видалення");
                 }
-            }
         }
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddItem addItem = new AddItem();
+            addItem.ShowDialog();
+            loaded();
+        }
+        private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void mi_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            GridSettingsForm gridSettingsForm = new GridSettingsForm();
+            gridSettingsForm.Show();
+        }
+
+        private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
             if (clothesGrid.SelectedItem != null)
             {
                 var selected = (Product)clothesGrid.SelectedItem;
+                addItem.Title = "Редагувати";
+                addItem.btn_Add.Content = "Зберегти";
                 addItem.Productadding = new Product { Id = selected.Id };
                 addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Name;
                 addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Code;
@@ -158,17 +176,14 @@ namespace ClothWPF
                 addItem.cmb_Country.Text = selected.Country;
                 clothesGrid.Items.Refresh();
             }
-                addItem.ShowDialog();
-                loaded();
+            addItem.ShowDialog();
+            loaded();
         }
-        private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-        private void mi_Settings_Click(object sender, RoutedEventArgs e)
+        private void mi_GridSettings_Click(object sender, RoutedEventArgs e)
         {
             GridSettingsForm gridSettingsForm = new GridSettingsForm();
-            gridSettingsForm.Show();
+            gridSettingsForm.ShowDialog();
         }
     }
 }

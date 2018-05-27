@@ -8,22 +8,126 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClothWPF.Properties
-{
-
-
+namespace ClothWPF.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGNameVisibility {
+            get {
+                return ((bool)(this["DGNameVisibility"]));
+            }
+            set {
+                this["DGNameVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGItemCodeVisibility {
+            get {
+                return ((bool)(this["DGItemCodeVisibility"]));
+            }
+            set {
+                this["DGItemCodeVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGCountVisibility {
+            get {
+                return ((bool)(this["DGCountVisibility"]));
+            }
+            set {
+                this["DGCountVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGLenghtVisibility {
+            get {
+                return ((bool)(this["DGLenghtVisibility"]));
+            }
+            set {
+                this["DGLenghtVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGRetailVisibility {
+            get {
+                return ((bool)(this["DGRetailVisibility"]));
+            }
+            set {
+                this["DGRetailVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGWholesaleVisibility {
+            get {
+                return ((bool)(this["DGWholesaleVisibility"]));
+            }
+            set {
+                this["DGWholesaleVisibility"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGPurchaseDolPrice {
+            get {
+                return ((bool)(this["DGPurchaseDolPrice"]));
+            }
+            set {
+                this["DGPurchaseDolPrice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGPurchaseUahPrice {
+            get {
+                return ((bool)(this["DGPurchaseUahPrice"]));
+            }
+            set {
+                this["DGPurchaseUahPrice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGCountryVisibility {
+            get {
+                return ((bool)(this["DGCountryVisibility"]));
+            }
+            set {
+                this["DGCountryVisibility"] = value;
             }
         }
     }

@@ -22,7 +22,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Source="Assets/Login.png" Width="100" Height="100" VerticalAlignment="Top" Margin="20"/>
+        <Image Source="Login.png" Width="100" Height="100" VerticalAlignment="Top" Margin="20"/>
         <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0 0 0 70" RadiusY="13.501" RadiusX="13.501">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
@@ -41,17 +41,12 @@
 
         <Button Name="btn_Login" VerticalAlignment="Bottom" Margin="0 85" Width="150" Content="Log in" Command="{Binding LoginCommand, Mode=OneTime}"
             CommandParameter="{Binding ElementName=passwordBox}"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+                IsDefault="True">
             
         </Button>
         <TextBlock Name="btn_ForgotPassword" Text="Забули логін або пароль?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" FontFamily="Times New Roman" FontSize="14" Cursor="Hand" />
         <TextBlock Text="{Binding Status}" Grid.Row="4" Grid.Column="1"
                HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" TextWrapping="Wrap" />
-        <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="0 30 0 0">
-            <Button Content="Show secret view" Command="{Binding ShowViewCommand}"
-              HorizontalAlignment="Center" />
-            <Button Content="Show admin view" Command="{Binding ShowViewCommand}" CommandParameter="Admin"
-              HorizontalAlignment="Center" Margin="2,2,0,0" />
-        </StackPanel>
     </Grid>
 </Window>
