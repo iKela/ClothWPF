@@ -140,6 +140,7 @@
     <Compile Include="CurrencyWindow.xaml.cs">
       <DependentUpon>CurrencyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -150,12 +151,22 @@
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Migrations\201805221505227_Neew.cs" />
     <Compile Include="Migrations\201805221505227_Neew.Designer.cs">
       <DependentUpon>201805221505227_Neew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805290958521_AddArrival.cs" />
+    <Compile Include="Migrations\201805290958521_AddArrival.Designer.cs">
+      <DependentUpon>201805290958521_AddArrival.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805291140542_atribute.cs" />
+    <Compile Include="Migrations\201805291140542_atribute.Designer.cs">
+      <DependentUpon>201805291140542_atribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Models\Arrivals.cs" />
+    <Compile Include="Models\Products.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
@@ -163,7 +174,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Arrival\Classes\Arrival.cs" />
     <Page Include="Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +198,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201805221505227_Neew.resx">
       <DependentUpon>201805221505227_Neew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805290958521_AddArrival.resx">
+      <DependentUpon>201805290958521_AddArrival.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291140542_atribute.resx">
+      <DependentUpon>201805291140542_atribute.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,6 +237,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="General\" />
   </ItemGroup>
