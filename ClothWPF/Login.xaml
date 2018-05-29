@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:ClothWPF"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Login" Height="500" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="Login" Background="Transparent" Height="500" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
     </Window.Resources>
     
     <Grid>
-        <Rectangle>
+        <Rectangle RadiusY="9.537" RadiusX="9.537">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0 0" StartPoint="1 1">
                     <GradientStop Color="Yellow" Offset="0.0"/>
@@ -22,7 +22,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Source="Login.png" Width="100" Height="100" VerticalAlignment="Top" Margin="20"/>
+        <Image Source="Assets/Logo.png" Width="250" Height="250" VerticalAlignment="Top" Margin="50,10,50,0"/>
         <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0 0 0 70" RadiusY="13.501" RadiusX="13.501">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>

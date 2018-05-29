@@ -79,8 +79,8 @@
                         <TextBox Name="txt_PriceUah" FontSize="14" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ціна (&#8372;)" TextChanged="txt_PriceUah_TextChanged" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 10 10 10">
-                        <TextBlock Name="txt_DolCurrency" Text="$" FontFamily="Times New Roman" FontSize="16"/>
-                        <Button Name="btn_EditCurrency" FontSize="14" Background="Transparent" Foreground="Black" Content="&#9998;" Padding="1" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10 0 0 0"/>
+                        <TextBlock Text="$" FontFamily="Times New Roman" FontSize="14" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                        <TextBox Name="txt_DolCurrency" IsReadOnly="True" Background="Transparent" Foreground="Black" Width="Auto" FontFamily="Times New Roman" FontSize="14" MouseDoubleClick="txt_DolCurrency_Click" PreviewTextInput="txt_DolCurrency_PreviewTextInput" KeyDown="txt_DolCurrency_KeyDown"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

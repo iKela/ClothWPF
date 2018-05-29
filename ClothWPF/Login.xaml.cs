@@ -1,5 +1,6 @@
 ﻿using ClothWPF.Authorization;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ClothWPF
 {
@@ -22,8 +23,14 @@ namespace ClothWPF
         {
             ViewModel = viewModel;
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
 
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Application.Current.Shutdown();
+        }
         #region IView Members
         public IViewModel ViewModel
         {

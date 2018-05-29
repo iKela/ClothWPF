@@ -72,7 +72,14 @@
                 </Menu>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
-                
+                <TextBox Name="txt_Search" Width="150" Background="White" KeyUp="txt_Search_KeyUp"/>
+                <materialDesign:PopupBox Width="25" Background="White" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="False">
+                    <StackPanel>
+                        <Button Name="btn_SearchByName" Content="Назва"/>
+                        <Button Name="btn_SearchByProductCode" Content="Код"/>
+                        <Button Name="btn_SearchByCountry" Content="Країна"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
             </StackPanel>
             <Button Grid.Column="4" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">

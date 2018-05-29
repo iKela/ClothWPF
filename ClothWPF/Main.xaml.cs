@@ -186,5 +186,17 @@ namespace ClothWPF
             GridSettingsForm gridSettingsForm = new GridSettingsForm();
             gridSettingsForm.ShowDialog();
         }
+
+        private void txt_Search_KeyUp(object sender, KeyEventArgs e)
+        {
+            var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
+
+            clothesGrid.ItemsSource = filtered;
+        }
+
+        private void btn_SearchByName_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
