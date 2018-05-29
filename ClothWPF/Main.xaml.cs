@@ -150,10 +150,11 @@ namespace ClothWPF
         {
 
         }
+
         private void mi_Settings_Click(object sender, RoutedEventArgs e)
         {
-            GridSettingsForm gridSettingsForm = new GridSettingsForm();
-            gridSettingsForm.Show();
+            GridSettingsForm gridSettingsForm = new GridSettingsForm(); ;
+            gridSettingsForm.Show();         
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)

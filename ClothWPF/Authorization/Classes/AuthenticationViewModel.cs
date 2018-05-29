@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows.Controls;
 using System.Security;
+using System.Windows;
 
 namespace ClothWPF.Authorization
 {
@@ -89,9 +90,31 @@ namespace ClothWPF.Authorization
                     Status = string.Empty;
                     IView view;
                     if (parameter == null)
+                    {
+                        foreach (Window form in App.Current.Windows)
+                        {
+                            if (form.IsActive)
+                            {
+                                if(form is Login)
+                                form.Hide();
+                                
+                            }
+                        }
                         view = new Main();
+
+                    }
                     else
+                    {
+                        foreach (Window Login in App.Current.Windows)
+                        {
+                            if (Login.IsActive)
+                            {
+                                Login.Hide();
+
+                            }
+                        }
                         view = new Main();
+                    }
 
                     view.Show();
                 }
