@@ -27,31 +27,8 @@ namespace ClothWPF
         bool field = false;
         public AddItem()
         {
-            addItem();
-        }
-        public void addItem()
-        {
             InitializeComponent();
-        }
-
-        private void btn_CurrencyExhange_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            int num;
-            if (field == true)
-            {
-                Int32.TryParse(txt_PriceUah.Text.ToString(), out num);
-                num = num / 27;
-                txt_PriceDollar.Text = num.ToString();
-                field = true;
-            }
-            else
-            {
-                Int32.TryParse(txt_PriceDollar.Text.ToString(), out num);
-                num = num * 27;
-                txt_PriceUah.Text = num.ToString();
-                field = false;
-            }
-            
+            txt_DolCurrency.Text = ("$ " + Properties.Settings.Default.CurrencyExchangeDol.ToString());
         }
 
         private void checkBox_Discount_Unchecked(object sender, RoutedEventArgs e)
@@ -132,6 +109,25 @@ namespace ClothWPF
         private void checkBox_Discount_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btn_CurrencyExhange_Click(object sender, RoutedEventArgs e)
+        {
+            double num;
+            if (field == true)
+            {
+                double.TryParse(txt_PriceUah.Text.ToString(), out num);
+                num = num / Properties.Settings.Default.CurrencyExchangeDol;
+                txt_PriceDollar.Text = num.ToString();
+                field = true;
+            }
+            else
+            {
+                double.TryParse(txt_PriceDollar.Text.ToString(), out num);
+                num = num * Properties.Settings.Default.CurrencyExchangeDol;
+                txt_PriceUah.Text = num.ToString();
+                field = false;
+            }
         }
     }
 }

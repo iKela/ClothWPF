@@ -75,11 +75,12 @@
                 <StackPanel VerticalAlignment="Top" Height="Auto" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBox Name="txt_PriceDollar" FontSize="14" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ціна (&#65284;)" TextChanged="txt_PriceDollar_TextChanged" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <materialDesign:PackIcon Name="btn_CurrencyExhange" Kind="ArrowRightBold" VerticalAlignment="Top" Margin="0 16 10 0" MouseDown="btn_CurrencyExhange_MouseDown"/>
+                        <Button Name="btn_CurrencyExhange" Content="&#128177;" FontSize="20" BorderThickness="0" Padding="0" Foreground="Black" Height="25" Width="25" Background="Transparent" VerticalAlignment="Top" Margin="0 10 10 0" Click="btn_CurrencyExhange_Click"/>
                         <TextBox Name="txt_PriceUah" FontSize="14" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Ціна (&#8372;)" TextChanged="txt_PriceUah_TextChanged" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="$"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 10 10">
+                        <TextBlock Name="txt_DolCurrency" Text="$" FontFamily="Times New Roman" FontSize="16"/>
+                        <Button Name="btn_EditCurrency" FontSize="14" Background="Transparent" Foreground="Black" Content="&#9998;" Padding="1" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10 0 0 0"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
@@ -94,9 +95,9 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" IsEnabled="False">
                             <CheckBox Name="checkBox_Discount" Checked="checkBox_Discount_Checked" Unchecked="checkBox_Discount_Unchecked"/>
-                            <TextBlock Text="Знижка" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock Text="Знижка" FontSize="14" FontWeight="Bold" />
                         </StackPanel>
                         <TextBox Name="txt_Discount" Visibility="Collapsed" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Знижка (грн.)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     </StackPanel>
