@@ -15,7 +15,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-//using ClothWPF.Authorization.Classes;
 using System.Data;
 using ClothWPF.Authorization;
 

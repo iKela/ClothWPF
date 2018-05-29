@@ -13,5 +13,6 @@ namespace ClothWPF
         public EfContext() : base("name = EFContext")
         { }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Arrival> Arrivals { get; set; }
     }
 }

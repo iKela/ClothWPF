@@ -21,31 +21,13 @@ namespace ClothWPF
     /// </summary>
     public partial class NewArrival : Window
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iKela\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
-
+        EfContext context = new EfContext();
         public NewArrival()
         {
             InitializeComponent();
             
         }
-        public void UpdateProduct()
-        {
-            string query = "select * from Product";
-            connection.Open();
-        
-            DataTable dt2 = new DataTable("Product");
-            using (SqlCommand cmd = new SqlCommand(query, connection))
-            {
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(dt2);
-            }
-           
-           arrivalGrid.ItemsSource = dt2.DefaultView;
-            connection.Close();
-        }
-
-
+       
         private void arrivalGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -64,7 +46,7 @@ namespace ClothWPF
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
         {
-           // UpdateProduct();
+          
         }
     }
 }
