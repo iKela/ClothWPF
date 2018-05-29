@@ -60,7 +60,6 @@
                 <Menu VerticalAlignment="Bottom">
                     <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
                         <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
-                        <MenuItem Name="mi_GridSettings" Header="Налаштування" IsEnabled="True" ToolTip="Програмні налаштування." Click="mi_GridSettings_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewItem_Click"/>
