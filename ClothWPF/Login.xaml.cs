@@ -13,7 +13,6 @@ namespace ClothWPF
 
         void Show();
     }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -31,6 +30,7 @@ namespace ClothWPF
             get { return DataContext as IViewModel; }
             set { DataContext = value; }
         }
+        
         #endregion
     }
 }
