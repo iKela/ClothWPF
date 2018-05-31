@@ -188,14 +188,43 @@ namespace ClothWPF
 
         private void txt_Search_KeyUp(object sender, KeyEventArgs e)
         {
-            var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
+            if(tb_SearchByName.Visibility == Visibility.Visible)
+            {
+                var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
+                clothesGrid.ItemsSource = filtered;
+            }
+            if (tb_SearchByProductCode.Visibility == Visibility.Visible)
+            {
+                var filtered = _ProductFullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
+                clothesGrid.ItemsSource = filtered;
+            }
+            if (tb_SearchByCountry.Visibility == Visibility.Visible)
+            {
+                var filtered = _ProductFullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
+                clothesGrid.ItemsSource = filtered;
+            }
 
-            clothesGrid.ItemsSource = filtered;
         }
 
         private void btn_SearchByName_Click(object sender, RoutedEventArgs e)
         {
+            tb_SearchByName.Visibility = Visibility.Visible;
+            tb_SearchByProductCode.Visibility = Visibility.Hidden;
+            tb_SearchByCountry.Visibility = Visibility.Hidden;
+        }
 
+        private void btn_SearchByProductCode_Click(object sender, RoutedEventArgs e)
+        {
+            tb_SearchByName.Visibility = Visibility.Hidden;
+            tb_SearchByProductCode.Visibility = Visibility.Visible;
+            tb_SearchByCountry.Visibility = Visibility.Hidden;
+        }
+
+        private void btn_SearchByCountry_Click(object sender, RoutedEventArgs e)
+        {
+            tb_SearchByName.Visibility = Visibility.Hidden;
+            tb_SearchByProductCode.Visibility = Visibility.Hidden;
+            tb_SearchByCountry.Visibility = Visibility.Visible; 
         }
     }
 }

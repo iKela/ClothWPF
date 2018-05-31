@@ -95,13 +95,11 @@ namespace ClothWPF.Authorization
                         {
                             if (form.IsActive)
                             {
-                                if(form is Login)
-                                form.Hide();
-                                
+                                    if (form is Login)
+                                        form.Hide();
                             }
                         }
                         view = new Main();
-
                     }
                     else
                     {
