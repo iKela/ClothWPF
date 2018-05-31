@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Models;
+using ClothWPF.Entities;
 
 namespace ClothWPF
 {
@@ -21,15 +23,58 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window
     {
+        public List<ProductModel> productModels;
+        EfContext context = new EfContext();
         public AddProduct()
         {
             InitializeComponent();
-            
         }
-       
+        public void loaded()
+        {
+            foreach (var p in context.Products)
+            {
+                productModels.Add(new ProductModel
+                {
+                    Id = p.Id,
+                    Code = p.Code,
+                    Name = p.Name,                    
+                    Country = p.Country
+                });
+            }
+            // треба погратися з хмл щоб  він показував дані звідси 
+            //а сама загрузка данних є 
+            // http://www.cyberforum.ru/wpf-silverlight/thread1658711.html
+        }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            
+            #region Double Parse
+            double count = 0;
+            double wholesalePrice = 0;
+            double retailerPrice = 0;
+            double priceDollar = 0;
+            Double.TryParse(txt_Count.Text, out count);
+            Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
+            Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
+            Double.TryParse(txt_SuppierPrice.Text, out priceDollar);            
+            #endregion
+            try
+            {
+                context.Arrivals.Add(new Arrival
+                {
+                    Count = count,
+                    ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
+                    PriceDollar = priceDollar,
+                    PriceWholesale=wholesalePrice,
+                    PriceRetail=retailerPrice,
+                    IdProduct = cmb_Name.SelectedIndex
+                });
+                context.SaveChanges();        
+                MessageBox.Show("Save");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,7 +89,7 @@ namespace ClothWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            loaded();
         }
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
@@ -52,5 +97,7 @@ namespace ClothWPF
             NewProduct newProduct = new NewProduct();
             newProduct.Show();
         }
+
+        
     }
 }

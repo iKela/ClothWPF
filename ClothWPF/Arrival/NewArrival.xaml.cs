@@ -26,7 +26,7 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         
-        public List<NewArrivalModel> _Arrivals;
+        public List<NewArrivalModel> newArrivalModels;
         public NewArrival()
         {
             InitializeComponent();
@@ -36,7 +36,6 @@ namespace ClothWPF
         {
             arrivalGrid.ItemsSource = null;
                 arrivalGrid.Items.Clear();
-                _Arrivals = new List<NewArrivalModel>();
             var arrival = context.Arrivals.Join(context.Products, // другий набір
         a => a.IdProduct, // свойство-селектор объекта із першого набора
         p => p.Id, // свойство-селектор объекта із другого набора

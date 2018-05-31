@@ -1,22 +1,14 @@
-﻿using ClothWPF.Entities;
+﻿using ClothWPF.Authorization;
+using ClothWPF.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
 using System.Security.Permissions;
 using System.Threading;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data;
-using ClothWPF.Authorization;
 
 namespace ClothWPF
 {
@@ -54,8 +46,7 @@ namespace ClothWPF
         }
         public void loaded()
         {
-            using (EfContext context = new EfContext())
-            {
+           
                 clothesGrid.ItemsSource = null;
                 clothesGrid.Items.Clear();
                 _ProductFullInfo = new List<Product>();
@@ -75,7 +66,7 @@ namespace ClothWPF
                     });
                 }
                 clothesGrid.ItemsSource = _ProductFullInfo;
-            }
+            
                 
         }
         private void mi_NewArrival_Click (object sender, RoutedEventArgs e)

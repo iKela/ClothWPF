@@ -56,7 +56,6 @@ namespace ClothWPF
                 {
                     if (Productadding != null)
                     {
-                        MessageBox.Show("Edit");
                         var product = context.Products.Where(c => c.Id == Productadding.Id).FirstOrDefault();
 
                         //var product = context.Products.Find(Productadding.Id);
@@ -73,7 +72,6 @@ namespace ClothWPF
                     }
                     else
                     {
-                        MessageBox.Show("Add");
                         context.Products.Add(new Product
                         {
                             Name = txt_Name.Text,
