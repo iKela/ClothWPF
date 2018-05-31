@@ -78,7 +78,7 @@ namespace ClothWPF
             }
                 
         }
-        private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
+        private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
         {
             NewArrival newArrival = new NewArrival();
             newArrival.Show();
