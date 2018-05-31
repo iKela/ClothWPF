@@ -28,7 +28,7 @@ namespace ClothWPF
         public AddItem()
         {
             InitializeComponent();
-            txt_DolCurrency.Text = ("$ " + Properties.Settings.Default.CurrencyExchangeDol.ToString());
+            txt_DolCurrency.Text = Properties.Settings.Default.CurrencyExchangeDol.ToString();
         }
 
         private void checkBox_Discount_Unchecked(object sender, RoutedEventArgs e)
@@ -127,6 +127,40 @@ namespace ClothWPF
                 num = num * Properties.Settings.Default.CurrencyExchangeDol;
                 txt_PriceUah.Text = num.ToString();
                 field = false;
+            }
+        }
+
+        private void txt_DolCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            txt_DolCurrency.IsReadOnly = false;
+        }
+
+        private void txt_DolCurrency_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(MessageBox.Show("Бажаєте змінити курс долара з " + Properties.Settings.Default.CurrencyExchangeDol.ToString() + " на " + txt_DolCurrency.Text + "?", "Увага!", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                {
+                    double dol;
+                    double.TryParse(txt_DolCurrency.Text, out dol);
+                    Properties.Settings.Default.CurrencyExchangeDol = dol;
+                    Properties.Settings.Default.Save();
+                    txt_DolCurrency.IsReadOnly = true;
+                }
+            }
+        }
+
+        private void txt_DolCurrency_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == ","))
+            {
+                e.Handled = true;
             }
         }
     }
