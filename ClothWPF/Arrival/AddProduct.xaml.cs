@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Models;
+using ClothWPF.Entities;
 
 namespace ClothWPF
 {
@@ -21,50 +23,63 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iKela\Desktop\Firstdbadonet.mdf;Integrated Security=True;Connect Timeout=30");
-
+        public List<ProductModel> productModels;
+        EfContext context = new EfContext();
         public AddProduct()
         {
             InitializeComponent();
-
-            DataContext = new MainViewModel();
         }
-        //Need add on form xml (DateArrival)
+        public void loaded()
+        {
+            foreach (var p in context.Products)
+            {
+                productModels.Add(new ProductModel
+                {
+                    Id = p.Id,
+                    Code = p.Code,
+                    Name = p.Name,                    
+                    Country = p.Country
+                });
+            }
+            // треба погратися з хмл щоб  він показував дані звідси 
+            //а сама загрузка данних є 
+            // http://www.cyberforum.ru/wpf-silverlight/thread1658711.html
+        }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            //if (cmb_Name.SelectedItem != null)
-            //{
-            //    connection.Open();
-            //    string qwery = $"INSERT into Arrival(DateArrival, ManufactureDate, PriceDollar, PriceRetail, PriceWholesale, Metric)" +
-            //        $"VALUES('{DateArrival.Text}', '{txt_ManufactureDate.Text}', '{txt_SuppierPrice.Text}', '{txt_PriceRetailer.Text}','{txt_Count.Text}')";
-            //    SqlCommand command = new SqlCommand(qwery, connection);
-            //    command.ExecuteNonQuery();
-            //    connection.Close();
-            //    MessageBox.Show("Додано!");
-            //}
-            //else
-            //    MessageBox.Show("Не вибраний продукт!");
+            #region Double Parse
+            double count = 0;
+            double wholesalePrice = 0;
+            double retailerPrice = 0;
+            double priceDollar = 0;
+            Double.TryParse(txt_Count.Text, out count);
+            Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
+            Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
+            Double.TryParse(txt_SuppierPrice.Text, out priceDollar);            
+            #endregion
+            try
+            {
+                context.Arrivals.Add(new Arrival
+                {
+                    Count = count,
+                    ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
+                    PriceDollar = priceDollar,
+                    PriceWholesale=wholesalePrice,
+                    PriceRetail=retailerPrice,
+                    IdProduct = cmb_Name.SelectedIndex
+                });
+                context.SaveChanges();        
+                MessageBox.Show("Save");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string query = $"SELECT * From Product where  Name = '{cmb_Name.SelectedItem}'";
-
-            connection.Open();
-            SqlCommand command = new SqlCommand(query, connection);
             
-            SqlDataReader sqlReader = command.ExecuteReader();
-            while (sqlReader.Read())
-            {
-                txt_Count.Text = sqlReader["Metric"].ToString();
-                // txt_Discont.Text = sqlReader["Date"].ToString();
-                txt_ManufactureDate.Text = sqlReader["ManufactureDate"].ToString();
-                txt_PriceRetailer.Text = sqlReader["PriceRetail"].ToString();
-                txt_ProductCode.Text = sqlReader["KodProductu"].ToString();
-                txt_SuppierPrice.Text = sqlReader["PriceDollar"].ToString();
-            }
-            sqlReader.Close();
-            connection.Close();
         }
 
         private void cmb_Name_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -74,7 +89,7 @@ namespace ClothWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            loaded();
         }
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
@@ -82,5 +97,7 @@ namespace ClothWPF
             NewProduct newProduct = new NewProduct();
             newProduct.Show();
         }
+
+        
     }
 }

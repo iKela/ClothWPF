@@ -150,7 +150,6 @@
     <Compile Include="GridSettingsForm.xaml.cs">
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Migrations\201805221505227_Neew.cs" />
     <Compile Include="Migrations\201805221505227_Neew.Designer.cs">
@@ -165,8 +164,9 @@
       <DependentUpon>201805291140542_atribute.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Arrivals.cs" />
-    <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\ArrivalModel.cs" />
+    <Compile Include="Models\NewArrivalModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="NewProduct.xaml.cs">
       <DependentUpon>NewProduct.xaml</DependentUpon>
     </Compile>
