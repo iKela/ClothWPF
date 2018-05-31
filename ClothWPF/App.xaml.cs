@@ -22,6 +22,7 @@ namespace ClothWPF
             AuthenticationViewModel viewModel = new AuthenticationViewModel(new AuthenticationService());
             IView loginWindow = new Login(viewModel);
             loginWindow.Show();
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
 namespace ClothWPF.Authorization
 {
@@ -30,10 +31,12 @@ namespace ClothWPF.Authorization
 
         private static readonly List<InternalUserData> _users = new List<InternalUserData>()
         {
-            new InternalUserData("Mark", "mark@company.com",
-            "MB5PYIsbI2YzCUe34Q5ZU2VferIoI4Ttd+ydolWV0OE=", new string[] { "Administrators" }),
+            new InternalUserData("admin", "mark@company.com",
+            "2CSU8F1pF7oC96qilonMtES7c/IDgIdssF0fN1N7eJI=", new string[] { "Administrators" }),
             new InternalUserData("John", "john@company.com",
-            "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { "Users"})
+            "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { "Users"}),
+            new InternalUserData("iKela", "ikela.insop@gmail.com",
+                "qZi7q3OBp8l4i938nRx9um/sm8CstKGoDLY6z7EPam0=", new string[] {"Developers"})
         };
 
         public User AuthenticateUser(string username, string clearTextPassword)
@@ -53,7 +56,7 @@ namespace ClothWPF.Authorization
             // Use the hash algorithm to calculate the hash
             HashAlgorithm algorithm = new SHA256Managed();
             byte[] hash = algorithm.ComputeHash(saltedHashBytes);
-            // Return the hash as a base64 encoded string to be compared to the stored password
+            // Return the hash as a base64 encoded string to be compared to the stored password   
             return Convert.ToBase64String(hash);
         }
     }

@@ -72,11 +72,20 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
                 <TextBox Name="txt_Search" Width="150" Background="White" KeyUp="txt_Search_KeyUp"/>
-                <materialDesign:PopupBox Width="25" Background="White" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="False">
-                    <StackPanel>
-                        <Button Name="btn_SearchByName" Content="Назва"/>
-                        <Button Name="btn_SearchByProductCode" Content="Код"/>
-                        <Button Name="btn_SearchByCountry" Content="Країна"/>
+                <materialDesign:PopupBox Width="25" Background="White" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="True">
+                    <StackPanel Orientation="Vertical" Width="100">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5" Name="tb_SearchByName" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
+                            <Button Name="btn_SearchByName" Content="Назва" Click="btn_SearchByName_Click"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5" Name="tb_SearchByProductCode" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
+                            <Button Name="btn_SearchByProductCode" Content="Код" Click="btn_SearchByProductCode_Click"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5" Name="tb_SearchByCountry" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
+                            <Button Name="btn_SearchByCountry" Content="Країна" Click="btn_SearchByCountry_Click"/>
+                        </StackPanel>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>

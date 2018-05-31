@@ -38,6 +38,6 @@ namespace ClothWPF
             set { DataContext = value; }
         }
         
-        #endregion
+        #endregion    
     }
 }
