@@ -31,13 +31,14 @@ namespace ClothWPF
         }
         public void loaded()
         {
+            productModels = new List<ProductModel>();
             foreach (var p in context.Products)
             {
                 productModels.Add(new ProductModel
                 {
                     Id = p.Id,
                     Code = p.Code,
-                    Name = p.Name,                    
+                    Name = p.Name,
                     Country = p.Country
                 });
             }
