@@ -43,9 +43,6 @@ namespace ClothWPF
                 });
             }
             cmb_Name.ItemsSource = productModels;
-            // треба погратися з хмл щоб  він показував дані звідси 
-            //а сама загрузка данних є 
-            // http://www.cyberforum.ru/wpf-silverlight/thread1658711.html
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
