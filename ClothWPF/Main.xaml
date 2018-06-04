@@ -7,7 +7,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded" Icon="Assets/MinialLogo.png">
     
     <Window.DataContext>
         <local:MainWindowViewModel/>
