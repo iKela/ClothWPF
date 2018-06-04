@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using System.Threading;
 
 namespace ClothWPF
 {
@@ -30,23 +31,28 @@ namespace ClothWPF
         public NewArrival()
         {
             InitializeComponent();
-            
+            newArrivalModels = new List<NewArrivalModel>();
+           
         }
         public void loaded()
         {
-            arrivalGrid.ItemsSource = null;
+            //  arrivalGrid.ItemsSource = null;
                 arrivalGrid.Items.Clear();
             var arrival = context.Arrivals.Join(context.Products, // другий набір
-        a => a.IdProduct, // свойство-селектор объекта із першого набора
-        p => p.Id, // свойство-селектор объекта із другого набора
-        (a, p) => new NewArrivalModel// результат
-        {
-            IdProduct = p.Id, Name = p.Name, Code = p.Code,
-            Country = p.Country, IdArrival = a.Id, CountArrival = a.Count,
-            PriceDollarArrival = a.PriceDollar, PriceUahArrival = a.PriceUah,
-            PriceRetailArrival = a.PriceRetail, PriceWholesaleArrival = a.PriceWholesale,
-            ManufactureDateArrival = a.ManufactureDate
-        });
+                a => a.IdProduct, // свойство-селектор объекта із першого набора
+                p => p.Id, // свойство-селектор объекта із другого набора
+            (a, p) => new NewArrivalModel// результат
+            {
+                IdProduct = p.Id, Name = p.Name, Code = p.Code,
+                Country = p.Country, IdArrival = a.Id, CountArrival = a.Count,
+                PriceDollarArrival = a.PriceDollar, PriceUahArrival = a.PriceUah,
+                PriceRetailArrival = a.PriceRetail, PriceWholesaleArrival = a.PriceWholesale,
+                ManufactureDateArrival = a.ManufactureDate
+            });
+            arrivalGrid.ItemsSource = arrival.ToList();
+
+            
+
             //var arrivalquery = context.Products
             //    //.Include(p=>p.Arrivals)
             //    .Select(p => new ProductModel
@@ -66,14 +72,16 @@ namespace ClothWPF
             //            ManufactureDate = a.ManufactureDate
             //        }).ToList()
             //    });
-            arrivalGrid.ItemsSource = arrival.ToList();
         }
 
         private void arrivalGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+        private void Writhing()
+        {
 
+        }
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
             AddProduct addProduct = new AddProduct();
@@ -83,6 +91,33 @@ namespace ClothWPF
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
 
+            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            {
+                Product objP = ((FrameworkElement)sender).DataContext as Product;
+                Arrival objA = ((FrameworkElement)sender).DataContext as Arrival;
+                if (arrivalGrid.SelectedItem != null)
+                {
+                    try
+                    {
+                        using (EfContext context = new EfContext())
+                        {
+                            context.Arrivals.Remove(context.Arrivals.Find(objA.Id));
+                            context.Products.Remove(context.Products.Find(objP.Id));
+                            context.SaveChanges();
+                        }
+                        loaded();
+                        MessageBox.Show("Видалено");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви не володієте правами для видалення");
+            }
         }
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)

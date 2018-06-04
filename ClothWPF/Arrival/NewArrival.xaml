@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:ClothWPF"
+        xmlns:local="clr-namespace:ClothWPF.Models"
         mc:Ignorable="d"
         Title="Новий прихід" Height="700" Width="1300" Loaded="Window_Loaded">
     <Window.Resources>
@@ -66,7 +66,9 @@
         <Grid Grid.Row="3">
             <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
-
+                <DataGrid.DataContext>
+                    <local:NewArrivalModel/>
+                </DataGrid.DataContext>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
