@@ -42,9 +42,7 @@ namespace ClothWPF
                     Country = p.Country
                 });
             }
-            // треба погратися з хмл щоб  він показував дані звідси 
-            //а сама загрузка данних є 
-            // http://www.cyberforum.ru/wpf-silverlight/thread1658711.html
+            cmb_Name.ItemsSource = productModels;
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -65,9 +63,9 @@ namespace ClothWPF
                     Count = count,
                     ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
                     PriceDollar = priceDollar,
-                    PriceWholesale=wholesalePrice,
-                    PriceRetail=retailerPrice,
-                    IdProduct = cmb_Name.SelectedIndex
+                    PriceWholesale = wholesalePrice,
+                    PriceRetail = retailerPrice,
+                    IdProduct = productModels[cmb_Name.SelectedIndex].Id
                 });
                 context.SaveChanges();        
                 MessageBox.Show("Save");
@@ -79,8 +77,7 @@ namespace ClothWPF
         }
 
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
+        {          
         }
 
         private void cmb_Name_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
