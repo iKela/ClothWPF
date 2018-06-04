@@ -220,9 +220,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Login.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Pics\Help.png" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +234,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Login.png" />
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="General\" />
   </ItemGroup>
