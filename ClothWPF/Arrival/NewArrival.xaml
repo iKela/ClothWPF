@@ -21,19 +21,23 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF2196F3">
+        <Grid Grid.Row="0" Background="#FF0042A2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Прихід" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Прихід" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="White"/>
+            </TextBlock.Foreground>
+        </TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
@@ -72,9 +76,10 @@
                     <local:NewArrivalModel/>
                 </DataGrid.DataContext>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Код товару" Binding="{Binding Path=Code}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Артикул" Binding="{Binding Path=Article}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Кількість" Binding="{Binding Path=Count}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Ціна в роздріб" Binding="{Binding Path=SalePrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -99,8 +104,13 @@
                 </DataGrid.RowDetailsTemplate>-->
             </DataGrid>
         </Grid>
-        <Grid Grid.Row="3" Background="#FF2196F3">
-            
+        <Grid Grid.Row="3" Background="#FF0042A2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btn_AddFilledArrival" Grid.Column="1" Width="150" Content="Зберегти" Click="btn_AddFilledArrival_Click"/>
         </Grid>
     </Grid>
 </Window>

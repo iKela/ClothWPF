@@ -92,8 +92,8 @@ namespace ClothWPF
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
         {
-            NewProduct newProduct = new NewProduct();
-            newProduct.Show();
+            AddItem newProduct = new AddItem();
+            newProduct.ShowDialog();
         }
 
         

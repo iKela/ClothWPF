@@ -30,7 +30,7 @@
                         <ComboBox Name="cmb_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
                   SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged"/>
                     </StackPanel>
-                    <Button IsEnabled="False" Name="btn_NewProduct" Height="30" Width="30" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Новий продукт" Margin="10 0 10 0" Click="btn_NewProduct_Click"/>
+                    <Button IsEnabled="True" Name="btn_NewProduct" Height="30" Width="30" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Новий продукт" Margin="10 0 10 0" Click="btn_NewProduct_Click"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0 10 10">
                         <TextBox Name="txt_Count" materialDesign:HintAssist.Hint="Метраж" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
                     </StackPanel>

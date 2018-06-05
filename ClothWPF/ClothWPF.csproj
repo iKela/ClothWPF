@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Arrival\ArrivalInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Arrival\NewArrival.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,16 +118,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewProduct.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Arrival\ArrivalInfo.xaml.cs">
+      <DependentUpon>ArrivalInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Arrival\NewArrival.xaml.cs">
       <DependentUpon>NewArrival.xaml</DependentUpon>
@@ -167,9 +170,6 @@
     <Compile Include="Models\ArrivalModel.cs" />
     <Compile Include="Models\NewArrivalModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="NewProduct.xaml.cs">
-      <DependentUpon>NewProduct.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -239,9 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="General\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\MinialLogo.png" />
