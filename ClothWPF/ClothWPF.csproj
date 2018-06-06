@@ -238,7 +238,7 @@
     <Resource Include="Assets\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="General\" />
+    <Folder Include="General\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\MinialLogo.png" />

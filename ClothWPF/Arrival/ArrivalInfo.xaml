@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
-        Title="Прихід" Name="ArrivalWindow" Height="450" Width="800" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman">
+        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,9 +21,35 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.ColumnSpan="3" Grid.RowSpan="3" Header="Головна інформація" FontFamily="Times New Roman" Padding="3">
-            
-        </GroupBox>
+        <Grid Grid.RowSpan="3" Grid.ColumnSpan="3">
+            <GroupBox Header="Головна інформація" FontFamily="Times New Roman" Padding="3">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                        <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                        <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
+                            <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
+                            <Button Name="btn_NewEnterprise" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
+                        <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="cmb_Currency" Text="Валюта" ItemsSource="{Binding Path=ListOfCurrencies}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
         <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
