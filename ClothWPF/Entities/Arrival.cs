@@ -11,16 +11,13 @@ namespace ClothWPF.Entities
     public class Arrival
     {
         [Key]
-        public int Id { get; set; }
-        public double? Count { get; set; }
-        public double? PriceDollar { get; set; }
-        public double? PriceUah { get; set; }
-        public double? PriceRetail { get; set; }
-        public double? PriceWholesale { get; set; }
-        public DateTime ManufactureDate { get; set; }
-        [ForeignKey("ProductOf")]
-        public int IdProduct { get; set; }
-        public Product ProductOf { get; set; }
-
+        public int IdArrival { get; set; }
+        public int Number { get; set; }
+        public double TotalPurchase { get; set; }
+        public string Sender { get; set; }
+        public string Receiver { get; set; }
+        public double? WholeSale { get; set; }
+        public string Enterprice { get; set; }
+        public string Comment { get; set; }
     }
 }

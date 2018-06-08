@@ -23,6 +23,7 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window
     {
+        public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         EfContext context = new EfContext();
         public AddProduct()
@@ -36,16 +37,23 @@ namespace ClothWPF
             {
                 productModels.Add(new ProductModel
                 {
-                    Id = p.Id,
+                    Id = p.IdProduct,
                     Code = p.Code,
                     Name = p.Name,
-                    Country = p.Country
+                    Article = p.Article,
+                    Country = p.Country,
+                    Count = p.Count,
+                    PriceDollar = p.PriceDollar,
+                    PriceRetail = p.PriceRetail,
+                    PriceUah = p.PriceUah,
+                    PriceWholesale = p.PriceWholesale
                 });
             }
             cmb_Name.ItemsSource = productModels;
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
+
             #region Double Parse
             double count = 0;
             double wholesalePrice = 0;
@@ -54,30 +62,52 @@ namespace ClothWPF
             Double.TryParse(txt_Count.Text, out count);
             Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
-            Double.TryParse(txt_SuppierPrice.Text, out priceDollar);            
+            Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
-            try
+            //try
+            //{
+            //    context.Arrivals.Add(new Arrival
+            //    {
+            //        Count = count,
+            //        ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
+            //        PriceDollar = priceDollar,
+            //        PriceWholesale = wholesalePrice,
+            //        PriceRetail = retailerPrice,
+            //        IdProduct = productModels[cmb_Name.SelectedIndex].Id
+            //    });
+            //    context.SaveChanges();        
+            //    MessageBox.Show("Save");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+            NewArrival newArrival = new NewArrival();
+            newArrival.arrivalGrid.Items.Add(new ProductModel
             {
-                context.Arrivals.Add(new Arrival
-                {
-                    Count = count,
-                    ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
-                    PriceDollar = priceDollar,
-                    PriceWholesale = wholesalePrice,
-                    PriceRetail = retailerPrice,
-                    IdProduct = productModels[cmb_Name.SelectedIndex].Id
-                });
-                context.SaveChanges();        
-                MessageBox.Show("Save");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                Name = cmb_Name.SelectedItem.ToString(),
+                Code = txt_ProductCode.Text,
+                Count = count,
+                PriceRetail = retailerPrice,
+                PriceWholesale = wholesalePrice,
+                PriceDollar = priceDollar
+            });
+
+            Close();
         }
 
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {          
+        {
+                var selected = (ProductModel)cmb_Name.SelectedItem;
+            Product Productadding = new Product { IdProduct = selected.Id };
+               
+                txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
+                txt_Count.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
+                txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
+              //txt_PriceUah.Text = productModels.FirstOrDefault(s => s.Id == selected.IdProduct).PriceUah.ToString();
+                txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
+                txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
         }
 
         private void cmb_Name_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

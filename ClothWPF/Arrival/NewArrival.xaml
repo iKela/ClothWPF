@@ -67,7 +67,7 @@
             <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
                 <DataGrid.DataContext>
-                    <local:NewArrivalModel/>
+                    <local:ProductModel/>
                 </DataGrid.DataContext>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
