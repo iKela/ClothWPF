@@ -22,7 +22,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Source="Assets/Login.png" Width="250" Height="250" VerticalAlignment="Top" Margin="50,10,50,0"/>
+        <Image Source="Assets/Logo.png" Width="250" Height="250" VerticalAlignment="Top" Margin="50,10,50,0"/>
         <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0 0 0 70" RadiusY="13.501" RadiusX="13.501">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>

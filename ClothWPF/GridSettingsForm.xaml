@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClothWPF"
         mc:Ignorable="d"
-        Title="GridSettingsForm" Height="380" MinHeight="380" MaxHeight="380" Width="200" MinWidth="200" MaxWidth="200">
+        Title="Налаштування стовбців" Height="380" MinHeight="380" MaxHeight="380" Width="200" MinWidth="200" MaxWidth="200" Icon="Assets/MinialLogo.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

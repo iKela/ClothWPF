@@ -21,11 +21,8 @@ namespace ClothWPF
     {
         public Login(AuthenticationViewModel viewModel)
         {
-            //EfContext efContext = new EfContext();
-            //efContext.
             ViewModel = viewModel;
             InitializeComponent();
-            txt_Email.Focus();
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
 
