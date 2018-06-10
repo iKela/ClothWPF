@@ -102,6 +102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Arrival\ArrivalsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Arrival\NewArrival.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +131,9 @@
     </Compile>
     <Compile Include="Arrival\ArrivalInfo.xaml.cs">
       <DependentUpon>ArrivalInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Arrival\ArrivalsList.xaml.cs">
+      <DependentUpon>ArrivalsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Arrival\NewArrival.xaml.cs">
       <DependentUpon>NewArrival.xaml</DependentUpon>
