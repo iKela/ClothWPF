@@ -21,7 +21,7 @@ namespace ClothWPF
     /// </summary>
     public partial class AddItem : Window
     {
-        EfContext context = new EfContext();
+        //EfContext context = new EfContext();
       
         public Product Productadding { get; set; }
         bool field = false;
@@ -56,7 +56,7 @@ namespace ClothWPF
                 {
                     if (Productadding != null)
                     {
-                        var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
+                        var product = context.Products.Where(c => c.Id == Productadding.Id).FirstOrDefault();
 
                         //var product = context.Products.Find(Productadding.Id);
                         product.Name = txt_Name.Text;
