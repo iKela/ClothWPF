@@ -23,5 +23,10 @@ namespace ClothWPF.Arrival
         {
             InitializeComponent();
         }
+
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace ClothWPF
         public EfContext() : base(GetConnectionString())
         { }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Arrival> Arrivals { get; set; }
+        public DbSet<Arrivals> Arrivals { get; set; }
         public DbSet<ArrivalProduct> ArrivalProducts { get; set; }
 
 

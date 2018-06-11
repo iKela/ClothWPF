@@ -158,7 +158,6 @@ namespace ClothWPF
                 addItem.Productadding = new Product { IdProduct = selected.IdProduct };
                 addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Name;
                 addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Code;
-                addItem.txt_Count.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count.ToString();
                 addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
                 addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceUah.ToString();
                 addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceRetail.ToString();

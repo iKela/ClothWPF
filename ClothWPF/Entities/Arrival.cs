@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Entities
 {
-    public class Arrival
+    public class Arrivals
     {
         [Key]
         public int IdArrival { get; set; }

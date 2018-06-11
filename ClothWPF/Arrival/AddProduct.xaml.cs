@@ -64,35 +64,37 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
             Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
-            //try
-            //{
-            //    context.Arrivals.Add(new Arrival
-            //    {
-            //        Count = count,
-            //        ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
-            //        PriceDollar = priceDollar,
-            //        PriceWholesale = wholesalePrice,
-            //        PriceRetail = retailerPrice,
-            //        IdProduct = productModels[cmb_Name.SelectedIndex].Id
-            //    });
-            //    context.SaveChanges();        
-            //    MessageBox.Show("Save");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-            NewArrival newArrival = new NewArrival();
-            newArrival.arrivalGrid.Items.Add(new ProductModel
+            try
             {
-                Name = cmb_Name.SelectedItem.ToString(),
-                Code = txt_ProductCode.Text,
-                Count = count,
-                PriceRetail = retailerPrice,
-                PriceWholesale = wholesalePrice,
-                PriceDollar = priceDollar
-            });
+                //реалізувати додавання в продукт
+                context.ArrivalProducts.Add(new ArrivalProduct
+                {
+                    Count = count,
+                    ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
+                    PriceDollar = priceDollar,
+                    PriceWholesale = wholesalePrice,
+                    PriceRetail = retailerPrice,
+                    //Idarrival = 
+                    Idproduct = productModels[cmb_Name.SelectedIndex].Id
+                });
+                context.SaveChanges();
+                MessageBox.Show("Save");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //NewArrival newArrival = new NewArrival();
+            //newArrival.arrivalGrid.Items.Add(new ProductModel
+            //{
+            //    Name = cmb_Name.SelectedItem.ToString(),
+            //    Code = txt_ProductCode.Text,
+            //    Count = count,
+            //    PriceRetail = retailerPrice,
+            //    PriceWholesale = wholesalePrice,
+            //    PriceDollar = priceDollar
+            //});
 
             Close();
         }
@@ -100,10 +102,10 @@ namespace ClothWPF
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
                 var selected = (ProductModel)cmb_Name.SelectedItem;
-            Product Productadding = new Product { IdProduct = selected.Id };
-               
+                Product Productadding = new Product { IdProduct = selected.Id };
+              //idArrival треба підгрузити
                 txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
-                txt_Count.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
+              //txt_Count.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
                 txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
               //txt_PriceUah.Text = productModels.FirstOrDefault(s => s.Id == selected.IdProduct).PriceUah.ToString();
                 txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
