@@ -39,12 +39,10 @@ namespace ClothWPF
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             #region Double Parse
-            double count = 0;
             double wholesalePrice = 0;
             double retailerPrice = 0;
             double priceDollar = 0;
             double priceUah = 0;
-            Double.TryParse(txt_Count.Text, out count);
             Double.TryParse(txt_PriceWholesale.Text, out wholesalePrice);
             Double.TryParse(txt_PriceRetail.Text, out retailerPrice);
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
@@ -57,11 +55,9 @@ namespace ClothWPF
                     if (Productadding != null)
                     {
                         var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
-
                         //var product = context.Products.Find(Productadding.Id);
                         product.Name = txt_Name.Text;
                         product.Code = txt_ProductCode.Text;
-                        product.Count = count;
                         product.PriceDollar = priceDollar;
                         product.PriceUah = priceUah;
                         product.PriceRetail = retailerPrice;
@@ -76,7 +72,6 @@ namespace ClothWPF
                         {
                             Name = txt_Name.Text,
                             Code = txt_ProductCode.Text,
-                            Count = count,
                             PriceDollar = priceDollar,
                             PriceUah = priceUah,
                             PriceRetail = retailerPrice,
