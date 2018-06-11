@@ -23,5 +23,15 @@ namespace ClothWPF.Arrival.Supplier
         {
             InitializeComponent();
         }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int index = int.Parse(((Button)e.Source).Uid);
+        }
     }
 }
