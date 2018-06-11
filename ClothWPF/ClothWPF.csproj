@@ -215,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Arrival\Supplier\SupplierInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CurrencyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +245,9 @@
     </Compile>
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Arrival\Supplier\SupplierInfo.xaml.cs">
+      <DependentUpon>SupplierInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
     <Compile Include="Authorization\Classes\AuthentationService.cs" />
