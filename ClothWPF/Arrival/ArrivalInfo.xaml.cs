@@ -28,5 +28,16 @@ namespace ClothWPF.Arrival
         {
 
         }
+
+        private void btn_NewSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            Supplier.SupplierInfo form = new Supplier.SupplierInfo();
+            form.ShowDialog();
+        }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

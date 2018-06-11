@@ -61,7 +61,7 @@
                         <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="False" Click="mi_NewArrival_Click"/>
+                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="True" Click="mi_NewArrival_Click"/>
                         <MenuItem Name="mi_AddItem" Header="Додати" Click="mi_AddItem_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Warehouse" Width="75" Header="Склад" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">

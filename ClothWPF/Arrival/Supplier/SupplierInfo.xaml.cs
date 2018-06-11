@@ -32,6 +32,34 @@ namespace ClothWPF.Arrival.Supplier
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((Button)e.Source).Uid);
+
+            GridCursor.Margin = new Thickness(10 + (150 * index), 0, 0, 0);
+
+            switch(index)
+            {
+                case 0:
+                    {
+                        GridGeneral.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 1:
+                    {
+                        GridGeneral.Visibility = Visibility.Collapsed;
+                        break;
+                    }
+            }
+        }
+
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }

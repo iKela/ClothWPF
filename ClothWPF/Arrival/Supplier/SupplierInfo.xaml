@@ -8,21 +8,67 @@
         mc:Ignorable="d"
         Height="450" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <StackPanel Background="WhiteSmoke">
-        <Grid Height="40">
+        <Grid Height="30">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Name="btn_CloseWindow" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
+                <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
             </StackPanel>
         </Grid>
-        <Grid Height="70">
+        <Grid Height="40">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
                 <Button Uid="0" Width="150" Content="ЗАГАЛЬНІ" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
                 <Button Uid="1" Width="150" Content="ДОДАТКОВО" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
             </StackPanel>
-            <Grid x:Name="GridCursor" Width="150" Height="3" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0"/>
+            <Grid VerticalAlignment="Bottom" x:Name="GridCursor" Width="150" Height="3" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0 10 10"/>
         </Grid>
-        <Grid Height="340" Background="Aquamarine">
-            
+        <Grid x:Name="GridGeneral" Height="380">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5">
+                <TextBlock Text="Назва" FontFamily="Times New Roman" FontSize="14"/>
+                <TextBox Name="txt_Name" FontFamily="Times New Roman" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+                <TextBlock Text="Місто" FontFamily="Times New Roman" FontSize="14"/>
+                <TextBox Name="txt_City" Width="200" HorizontalAlignment="Left" FontFamily="Times New Roman" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5">
+                <TextBlock Text="Адреса" FontFamily="Times New Roman" FontSize="14"/>
+                <TextBox Name="txt_Address" FontFamily="Times New Roman" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Vertical" Margin="5">
+                <TextBlock Text="Телефон" FontFamily="Times New Roman" FontSize="14"/>
+                <TextBox Name="txt_PhoneNumber" Width="200" HorizontalAlignment="Left" FontFamily="Times New Roman" FontSize="14" />
+            </StackPanel>
+            <StackPanel Grid.Row="4" Orientation="Vertical" Margin="5">
+                <TextBlock Text="E-mail" FontFamily="Times New Roman" FontSize="14"/>
+                <TextBox Name="txt_Email" Width="200" HorizontalAlignment="Left" FontFamily="Times New Roman" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Регіон" FontFamily="Times New Roman" FontSize="14"/>
+                    <TextBox Name="txt_Region" Width="200" HorizontalAlignment="Left" FontFamily="Times New Roman" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" Margin="190 0">
+                    <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
+                    <ComboBox Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
+                        <ComboBoxItem Content="$"/>
+                        <ComboBoxItem Content="&#8372;"/>
+                        <ComboBoxItem Content="&#8364;"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+            <Grid Grid.Row="6" VerticalAlignment="Center">
+                <StackPanel>
+                    <Button Name="btn_Add" VerticalAlignment="Top" Margin="0 4" Content="Додати" Width="120" HorizontalAlignment="Center" Click="btn_Add_Click"/>
+                </StackPanel>
+            </Grid>
         </Grid>
-        
     </StackPanel>
 </Window>
