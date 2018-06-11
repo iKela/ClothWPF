@@ -7,13 +7,13 @@ namespace ClothWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddArrival : IMigrationMetadata
+    public sealed partial class asd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddArrival));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(asd));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805290958521_AddArrival"; }
+            get { return "201806081217262_asd"; }
         }
         
         string IMigrationMetadata.Source

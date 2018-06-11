@@ -24,14 +24,20 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF2196F3">
+        <Grid Grid.Row="0" Background="#FF0042A2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="29*"/>
-                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Прихід" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Margin="616,4,102.5,3"/>
         </Grid>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Прихід" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="White"/>
+            </TextBlock.Foreground>
+        </TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
@@ -63,16 +69,17 @@
                 <Button Name="btn_AddProduct" Height="40" Width="40" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" Grid.Column="1" FontSize="30" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4" Click="btn_AddProduct_Click"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
                 <DataGrid.DataContext>
-                    <local:NewArrivalModel/>
+                    <local:ProductModel/>
                 </DataGrid.DataContext>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Код товару" Binding="{Binding Path=Code}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Артикул" Binding="{Binding Path=Article}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Кількість" Binding="{Binding Path=Count}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Ціна в роздріб" Binding="{Binding Path=SalePrice}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Оптова ціна" Binding="{Binding Path=Lenght}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -96,6 +103,14 @@
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>-->
             </DataGrid>
+        </Grid>
+        <Grid Grid.Row="3" Background="#FF0042A2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btn_AddFilledArrival" Grid.Column="1" Width="150" Content="Зберегти" Click="btn_AddFilledArrival_Click"/>
         </Grid>
     </Grid>
 </Window>

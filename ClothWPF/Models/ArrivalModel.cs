@@ -15,6 +15,5 @@ namespace ClothWPF.Models
         public double? PriceRetail { get; set; }
         public double? PriceWholesale { get; set; }
         public DateTime ManufactureDate { get; set; }
-
     }
 }

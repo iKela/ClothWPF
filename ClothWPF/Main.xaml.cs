@@ -9,6 +9,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xaml;
+using System.Xml;
 
 namespace ClothWPF
 {
@@ -46,28 +48,25 @@ namespace ClothWPF
         }
         public void loaded()
         {
-           
-                clothesGrid.ItemsSource = null;
-                clothesGrid.Items.Clear();
-                _ProductFullInfo = new List<Product>();
-                foreach (var product in context.Products)
+            clothesGrid.ItemsSource = null;
+            clothesGrid.Items.Clear();
+            _ProductFullInfo = new List<Product>();
+            foreach (var product in context.Products)
+            {
+                _ProductFullInfo.Add(new Product
                 {
-                    _ProductFullInfo.Add(new Product
-                    {
-                        Id = product.Id,
-                        Code = product.Code,
-                        Name = product.Name,
-                        Count = product.Count,
-                        PriceDollar = product.PriceDollar,
-                        PriceUah = product.PriceUah,
-                        PriceRetail = product.PriceRetail,
-                        PriceWholesale = product.PriceWholesale,
-                        Country = product.Country
-                    });
-                }
-                clothesGrid.ItemsSource = _ProductFullInfo;
-            
-                
+                    IdProduct = product.IdProduct,
+                    Code = product.Code,
+                    Name = product.Name,
+                    Count = product.Count,
+                    PriceDollar = product.PriceDollar,
+                    PriceUah = product.PriceUah,
+                    PriceRetail = product.PriceRetail,
+                    PriceWholesale = product.PriceWholesale,
+                    Country = product.Country
+                });
+            }
+            clothesGrid.ItemsSource = _ProductFullInfo;
         }
         private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
         {
@@ -105,31 +104,31 @@ namespace ClothWPF
         }
         private void DeleteProduct(object sender, RoutedEventArgs e)
         {
-                if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            {
+                Product obj = ((FrameworkElement)sender).DataContext as Product;
+                if (clothesGrid.SelectedItem != null)
                 {
-                    Product obj = ((FrameworkElement)sender).DataContext as Product;
-                    if (clothesGrid.SelectedItem != null)
+                    try
                     {
-                        try
+                        using (EfContext context = new EfContext())
                         {
-                            using (EfContext context = new EfContext())
-                            {
-                                context.Products.Remove(context.Products.Find(obj.Id));
-                                context.SaveChanges();
-                            }
-                            loaded();
-                            MessageBox.Show("Видалено");
+                            context.Products.Remove(context.Products.Find(obj.IdProduct));
+                            context.SaveChanges();
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                        loaded();
+                        MessageBox.Show("Видалено");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                else
-                {
+            }
+            else
+            {
                 MessageBox.Show("Ви не володієте правами для видалення");
-                }
+            }
         }
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
         {
@@ -156,14 +155,14 @@ namespace ClothWPF
                 var selected = (Product)clothesGrid.SelectedItem;
                 addItem.Title = "Редагувати";
                 addItem.btn_Add.Content = "Зберегти";
-                addItem.Productadding = new Product { Id = selected.Id };
-                addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Name;
-                addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Code;
-                addItem.txt_Count.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
-                addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
-                addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceUah.ToString();
-                addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
-                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
+                addItem.Productadding = new Product { IdProduct = selected.IdProduct };
+                addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Name;
+                addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Code;
+                addItem.txt_Count.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count.ToString();
+                addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
+                addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceUah.ToString();
+                addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceRetail.ToString();
+                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceWholesale.ToString();
                 addItem.cmb_Country.Text = selected.Country;
                 clothesGrid.Items.Refresh();
             }
@@ -194,7 +193,6 @@ namespace ClothWPF
                 var filtered = _ProductFullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
                 clothesGrid.ItemsSource = filtered;
             }
-
         }
 
         private void btn_SearchByName_Click(object sender, RoutedEventArgs e)
