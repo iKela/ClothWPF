@@ -3,7 +3,7 @@ namespace ClothWPF.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class part1 : DbMigration
+    public partial class _new : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace ClothWPF.Migrations
                 "dbo.ArrivalProducts",
                 c => new
                     {
-                        IdArrivalProduct = c.Int(nullable: false, identity:true),
+                        IdArrivalProduct = c.String(nullable: false, maxLength: 128),
                         Count = c.Double(),
                         PriceDollar = c.Double(),
                         PriceUah = c.Double(),
@@ -33,14 +33,32 @@ namespace ClothWPF.Migrations
                     {
                         IdArrival = c.Int(nullable: false, identity: true),
                         Number = c.Int(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        SupplierInvoice = c.String(),
+                        PaymentType = c.String(),
+                        Currency = c.String(),
                         TotalPurchase = c.Double(nullable: false),
-                        Sender = c.String(),
-                        Receiver = c.String(),
-                        WholeSale = c.Double(),
-                        Enterprice = c.String(),
                         Comment = c.String(),
+                        IdSupplier = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.IdArrival);
+                .PrimaryKey(t => t.IdArrival)
+                .ForeignKey("dbo.Suppliers", t => t.IdSupplier, cascadeDelete: true)
+                .Index(t => t.IdSupplier);
+            
+            CreateTable(
+                "dbo.Suppliers",
+                c => new
+                    {
+                        IdSupplier = c.Int(nullable: false, identity: true),
+                        NameSupplier = c.String(maxLength: 50),
+                        City = c.String(maxLength: 50),
+                        AdressSupplier = c.String(maxLength: 69),
+                        NumberSupplier = c.String(maxLength: 60),
+                        Email = c.String(maxLength: 50),
+                        Region = c.String(maxLength: 50),
+                        Currency = c.String(),
+                    })
+                .PrimaryKey(t => t.IdSupplier);
             
             CreateTable(
                 "dbo.Products",
@@ -65,9 +83,12 @@ namespace ClothWPF.Migrations
         {
             DropForeignKey("dbo.ArrivalProducts", "Idproduct", "dbo.Products");
             DropForeignKey("dbo.ArrivalProducts", "Idarrival", "dbo.Arrivals");
+            DropForeignKey("dbo.Arrivals", "IdSupplier", "dbo.Suppliers");
+            DropIndex("dbo.Arrivals", new[] { "IdSupplier" });
             DropIndex("dbo.ArrivalProducts", new[] { "Idproduct" });
             DropIndex("dbo.ArrivalProducts", new[] { "Idarrival" });
             DropTable("dbo.Products");
+            DropTable("dbo.Suppliers");
             DropTable("dbo.Arrivals");
             DropTable("dbo.ArrivalProducts");
         }

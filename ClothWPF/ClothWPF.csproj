@@ -260,6 +260,7 @@
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
+    <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -270,13 +271,9 @@
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Migrations\201806051110500_part1.cs" />
-    <Compile Include="Migrations\201806051110500_part1.Designer.cs">
-      <DependentUpon>201806051110500_part1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806081217262_asd.cs" />
-    <Compile Include="Migrations\201806081217262_asd.Designer.cs">
-      <DependentUpon>201806081217262_asd.cs</DependentUpon>
+    <Compile Include="Migrations\201806121124224_new.cs" />
+    <Compile Include="Migrations\201806121124224_new.Designer.cs">
+      <DependentUpon>201806121124224_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalModel.cs" />
@@ -308,11 +305,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201806051110500_part1.resx">
-      <DependentUpon>201806051110500_part1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806081217262_asd.resx">
-      <DependentUpon>201806081217262_asd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806121124224_new.resx">
+      <DependentUpon>201806121124224_new.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
