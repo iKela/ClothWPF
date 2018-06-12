@@ -95,7 +95,7 @@ namespace ClothWPF
         }
       
 
-            private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
+        private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
 
             //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
