@@ -21,12 +21,12 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
-            <DataGrid AutoGenerateColumns="True">
+            <DataGrid Name="grid_Arrivals" AutoGenerateColumns="True">
                 
             </DataGrid>
         </Grid>
         <Grid Grid.Row="4" Grid.ColumnSpan="3">
-            <DataGrid AutoGenerateColumns="True">
+            <DataGrid Name="grid_ArrivalInfo" AutoGenerateColumns="True">
 
             </DataGrid>
         </Grid>

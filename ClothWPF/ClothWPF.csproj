@@ -240,6 +240,7 @@
     <Compile Include="Arrival\ArrivalsList.xaml.cs">
       <DependentUpon>ArrivalsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Arrival\Models\ArrivalMVVM.cs" />
     <Compile Include="Arrival\NewArrival.xaml.cs">
       <DependentUpon>NewArrival.xaml</DependentUpon>
     </Compile>
