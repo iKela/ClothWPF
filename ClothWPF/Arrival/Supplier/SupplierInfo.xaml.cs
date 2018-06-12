@@ -39,12 +39,20 @@ namespace ClothWPF.Arrival.Supplier
             {
                 case 0:
                     {
-                        GridGeneral.Visibility = Visibility.Visible;
+                        GridGeneralInfo.Visibility = Visibility.Visible;
+                        GridAdditionInfo.Visibility = Visibility.Collapsed;
                         break;
                     }
                 case 1:
                     {
-                        GridGeneral.Visibility = Visibility.Collapsed;
+                        GridGeneralInfo.Visibility = Visibility.Collapsed;
+                        GridAdditionInfo.Visibility = Visibility.Visible;
+                        break;
+                    }
+                default:
+                    {
+                        GridGeneralInfo.Visibility = Visibility.Visible;
+                        GridAdditionInfo.Visibility = Visibility.Collapsed;
                         break;
                     }
             }
