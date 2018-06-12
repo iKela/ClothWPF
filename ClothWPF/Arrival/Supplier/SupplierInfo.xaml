@@ -26,7 +26,7 @@
             </StackPanel>
             <Grid VerticalAlignment="Bottom" x:Name="GridCursor" Width="150" Height="3" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0 10 10"/>
         </Grid>
-        <Grid x:Name="GridGeneralInfo" Height="340" Grid.Row="2">
+        <Grid x:Name="GridGeneralInfo" Height="340" Grid.Row="2" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -76,7 +76,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridAdditionInfo" Height="340" Grid.Row="2" Visibility="Collapsed">
+        <Grid x:Name="GridAdditionInfo" Height="340" Grid.Row="2" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -91,7 +91,11 @@
                     <ComboBox Name="cmb_Category" Text="Категорія" ItemsSource="{Binding Path=ListOfCategories}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="170 0">
-                    <ComboBox Name="cmb_KindOfResponsibility" Text="Тип відповідальності" ItemsSource="{Binding Path=ListOfKindsOfResponsibility}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman"/>
+                    <ComboBox Name="cmb_KindOfResponsibility" Text="Тип відповідальності" ItemsSource="{Binding Path=ListOfKindsOfResponsibility}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
+                        <ComboBoxItem Content="Приватна особа"/>
+                        <ComboBoxItem Content="Приватний підприємець"/>
+                        <ComboBoxItem Content="Юридична особа"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
