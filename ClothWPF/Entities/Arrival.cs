@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Entities
 {
-    public class Arrival
+    public class Arrivals
     {
         [Key]
         public int IdArrival { get; set; }
         public int Number { get; set; }
+        public DateTime Date {get; set;}
+        public string SupplierInvoice { get; set; }
+        public string PaymentType { get; set; }
+        public string Currency { get; set; }
         public double TotalPurchase { get; set; }
-        public string Sender { get; set; }
-        public string Receiver { get; set; }
-        public double? WholeSale { get; set; }
-        public string Enterprice { get; set; }
         public string Comment { get; set; }
+        [ForeignKey("SupplierOf")]
+        public int IdSupplier { get; set; }
+        public Supplier SupplierOf { get; set; }
     }
 }

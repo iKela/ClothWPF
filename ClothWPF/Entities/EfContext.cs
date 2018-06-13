@@ -14,8 +14,9 @@ namespace ClothWPF
         public EfContext() : base(GetConnectionString())
         { }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Arrival> Arrivals { get; set; }
+        public DbSet<Arrivals> Arrivals { get; set; }
         public DbSet<ArrivalProduct> ArrivalProducts { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
 
         public static string GetConnectionString()
@@ -24,7 +25,7 @@ namespace ClothWPF
             string username = "nazar1997";
             string password = "6621Nazar";
             string hostname = "clothes.cjnqprfoj451.eu-central-1.rds.amazonaws.com";
-            string port = "1433";
+            //string port = "1433";
 
             return "Data Source=" + hostname + ";Initial Catalog = " + dbname + ";User ID=" + username + ";Password=" + password + ";";
         }

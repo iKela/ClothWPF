@@ -20,7 +20,7 @@ namespace ClothWPF.Entities
         public DateTime ManufactureDate { get; set; }
         [ForeignKey("ArrivalOf")]
         public int Idarrival { get; set; }
-        public Arrival ArrivalOf { get; set; }
+        public Arrivals ArrivalOf { get; set; }
         [ForeignKey("ProductOf")]
         public int Idproduct { get; set; }
         public Product ProductOf { get; set; }

@@ -58,6 +58,30 @@
   <PropertyGroup>
     <ManifestKeyFile>ClothWPF_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -191,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Arrival\Supplier\SupplierInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CurrencyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,13 +240,16 @@
     <Compile Include="Arrival\ArrivalsList.xaml.cs">
       <DependentUpon>ArrivalsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Arrival\Models\ArrivalMVVM.cs" />
     <Compile Include="Arrival\NewArrival.xaml.cs">
       <DependentUpon>NewArrival.xaml</DependentUpon>
     </Compile>
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Arrival\ViewModels\ArrivalsVisibilityViewModel.cs" />
+    <Compile Include="Arrival\Supplier\SupplierInfo.xaml.cs">
+      <DependentUpon>SupplierInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
     <Compile Include="Authorization\Classes\AuthentationService.cs" />
     <Compile Include="Authorization\Classes\AuthenticationViewModel.cs" />
@@ -230,6 +261,7 @@
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
+    <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -240,13 +272,9 @@
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Migrations\201806051110500_part1.cs" />
-    <Compile Include="Migrations\201806051110500_part1.Designer.cs">
-      <DependentUpon>201806051110500_part1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806081217262_asd.cs" />
-    <Compile Include="Migrations\201806081217262_asd.Designer.cs">
-      <DependentUpon>201806081217262_asd.cs</DependentUpon>
+    <Compile Include="Migrations\201806121124224_new.cs" />
+    <Compile Include="Migrations\201806121124224_new.Designer.cs">
+      <DependentUpon>201806121124224_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalModel.cs" />
@@ -278,11 +306,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201806051110500_part1.resx">
-      <DependentUpon>201806051110500_part1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806081217262_asd.resx">
-      <DependentUpon>201806081217262_asd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806121124224_new.resx">
+      <DependentUpon>201806121124224_new.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -296,7 +321,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

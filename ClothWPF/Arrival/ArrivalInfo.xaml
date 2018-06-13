@@ -6,11 +6,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
-        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman">
+        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -21,7 +20,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.RowSpan="3" Grid.ColumnSpan="3">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <GroupBox Header="Головна інформація" FontFamily="Times New Roman" Padding="3">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
@@ -32,7 +36,7 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
                             <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
-                            <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25"/>
+                            <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
@@ -43,14 +47,19 @@
                         <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
                         <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <ComboBox Name="cmb_Currency" Text="Валюта" ItemsSource="{Binding Path=ListOfCurrencies}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" >
+                        <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
+                        <ComboBox Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
+                            <ComboBoxItem Content="$"/>
+                            <ComboBoxItem Content="&#8372;"/>
+                            <ComboBoxItem Content="&#8364;"/>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="3" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -58,14 +67,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <GroupBox Grid.ColumnSpan="5" Header="Додаткова інформація" FontFamily="Times New Roman" Padding="3">
+            <GroupBox BorderThickness="0" Grid.ColumnSpan="5" Header="Додаткова інформація" FontFamily="Times New Roman" Padding="3">
                 <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="450" Grid.Column="0">
-                    <TextBox x:Name="txt_Comment" materialDesign:HintAssist.Hint="Коментарій" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="450" Height="100" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
+                    <TextBox x:Name="txt_Comment" materialDesign:HintAssist.Hint="Коментарій" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="450" Height="70" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
                 </StackPanel>
             </GroupBox>
         </Grid>
       
-        <Grid Background="#FF0042A2" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
+        <Grid Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
             <StackPanel Grid.Column="2" >
                 <Button Name="btn_Add" VerticalAlignment="Top" Margin="0 7 7 0" Content="Додати" Width="120" HorizontalAlignment="Center" Click="btn_Add_Click"/>
             </StackPanel>
