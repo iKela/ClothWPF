@@ -31,7 +31,7 @@ namespace ClothWPF.Arrival.Models
             get { return _dateVisibility; }
             set
             {
-                _numberVisibility = value;
+                _dateVisibility = value;
                 OnPropertyChanged(nameof(DateVisibility));
             }
         }
@@ -40,7 +40,7 @@ namespace ClothWPF.Arrival.Models
             get { return _purchaseTotalVisibility; }
             set
             {
-                _numberVisibility = value;
+                _purchaseTotalVisibility = value;
                 OnPropertyChanged(nameof(PurchaseVisibility));
             }
         }
@@ -49,7 +49,7 @@ namespace ClothWPF.Arrival.Models
             get { return _supplierVisibility; }
             set
             {
-                _numberVisibility = value;
+                _supplierVisibility = value;
                 OnPropertyChanged(nameof(SupplierVisibility));
             }
         }
@@ -58,7 +58,7 @@ namespace ClothWPF.Arrival.Models
             get { return _receiverVisibility; }
             set
             {
-                _numberVisibility = value;
+                _receiverVisibility = value;
                 OnPropertyChanged(nameof(ReceiverVisibility));
             }
         }
@@ -67,7 +67,7 @@ namespace ClothWPF.Arrival.Models
             get { return _wholesaleVisibility; }
             set
             {
-                _numberVisibility = value;
+                _wholesaleVisibility = value;
                 OnPropertyChanged(nameof(WholesaleVisibility));
             }
         }
@@ -76,7 +76,7 @@ namespace ClothWPF.Arrival.Models
             get { return _enterpriseVisibility; }
             set
             {
-                _numberVisibility = value;
+                _enterpriseVisibility = value;
                 OnPropertyChanged(nameof(EnterpriseVisibility));
             }
         }
@@ -85,7 +85,7 @@ namespace ClothWPF.Arrival.Models
             get { return _userVisibility; }
             set
             {
-                _numberVisibility = value;
+                _userVisibility = value;
                 OnPropertyChanged(nameof(UserVisibility));
             }
         }

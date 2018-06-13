@@ -7,7 +7,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded" Icon="Assets/MinialLogo.png">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded" Icon="Assets/MinialLogo.png" TabIndex="1">
     
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -117,15 +117,15 @@
                   >
 
                 <DataGrid.Resources>
-                    <local:BindingProxy x:Key="NameVisibilityProxy"     Data="{Binding NameVisibility}"/>
-                    <local:BindingProxy x:Key="ItemCodeVisibilityProxy" Data="{Binding ItemCodeVisibility}"/>
-                    <local:BindingProxy x:Key="CountVisibilityProxy"    Data="{Binding CountVisibility}"/>
-                    <local:BindingProxy x:Key="LenghtVisibilityProxy"   Data="{Binding LenghtVisibility}"/>
-                    <local:BindingProxy x:Key="RetailVisibilityProxy"   Data="{Binding RetailVisibility}"/>
+                    <local:BindingProxy x:Key="NameVisibilityProxy"      Data="{Binding NameVisibility}"/>
+                    <local:BindingProxy x:Key="ItemCodeVisibilityProxy"  Data="{Binding ItemCodeVisibility}"/>
+                    <local:BindingProxy x:Key="CountVisibilityProxy"     Data="{Binding CountVisibility}"/>
+                    <local:BindingProxy x:Key="LenghtVisibilityProxy"    Data="{Binding LenghtVisibility}"/>
+                    <local:BindingProxy x:Key="RetailVisibilityProxy"    Data="{Binding RetailVisibility}"/>
                     <local:BindingProxy x:Key="WholeSaleVisibilityProxy" Data="{Binding WholeSaleVisibility}"/>
-                    <local:BindingProxy x:Key="PurchaseDolPriceProxy"   Data="{Binding PurchaseDolPrice}"/>
-                    <local:BindingProxy x:Key="PurchaseUahPriceProxy"   Data="{Binding PurchaseUahPrice}"/>
-                    <local:BindingProxy x:Key="CountryVisibilityProxy" Data="{Binding CountryVisibility}"/>
+                    <local:BindingProxy x:Key="PurchaseDolPriceProxy"    Data="{Binding PurchaseDolPrice}"/>
+                    <local:BindingProxy x:Key="PurchaseUahPriceProxy"    Data="{Binding PurchaseUahPrice}"/>
+                    <local:BindingProxy x:Key="CountryVisibilityProxy"   Data="{Binding CountryVisibility}"/>
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>

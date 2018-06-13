@@ -38,5 +38,21 @@ namespace ClothWPF.Arrival
         {
 
         }
+
+        private void btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            GridSettingsForm gridSettingsForm = new GridSettingsForm(TabIndex); ;
+            gridSettingsForm.Show();
+        }
     }
 }

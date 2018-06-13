@@ -16,8 +16,7 @@ namespace ClothWPF
         private bool _wholesaleVisibility = Properties.Settings.Default.DGWholesaleVisibility;
         private bool _purchaseDolPrice = Properties.Settings.Default.DGPurchaseDolPrice;
         private bool _purchaseUahPrice = Properties.Settings.Default.DGPurchaseUahPrice;
-        private bool _countryVisibility = Properties.Settings.Default.DGCountryVisibility;
-
+        private bool _countryVisibility = Properties.Settings.Default.DGCountryVisibility;        
 
         //private bool _itemCode;
         #region Gets & Sets
