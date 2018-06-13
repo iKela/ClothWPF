@@ -240,6 +240,7 @@
     <Compile Include="Arrival\ArrivalsList.xaml.cs">
       <DependentUpon>ArrivalsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Arrival\Models\ArrivalMVVM.cs" />
     <Compile Include="Arrival\NewArrival.xaml.cs">
       <DependentUpon>NewArrival.xaml</DependentUpon>
     </Compile>
@@ -330,9 +331,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Pics\Help.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClothWPF"
         mc:Ignorable="d"
-        Title="Налаштування стовбців" Height="380" MinHeight="380" MaxHeight="380" Width="200" MinWidth="200" MaxWidth="200" Icon="Assets/MinialLogo.png">
+        Title="Налаштування стовбців" Height="420" Width="200" MinWidth="200" MaxWidth="200" Icon="Assets/MinialLogo.png" TabIndex="23456345">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" FontFamily="Times New Roman" FontSize="14">
+        <StackPanel Grid.Row="0">
+            <ComboBox Name="cmb_Window">
+                <ComboBoxItem Uid="0" Content="Головне вікно" Selected="ComboBoxItem_Selected"/>
+                <ComboBoxItem Uid="1" Content="Вікно по приходам" Selected="ComboBoxItem_Selected"/>
+            </ComboBox>
+        </StackPanel>
+        <ListBox Name="listBox_MainWindowVisibility" Grid.Row="1" Grid.Column="0" FontFamily="Times New Roman" FontSize="14" Visibility="Collapsed">
             <TextBlock Text="Назва товару" Margin="1"/>
             <TextBlock Text="Код товару" Margin="1"/>
             <TextBlock Text="Кількість" Margin="1"/>
@@ -21,9 +32,8 @@
             <TextBlock Text="Закупівеньна ціна($)" Margin="1"/>
             <TextBlock Text="Закупівельна ціна(грн)" Margin="1"/>
             <TextBlock Text="Країна виробник" Margin="1"/>
-
         </ListBox>
-        <ListBox Grid.Column="1">
+        <ListBox Name="listBox_CheckBoxesOfMainWindowVisibility" Grid.Row="1" Grid.Column="1">
             <CheckBox Name="checkBox_Name"/>
             <CheckBox Name="checkBox_ItemCode"/>
             <CheckBox Name="checkBox_Count"/>
@@ -34,6 +44,27 @@
             <CheckBox Name="checkBox_PurchaseUahPrice"/>
             <CheckBox Name="checkBox_Country"/>
         </ListBox>
-        <Button Grid.ColumnSpan="2" Name="btn_Save" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Content="&#128190;" FontSize="20" Padding="3" Click="btn_Save_Click"/>
+        <ListBox Name="listBox_ArraysListVisibility" Grid.Row="1" Grid.Column="0" FontFamily="Times New Roman" FontSize="14" Visibility="Visible">
+            <TextBlock Text="Номер приходу" Margin="1"/>
+            <TextBlock Text="Дата приходу" Margin="1"/>
+            <TextBlock Text="Загальна вартість" Margin="1"/>
+            <TextBlock Text="Постачальник" Margin="1"/>
+            <TextBlock Text="Отримувач" Margin="1"/>
+            <TextBlock Text="Оптова ціна" Margin="1"/>
+            <TextBlock Text="Підприємство" Margin="1"/>
+            <TextBlock Text="Користувач що прийняв" Margin="1"/>
+        </ListBox>
+        <ListBox Name="listBox_CheckBoxesOfArraysListVisibilit" Grid.Row="1" Grid.Column="1">
+            <CheckBox Name="checkBox_Number"/>
+            <CheckBox Name="checkBox_Date"/>
+            <CheckBox Name="checkBox_PurchaseTotal"/>
+            <CheckBox Name="checkBox_Supplier"/>
+            <CheckBox Name="checkBox_Receiver"/>
+            <CheckBox Name="checkBox_WholeSale"/>
+            <CheckBox Name="checkBox_Enterprise"/>
+            <CheckBox Name="checkBox_User"/>
+        </ListBox>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Name="btn_Save" HorizontalAlignment="Center" VerticalAlignment="Center" Content="&#128190;" FontSize="20" Padding="3" Click="btn_Save_Click"/>
     </Grid>
 </Window>

@@ -44,7 +44,14 @@ namespace ClothWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
-            loaded();
+            try
+            {
+                loaded();
+            }
+            catch
+            {
+                MessageBox.Show("Немає з'єднання з базою даних.", "Увага!");
+            }
         }
         public void loaded()
         {
@@ -143,7 +150,7 @@ namespace ClothWPF
 
         private void mi_Settings_Click(object sender, RoutedEventArgs e)
         {
-            GridSettingsForm gridSettingsForm = new GridSettingsForm(); ;
+            GridSettingsForm gridSettingsForm = new GridSettingsForm(TabIndex); ;
             gridSettingsForm.Show();         
         }
 
@@ -213,6 +220,12 @@ namespace ClothWPF
             tb_SearchByName.Visibility = Visibility.Hidden;
             tb_SearchByProductCode.Visibility = Visibility.Hidden;
             tb_SearchByCountry.Visibility = Visibility.Visible; 
-        }    
+        }
+
+        private void mi_ArrivalsList_Click(object sender, RoutedEventArgs e)
+        {
+            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
+            arrivalsList.Show();
+        }
     }
 }

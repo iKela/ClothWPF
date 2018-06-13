@@ -12,7 +12,7 @@ namespace ClothWPF.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -173,6 +173,102 @@ namespace ClothWPF.Properties {
             }
             set {
                 this["user2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Date {
+            get {
+                return ((bool)(this["DGArrivals_Date"]));
+            }
+            set {
+                this["DGArrivals_Date"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Number {
+            get {
+                return ((bool)(this["DGArrivals_Number"]));
+            }
+            set {
+                this["DGArrivals_Number"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_PurchaseTotal {
+            get {
+                return ((bool)(this["DGArrivals_PurchaseTotal"]));
+            }
+            set {
+                this["DGArrivals_PurchaseTotal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Supplier {
+            get {
+                return ((bool)(this["DGArrivals_Supplier"]));
+            }
+            set {
+                this["DGArrivals_Supplier"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Receiver {
+            get {
+                return ((bool)(this["DGArrivals_Receiver"]));
+            }
+            set {
+                this["DGArrivals_Receiver"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Wholesale {
+            get {
+                return ((bool)(this["DGArrivals_Wholesale"]));
+            }
+            set {
+                this["DGArrivals_Wholesale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_Enterprise {
+            get {
+                return ((bool)(this["DGArrivals_Enterprise"]));
+            }
+            set {
+                this["DGArrivals_Enterprise"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DGArrivals_User {
+            get {
+                return ((bool)(this["DGArrivals_User"]));
+            }
+            set {
+                this["DGArrivals_User"] = value;
             }
         }
     }
