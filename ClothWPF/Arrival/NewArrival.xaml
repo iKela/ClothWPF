@@ -6,6 +6,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF.Models"
+        xmlns:gen ="clr-namespace:ClothWPF"
         mc:Ignorable="d"
         Title="Новий прихід" Height="700" Width="1300" Loaded="Window_Loaded">
     <Window.Resources>
@@ -75,6 +76,19 @@
                 <DataGrid.DataContext>
                     <local:ProductModel/>
                 </DataGrid.DataContext>
+
+                <DataGrid.Resources>
+                    <gen:BindingProxy x:Key="NameVisibilityProxy"     Data="{Binding NameVisibility}"/>
+                     <gen:BindingProxy x:Key="ItemCodeVisibilityProxy" Data="{Binding ItemCodeVisibility}"/>
+                     <gen:BindingProxy x:Key="CountVisibilityProxy"    Data="{Binding CountVisibility}"/>
+                     <gen:BindingProxy x:Key="LenghtVisibilityProxy"   Data="{Binding LenghtVisibility}"/>
+                     <gen:BindingProxy x:Key="RetailVisibilityProxy"   Data="{Binding RetailVisibility}"/>
+                     <gen:BindingProxy x:Key="WholeSaleVisibilityProxy" Data="{Binding WholeSaleVisibility}"/>
+                     <gen:BindingProxy x:Key="PurchaseDolPriceProxy"   Data="{Binding PurchaseDolPrice}"/>
+                     <gen:BindingProxy x:Key="PurchaseUahPriceProxy"   Data="{Binding PurchaseUahPrice}"/>
+                     <gen:BindingProxy x:Key="CountryVisibilityProxy" Data="{Binding CountryVisibility}"/>
+                </DataGrid.Resources>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>

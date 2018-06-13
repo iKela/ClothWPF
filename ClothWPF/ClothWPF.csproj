@@ -218,6 +218,7 @@
     <Compile Include="Arrival\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Arrival\ViewModels\ArrivalsVisibilityViewModel.cs" />
     <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
     <Compile Include="Authorization\Classes\AuthentationService.cs" />
     <Compile Include="Authorization\Classes\AuthenticationViewModel.cs" />
@@ -296,9 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Pics\Help.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

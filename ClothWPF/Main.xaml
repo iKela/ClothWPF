@@ -66,6 +66,9 @@
                     </MenuItem>
                     <MenuItem Name="mi_Warehouse" Width="75" Header="Склад" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_WarehouseCondition" Header="Стан складу" Click="mi_WarehouseCondition_Click" IsEnabled="False"/>
+                        <Separator/>
+                        <MenuItem Name="mi_ArrivalsList" Header="Список приходів" Click="mi_ArrivalsList_Click" IsEnabled="True"/>
+                        <Separator/>
                         <MenuItem Name="mi_Settings" Header="Налаштування" Click="mi_Settings_Click"/>
                     </MenuItem>
                 </Menu>
@@ -123,7 +126,6 @@
                     <local:BindingProxy x:Key="PurchaseDolPriceProxy"   Data="{Binding PurchaseDolPrice}"/>
                     <local:BindingProxy x:Key="PurchaseUahPriceProxy"   Data="{Binding PurchaseUahPrice}"/>
                     <local:BindingProxy x:Key="CountryVisibilityProxy" Data="{Binding CountryVisibility}"/>
-
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>

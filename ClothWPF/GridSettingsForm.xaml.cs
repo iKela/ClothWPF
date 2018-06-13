@@ -40,15 +40,15 @@ namespace ClothWPF
         {
             try
             { 
-            if (Properties.Settings.Default.DGNameVisibility != checkBox_Name.IsChecked.Value) Properties.Settings.Default.DGNameVisibility = checkBox_Name.IsChecked.Value; changesExist = true;
-            if (Properties.Settings.Default.DGItemCodeVisibility != checkBox_ItemCode.IsChecked.Value)        Properties.Settings.Default.DGItemCodeVisibility = checkBox_ItemCode.IsChecked.Value        ; changesExist = true;
-            if (Properties.Settings.Default.DGCountVisibility != checkBox_Count.IsChecked.Value)              Properties.Settings.Default.DGCountVisibility = checkBox_Count.IsChecked.Value              ; changesExist = true;
-            if (Properties.Settings.Default.DGLenghtVisibility != checkBox_Lenght.IsChecked.Value)            Properties.Settings.Default.DGLenghtVisibility = checkBox_Lenght.IsChecked.Value            ; changesExist = true;
-            if (Properties.Settings.Default.DGRetailVisibility != checkBox_RetailPrice.IsChecked.Value)       Properties.Settings.Default.DGRetailVisibility = checkBox_RetailPrice.IsChecked.Value       ; changesExist = true;
-            if (Properties.Settings.Default.DGWholesaleVisibility != checkBox_WholesalePrice.IsChecked.Value) Properties.Settings.Default.DGWholesaleVisibility = checkBox_WholesalePrice.IsChecked.Value ; changesExist = true;
-            if (Properties.Settings.Default.DGPurchaseDolPrice != checkBox_PurchaseDolPrice.IsChecked.Value)  Properties.Settings.Default.DGPurchaseDolPrice = checkBox_PurchaseDolPrice.IsChecked.Value  ; changesExist = true;
-            if (Properties.Settings.Default.DGPurchaseUahPrice != checkBox_PurchaseUahPrice.IsChecked.Value)  Properties.Settings.Default.DGPurchaseUahPrice = checkBox_PurchaseUahPrice.IsChecked.Value  ; changesExist = true;
-            if (Properties.Settings.Default.DGCountryVisibility != checkBox_Country.IsChecked.Value) Properties.Settings.Default.DGCountryVisibility = checkBox_Country.IsChecked.Value; changesExist = true;
+            if (Properties.Settings.Default.DGNameVisibility != checkBox_Name.IsChecked.Value)                Properties.Settings.Default.DGNameVisibility = checkBox_Name.IsChecked.Value;                changesExist = true;
+            if (Properties.Settings.Default.DGItemCodeVisibility != checkBox_ItemCode.IsChecked.Value)        Properties.Settings.Default.DGItemCodeVisibility = checkBox_ItemCode.IsChecked.Value;        changesExist = true;
+            if (Properties.Settings.Default.DGCountVisibility != checkBox_Count.IsChecked.Value)              Properties.Settings.Default.DGCountVisibility = checkBox_Count.IsChecked.Value;              changesExist = true;
+            if (Properties.Settings.Default.DGLenghtVisibility != checkBox_Lenght.IsChecked.Value)            Properties.Settings.Default.DGLenghtVisibility = checkBox_Lenght.IsChecked.Value;            changesExist = true;
+            if (Properties.Settings.Default.DGRetailVisibility != checkBox_RetailPrice.IsChecked.Value)       Properties.Settings.Default.DGRetailVisibility = checkBox_RetailPrice.IsChecked.Value;       changesExist = true;
+            if (Properties.Settings.Default.DGWholesaleVisibility != checkBox_WholesalePrice.IsChecked.Value) Properties.Settings.Default.DGWholesaleVisibility = checkBox_WholesalePrice.IsChecked.Value; changesExist = true;
+            if (Properties.Settings.Default.DGPurchaseDolPrice != checkBox_PurchaseDolPrice.IsChecked.Value)  Properties.Settings.Default.DGPurchaseDolPrice = checkBox_PurchaseDolPrice.IsChecked.Value;  changesExist = true;
+            if (Properties.Settings.Default.DGPurchaseUahPrice != checkBox_PurchaseUahPrice.IsChecked.Value)  Properties.Settings.Default.DGPurchaseUahPrice = checkBox_PurchaseUahPrice.IsChecked.Value;  changesExist = true;
+            if (Properties.Settings.Default.DGCountryVisibility != checkBox_Country.IsChecked.Value)          Properties.Settings.Default.DGCountryVisibility = checkBox_Country.IsChecked.Value;          changesExist = true;
             }
             catch(Exception ex)
             {

@@ -23,5 +23,20 @@ namespace ClothWPF.Arrival
         {
             InitializeComponent();
         }
+
+        private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void grid_ArrivalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
