@@ -26,6 +26,15 @@ namespace ClothWPF
         public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         EfContext context = new EfContext();
+        public string _name { get; set; }
+        public string _code { get; set; }
+        public double? _count { get; set; }
+        public double? _priceRetail { get; set; }
+        public double? _priceWholesale { get; set; }
+        public double? _priceDollar { get; set; }
+        public string _manufactureDate { get; set; }
+        public bool _closedWindow { get; set; }
+
         public AddProduct()
         {
             InitializeComponent();
@@ -41,7 +50,6 @@ namespace ClothWPF
                     Code = p.Code,
                     Name = p.Name,
                     Article = p.Article,
-                    Country = p.Country,
                     Count = p.Count,
                     PriceDollar = p.PriceDollar,
                     PriceRetail = p.PriceRetail,
@@ -64,41 +72,38 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
             Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
-            try
-            {
-                //реалізувати додавання в продукт
-                context.ArrivalProducts.Add(new ArrivalProduct
-                {
-                    Count = count,
-                    ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
-                    PriceDollar = priceDollar,
-                    PriceWholesale = wholesalePrice,
-                    PriceRetail = retailerPrice,
-                    //Idarrival = 
-                    Idproduct = productModels[cmb_Name.SelectedIndex].Id
-                });
-                context.SaveChanges();
-                MessageBox.Show("Save");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            //NewArrival newArrival = new NewArrival();
-            //newArrival.arrivalGrid.Items.Add(new ProductModel
+            //try
             //{
-            //    Name = cmb_Name.SelectedItem.ToString(),
-            //    Code = txt_ProductCode.Text,
-            //    Count = count,
-            //    PriceRetail = retailerPrice,
-            //    PriceWholesale = wholesalePrice,
-            //    PriceDollar = priceDollar
-            //});
+            //    //реалізувати додавання в продукт
+            //    context.ArrivalProducts.Add(new ArrivalProduct
+            //    {
+            //        Count = count,
+            //        ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
+            //        PriceDollar = priceDollar,
+            //        PriceWholesale = wholesalePrice,
+            //        PriceRetail = retailerPrice,
+            //        //Idarrival = 
+            //        Idproduct = productModels[cmb_Name.SelectedIndex].Id
+            //    });
+            //    context.SaveChanges();
+            //    MessageBox.Show("Save");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
+            _name = cmb_Name.Text;
+            _code = txt_ProductCode.Text;
+            _count = count;
+            _priceRetail = retailerPrice;
+            _priceWholesale = wholesalePrice;
+            _priceDollar = priceDollar;
+            _manufactureDate = txt_ManufactureDate.Text;
+            _closedWindow = true;
             Close();
         }
-
+       
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
                 var selected = (ProductModel)cmb_Name.SelectedItem;

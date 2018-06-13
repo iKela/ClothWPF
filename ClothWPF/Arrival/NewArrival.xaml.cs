@@ -37,7 +37,7 @@ namespace ClothWPF
         }
         public void loaded()
         {
-            arrivalGrid.ItemsSource = productModels.ToList();
+            //arrivalGrid.ItemsSource = productModels;
 
             ////  arrivalGrid.ItemsSource = null;
             //    arrivalGrid.Items.Clear();
@@ -87,11 +87,22 @@ namespace ClothWPF
         }
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct addProduct = new AddProduct();
-            addProduct.ShowDialog();
-            loaded();
-          
-          
+            bool allow = false;
+            do
+            {
+                AddProduct addProduct = new AddProduct();
+                addProduct.ShowDialog();
+                arrivalGrid.Items.Add(new ProductModel
+                {
+                    Name = addProduct._name,
+                    Code = addProduct._code,
+                    Count = addProduct._count,
+                    PriceRetail = addProduct._priceRetail,
+                    PriceWholesale = addProduct._priceWholesale,
+                    PriceDollar = addProduct._priceDollar
+                });
+                allow = addProduct._closedWindow;
+            } while (allow == true);
         }
       
 
