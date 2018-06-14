@@ -108,7 +108,6 @@ namespace ClothWPF
 
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-
             //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             //{
             //    Product objP = ((FrameworkElement)sender).DataContext as Product;

@@ -55,7 +55,6 @@ namespace ClothWPF
                     if (Productadding != null)
                     {
                         var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
-                        //var product = context.Products.Find(Productadding.Id);
                         product.Name = txt_Name.Text;
                         product.Code = txt_ProductCode.Text;
                         product.PriceDollar = priceDollar;
