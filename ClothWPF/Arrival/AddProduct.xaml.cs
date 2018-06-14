@@ -26,6 +26,7 @@ namespace ClothWPF
         public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         EfContext context = new EfContext();
+        public int _idproduct { get; set; }
         public string _name { get; set; }
         public string _code { get; set; }
         public double? _count { get; set; }
@@ -92,7 +93,7 @@ namespace ClothWPF
             //{
             //    MessageBox.Show(ex.Message);
             //}
-
+            
             _name = cmb_Name.Text;
             _code = txt_ProductCode.Text;
             _count = count;
@@ -108,7 +109,7 @@ namespace ClothWPF
         {
                 var selected = (ProductModel)cmb_Name.SelectedItem;
                 Product Productadding = new Product { IdProduct = selected.Id };
-              //idArrival треба підгрузити
+                _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
                 txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
               //txt_Count.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
                 txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();

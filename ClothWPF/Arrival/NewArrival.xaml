@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:ClothWPF.Models"
         xmlns:gen ="clr-namespace:ClothWPF"
         mc:Ignorable="d"
-        Title="Новий прихід" Height="700" Width="1300" Loaded="Window_Loaded">
+        Title="Новий прихід" Height="700" Width="1300" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="SeparatorStyle"
            TargetType="{x:Type Border}">

@@ -26,7 +26,7 @@ namespace ClothWPF
     public partial class NewArrival : Window
     {
         EfContext context = new EfContext();
-        
+        int idarrival;
         
         public List<ProductModel> productModels;
         public NewArrival()
@@ -94,6 +94,7 @@ namespace ClothWPF
                 addProduct.ShowDialog();
                 arrivalGrid.Items.Add(new ProductModel
                 {
+                   //  = addProduct._idproduct,
                     Name = addProduct._name,
                     Code = addProduct._code,
                     Count = addProduct._count,
@@ -151,6 +152,48 @@ namespace ClothWPF
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
+            idarrival= info.Id;
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            foreach (var product in productModels)
+            {
+                context.ArrivalProducts.Add(new ArrivalProduct
+                {
+                    Count = product.Count,
+                PriceDollar = product.PriceDollar,
+                PriceUah = product.PriceUah,
+                PriceRetail = product.PriceRetail,
+                PriceWholesale = product.PriceWholesale,
+                ManufactureDate = Convert.ToDateTime(product.ManufactureDate),
+                Idarrival = idarrival,
+                Idproduct = 
+                });
+            }
+            context.ArrivalProducts.Add(new ArrivalProduct
+            {
+                Count = arrivalGrid.
+                PriceDollar 
+                PriceUah 
+                PriceRetail 
+                PriceWholesale 
+                ManufactureDate 
+                Idarrival 
+                Idproduct   
+       
+                Date = Convert.ToDateTime(txt_Date.Text),
+                Number = txt_Number.Text,
+                ComesTo = txt_ComesTo.Text,
+                //IdSupplier = cmb_Supplier.SelectedIndex,//дописати
+                //EnterpriseId = cmb_Enterprise.SelectedIndex;
+                SupplierInvoice = txt_SupplierInvoice.Text,
+                PaymentType = cmb_PaymentType.Text,
+                Currency = cmb_Currency.Text,
+                Comment = txt_Comment.Text
+            });
+            context.SaveChanges();
         }
     }
 }
