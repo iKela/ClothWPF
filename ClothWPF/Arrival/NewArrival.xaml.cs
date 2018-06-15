@@ -172,27 +172,27 @@ namespace ClothWPF
                 Idproduct = 
                 });
             }
-            context.ArrivalProducts.Add(new ArrivalProduct
-            {
-                Count = arrivalGrid.
-                PriceDollar 
-                PriceUah 
-                PriceRetail 
-                PriceWholesale 
-                ManufactureDate 
-                Idarrival 
-                Idproduct   
+            //context.ArrivalProducts.Add(new ArrivalProduct
+            //{
+            //    Count = arrivalGrid.
+            //    PriceDollar 
+            //    PriceUah 
+            //    PriceRetail 
+            //    PriceWholesale 
+            //    ManufactureDate 
+            //    Idarrival 
+            //    Idproduct   
        
-                Date = Convert.ToDateTime(txt_Date.Text),
-                Number = txt_Number.Text,
-                ComesTo = txt_ComesTo.Text,
-                //IdSupplier = cmb_Supplier.SelectedIndex,//дописати
-                //EnterpriseId = cmb_Enterprise.SelectedIndex;
-                SupplierInvoice = txt_SupplierInvoice.Text,
-                PaymentType = cmb_PaymentType.Text,
-                Currency = cmb_Currency.Text,
-                Comment = txt_Comment.Text
-            });
+            //    Date = Convert.ToDateTime(txt_Date.Text),
+            //    Number = txt_Number.Text,
+            //    ComesTo = txt_ComesTo.Text,
+            //    //IdSupplier = cmb_Supplier.SelectedIndex,//дописати
+            //    //EnterpriseId = cmb_Enterprise.SelectedIndex;
+            //    SupplierInvoice = txt_SupplierInvoice.Text,
+            //    PaymentType = cmb_PaymentType.Text,
+            //    Currency = cmb_Currency.Text,
+            //    Comment = txt_Comment.Text
+            //});
             context.SaveChanges();
         }
     }
