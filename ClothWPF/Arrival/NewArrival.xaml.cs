@@ -94,7 +94,7 @@ namespace ClothWPF
                 addProduct.ShowDialog();
                 arrivalGrid.Items.Add(new ProductModel
                 {
-                   //  = addProduct._idproduct,
+                      = addProduct._idproduct,
                     Name = addProduct._name,
                     Code = addProduct._code,
                     Count = addProduct._count,
