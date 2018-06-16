@@ -35,17 +35,22 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
+                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" DisplayMemberPath="Supplier" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
                             <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" IsEnabled="False">
                             <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
                             <Button Name="btn_NewEnterprise" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
-                        <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10"/>
+                        <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10">
+                            <ComboBoxItem Content="Переказ Приват24"/>
+                            <ComboBoxItem Content="Банківський переказ"/>
+                            <ComboBoxItem Content="Оплата платіжною карткою"/>
+                            <ComboBoxItem Content="Оплата готівкою"/>
+                        </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" >
                         <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
