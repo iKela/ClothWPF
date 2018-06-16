@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Loaded="Grid_Loaded">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
             </StackPanel>
@@ -35,7 +35,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
+                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="cmb_SelectSupplier"/>
                             <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">

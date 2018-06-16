@@ -27,6 +27,7 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         int idarrival;
+        int idsupplier;
         public List<NewArrivalModel> ArrproductModels;
         public NewArrival()
         {
@@ -144,23 +145,22 @@ namespace ClothWPF
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
-            idarrival = info.Idarrival;
+            idarrival = info.Idarrival;          
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            double c = 4;
             foreach (var product in ArrproductModels)
             {
                 context.ArrivalProducts.Add(new ArrivalProduct
                 {
                     Count = product.CountArrival,
-                PriceDollar = product.PriceDollarArrival,
-                PriceUah = product.PriceUahArrival,
-                PriceRetail = product.PriceRetailArrival,
-                PriceWholesale = product.PriceWholesaleArrival,
-                ManufactureDate = product.ManufactureDateArrival,
-                Idarrival = idarrival,
-                Idproduct = product.IdProduct
+                    PriceDollar = product.PriceDollarArrival,
+                    PriceUah = product.PriceUahArrival,
+                    PriceRetail = product.PriceRetailArrival,
+                    PriceWholesale = product.PriceWholesaleArrival,
+                    ManufactureDate = product.ManufactureDateArrival,
+                    Idarrival = idarrival,
+                    Idproduct = product.IdProduct
                 });
                 context.SaveChanges();
             }

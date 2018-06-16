@@ -11,7 +11,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes; 
+using System.Windows.Shapes;
+using ClothWPF.Models;
 
 namespace ClothWPF.Arrival
 {
@@ -20,13 +21,29 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalInfo : Window
     {
+        public Entities.Supplier Supplieradding { get; set; }
+        public List<SupplierModel> supplierModels;
+        EfContext context = new EfContext();
+        public int _idsupplier = 0;
         public int Idarrival = 0;
         public Arrivals ArrInfoAdding { get; set; }
         public ArrivalInfo()
         {
             InitializeComponent();
         }
-
+        public void loaded()
+        {
+            supplierModels = new List<SupplierModel>();
+            foreach (var p in context.Suppliers)
+            {
+                supplierModels.Add(new SupplierModel
+                {
+                    IdSupplier   =p.IdSupplier,
+                    NameSupplier =p.NameSupplier                                       
+                });
+            }
+            cmb_Supplier.ItemsSource = supplierModels;
+        }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             using (EfContext context = new EfContext())
@@ -85,6 +102,18 @@ namespace ClothWPF.Arrival
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = (SupplierModel)cmb_Supplier.SelectedItem;
+            Entities.Supplier Padding = new Entities.Supplier { IdSupplier = selected.IdSupplier };
+            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;           
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            loaded();
         }
     }
 }
