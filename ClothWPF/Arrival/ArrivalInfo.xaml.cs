@@ -20,7 +20,7 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalInfo : Window
     {
-        public int Id = 0;
+        public int Idarrival = 0;
         public Arrivals ArrInfoAdding { get; set; }
         public ArrivalInfo()
         {
@@ -63,7 +63,7 @@ namespace ClothWPF.Arrival
                             Comment = txt_Comment.Text
                         });
                         context.SaveChanges();
-                        Id = context.Arrivals.Select(c => c.IdArrival).Max();
+                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
                         
                     }
                     MessageBox.Show("Save");

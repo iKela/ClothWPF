@@ -33,7 +33,7 @@ namespace ClothWPF
         public double? _priceRetail { get; set; }
         public double? _priceWholesale { get; set; }
         public double? _priceDollar { get; set; }
-        public string _manufactureDate { get; set; }
+        public DateTime _manufactureDate { get; set; }
         public bool _closedWindow { get; set; }
 
         public AddProduct()
@@ -100,7 +100,7 @@ namespace ClothWPF
             _priceRetail = retailerPrice;
             _priceWholesale = wholesalePrice;
             _priceDollar = priceDollar;
-            _manufactureDate = txt_ManufactureDate.Text;
+            _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
             _closedWindow = true;
             Close();
         }

@@ -74,7 +74,7 @@
             <DataGrid x:Name="arrivalGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" SelectionChanged="arrivalGrid_SelectionChanged" Loaded="arrivalGrid_Loaded">
                 <DataGrid.DataContext>
-                    <local:ProductModel/>
+                    <local:NewArrivalModel/>
                 </DataGrid.DataContext>
 
                 <DataGrid.Resources>

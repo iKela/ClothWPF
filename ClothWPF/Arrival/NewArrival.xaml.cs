@@ -27,13 +27,11 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         int idarrival;
-        
-        public List<ProductModel> productModels;
+        public List<NewArrivalModel> ArrproductModels;
         public NewArrival()
         {
             InitializeComponent();
-            productModels = new List<ProductModel>();
-           
+            ArrproductModels = new List<NewArrivalModel>();    
         }
         public void loaded()
         {
@@ -81,32 +79,28 @@ namespace ClothWPF
         {
 
         }
-        private void Writhing()
-        {
-
-        }
-        private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
+        private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
             bool allow = false;
             do
             {
                 AddProduct addProduct = new AddProduct();
                 addProduct.ShowDialog();
-                arrivalGrid.Items.Add(new ProductModel
+                ArrproductModels.Add(new NewArrivalModel
                 {
-                      = addProduct._idproduct,
+                    IdProduct  = addProduct._idproduct,
                     Name = addProduct._name,
                     Code = addProduct._code,
-                    Count = addProduct._count,
-                    PriceRetail = addProduct._priceRetail,
-                    PriceWholesale = addProduct._priceWholesale,
-                    PriceDollar = addProduct._priceDollar
-                });
+                    CountArrival = addProduct._count,
+                    PriceRetailArrival = addProduct._priceRetail,
+                    PriceWholesaleArrival = addProduct._priceWholesale,
+                    PriceDollarArrival = addProduct._priceDollar,
+                    ManufactureDateArrival = addProduct._manufactureDate
+                });         
                 allow = addProduct._closedWindow;
-            } while (allow == true);
+            } while (/*allow == true*/false);
         }
       
-
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
             //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
@@ -140,60 +134,36 @@ namespace ClothWPF
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            loaded();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-           
+        {    
         }
 
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
-            idarrival= info.Id;
-
+            idarrival = info.Idarrival;
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            foreach (var product in productModels)
+            double c = 4;
+            foreach (var product in ArrproductModels)
             {
                 context.ArrivalProducts.Add(new ArrivalProduct
                 {
-                    Count = product.Count,
-                PriceDollar = product.PriceDollar,
-                PriceUah = product.PriceUah,
-                PriceRetail = product.PriceRetail,
-                PriceWholesale = product.PriceWholesale,
-                ManufactureDate = Convert.ToDateTime(product.ManufactureDate),
+                    Count = product.CountArrival,
+                PriceDollar = product.PriceDollarArrival,
+                PriceUah = product.PriceUahArrival,
+                PriceRetail = product.PriceRetailArrival,
+                PriceWholesale = product.PriceWholesaleArrival,
+                ManufactureDate = product.ManufactureDateArrival,
                 Idarrival = idarrival,
-                Idproduct = 
+                Idproduct = product.IdProduct
                 });
+                context.SaveChanges();
             }
-            //context.ArrivalProducts.Add(new ArrivalProduct
-            //{
-            //    Count = arrivalGrid.
-            //    PriceDollar 
-            //    PriceUah 
-            //    PriceRetail 
-            //    PriceWholesale 
-            //    ManufactureDate 
-            //    Idarrival 
-            //    Idproduct   
-       
-            //    Date = Convert.ToDateTime(txt_Date.Text),
-            //    Number = txt_Number.Text,
-            //    ComesTo = txt_ComesTo.Text,
-            //    //IdSupplier = cmb_Supplier.SelectedIndex,//дописати
-            //    //EnterpriseId = cmb_Enterprise.SelectedIndex;
-            //    SupplierInvoice = txt_SupplierInvoice.Text,
-            //    PaymentType = cmb_PaymentType.Text,
-            //    Currency = cmb_Currency.Text,
-            //    Comment = txt_Comment.Text
-            //});
-            context.SaveChanges();
         }
     }
 }
