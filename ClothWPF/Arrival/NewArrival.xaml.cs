@@ -26,18 +26,16 @@ namespace ClothWPF
     public partial class NewArrival : Window
     {
         EfContext context = new EfContext();
-        
-        
-        public List<ProductModel> productModels;
+        int idarrival;
+        public List<NewArrivalModel> ArrproductModels;
         public NewArrival()
         {
             InitializeComponent();
-            productModels = new List<ProductModel>();
-           
+            ArrproductModels = new List<NewArrivalModel>();    
         }
         public void loaded()
         {
-            arrivalGrid.ItemsSource = productModels.ToList();
+            //arrivalGrid.ItemsSource = productModels;
 
             ////  arrivalGrid.ItemsSource = null;
             //    arrivalGrid.Items.Clear();
@@ -81,23 +79,30 @@ namespace ClothWPF
         {
 
         }
-        private void Writhing()
+        private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
-
-        }
-        private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
-        {
-            AddProduct addProduct = new AddProduct();
-            addProduct.ShowDialog();
-            loaded();
-          
-          
+            bool allow = false;
+            do
+            {
+                AddProduct addProduct = new AddProduct();
+                addProduct.ShowDialog();
+                ArrproductModels.Add(new NewArrivalModel
+                {
+                    IdProduct  = addProduct._idproduct,
+                    Name = addProduct._name,
+                    Code = addProduct._code,
+                    CountArrival = addProduct._count,
+                    PriceRetailArrival = addProduct._priceRetail,
+                    PriceWholesaleArrival = addProduct._priceWholesale,
+                    PriceDollarArrival = addProduct._priceDollar,
+                    ManufactureDateArrival = addProduct._manufactureDate
+                });         
+                allow = addProduct._closedWindow;
+            } while (/*allow == true*/false);
         }
       
-
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-
             //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             //{
             //    Product objP = ((FrameworkElement)sender).DataContext as Product;
@@ -129,18 +134,36 @@ namespace ClothWPF
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            loaded();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-           
+        {    
         }
 
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
+            idarrival = info.Idarrival;
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            double c = 4;
+            foreach (var product in ArrproductModels)
+            {
+                context.ArrivalProducts.Add(new ArrivalProduct
+                {
+                    Count = product.CountArrival,
+                PriceDollar = product.PriceDollarArrival,
+                PriceUah = product.PriceUahArrival,
+                PriceRetail = product.PriceRetailArrival,
+                PriceWholesale = product.PriceWholesaleArrival,
+                ManufactureDate = product.ManufactureDateArrival,
+                Idarrival = idarrival,
+                Idproduct = product.IdProduct
+                });
+                context.SaveChanges();
+            }
         }
     }
 }

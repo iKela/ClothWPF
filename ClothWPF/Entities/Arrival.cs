@@ -12,7 +12,9 @@ namespace ClothWPF.Entities
     {
         [Key]
         public int IdArrival { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
+        [MaxLength(50)]
+        public string ComesTo { get; set; }
         public DateTime Date {get; set;}
         public string SupplierInvoice { get; set; }
         public string PaymentType { get; set; }
@@ -20,7 +22,10 @@ namespace ClothWPF.Entities
         public double TotalPurchase { get; set; }
         public string Comment { get; set; }
         [ForeignKey("SupplierOf")]
-        public int IdSupplier { get; set; }
+        public int? IdSupplier { get; set; }
         public Supplier SupplierOf { get; set; }
+        [ForeignKey("EnterpriseOf")]
+        public int? EnterpriseId { get; set; }
+        public Enterprise EnterpriseOf { get; set; }
     }
 }

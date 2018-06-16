@@ -17,8 +17,8 @@ namespace ClothWPF.Models
         public double? PriceUah { get; set; }
         public double? PriceRetail { get; set; }
         public double? PriceWholesale { get; set; }
-        public string Country { get; set; }
-        public List<ArrivalModel> arrivalModelslist { get; set; }
+        public string ManufactureDate { get; set; }
+       
     }
     
 }

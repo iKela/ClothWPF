@@ -68,7 +68,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="47" Margin="190 0">
                     <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
-                    <ComboBox Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
+                    <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
                         <ComboBoxItem Content="$"/>
                         <ComboBoxItem Content="&#8372;"/>
                         <ComboBoxItem Content="&#8364;"/>

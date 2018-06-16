@@ -261,6 +261,7 @@
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
+    <Compile Include="Entities\Enterprise.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -276,8 +277,27 @@
     <Compile Include="Migrations\201806121124224_new.Designer.cs">
       <DependentUpon>201806121124224_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806121218078_editSupplier.cs" />
+    <Compile Include="Migrations\201806121218078_editSupplier.Designer.cs">
+      <DependentUpon>201806121218078_editSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806140922416_update.cs" />
+    <Compile Include="Migrations\201806140922416_update.Designer.cs">
+      <DependentUpon>201806140922416_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806140930338_qw.cs" />
+    <Compile Include="Migrations\201806140930338_qw.Designer.cs">
+      <DependentUpon>201806140930338_qw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806151406168_updateArrProdstrToInt.cs" />
+    <Compile Include="Migrations\201806151406168_updateArrProdstrToInt.Designer.cs">
+      <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806151416519_update1.cs" />
+    <Compile Include="Migrations\201806151416519_update1.Designer.cs">
+      <DependentUpon>201806151416519_update1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ArrivalModel.cs" />
     <Compile Include="Models\NewArrivalModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -308,6 +328,21 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201806121124224_new.resx">
       <DependentUpon>201806121124224_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806121218078_editSupplier.resx">
+      <DependentUpon>201806121218078_editSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806140922416_update.resx">
+      <DependentUpon>201806140922416_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806140930338_qw.resx">
+      <DependentUpon>201806140930338_qw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806151406168_updateArrProdstrToInt.resx">
+      <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806151416519_update1.resx">
+      <DependentUpon>201806151416519_update1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

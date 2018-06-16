@@ -11,7 +11,7 @@ namespace ClothWPF.Entities
     public class ArrivalProduct
     {
         [Key]
-        public string IdArrivalProduct { get; set; }
+        public int IdArrivalProduct { get; set; }
         public double? Count { get; set; }
         public double? PriceDollar { get; set; }
         public double? PriceUah { get; set; }

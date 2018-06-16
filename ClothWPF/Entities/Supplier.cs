@@ -24,5 +24,14 @@ namespace ClothWPF.Entities
         [MaxLength(50)]
         public string Region { get; set; }
         public string Currency { get; set; }
+        public string Category { get; set; }
+        public string KindOfPartnership { get; set; }
+        public string KindOfResponsibility { get; set; }
+        public string IdentificationCode { get; set; }
+        public double? MaxAmountOfDebt { get; set; }
+        public string VATPlayerNumber { get; set; }
+        public string ContractNumber { get; set; }
+        public DateTime? ContractDate { get; set; }
+        public string IndividualTaxNumber { get; set; }
     }
 }
