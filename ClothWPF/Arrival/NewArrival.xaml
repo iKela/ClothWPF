@@ -90,6 +90,7 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Назва товару" Binding="{Binding Path=Name}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Код товару" Binding="{Binding Path=Code}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
