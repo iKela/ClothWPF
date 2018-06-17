@@ -27,8 +27,8 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         int idarrival;
-        int idsupplier;
         public List<NewArrivalModel> ArrproductModels;
+        public List<Product> _products;
         public NewArrival()
         {
             InitializeComponent();
@@ -98,6 +98,7 @@ namespace ClothWPF
                     PriceDollarArrival = addProduct._priceDollar,
                     ManufactureDateArrival = addProduct._manufactureDate
                 });         
+                arrivalGrid.Items.Add(ArrproductModels);
                 allow = addProduct._closedWindow;
             } while (/*allow == true*/false);
         }
@@ -147,6 +148,25 @@ namespace ClothWPF
             info.ShowDialog();
             idarrival = info.Idarrival;          
         }
+        public void ProductInformation()
+        {
+            _products = new List<Product>();
+            foreach (var product in context.Products)
+            {
+                _products.Add(new Product
+                {
+                    IdProduct = product.IdProduct,
+                    Code = product.Code,
+                    Name = product.Name,
+                    Count = product.Count,
+                    PriceDollar = product.PriceDollar,
+                    PriceUah = product.PriceUah,
+                    PriceRetail = product.PriceRetail,
+                    PriceWholesale = product.PriceWholesale,
+                    Country = product.Country
+                });
+            }
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             foreach (var product in ArrproductModels)
@@ -162,6 +182,7 @@ namespace ClothWPF
                     Idarrival = idarrival,
                     Idproduct = product.IdProduct
                 });
+
                 context.SaveChanges();
             }
         }
