@@ -42,6 +42,7 @@ namespace ClothWPF.Arrival
                     NameSupplier =p.NameSupplier                                       
                 });
             }
+            
             cmb_Supplier.ItemsSource = supplierModels;
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
@@ -108,7 +109,8 @@ namespace ClothWPF.Arrival
         {
             var selected = (SupplierModel)cmb_Supplier.SelectedItem;
             Entities.Supplier Padding = new Entities.Supplier { IdSupplier = selected.IdSupplier };
-            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;           
+            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
+            MessageBox.Show(selected.ToString());
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
