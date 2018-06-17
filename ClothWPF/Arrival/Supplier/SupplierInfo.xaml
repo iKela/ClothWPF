@@ -88,7 +88,9 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="10 0">
-                    <ComboBox Name="cmb_Category" Text="Категорія" ItemsSource="{Binding Path=ListOfCategories}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman"/>
+                    <ComboBox Name="cmb_Category" Text="Категорія" ItemsSource="{Binding Path=ListOfCategories}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
+                        <ComboBoxItem Content="Партнер"/>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="170 0">
                     <ComboBox Name="cmb_KindOfResponsibility" Text="Тип відповідальності" ItemsSource="{Binding Path=ListOfKindsOfResponsibility}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
@@ -100,7 +102,9 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <StackPanel Orientation="Horizontal" Margin="10 0">
-                    <ComboBox Name="cmb_KindOfPartnership" Text="Тип партнерства" ItemsSource="{Binding Path=ListOfKindsOfPartnership}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman"/>
+                    <ComboBox Name="cmb_KindOfPartnership" Text="Тип партнерства" ItemsSource="{Binding Path=ListOfKindsOfPartnership}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
+                        <ComboBoxItem Content="Постачальник"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2">

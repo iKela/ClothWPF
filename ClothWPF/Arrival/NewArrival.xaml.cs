@@ -169,21 +169,27 @@ namespace ClothWPF
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            foreach (var product in ArrproductModels)
+            try
             {
-                context.ArrivalProducts.Add(new ArrivalProduct
+                foreach (var product in ArrproductModels)
                 {
-                    Count = product.CountArrival,
-                    PriceDollar = product.PriceDollarArrival,
-                    PriceUah = product.PriceUahArrival,
-                    PriceRetail = product.PriceRetailArrival,
-                    PriceWholesale = product.PriceWholesaleArrival,
-                    ManufactureDate = product.ManufactureDateArrival,
-                    Idarrival = idarrival,
-                    Idproduct = product.IdProduct
-                });
-
-                context.SaveChanges();
+                    context.ArrivalProducts.Add(new ArrivalProduct
+                    {
+                        Count = product.CountArrival,
+                        PriceDollar = product.PriceDollarArrival,
+                        PriceUah = product.PriceUahArrival,
+                        PriceRetail = product.PriceRetailArrival,
+                        PriceWholesale = product.PriceWholesaleArrival,
+                        ManufactureDate = product.ManufactureDateArrival,
+                        Idarrival = idarrival,
+                        Idproduct = product.IdProduct
+                    });
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }
