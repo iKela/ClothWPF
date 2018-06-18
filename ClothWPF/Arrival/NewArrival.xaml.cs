@@ -156,12 +156,13 @@ namespace ClothWPF
                             Idarrival = idarrival,
                             Idproduct = product.IdProduct
                         });
-                        context.SaveChanges();
+                       // context.SaveChanges();
                         var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
                         std.PriceDollar = product.PriceRetailArrival;                       
                         std.PriceRetail = product.PriceRetailArrival;
                         std.PriceWholesale = product.PriceWholesaleArrival;
-                        std.Count = std.Count + product.CountArrival;
+                        double? sum = std.Count==null ? product.CountArrival : std.Count+product.CountArrival;
+                        std.Count = sum;
                         context.SaveChanges();
                     }
                     scope.Complete();

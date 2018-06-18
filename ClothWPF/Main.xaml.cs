@@ -78,7 +78,8 @@ namespace ClothWPF
         private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
         {
             NewArrival newArrival = new NewArrival();
-            newArrival.Show();
+            newArrival.ShowDialog();
+            loaded();
         }
         private void btn_Logout_Click(object sender, RoutedEventArgs e)
         {
@@ -99,12 +100,7 @@ namespace ClothWPF
             MessageBox.Show(clothesGrid.SelectedIndex.ToString());
         }
 
-        private void mi_NewItem_Click(object sender, RoutedEventArgs e)
-        {
-            //NewProduct addProduct = new NewProduct();
-            //addProduct.ProductAdded += Dlg_ProductAdded;
-            //addProduct.ShowDialog();              
-        }
+       
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();

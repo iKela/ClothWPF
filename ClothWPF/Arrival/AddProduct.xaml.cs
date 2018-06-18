@@ -74,20 +74,20 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
             Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
-           
-            _name = cmb_Name.Text;
+            try
+            {
+                _name = cmb_Name.Text;
             _code = txt_ProductCode.Text;
             _count = count;
             _priceRetail = retailerPrice;
             _priceWholesale = wholesalePrice;
             _priceDollar = priceDollar;
-            try
-            {
+           
                 _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
             }
-            catch
+            catch (Exception ex)
             {
-
+                System.Windows.MessageBox.Show(ex.Message);
             }
             _closedWindow = true;
             Close();
