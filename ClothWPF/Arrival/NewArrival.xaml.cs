@@ -134,10 +134,15 @@ namespace ClothWPF
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
-            idarrival = info.Idarrival;          
+            idarrival = info.Idarrival;
+            Add();
         }
        
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+           
+        }
+        private void Add()
         {
             try
             {
@@ -156,22 +161,24 @@ namespace ClothWPF
                             Idarrival = idarrival,
                             Idproduct = product.IdProduct
                         });
-                       // context.SaveChanges();
+                        // context.SaveChanges();
                         var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
-                        std.PriceDollar = product.PriceRetailArrival;                       
+                        std.PriceDollar = product.PriceRetailArrival;
                         std.PriceRetail = product.PriceRetailArrival;
                         std.PriceWholesale = product.PriceWholesaleArrival;
-                        double? sum = std.Count==null ? product.CountArrival : std.Count+product.CountArrival;
+                        double? sum = std.Count == null ? product.CountArrival : std.Count + product.CountArrival;
                         std.Count = sum;
-                        context.SaveChanges();
                     }
+                    context.SaveChanges();
                     scope.Complete();
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            Close();
         }
     }
 }

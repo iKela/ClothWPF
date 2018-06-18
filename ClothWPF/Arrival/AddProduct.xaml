@@ -84,7 +84,7 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" IsEnabled="False">
                             <CheckBox Name="chBox_Discount"/>
                             <TextBlock Text="Знижка" FontSize="14" FontWeight="Bold"/>
                         </StackPanel>
