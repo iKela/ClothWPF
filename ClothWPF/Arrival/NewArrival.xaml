@@ -103,7 +103,7 @@
                     <DataGridTemplateColumn Width="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets"/>
+                                <Button Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_DeleteProduct_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

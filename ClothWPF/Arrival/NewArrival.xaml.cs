@@ -86,11 +86,12 @@ namespace ClothWPF
             bool allow = false;
             do
             {
+               
                 AddProduct addProduct = new AddProduct();
                 addProduct.ShowDialog();
-                ArrproductModels.Add(new NewArrivalModel
+                var data = new NewArrivalModel
                 {
-                    IdProduct  = addProduct._idproduct,
+                    IdProduct = addProduct._idproduct,
                     Name = addProduct._name,
                     Code = addProduct._code,
                     CountArrival = addProduct._count,
@@ -98,40 +99,27 @@ namespace ClothWPF
                     PriceWholesaleArrival = addProduct._priceWholesale,
                     PriceDollarArrival = addProduct._priceDollar,
                     ManufactureDateArrival = addProduct._manufactureDate
-                });
+                };
+                ArrproductModels.Add(data);
+                arrivalGrid.Items.Add(data);
                 allow = addProduct._closedWindow;
             } while (/*allow == true*/false);
         }
       
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-            //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
-            //{
-            //    Product objP = ((FrameworkElement)sender).DataContext as Product;
-            //    Arrival objA = ((FrameworkElement)sender).DataContext as Arrival;
-            //    if (arrivalGrid.SelectedItem != null)
-            //    {
-            //        try
-            //        {
-            //            using (EfContext context = new EfContext())
-            //            {
-            //                context.Arrivals.Remove(context.Arrivals.Find(objA.Id));
-            //                context.Products.Remove(context.Products.Find(objP.Id));
-            //                context.SaveChanges();
-            //            }
-            //            loaded();
-            //            MessageBox.Show("Видалено");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show(ex.Message);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Ви не володієте правами для видалення");
-            //}
+            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            {
+                var selectedItem = arrivalGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    arrivalGrid.Items.Remove(selectedItem);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви не володієте правами для видалення");
+            }
         }
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)

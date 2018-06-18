@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Models;
 using ClothWPF.Entities;
+using Xceed.Wpf.Toolkit;
 
 namespace ClothWPF
 {
@@ -80,7 +81,14 @@ namespace ClothWPF
             _priceRetail = retailerPrice;
             _priceWholesale = wholesalePrice;
             _priceDollar = priceDollar;
-            _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+            try
+            {
+                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+            }
+            catch
+            {
+
+            }
             _closedWindow = true;
             Close();
         }
