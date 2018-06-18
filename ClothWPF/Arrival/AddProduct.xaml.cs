@@ -94,14 +94,21 @@ namespace ClothWPF
             //{
             //    MessageBox.Show(ex.Message);
             //}
-            
+
             _name = cmb_Name.Text;
             _code = txt_ProductCode.Text;
             _count = count;
             _priceRetail = retailerPrice;
             _priceWholesale = wholesalePrice;
             _priceDollar = priceDollar;
-            _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+            try
+            {
+                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+            }
+            catch
+            {
+
+            }
             _closedWindow = true;
             Close();
         }
