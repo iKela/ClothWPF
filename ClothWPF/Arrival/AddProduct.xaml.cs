@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Models;
 using ClothWPF.Entities;
+using Xceed.Wpf.Toolkit;
 
 namespace ClothWPF
 {
