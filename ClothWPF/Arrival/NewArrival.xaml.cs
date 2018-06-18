@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Threading;
+using System.Transactions;
 
 namespace ClothWPF
 {
@@ -135,43 +136,35 @@ namespace ClothWPF
             info.ShowDialog();
             idarrival = info.Idarrival;          
         }
-        public void ProductInformation()
-        {
-            _products = new List<Product>();
-            foreach (var product in context.Products)
-            {
-                _products.Add(new Product
-                {
-                    IdProduct = product.IdProduct,
-                    Code = product.Code,
-                    Name = product.Name,
-                    Count = product.Count,
-                    PriceDollar = product.PriceDollar,
-                    PriceUah = product.PriceUah,
-                    PriceRetail = product.PriceRetail,
-                    PriceWholesale = product.PriceWholesale,
-                    Country = product.Country
-                });
-            }
-        }
+       
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-                foreach (var product in ArrproductModels)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    context.ArrivalProducts.Add(new ArrivalProduct
+                    foreach (var product in ArrproductModels)
                     {
-                        Count = product.CountArrival,
-                        PriceDollar = product.PriceDollarArrival,
-                        PriceUah = product.PriceUahArrival,
-                        PriceRetail = product.PriceRetailArrival,
-                        PriceWholesale = product.PriceWholesaleArrival,
-                        ManufactureDate = product.ManufactureDateArrival,
-                        Idarrival = idarrival,
-                        Idproduct = product.IdProduct
-                    });
-                    context.SaveChanges();
+                        context.ArrivalProducts.Add(new ArrivalProduct
+                        {
+                            Count = product.CountArrival,
+                            PriceDollar = product.PriceDollarArrival,
+                            PriceUah = product.PriceUahArrival,
+                            PriceRetail = product.PriceRetailArrival,
+                            PriceWholesale = product.PriceWholesaleArrival,
+                            ManufactureDate = product.ManufactureDateArrival,
+                            Idarrival = idarrival,
+                            Idproduct = product.IdProduct
+                        });
+                        context.SaveChanges();
+                        var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
+                        std.PriceDollar = product.PriceRetailArrival;                       
+                        std.PriceRetail = product.PriceRetailArrival;
+                        std.PriceWholesale = product.PriceWholesaleArrival;
+                        std.Count = std.Count + product.CountArrival;
+                        context.SaveChanges();
+                    }
+                    scope.Complete();
                 }
             }
             catch (Exception ex)
