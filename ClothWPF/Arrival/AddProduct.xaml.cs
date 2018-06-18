@@ -83,7 +83,7 @@ namespace ClothWPF
             _priceDollar = priceDollar;
             try
             {
-                _manufactureDate = date;
+                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
             }
             catch
             {
