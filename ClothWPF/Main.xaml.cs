@@ -58,22 +58,25 @@ namespace ClothWPF
             clothesGrid.ItemsSource = null;
             clothesGrid.Items.Clear();
             _ProductFullInfo = new List<Product>();
-            foreach (var product in context.Products)
+            using (EfContext context = new EfContext())
             {
-                _ProductFullInfo.Add(new Product
+                foreach (var product in context.Products)
                 {
-                    IdProduct = product.IdProduct,
-                    Code = product.Code,
-                    Name = product.Name,
-                    Count = product.Count,
-                    PriceDollar = product.PriceDollar,
-                    PriceUah = product.PriceUah,
-                    PriceRetail = product.PriceRetail,
-                    PriceWholesale = product.PriceWholesale,
-                    Country = product.Country
-                });
+                    _ProductFullInfo.Add(new Product
+                    {
+                        IdProduct = product.IdProduct,
+                        Code = product.Code,
+                        Name = product.Name,
+                        Count = product.Count,
+                        PriceDollar = product.PriceDollar,
+                        PriceUah = product.PriceUah,
+                        PriceRetail = product.PriceRetail,
+                        PriceWholesale = product.PriceWholesale,
+                        Country = product.Country
+                    });
+                }
+                clothesGrid.ItemsSource = _ProductFullInfo;
             }
-            clothesGrid.ItemsSource = _ProductFullInfo;
         }
         private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
         {
