@@ -94,6 +94,8 @@ namespace ClothWPF
             //{
             //    MessageBox.Show(ex.Message);
             //}
+            var dateAndTime = Convert.ToDateTime(txt_ManufactureDate.Text);
+            var date = dateAndTime.Date;
 
             _name = cmb_Name.Text;
             _code = txt_ProductCode.Text;
@@ -103,7 +105,7 @@ namespace ClothWPF
             _priceDollar = priceDollar;
             try
             {
-                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+                _manufactureDate = date;
             }
             catch
             {

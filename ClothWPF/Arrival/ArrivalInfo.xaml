@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
         Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
@@ -29,7 +30,9 @@
             <GroupBox Header="Головна інформація" FontFamily="Times New Roman" Padding="3">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <xctk:MaskedTextBox x:Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>
+                        </StackPanel>
                         <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
                         <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
                     </StackPanel>
