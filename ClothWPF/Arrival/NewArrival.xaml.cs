@@ -3,19 +3,19 @@ using ClothWPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data.Entity;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
+//using System.Data.Entity;
 using System.Threading;
 using System.Transactions;
 
@@ -76,34 +76,23 @@ namespace ClothWPF
             //        }).ToList()
             //    });
         }
-
-        private void arrivalGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
-            bool allow = false;
-            do
+            AddProduct addProduct = new AddProduct();
+            addProduct.ShowDialog();
+            var data = new NewArrivalModel
             {
-               
-                AddProduct addProduct = new AddProduct();
-                addProduct.ShowDialog();
-                var data = new NewArrivalModel
-                {
-                    IdProduct = addProduct._idproduct,
-                    Name = addProduct._name,
-                    Code = addProduct._code,
-                    CountArrival = addProduct._count,
-                    PriceRetailArrival = addProduct._priceRetail,
-                    PriceWholesaleArrival = addProduct._priceWholesale,
-                    PriceDollarArrival = addProduct._priceDollar,
-                    ManufactureDateArrival = addProduct._manufactureDate
-                };
-                ArrproductModels.Add(data);
-                arrivalGrid.Items.Add(data);
-                allow = addProduct._closedWindow;
-            } while (/*allow == true*/false);
+                IdProduct = addProduct._idproduct,
+                Name = addProduct._name,
+                Code = addProduct._code,
+                CountArrival = addProduct._count,
+                PriceRetailArrival = addProduct._priceRetail,
+                PriceWholesaleArrival = addProduct._priceWholesale,
+                PriceDollarArrival = addProduct._priceDollar,
+                ManufactureDateArrival = addProduct._manufactureDate
+            };
+            ArrproductModels.Add(data);
+            arrivalGrid.Items.Add(data);
         }
       
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -122,14 +111,6 @@ namespace ClothWPF
             }
         }
 
-        private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {    
-        }
-
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
@@ -138,10 +119,6 @@ namespace ClothWPF
             Add();
         }
        
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-           
-        }
         private void Add()
         {
             try
@@ -161,7 +138,6 @@ namespace ClothWPF
                             Idarrival = idarrival,
                             Idproduct = product.IdProduct
                         });
-                        // context.SaveChanges();
                         var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
                         std.PriceDollar = product.PriceRetailArrival;
                         std.PriceRetail = product.PriceRetailArrival;
@@ -172,7 +148,6 @@ namespace ClothWPF
                     context.SaveChanges();
                     scope.Complete();
                 }
-
             }
             catch (Exception ex)
             {

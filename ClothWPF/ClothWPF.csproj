@@ -312,9 +312,9 @@
     <Compile Include="Migrations\201806151406168_updateArrProdstrToInt.Designer.cs">
       <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806151416519_update1.cs" />
-    <Compile Include="Migrations\201806151416519_update1.Designer.cs">
-      <DependentUpon>201806151416519_update1.cs</DependentUpon>
+    <Compile Include="Migrations\201806191357412_naME1.cs" />
+    <Compile Include="Migrations\201806191357412_naME1.Designer.cs">
+      <DependentUpon>201806191357412_naME1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NewArrivalModel.cs" />
@@ -361,8 +361,8 @@
     <EmbeddedResource Include="Migrations\201806151406168_updateArrProdstrToInt.resx">
       <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806151416519_update1.resx">
-      <DependentUpon>201806151416519_update1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806191357412_naME1.resx">
+      <DependentUpon>201806191357412_naME1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

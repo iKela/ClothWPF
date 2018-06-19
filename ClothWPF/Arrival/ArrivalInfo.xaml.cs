@@ -43,8 +43,15 @@ namespace ClothWPF.Arrival
                     NameSupplier =p.NameSupplier                                       
                 });
             }
-            
+            var var = DateTime.Today.ToShortDateString() ;
+            txt_Date.Text = Convert.ToString(var);
             cmb_Supplier.ItemsSource = supplierModels;
+        }
+        private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = (SupplierModel)cmb_Supplier.SelectedItem;
+            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
+            MessageBox.Show(selected.ToString());
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -74,7 +81,7 @@ namespace ClothWPF.Arrival
                             Date = Convert.ToDateTime(txt_Date.Text),
                             Number = txt_Number.Text,
                             ComesTo = txt_ComesTo.Text,
-                            //IdSupplier = cmb_Supplier.SelectedIndex,//дописати
+                            IdSupplier = _idsupplier,
                             //EnterpriseId = cmb_Enterprise.SelectedIndex;
                             SupplierInvoice = txt_SupplierInvoice.Text,
                             PaymentType = cmb_PaymentType.Text,
@@ -82,8 +89,7 @@ namespace ClothWPF.Arrival
                             Comment = txt_Comment.Text
                         });
                         context.SaveChanges();
-                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
-                        
+                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();  
                     }
                     MessageBox.Show("Save");
                 }
@@ -99,6 +105,7 @@ namespace ClothWPF.Arrival
         {
             Supplier.SupplierInfo form = new Supplier.SupplierInfo();
             form.ShowDialog();
+            loaded();
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
@@ -106,13 +113,6 @@ namespace ClothWPF.Arrival
             this.Close();
         }
 
-        private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
-        {
-            var selected = (SupplierModel)cmb_Supplier.SelectedItem;
-            Entities.Supplier Padding = new Entities.Supplier { IdSupplier = selected.IdSupplier };
-            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
-            MessageBox.Show(selected.ToString());
-        }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {

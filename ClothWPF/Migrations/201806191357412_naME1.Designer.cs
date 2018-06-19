@@ -7,13 +7,13 @@ namespace ClothWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class update1 : IMigrationMetadata
+    public sealed partial class naME1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(naME1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806151416519_update1"; }
+            get { return "201806191357412_naME1"; }
         }
         
         string IMigrationMetadata.Source

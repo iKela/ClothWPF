@@ -17,7 +17,7 @@ namespace ClothWPF.Entities
         public double? PriceUah { get; set; }
         public double? PriceRetail { get; set; }
         public double? PriceWholesale { get; set; }
-        public DateTime ManufactureDate { get; set; }
+        public DateTime? ManufactureDate { get; set; }
         [ForeignKey("ArrivalOf")]
         public int Idarrival { get; set; }
         public Arrivals ArrivalOf { get; set; }

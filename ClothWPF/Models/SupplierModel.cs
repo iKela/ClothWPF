@@ -8,18 +8,12 @@ namespace ClothWPF.Models
 {
     public class SupplierModel
     {
-        public int    IdSupplier { get; set; }
-       
+        public int    IdSupplier { get; set; }       
         public string NameSupplier { get; set; }
-       
         public string City { get; set; }
-       
         public string AdressSupplier { get; set; }
-      
         public string NumberSupplier { get; set; }
-       
         public string Email { get; set; }
-
         public string Region { get; set; }
         public string Currency { get; set; }
         public string Category { get; set; }
