@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Threading;
+using System.Transactions;
 
 namespace ClothWPF
 {
@@ -27,8 +28,8 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         int idarrival;
-        int idsupplier;
         public List<NewArrivalModel> ArrproductModels;
+        public List<Product> _products;
         public NewArrival()
         {
             InitializeComponent();
@@ -85,11 +86,12 @@ namespace ClothWPF
             bool allow = false;
             do
             {
+               
                 AddProduct addProduct = new AddProduct();
                 addProduct.ShowDialog();
-                ArrproductModels.Add(new NewArrivalModel
+                var data = new NewArrivalModel
                 {
-                    IdProduct  = addProduct._idproduct,
+                    IdProduct = addProduct._idproduct,
                     Name = addProduct._name,
                     Code = addProduct._code,
                     CountArrival = addProduct._count,
@@ -97,40 +99,27 @@ namespace ClothWPF
                     PriceWholesaleArrival = addProduct._priceWholesale,
                     PriceDollarArrival = addProduct._priceDollar,
                     ManufactureDateArrival = addProduct._manufactureDate
-                });         
+                };
+                ArrproductModels.Add(data);
+                arrivalGrid.Items.Add(data);
                 allow = addProduct._closedWindow;
             } while (/*allow == true*/false);
         }
       
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-            //if (Thread.CurrentPrincipal.IsInRole("Administrators"))
-            //{
-            //    Product objP = ((FrameworkElement)sender).DataContext as Product;
-            //    Arrival objA = ((FrameworkElement)sender).DataContext as Arrival;
-            //    if (arrivalGrid.SelectedItem != null)
-            //    {
-            //        try
-            //        {
-            //            using (EfContext context = new EfContext())
-            //            {
-            //                context.Arrivals.Remove(context.Arrivals.Find(objA.Id));
-            //                context.Products.Remove(context.Products.Find(objP.Id));
-            //                context.SaveChanges();
-            //            }
-            //            loaded();
-            //            MessageBox.Show("Видалено");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show(ex.Message);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Ви не володієте правами для видалення");
-            //}
+            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            {
+                var selectedItem = arrivalGrid.SelectedItem;
+                if (selectedItem != null)
+                {
+                    arrivalGrid.Items.Remove(selectedItem);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви не володієте правами для видалення");
+            }
         }
 
         private void arrivalGrid_Loaded(object sender, RoutedEventArgs e)
@@ -145,32 +134,51 @@ namespace ClothWPF
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
-            idarrival = info.Idarrival;          
+            idarrival = info.Idarrival;
+            Add();
         }
+       
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+           
+        }
+        private void Add()
         {
             try
             {
-                foreach (var product in ArrproductModels)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    context.ArrivalProducts.Add(new ArrivalProduct
+                    foreach (var product in ArrproductModels)
                     {
-                        Count = product.CountArrival,
-                        PriceDollar = product.PriceDollarArrival,
-                        PriceUah = product.PriceUahArrival,
-                        PriceRetail = product.PriceRetailArrival,
-                        PriceWholesale = product.PriceWholesaleArrival,
-                        ManufactureDate = product.ManufactureDateArrival,
-                        Idarrival = idarrival,
-                        Idproduct = product.IdProduct
-                    });
+                        context.ArrivalProducts.Add(new ArrivalProduct
+                        {
+                            Count = product.CountArrival,
+                            PriceDollar = product.PriceDollarArrival,
+                            PriceUah = product.PriceUahArrival,
+                            PriceRetail = product.PriceRetailArrival,
+                            PriceWholesale = product.PriceWholesaleArrival,
+                            ManufactureDate = product.ManufactureDateArrival,
+                            Idarrival = idarrival,
+                            Idproduct = product.IdProduct
+                        });
+                        // context.SaveChanges();
+                        var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
+                        std.PriceDollar = product.PriceRetailArrival;
+                        std.PriceRetail = product.PriceRetailArrival;
+                        std.PriceWholesale = product.PriceWholesaleArrival;
+                        double? sum = std.Count == null ? product.CountArrival : std.Count + product.CountArrival;
+                        std.Count = sum;
+                    }
                     context.SaveChanges();
+                    scope.Complete();
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            Close();
         }
     }
 }

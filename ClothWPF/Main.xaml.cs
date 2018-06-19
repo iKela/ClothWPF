@@ -58,27 +58,31 @@ namespace ClothWPF
             clothesGrid.ItemsSource = null;
             clothesGrid.Items.Clear();
             _ProductFullInfo = new List<Product>();
-            foreach (var product in context.Products)
+            using (EfContext context = new EfContext())
             {
-                _ProductFullInfo.Add(new Product
+                foreach (var product in context.Products)
                 {
-                    IdProduct = product.IdProduct,
-                    Code = product.Code,
-                    Name = product.Name,
-                    Count = product.Count,
-                    PriceDollar = product.PriceDollar,
-                    PriceUah = product.PriceUah,
-                    PriceRetail = product.PriceRetail,
-                    PriceWholesale = product.PriceWholesale,
-                    Country = product.Country
-                });
+                    _ProductFullInfo.Add(new Product
+                    {
+                        IdProduct = product.IdProduct,
+                        Code = product.Code,
+                        Name = product.Name,
+                        Count = product.Count,
+                        PriceDollar = product.PriceDollar,
+                        PriceUah = product.PriceUah,
+                        PriceRetail = product.PriceRetail,
+                        PriceWholesale = product.PriceWholesale,
+                        Country = product.Country
+                    });
+                }
+                clothesGrid.ItemsSource = _ProductFullInfo;
             }
-            clothesGrid.ItemsSource = _ProductFullInfo;
         }
         private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
         {
             NewArrival newArrival = new NewArrival();
-            newArrival.Show();
+            newArrival.ShowDialog();
+            loaded();
         }
         private void btn_Logout_Click(object sender, RoutedEventArgs e)
         {
@@ -99,12 +103,7 @@ namespace ClothWPF
             MessageBox.Show(clothesGrid.SelectedIndex.ToString());
         }
 
-        private void mi_NewItem_Click(object sender, RoutedEventArgs e)
-        {
-            //NewProduct addProduct = new NewProduct();
-            //addProduct.ProductAdded += Dlg_ProductAdded;
-            //addProduct.ShowDialog();              
-        }
+       
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();

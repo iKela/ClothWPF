@@ -8,7 +8,7 @@ namespace ClothWPF.Models
 {
     public class NewArrivalModel
     {
-        //public int IdArrivalProduct { get; set; }
+        public int IdArrivalProduct { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
         public double? CountArrival { get; set; }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Models;
 using ClothWPF.Entities;
+using Xceed.Wpf.Toolkit;
 
 namespace ClothWPF
 {
@@ -73,34 +74,21 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
             Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
-            //try
-            //{
-            //    //реалізувати додавання в продукт
-            //    context.ArrivalProducts.Add(new ArrivalProduct
-            //    {
-            //        Count = count,
-            //        ManufactureDate = Convert.ToDateTime(txt_ManufactureDate),
-            //        PriceDollar = priceDollar,
-            //        PriceWholesale = wholesalePrice,
-            //        PriceRetail = retailerPrice,
-            //        //Idarrival = 
-            //        Idproduct = productModels[cmb_Name.SelectedIndex].Id
-            //    });
-            //    context.SaveChanges();
-            //    MessageBox.Show("Save");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            
-            _name = cmb_Name.Text;
+            try
+            {
+                _name = cmb_Name.Text;
             _code = txt_ProductCode.Text;
             _count = count;
             _priceRetail = retailerPrice;
             _priceWholesale = wholesalePrice;
             _priceDollar = priceDollar;
-            _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+           
+                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
             _closedWindow = true;
             Close();
         }
