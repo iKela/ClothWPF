@@ -61,5 +61,15 @@ namespace ClothWPF.Arrival
         {
             this.Close();
         }
+
+        private void cmb_Supplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmb_Enterprise_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
