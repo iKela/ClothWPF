@@ -22,8 +22,8 @@ namespace ClothWPF.Arrival
         public ArrivalsList()
         {
             InitializeComponent();
-            txt_DateFrom.Text = DateTime.Today.ToShortDateString();
-            txt_DateTo.Text = DateTime.Today.ToShortDateString();
+           //txt_DateFrom.Text = DateTime.Today.ToShortDateString();
+           //txt_DateTo.Text = DateTime.Today.ToShortDateString();
         }
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)

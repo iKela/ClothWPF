@@ -94,7 +94,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" IsEnabled="False">
-                            <CheckBox Name="checkBox_Discount" Checked="checkBox_Discount_Checked" Unchecked="checkBox_Discount_Unchecked"/>
+                            <CheckBox Name="checkBox_Discount" />
                             <TextBlock Text="Знижка" FontSize="14" FontWeight="Bold" />
                         </StackPanel>
                         <TextBox Name="txt_Discount" Visibility="Collapsed" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Знижка (грн.)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>

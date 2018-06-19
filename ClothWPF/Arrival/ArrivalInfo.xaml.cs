@@ -2,18 +2,9 @@
 using ClothWPF.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ClothWPF.Models;
-//using Xceed.Wpf.Toolkit;
 
 namespace ClothWPF.Arrival
 {
@@ -51,7 +42,6 @@ namespace ClothWPF.Arrival
         {
             var selected = (SupplierModel)cmb_Supplier.SelectedItem;
             _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
-            MessageBox.Show(selected.ToString());
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
