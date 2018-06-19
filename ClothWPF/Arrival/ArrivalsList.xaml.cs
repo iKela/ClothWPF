@@ -22,6 +22,8 @@ namespace ClothWPF.Arrival
         public ArrivalsList()
         {
             InitializeComponent();
+            txt_DateFrom.Text = DateTime.Today.ToShortDateString();
+            txt_DateTo.Text = DateTime.Today.ToShortDateString();
         }
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -53,6 +55,11 @@ namespace ClothWPF.Arrival
         {
             GridSettingsForm gridSettingsForm = new GridSettingsForm(TabIndex); ;
             gridSettingsForm.Show();
+        }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
