@@ -153,6 +153,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
+                                    <Button Name="btn_Subtraction" Width="25" Height="25" Padding="0" Content="&#xE108;" FontFamily="Segoe MDL2 Assets" Click="btn_Subtraction_Click"/>
                                     <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
                                     <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="DeleteProduct"/>
                                 </StackPanel>
