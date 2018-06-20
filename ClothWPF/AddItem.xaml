@@ -27,7 +27,7 @@
                     <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                         <materialDesign:PackIcon Kind="PackageVariant" Height="20" Width="20" Margin="0 5 0 0"/>
                         <TextBlock Text="Назва: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
-                        <TextBox Name="txt_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" />
+                        <TextBox Name="txt_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" Background="White" />
                     </StackPanel>
                     <StackPanel/>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
