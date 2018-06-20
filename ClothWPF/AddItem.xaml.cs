@@ -33,8 +33,7 @@ namespace ClothWPF
             Double.TryParse(txt_PriceRetail.Text, out retailerPrice);
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
             Double.TryParse(txt_PriceUah.Text, out priceUah);
-            #endregion
-
+            #endregion            
             using (EfContext context = new EfContext())
             {
                 try
@@ -43,6 +42,7 @@ namespace ClothWPF
                     {
                         var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
                         product.Name = txt_Name.Text;
+                        product.Article = txt_Article.Text;
                         product.Code = txt_ProductCode.Text;
                         product.PriceDollar = priceDollar;
                         product.PriceUah = priceUah;
@@ -57,6 +57,7 @@ namespace ClothWPF
                         context.Products.Add(new Product
                         {
                             Name = txt_Name.Text,
+                            Article = txt_Article.Text,
                             Code = txt_ProductCode.Text,
                             PriceDollar = priceDollar,
                             PriceUah = priceUah,

@@ -33,8 +33,9 @@ namespace ClothWPF
             var data = new NewArrivalModel
             {
                 IdProduct = addProduct._idproduct,
-                Name = addProduct._name,
+                Name = addProduct._name,                
                 Code = addProduct._code,
+                Article = addProduct._article,
                 CountArrival = addProduct._count,
                 PriceRetailArrival = addProduct._priceRetail,
                 PriceWholesaleArrival = addProduct._priceWholesale,

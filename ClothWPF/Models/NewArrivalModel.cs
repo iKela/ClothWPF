@@ -10,6 +10,7 @@ namespace ClothWPF.Models
     {
         public int IdArrivalProduct { get; set; }
         public string Name { get; set; }
+        public string Article { get; set; }
         public string Code { get; set; }
         public double? CountArrival { get; set; }
         public double? PriceDollarArrival { get; set; }
