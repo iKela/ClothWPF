@@ -25,6 +25,7 @@ namespace ClothWPF.MainFolder
         public ProductSubtraction()
         {
             InitializeComponent();
+            txt_Count.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,6 +52,20 @@ namespace ClothWPF.MainFolder
                 }
             }else
                 MessageBox.Show("Від`ємне число більше, ніж кількість товару на складі!","Віднімання неможливе!", MessageBoxButton.OK, MessageBoxImage.Stop);
+        }
+
+        private void txt_Count_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+            {
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                {
+                    if (e.Key != Key.Back)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }
