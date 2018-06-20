@@ -10,9 +10,9 @@
         Title="Додати продукт до приходу"  Height="550" Width="800" MaxHeight="550" MaxWidth="800" MinHeight="550" MinWidth="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="260"/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -24,22 +24,33 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <GroupBox FontSize="14" Margin="0 0 0 10" Header="Головне" Grid.ColumnSpan="5">
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                        <materialDesign:PackIcon Kind="PackageVariant" Height="20" Width="20" Margin="0 5 0 0"/>
-                        <TextBlock Text="Назва: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
-                        <ComboBox Name="cmb_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                            <materialDesign:PackIcon Kind="PackageVariant" Height="20" Width="20" Margin="0 5 0 0"/>
+                            <TextBlock Text="Назва: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
+                            <ComboBox Name="cmb_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
                   SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged"/>
+                        </StackPanel>
+                        <Button Name="btn_NewProduct" Height="30" Width="30" VerticalAlignment="Top" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Новий продукт" Margin="10" Click="btn_NewProduct_Click"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                            <TextBox Name="txt_Count" materialDesign:HintAssist.Hint="Кількість" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+                        </StackPanel>
                     </StackPanel>
-                    <Button IsEnabled="True" Name="btn_NewProduct" Height="30" Width="30" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Новий продукт" Margin="10 0 10 0" Click="btn_NewProduct_Click"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0 10 10">
-                        <TextBox Name="txt_Count" materialDesign:HintAssist.Hint="Кількість" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                            <materialDesign:PackIcon Kind="Numeric" Height="20" Width="20" Margin="0 5 0 0"/>
+                            <TextBlock Text="Код продукту: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
+                            <TextBox Name="txt_ProductCode" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                            <materialDesign:PackIcon Kind="Numeric" Height="20" Width="20" Margin="0 5 0 0"/>
+                            <TextBlock Text="Артикул: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
+                            <TextBox Name="txt_Article" Width="100" FontFamily="Timew New Roman" FontSize="14" />
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                        <materialDesign:PackIcon Kind="Numeric" Height="20" Width="20" Margin="0 5 0 0"/>
-                        <TextBlock Text="Код продукту: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
-                        <TextBox Name="txt_ProductCode" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
-                    </StackPanel>
+                    
                 </StackPanel>
             </GroupBox>
         </Grid>
