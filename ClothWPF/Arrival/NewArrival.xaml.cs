@@ -103,6 +103,7 @@ namespace ClothWPF
 
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
+        
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
             idarrival = info.Idarrival;
