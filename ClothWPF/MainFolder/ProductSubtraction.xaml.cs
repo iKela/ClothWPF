@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClothWPF.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace ClothWPF.MainFolder
     /// </summary>
     public partial class ProductSubtraction : Window
     {
+        public double? _nowcount { get; set; }
+        public Product subtraction { get; set; }
         public ProductSubtraction()
         {
             InitializeComponent();
@@ -26,7 +29,28 @@ namespace ClothWPF.MainFolder
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            double count = 0;            
+            Double.TryParse(txt_Count.Text, out count);
+            if (_nowcount >= count)
+            {
+                using (EfContext context = new EfContext())
+                {
+                    try
+                    {
+                        var product = context.Products.Where(c => c.IdProduct == subtraction.IdProduct).FirstOrDefault();
+                        product.Count = product.Count - count;
 
+                        context.SaveChanges();
+                        MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }else
+                MessageBox.Show("Від`ємне число більше, ніж кількість товару на складі!","Віднімання неможливе!", MessageBoxButton.OK, MessageBoxImage.Stop);
         }
     }
 }

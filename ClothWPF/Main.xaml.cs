@@ -233,7 +233,25 @@ namespace ClothWPF
 
         private void btn_Subtraction_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFolder.ProductSubtraction productSubtraction = new MainFolder.ProductSubtraction();
+            try
+            {
+                if (clothesGrid.SelectedItem != null)
+                {
+                    var selected = (Product)clothesGrid.SelectedItem;
+                    productSubtraction.Title = "Відняти";
+                    productSubtraction.btn_Save.Content = "Зберегти";
+                    productSubtraction.subtraction = new Product { IdProduct = selected.IdProduct };
+                    productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;                    
+                    clothesGrid.Items.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            productSubtraction.ShowDialog();            
+            loaded();
         }
     }
 }

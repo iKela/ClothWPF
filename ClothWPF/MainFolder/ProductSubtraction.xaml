@@ -14,10 +14,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <TextBlock Text="Кількість" VerticalAlignment="Center" Margin="10" FontFamily="Times New Roman" FontSize="14"/>
-            <TextBox FontFamily="Times New Roman" FontSize="14" Width="200"/>
+            <TextBox Name ="txt_Count" FontFamily="Times New Roman" FontSize="14" Width="200"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button  Width="50" Content="OK" Height="30" Click="Button_Click"/>
+            <Button  Name ="btn_Save" Width="50" Content="OK" Height="30" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Window>
