@@ -58,11 +58,10 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2">
                 <Menu VerticalAlignment="Bottom">
                     <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" IsEnabled="False" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
+                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="True" Click="mi_NewArrival_Click"/>
-                        <MenuItem Name="mi_AddItem" Header="Додати" Click="mi_AddItem_Click"/>
+                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="True" Click="mi_AddItem_Click"/>
                     </MenuItem>
                     <MenuItem Name="mi_Warehouse" Width="75" Header="Склад" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_WarehouseCondition" Header="Стан складу" Click="mi_WarehouseCondition_Click" IsEnabled="False"/>
@@ -70,6 +69,9 @@
                         <MenuItem Name="mi_ArrivalsList" Header="Список приходів" Click="mi_ArrivalsList_Click" IsEnabled="True"/>
                         <Separator/>
                         <MenuItem Name="mi_Settings" Header="Налаштування" Click="mi_Settings_Click"/>
+                    </MenuItem>
+                    <MenuItem Name="mi_Help" Width="75" Header="Допомога" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <MenuItem Name="mi_ViewHelp" Header="Допомога"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>

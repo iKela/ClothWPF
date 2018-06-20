@@ -35,6 +35,11 @@
                         <TextBlock Text="Код продукту: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
                         <TextBox Name="txt_ProductCode" Width="100" FontFamily="Timew New Roman" FontSize="14" />
                     </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                        <materialDesign:PackIcon Kind="Numeric" Height="20" Width="20" Margin="0 5 0 0"/>
+                        <TextBlock Text="Артикул: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
+                        <TextBox Name="txt_Article" Width="100" FontFamily="Timew New Roman" FontSize="14" />
+                    </StackPanel>
                     
                 </StackPanel>
             </GroupBox>
