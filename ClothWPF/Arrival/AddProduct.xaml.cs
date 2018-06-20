@@ -13,6 +13,7 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window
     {
+        #region
         public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         EfContext context = new EfContext();
@@ -26,7 +27,7 @@ namespace ClothWPF
         public DateTime? _manufactureDate { get; set; }
         public string _article { get; set; }
         public bool _closedWindow { get; set; }
-
+        #endregion
         public AddProduct()
         {
             InitializeComponent();
@@ -73,12 +74,12 @@ namespace ClothWPF
                 _priceWholesale = wholesalePrice;
                 _priceDollar = priceDollar;
                 _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            Close();
         }
        
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)

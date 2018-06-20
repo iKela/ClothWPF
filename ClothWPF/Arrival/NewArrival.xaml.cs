@@ -58,13 +58,12 @@ namespace ClothWPF
             }
             else
             {
-                MessageBox.Show("Ви не володієте правами для видалення");
+                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
-        
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info.ShowDialog();
             idarrival = info.Idarrival;

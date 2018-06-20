@@ -86,8 +86,7 @@ namespace ClothWPF.Arrival.Supplier
                         IndividualTaxNumber = txt_IndividualTaxNumber.Text
                     });
                     context.SaveChanges();
-                    
-                    MessageBox.Show("Збережено!!!");
+                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
