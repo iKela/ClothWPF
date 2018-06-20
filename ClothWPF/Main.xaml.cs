@@ -224,5 +224,10 @@ namespace ClothWPF
             Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
             arrivalsList.Show();
         }
+
+        private void btn_Subtraction_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
