@@ -24,6 +24,7 @@ namespace ClothWPF
         public double? _priceWholesale { get; set; }
         public double? _priceDollar { get; set; }
         public DateTime? _manufactureDate { get; set; }
+        public string _article { get; set; }
         public bool _closedWindow { get; set; }
 
         public AddProduct()
@@ -68,6 +69,7 @@ namespace ClothWPF
                 _name = cmb_Name.Text;
                 _code = txt_ProductCode.Text;
                 _count = count;
+                //_article = txt_Article.Text;
                 _priceRetail = retailerPrice;
                 _priceWholesale = wholesalePrice;
                 _priceDollar = priceDollar;
@@ -75,29 +77,23 @@ namespace ClothWPF
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             Close();
         }
        
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                var selected = (ProductModel)cmb_Name.SelectedItem;
-                Product Productadding = new Product { IdProduct = selected.Id };
-                _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
-                txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
-              //txt_Count.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Count.ToString();
-                txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
-              //txt_PriceUah.Text = productModels.FirstOrDefault(s => s.Id == selected.IdProduct).PriceUah.ToString();
-                txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
-                txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
+            var selected = (ProductModel)cmb_Name.SelectedItem;
+            Product Productadding = new Product { IdProduct = selected.Id };
+            _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
+            txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
+            //txt_Article.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Article;
+            txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();            
+            txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
+            txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
         }
-
-        private void cmb_Name_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-           
-        }
-
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             loaded();
@@ -107,8 +103,6 @@ namespace ClothWPF
         {
             AddItem newProduct = new AddItem();
             newProduct.ShowDialog();
-        }
-
-        
+        }        
     }
 }
