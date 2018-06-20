@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ClothWPF.Arrival.Supplier"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
@@ -125,7 +126,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="5">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0">
                     <TextBox Name="txt_ContractNumber" Width="200" materialDesign:HintAssist.Hint="Номер договіру" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
-                    <TextBox Name="txt_ContractDate" Margin="20 0" Width="200" materialDesign:HintAssist.Hint="Дата договіру" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <xctk:MaskedTextBox x:Name="txt_ContractDate" Margin="20 0" Width="100" materialDesign:HintAssist.Hint="Дата договіру" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontFamily="Times New Roman" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="6">

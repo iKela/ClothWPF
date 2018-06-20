@@ -40,8 +40,15 @@ namespace ClothWPF.Arrival
         }
         private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
         {
-            var selected = (SupplierModel)cmb_Supplier.SelectedItem;
-            _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
+            try
+            {
+                var selected = (SupplierModel)cmb_Supplier.SelectedItem;
+                _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
