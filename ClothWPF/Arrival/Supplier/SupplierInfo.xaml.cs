@@ -87,7 +87,7 @@ namespace ClothWPF.Arrival.Supplier
                     });
                     context.SaveChanges();
                     
-                    MessageBox.Show("Save");
+                    MessageBox.Show("Збережено!!!");
                 }
                 catch (Exception ex)
                 {

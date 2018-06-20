@@ -34,6 +34,7 @@ namespace ClothWPF
             Double.TryParse(txt_PriceDollar.Text, out priceDollar);
             Double.TryParse(txt_PriceUah.Text, out priceUah);
             #endregion
+
             using (EfContext context = new EfContext())
             {
                 try
@@ -65,7 +66,7 @@ namespace ClothWPF
                         });
                         context.SaveChanges();
                     }
-                    MessageBox.Show("Save");
+                    MessageBox.Show("Зберкженно!!!");
                 }
                 catch (Exception ex)
                 {

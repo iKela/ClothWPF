@@ -25,47 +25,7 @@ namespace ClothWPF
             InitializeComponent();
             ArrproductModels = new List<NewArrivalModel>();    
         }
-        public void loaded()
-        {
-            //arrivalGrid.ItemsSource = productModels;
-
-            ////  arrivalGrid.ItemsSource = null;
-            //    arrivalGrid.Items.Clear();
-            //var arrival = context.Arrivals.Join(context.Products, // другий набір
-            //    a => a.IdProduct, // свойство-селектор объекта із першого набора
-            //    p => p.Id, // свойство-селектор объекта із другого набора
-            //(a, p) => new NewArrivalModel// результат
-            //{
-            //    IdProduct = p.Id, Name = p.Name, Code = p.Code,
-            //    Country = p.Country, IdArrival = a.Id, CountArrival = a.Count,
-            //    PriceDollarArrival = a.PriceDollar, PriceUahArrival = a.PriceUah,
-            //    PriceRetailArrival = a.PriceRetail, PriceWholesaleArrival = a.PriceWholesale,
-            //    ManufactureDateArrival = a.ManufactureDate
-            //});
-            //arrivalGrid.ItemsSource = arrival.ToList();
-
-
-
-            //var arrivalquery = context.Products
-            //    //.Include(p=>p.Arrivals)
-            //    .Select(p => new ProductModel
-            //    {
-            //        Id = p.Id,
-            //        Country = p.Country,
-            //        Code = p.Code,
-            //        Name = p.Name,
-            //        arrivalModelslist = p.Arrivals.Select(a => new ArrivalModel
-            //        {
-            //            Id = a.Id,
-            //            Count = a.Count,
-            //            PriceDollar = a.PriceDollar,
-            //            PriceRetail = a.PriceRetail,
-            //            PriceUah = a.PriceUah,
-            //            PriceWholesale = a.PriceWholesale,
-            //            ManufactureDate = a.ManufactureDate
-            //        }).ToList()
-            //    });
-        }
+        
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
             AddProduct addProduct = new AddProduct();
