@@ -70,7 +70,7 @@ namespace ClothWPF
                             });
                             context.SaveChanges();
                         }
-                        MessageBox.Show("Зберкженно!!!");
+                        MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {

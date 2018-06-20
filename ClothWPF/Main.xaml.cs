@@ -48,7 +48,7 @@ namespace ClothWPF
             }
             catch
             {
-                MessageBox.Show("Немає з'єднання з базою даних.", "Увага!");
+                MessageBox.Show("Немає з'єднання з базою даних.", "Увага!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void loaded()
@@ -101,7 +101,6 @@ namespace ClothWPF
             MessageBox.Show(clothesGrid.SelectedIndex.ToString());
         }
 
-       
         private void Window_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
@@ -121,7 +120,7 @@ namespace ClothWPF
                             context.SaveChanges();
                         }
                         loaded();
-                        MessageBox.Show("Видалено");
+                        MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
@@ -131,7 +130,7 @@ namespace ClothWPF
             }
             else
             {
-                MessageBox.Show("Ви не володієте правами для видалення");
+                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
@@ -154,20 +153,27 @@ namespace ClothWPF
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
-            if (clothesGrid.SelectedItem != null)
+            try
             {
-                var selected = (Product)clothesGrid.SelectedItem;
-                addItem.Title = "Редагувати";
-                addItem.btn_Add.Content = "Зберегти";
-                addItem.Productadding = new Product { IdProduct = selected.IdProduct };
-                addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Name;
-                addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Code;
-                addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
-                addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceUah.ToString();
-                addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceRetail.ToString();
-                addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceWholesale.ToString();
-                addItem.cmb_Country.Text = selected.Country;
-                clothesGrid.Items.Refresh();
+                if (clothesGrid.SelectedItem != null)
+                {
+                    var selected = (Product)clothesGrid.SelectedItem;
+                    addItem.Title = "Редагувати";
+                    addItem.btn_Add.Content = "Зберегти";
+                    addItem.Productadding = new Product { IdProduct = selected.IdProduct };
+                    addItem.txt_Name.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Name;
+                    addItem.txt_ProductCode.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Code;
+                    addItem.txt_PriceDollar.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
+                    addItem.txt_PriceUah.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceUah.ToString();
+                    addItem.txt_PriceRetail.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceRetail.ToString();
+                    addItem.txt_PriceWholesale.Text = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).PriceWholesale.ToString();
+                    addItem.cmb_Country.Text = selected.Country;
+                    clothesGrid.Items.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             addItem.ShowDialog();
             loaded();
@@ -223,6 +229,29 @@ namespace ClothWPF
         {
             Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
             arrivalsList.Show();
+        }
+
+        private void btn_Subtraction_Click(object sender, RoutedEventArgs e)
+        {
+            MainFolder.ProductSubtraction productSubtraction = new MainFolder.ProductSubtraction();
+            try
+            {
+                if (clothesGrid.SelectedItem != null)
+                {
+                    var selected = (Product)clothesGrid.SelectedItem;
+                    productSubtraction.Title = "Відняти";
+                    productSubtraction.btn_Save.Content = "Зберегти";
+                    productSubtraction.subtraction = new Product { IdProduct = selected.IdProduct };
+                    productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;                    
+                    clothesGrid.Items.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            productSubtraction.ShowDialog();            
+            loaded();
         }
     }
 }

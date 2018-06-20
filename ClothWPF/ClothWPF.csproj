@@ -304,6 +304,9 @@
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MainFolder\ProductSubtraction.xaml.cs">
+      <DependentUpon>ProductSubtraction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201806121124224_new.cs" />
     <Compile Include="Migrations\201806121124224_new.Designer.cs">
       <DependentUpon>201806121124224_new.cs</DependentUpon>
@@ -336,6 +339,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainFolder\ProductSubtraction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

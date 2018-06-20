@@ -88,13 +88,13 @@ namespace ClothWPF.Arrival
                         context.SaveChanges();
                         Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();  
                     }
-                    MessageBox.Show("Збережено!!!");
+                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                Close();
             }
         }
 
@@ -107,7 +107,7 @@ namespace ClothWPF.Arrival
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
 
