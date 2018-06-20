@@ -81,7 +81,7 @@ namespace ClothWPF.Arrival
                         context.SaveChanges();
                         Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();  
                     }
-                    MessageBox.Show("Save");
+                    MessageBox.Show("Збережено!!!");
                 }
                 catch (Exception ex)
                 {
