@@ -50,7 +50,10 @@ namespace ClothWPF
                     PriceWholesale = p.PriceWholesale
                 });
             }
+            cmb_Name.ItemsSource = null;
+            cmb_Name.SelectedItem = null;
             cmb_Name.ItemsSource = productModels;
+            cmb_Name.Items.Refresh();
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {          
@@ -95,7 +98,9 @@ namespace ClothWPF
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
         {
             AddItem newProduct = new AddItem();
+            newProduct._additemClose = false;
             newProduct.ShowDialog();
+            //if (newProduct._additemClose == true) loaded();
         }
     }
 }

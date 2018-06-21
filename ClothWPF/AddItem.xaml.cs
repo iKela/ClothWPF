@@ -16,6 +16,7 @@ namespace ClothWPF
         EfContext context = new EfContext();
       
         public Product Productadding { get; set; }
+        public bool _additemClose { get; set; }
         bool field = false;
         public AddItem()
         {
@@ -71,13 +72,14 @@ namespace ClothWPF
                             context.SaveChanges();
                         }
                         MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _additemClose = true;
+                        Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
                 }
-
             }
             else
             {

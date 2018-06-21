@@ -25,12 +25,6 @@ namespace ClothWPF.Arrival.Supplier
         {
             InitializeComponent();
         }
-
-        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((Button)e.Source).Uid);
@@ -59,7 +53,6 @@ namespace ClothWPF.Arrival.Supplier
                     }
             }
         }
-
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             double maxamountofdebt = 0;
@@ -70,21 +63,11 @@ namespace ClothWPF.Arrival.Supplier
                 {
                     context.Suppliers.Add(new Entities.Supplier
                     {
-                        NameSupplier = txt_Name.Text,
-                        City = txt_City.Text,
-                        AdressSupplier = txt_Address.Text,
-                        NumberSupplier = txt_PhoneNumber.Text,
-                        Email = txt_Email.Text,
-                        Region = txt_Region.Text,
-                        Currency = cmb_Currency.Text,
-                        Category = cmb_Category.Text,
-                        KindOfPartnership = cmb_KindOfPartnership.Text,
-                        IdentificationCode = txt_IdentificationCode.Text,
-                        MaxAmountOfDebt= maxamountofdebt,
-                        VATPlayerNumber = txt_VATPlayerNumber.Text,
-                        ContractNumber = txt_ContractNumber.Text,
-                        ContractDate = Convert.ToDateTime(txt_ContractDate.Text),
-                        IndividualTaxNumber = txt_IndividualTaxNumber.Text
+                        NameSupplier = txt_Name.Text, City = txt_City.Text, AdressSupplier = txt_Address.Text,
+                        NumberSupplier = txt_PhoneNumber.Text, Email = txt_Email.Text, Region = txt_Region.Text,
+                        Currency = cmb_Currency.Text, Category = cmb_Category.Text, KindOfPartnership = cmb_KindOfPartnership.Text,
+                        IdentificationCode = txt_IdentificationCode.Text, MaxAmountOfDebt= maxamountofdebt, VATPlayerNumber = txt_VATPlayerNumber.Text,
+                        ContractNumber = txt_ContractNumber.Text, ContractDate = Convert.ToDateTime(txt_ContractDate.Text), IndividualTaxNumber = txt_IndividualTaxNumber.Text
                     });
                     context.SaveChanges();
                     _supplierClose = true;
@@ -96,6 +79,10 @@ namespace ClothWPF.Arrival.Supplier
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

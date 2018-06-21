@@ -38,7 +38,9 @@ namespace ClothWPF.Arrival
             }
             var var = DateTime.Today.ToShortDateString() ;
             txt_Date.Text = Convert.ToString(var);
+            cmb_Supplier.ItemsSource = null;
             cmb_Supplier.ItemsSource = supplierModels;
+            cmb_Supplier.Items.Refresh();
         }
         private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
         {
@@ -104,9 +106,9 @@ namespace ClothWPF.Arrival
         private void btn_NewSupplier_Click(object sender, RoutedEventArgs e)
         {
             Supplier.SupplierInfo form = new Supplier.SupplierInfo();
-           form._supplierClose = false;
+            form._supplierClose = false;
             form.ShowDialog();
-            if (_formclosing == true) { loaded(); }
+            if (form._supplierClose == true) { loaded(); }
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
