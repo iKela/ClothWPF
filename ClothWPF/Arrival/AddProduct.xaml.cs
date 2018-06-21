@@ -14,6 +14,7 @@ namespace ClothWPF
     public partial class AddProduct : Window
     {
         #region
+        public bool _close { get; set; }
         public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         EfContext context = new EfContext();
@@ -26,7 +27,6 @@ namespace ClothWPF
         public double? _priceDollar { get; set; }
         public DateTime? _manufactureDate { get; set; }
         public string _article { get; set; }
-        public bool _closedWindow { get; set; }
         #endregion
         public AddProduct()
         {
@@ -66,18 +66,11 @@ namespace ClothWPF
             #endregion
             try
             {
-                _name = cmb_Name.Text;
-                _code = txt_ProductCode.Text;
-                _count = count;
-                _article = txt_Article.Text;
-                _priceRetail = retailerPrice;
-                _priceWholesale = wholesalePrice;
-                _priceDollar = priceDollar;
-                _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
-                Close();
-            }
-            catch (Exception ex)
-            {
+                _name = cmb_Name.Text; _code = txt_ProductCode.Text; _count = count;
+                _article = txt_Article.Text; _priceRetail = retailerPrice; _priceWholesale = wholesalePrice;
+                _priceDollar = priceDollar; _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+                _close = true; Close();
+            } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -103,7 +96,6 @@ namespace ClothWPF
         {
             AddItem newProduct = new AddItem();
             newProduct.ShowDialog();
-            Close();     
-        }        
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalInfo : Window
     {
+       public bool _formclosing { get; set; }
         public Entities.Supplier Supplieradding { get; set; }
         public List<SupplierModel> supplierModels;
         EfContext context = new EfContext();
@@ -25,6 +26,7 @@ namespace ClothWPF.Arrival
         }
         public void loaded()
         {
+            supplierModels = null;
             supplierModels = new List<SupplierModel>();
             foreach (var p in context.Suppliers)
             {
@@ -63,7 +65,7 @@ namespace ClothWPF.Arrival
                         arrInfo.Date = Convert.ToDateTime(txt_Date.Text);
                         arrInfo.Number = txt_Number.Text;
                         arrInfo.ComesTo = txt_ComesTo.Text;
-                        arrInfo.IdSupplier = cmb_Supplier.SelectedIndex;//дописати
+                        //arrInfo.IdSupplier = cmb_Supplier.SelectedIndex;//дописати
                         //arrInfo.EnterpriseId = cmb_Enterprise.SelectedIndex;
                         arrInfo.SupplierInvoice = txt_SupplierInvoice.Text;
                         arrInfo.PaymentType = cmb_PaymentType.Text;
@@ -86,7 +88,8 @@ namespace ClothWPF.Arrival
                             Comment = txt_Comment.Text
                         });
                         context.SaveChanges();
-                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();  
+                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
+                        _formclosing = true;
                     }
                     MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
@@ -101,16 +104,15 @@ namespace ClothWPF.Arrival
         private void btn_NewSupplier_Click(object sender, RoutedEventArgs e)
         {
             Supplier.SupplierInfo form = new Supplier.SupplierInfo();
+           form._supplierClose = false;
             form.ShowDialog();
-            loaded();
+            if (_formclosing == true) { loaded(); }
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             loaded();

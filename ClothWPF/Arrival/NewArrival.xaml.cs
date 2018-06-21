@@ -29,21 +29,25 @@ namespace ClothWPF
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
             AddProduct addProduct = new AddProduct();
+            addProduct._close = false;
             addProduct.ShowDialog();
-            var data = new NewArrivalModel
+            if (addProduct._close == true)
             {
-                IdProduct = addProduct._idproduct,
-                Name = addProduct._name,                
-                Code = addProduct._code,
-                Article = addProduct._article,
-                CountArrival = addProduct._count,
-                PriceRetailArrival = addProduct._priceRetail,
-                PriceWholesaleArrival = addProduct._priceWholesale,
-                PriceDollarArrival = addProduct._priceDollar,
-                ManufactureDateArrival = addProduct._manufactureDate
-            };
-            ArrproductModels.Add(data);
-            arrivalGrid.Items.Add(data);
+                var data = new NewArrivalModel
+                {
+                    IdProduct = addProduct._idproduct,
+                    Name = addProduct._name,
+                    Code = addProduct._code,
+                    Article = addProduct._article,
+                    CountArrival = addProduct._count,
+                    PriceRetailArrival = addProduct._priceRetail,
+                    PriceWholesaleArrival = addProduct._priceWholesale,
+                    PriceDollarArrival = addProduct._priceDollar,
+                    ManufactureDateArrival = addProduct._manufactureDate
+                };
+                ArrproductModels.Add(data);
+                arrivalGrid.Items.Add(data);
+            }
         }
       
         private void btn_DeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -65,9 +69,13 @@ namespace ClothWPF
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
+            info._formclosing = false;
             info.ShowDialog();
+            if(info._formclosing==true)
+            {
             idarrival = info.Idarrival;
-            Add();
+                Add();
+            }
         }
        
         private void Add()
@@ -99,12 +107,12 @@ namespace ClothWPF
                     context.SaveChanges();
                     scope.Complete();
                 }
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Close();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ClothWPF.Arrival.Supplier
     /// </summary>
     public partial class SupplierInfo : Window
     {
+        public bool _supplierClose { get; set; }
         public SupplierInfo()
         {
             InitializeComponent();
@@ -86,7 +87,9 @@ namespace ClothWPF.Arrival.Supplier
                         IndividualTaxNumber = txt_IndividualTaxNumber.Text
                     });
                     context.SaveChanges();
+                    _supplierClose = true;
                     MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
                 }
                 catch (Exception ex)
                 {
