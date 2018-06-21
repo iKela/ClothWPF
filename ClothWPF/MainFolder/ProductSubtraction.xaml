@@ -17,7 +17,7 @@
             <TextBox Name ="txt_Count" FontFamily="Times New Roman" FontSize="14" Width="200" KeyDown="txt_Count_KeyDown"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button  Name ="btn_Save" Width="50" Content="OK" Height="30" Click="Button_Click"/>
+            <Button  Name ="btn_Save" Width="50" Content="OK" Height="30" Click="Button_Click" IsDefault="True"/>
         </StackPanel>
     </Grid>
 </Window>

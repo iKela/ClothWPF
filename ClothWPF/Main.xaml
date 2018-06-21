@@ -72,6 +72,7 @@
                     </MenuItem>
                     <MenuItem Name="mi_Help" Width="75" Header="Допомога" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_ViewHelp" Header="Допомога"/>
+                        <MenuItem Name="mi_OpenTeamViewer" Header="TeamViewer" Click="mi_OpenTeamViewer_Click"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>
@@ -137,8 +138,8 @@
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ItemCodeVisibilityProxy}}"/>
                     <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=Count}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource CountVisibilityProxy}}"/>
-                    <DataGridTextColumn Header="&#128207;  Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
-                                        Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource LenghtVisibilityProxy}}"/>
+                    <DataGridTextColumn Header="&#128207;  Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed" />
+                    <!--Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource LenghtVisibilityProxy}}"-->
                     <DataGridTextColumn Header="&#128181;  Роздрібна ціна" Binding="{Binding Path=PriceRetail}" Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 
                                         Visibility="{Binding Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource RetailVisibilityProxy}}"/>
                     <DataGridTextColumn Header="&#128181;  Оптова ціна" Binding="{Binding Path=PriceWholesale}" Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" 

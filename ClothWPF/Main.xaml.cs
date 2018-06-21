@@ -3,12 +3,15 @@ using ClothWPF.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Permissions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.IO;
 
 namespace ClothWPF
 {
@@ -17,15 +20,15 @@ namespace ClothWPF
     /// </summary>
     ///
     [PrincipalPermission(SecurityAction.Demand)]
-    public partial class Main : Window , IView
+    public partial class Main : Window, IView
     {
         public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
         public Main()
-        {  
+        {
             InitializeComponent();
         }
- 
+
         #region IView Members
         public IViewModel ViewModel
         {
@@ -76,7 +79,7 @@ namespace ClothWPF
                 clothesGrid.ItemsSource = _ProductFullInfo;
             }
         }
-        private void mi_NewArrival_Click (object sender, RoutedEventArgs e)
+        private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
             NewArrival newArrival = new NewArrival();
             newArrival.ShowDialog();
@@ -147,7 +150,7 @@ namespace ClothWPF
         private void mi_Settings_Click(object sender, RoutedEventArgs e)
         {
             GridSettingsForm gridSettingsForm = new GridSettingsForm(TabIndex); ;
-            gridSettingsForm.Show();         
+            gridSettingsForm.Show();
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
@@ -187,7 +190,7 @@ namespace ClothWPF
 
         private void txt_Search_KeyUp(object sender, KeyEventArgs e)
         {
-            if(tb_SearchByName.Visibility == Visibility.Visible)
+            if (tb_SearchByName.Visibility == Visibility.Visible)
             {
                 var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
                 clothesGrid.ItemsSource = filtered;
@@ -222,7 +225,7 @@ namespace ClothWPF
         {
             tb_SearchByName.Visibility = Visibility.Hidden;
             tb_SearchByProductCode.Visibility = Visibility.Hidden;
-            tb_SearchByCountry.Visibility = Visibility.Visible; 
+            tb_SearchByCountry.Visibility = Visibility.Visible;
         }
 
         private void mi_ArrivalsList_Click(object sender, RoutedEventArgs e)
@@ -240,9 +243,8 @@ namespace ClothWPF
                 {
                     var selected = (Product)clothesGrid.SelectedItem;
                     productSubtraction.Title = "Відняти";
-                    productSubtraction.btn_Save.Content = "Зберегти";
                     productSubtraction.subtraction = new Product { IdProduct = selected.IdProduct };
-                    productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;                    
+                    productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;
                     clothesGrid.Items.Refresh();
                 }
             }
@@ -250,8 +252,21 @@ namespace ClothWPF
             {
                 MessageBox.Show(ex.Message);
             }
-            productSubtraction.ShowDialog();            
+            productSubtraction.ShowDialog();
             loaded();
+        }
+
+        private void mi_OpenTeamViewer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TeamViewer 13");
+                Process.Start(filepath);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
