@@ -41,6 +41,8 @@ namespace ClothWPF.Arrival
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var selected = (Arrivals)grid_Arrivals.SelectedItem;
+
             grid_ArrivalInfo.ItemsSource = null;
             grid_ArrivalInfo.Items.Clear();
             arrivalProducts = new List<ListArrivalsModel>();
