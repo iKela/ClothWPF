@@ -127,5 +127,10 @@ namespace ClothWPF.Arrival
         {
 
         }
+
+        private void txt_Date_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

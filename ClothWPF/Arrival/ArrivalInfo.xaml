@@ -49,7 +49,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
-                        <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="100" Margin="10">
+                        <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="Auto" Margin="10">
                             <ComboBoxItem Content="Переказ Приват24"/>
                             <ComboBoxItem Content="Банківський переказ"/>
                             <ComboBoxItem Content="Оплата платіжною карткою"/>

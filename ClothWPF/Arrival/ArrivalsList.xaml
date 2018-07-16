@@ -72,9 +72,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel  Orientation="Horizontal" Grid.Column="0">
-                <TextBox Name="txt_DateFrom" Width="100" Margin="10 0"/>
+                <TextBox Name="txt_DateFrom" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0"  Height="30" VerticalAlignment="Bottom"/>
                 <TextBlock Text=" по " VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="14"/>
-                <TextBox Name="txt_DateTo" Width="100" Margin="10 0"/>
+                <TextBox Name="txt_DateTo" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <TextBlock Text="&#128113;" VerticalAlignment="Center" Margin="5 0"/>
