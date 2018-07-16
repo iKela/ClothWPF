@@ -37,12 +37,14 @@ namespace ClothWPF.Arrival
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var selected = (Arrivals)grid_Arrivals.SelectedItem;
+
             grid_ArrivalInfo.ItemsSource = null;
             grid_ArrivalInfo.Items.Clear();
             arrivalProducts = new List<ArrivalProduct>();
             using (EfContext context = new EfContext())
             {
-                var arrId = context.ArrivalProducts.Where(ap => ap.Idarrival == 13);
+                var arrId = context.ArrivalProducts.Where(ap => ap.Idarrival == selected.IdArrival);
                 foreach (ArrivalProduct ap in arrId)
                 {
                     arrivalProducts.Add(new ArrivalProduct
@@ -62,6 +64,7 @@ namespace ClothWPF.Arrival
             }
         }
 
+        private int _idArrival { get; set; }
         public void loaded()
         {
             grid_Arrivals.ItemsSource = null;
