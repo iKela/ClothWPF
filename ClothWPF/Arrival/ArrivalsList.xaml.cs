@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Entities;
+using System.Data.Entity;
+using ClothWPF.Models;
 
 namespace ClothWPF.Arrival
 {
@@ -21,14 +23,16 @@ namespace ClothWPF.Arrival
     public partial class ArrivalsList : Window
     {
         List<Arrivals> FullArrival;
-        List<ArrivalProduct> arrivalProducts;
-        DateTime dateArrival;
+        List<ListArrivalsModel> arrivalProducts;
+        DateTime dateArrivalfrom;
+        DateTime dateArrivalTo;
         public ArrivalsList()
         {
            InitializeComponent();
            txt_DateFrom.Text = DateTime.Today.ToShortDateString();
-            dateArrival = Convert.ToDateTime(txt_DateFrom.Text);
+            dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
            txt_DateTo.Text = DateTime.Today.ToShortDateString();
+            dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,13 +43,13 @@ namespace ClothWPF.Arrival
         {
             grid_ArrivalInfo.ItemsSource = null;
             grid_ArrivalInfo.Items.Clear();
-            arrivalProducts = new List<ArrivalProduct>();
+            arrivalProducts = new List<ListArrivalsModel>();
             using (EfContext context = new EfContext())
             {
-                var arrId = context.ArrivalProducts.Where(ap => ap.Idarrival == 13);
-                foreach (ArrivalProduct ap in arrId)
-                {
-                    arrivalProducts.Add(new ArrivalProduct
+                var arrId = context.ArrivalProducts
+                    .Include(p=>p.ProductOf)
+                    .Where(ap => ap.Idarrival == 13)
+                    .Select(ap=>new ListArrivalsModel
                     {
                         IdArrivalProduct = ap.IdArrivalProduct,
                         Count = ap.Count,
@@ -55,9 +59,8 @@ namespace ClothWPF.Arrival
                         PriceWholesale = ap.PriceWholesale,
                         ManufactureDate = ap.ManufactureDate,
                         Idarrival = ap.Idarrival,
-                        Idproduct = ap.Idproduct
-                    });
-                }
+                        NameProduct= ap.ProductOf.Name          
+                    }).ToList();
                 grid_ArrivalInfo.ItemsSource = arrivalProducts;
             }
         }
@@ -69,7 +72,7 @@ namespace ClothWPF.Arrival
             FullArrival = new List<Arrivals>();
             using (EfContext context = new EfContext())
             {
-                var arrival = context.Arrivals.Where(a => a.Date == dateArrival);
+                var arrival = context.Arrivals.Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo);
                 foreach (Arrivals a in arrival )
                 {
                     FullArrival.Add(new Arrivals

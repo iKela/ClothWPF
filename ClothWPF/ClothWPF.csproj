@@ -336,6 +336,7 @@
       <DependentUpon>201806191357412_naME1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ListArrivalsModel.cs" />
     <Compile Include="Models\NewArrivalModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="App.xaml.cs">
