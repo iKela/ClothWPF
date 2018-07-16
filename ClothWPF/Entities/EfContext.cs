@@ -19,15 +19,24 @@ namespace ClothWPF
         public DbSet<Supplier> Suppliers { get; set; }
 
 
-        public static string GetConnectionString()
+        public static string GetConnectionString() //TestVersion
         {
-            string dbname = "WPFCloth";
+            string dbname = "ClothWPF";
             string username = "nazar1997";
             string password = "6621Nazar";
             string hostname = "clothes.cjnqprfoj451.eu-central-1.rds.amazonaws.com";
             //string port = "1433";
             return "Data Source=" + hostname + ";Initial Catalog = " + dbname + ";User ID=" + username + ";Password=" + password + ";";
         }
+        //public static string GetConnectionString() //WorkVersion
+        //{
+        //    string dbname = "WPFCloth";
+        //    string username = "nazar1997";
+        //    string password = "6621Nazar";
+        //    string hostname = "clothes.cjnqprfoj451.eu-central-1.rds.amazonaws.com";
+        //    //string port = "1433";
+        //    return "Data Source=" + hostname + ";Initial Catalog = " + dbname + ";User ID=" + username + ";Password=" + password + ";";
+        //}
     }
-    
+
 }
