@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Entities;
 
 namespace ClothWPF.Arrival
 {
@@ -19,23 +20,78 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalsList : Window
     {
+        List<Arrivals> FullArrival;
+        List<ArrivalProduct> arrivalProducts;
+        DateTime dateArrival;
         public ArrivalsList()
         {
-            InitializeComponent();
-           //txt_DateFrom.Text = DateTime.Today.ToShortDateString();
-           //txt_DateTo.Text = DateTime.Today.ToShortDateString();
+           InitializeComponent();
+           txt_DateFrom.Text = DateTime.Today.ToShortDateString();
+            dateArrival = Convert.ToDateTime(txt_DateFrom.Text);
+           txt_DateTo.Text = DateTime.Today.ToShortDateString();
+        }
+        private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
+        {
+            loaded();
         }
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            grid_ArrivalInfo.ItemsSource = null;
+            grid_ArrivalInfo.Items.Clear();
+            arrivalProducts = new List<ArrivalProduct>();
+            using (EfContext context = new EfContext())
+            {
+                var arrId = context.ArrivalProducts.Where(ap => ap.Idarrival == 13);
+                foreach (ArrivalProduct ap in arrId)
+                {
+                    arrivalProducts.Add(new ArrivalProduct
+                    {
+                        IdArrivalProduct = ap.IdArrivalProduct,
+                        Count = ap.Count,
+                        PriceDollar = ap.PriceDollar,
+                        PriceUah = ap.PriceUah,
+                        PriceRetail = ap.PriceRetail,
+                        PriceWholesale = ap.PriceWholesale,
+                        ManufactureDate = ap.ManufactureDate,
+                        Idarrival = ap.Idarrival,
+                        Idproduct = ap.Idproduct
+                    });
+                }
+                grid_ArrivalInfo.ItemsSource = arrivalProducts;
+            }
         }
 
-        private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
+        public void loaded()
         {
-
+            grid_Arrivals.ItemsSource = null;
+            grid_Arrivals.Items.Clear();
+            FullArrival = new List<Arrivals>();
+            using (EfContext context = new EfContext())
+            {
+                var arrival = context.Arrivals.Where(a => a.Date == dateArrival);
+                foreach (Arrivals a in arrival )
+                {
+                    FullArrival.Add(new Arrivals
+                    {
+                        IdArrival = a.IdArrival,
+                        Number = a.Number,
+                        ComesTo = a.ComesTo,
+                        Date = a.Date,
+                        //SupplierInvoice = a.SupplierInvoice,
+                        PaymentType = a.PaymentType,
+                        Currency = a.Currency,
+                        TotalPurchase = a.TotalPurchase,
+                        Comment = a.Comment,
+                        //IdSupplier= a.IdSupplier,
+                        //SupplierOf=a.SupplierOf,
+                        //EnterpriseId=a.EnterpriseId,
+                       // EnterpriseOf=a.EnterpriseOf
+                    });
+                }
+                grid_Arrivals.ItemsSource = FullArrival;
+            }
         }
-
         private void grid_ArrivalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
