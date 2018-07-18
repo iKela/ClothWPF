@@ -1,5 +1,4 @@
-﻿using ClothWPF.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Models
 {
-    class ListArrivalsModel
+    class ArrivalsProductModel
     {
         public int IdArrivalProduct { get; set; }
         public string NameProduct { get; set; }

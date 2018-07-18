@@ -140,7 +140,7 @@
             <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
         </Grid>
         <Grid Grid.Row="6" Grid.ColumnSpan="3">
-            <DataGrid x:Name="grid_ArrivalInfo" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
+            <DataGrid x:Name="grid_ArrivalInfo" ItemsSource ="{Binding Source = ListArrivalsModel}"  AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" SelectionChanged="grid_ArrivalInfo_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="50"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>

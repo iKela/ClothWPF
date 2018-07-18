@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ClothWPF.Entities;
 using System.Data.Entity;
 using ClothWPF.Models;
+using ClothWPF.Models.ArrivalsList;
 
 namespace ClothWPF.Arrival
 {
@@ -22,17 +23,17 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalsList : Window
     {
-        List<Arrivals> FullArrival;
-        List<ListArrivalsModel> arrivalProducts;
+       //List<ArrivalsProductModel> arrivalProducts;
         DateTime dateArrivalfrom;
         DateTime dateArrivalTo;
+        EfContext context = new EfContext();
         public ArrivalsList()
         {
            InitializeComponent();
-           txt_DateFrom.Text = DateTime.Today.ToShortDateString();
-            dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
+            txt_DateFrom.Text = DateTime.Today.ToShortDateString();
+           // dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
            txt_DateTo.Text = DateTime.Today.ToShortDateString();
-            dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+          //  dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,17 +42,16 @@ namespace ClothWPF.Arrival
 
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = (Arrivals)grid_Arrivals.SelectedItem;
-
-            grid_ArrivalInfo.ItemsSource = null;
-            grid_ArrivalInfo.Items.Clear();
-            arrivalProducts = new List<ListArrivalsModel>();
-            using (EfContext context = new EfContext())
+            loadedGridArrivalInfo();
+        }
+        private void loadedGridArrivalInfo()
+        {
+            var selected = (ArrivalsModel)grid_Arrivals.SelectedItem;
+            if (selected != null)
             {
                 var arrId = context.ArrivalProducts
-                    .Include(p=>p.ProductOf)
-                    .Where(ap => ap.Idarrival == 13)
-                    .Select(ap=>new ListArrivalsModel
+                    .Include(p => p.ProductOf)
+                    .Where(ap => ap.Idarrival == selected.IdArrival).Select(ap => new ArrivalsProductModel
                     {
                         IdArrivalProduct = ap.IdArrivalProduct,
                         Count = ap.Count,
@@ -61,41 +61,34 @@ namespace ClothWPF.Arrival
                         PriceWholesale = ap.PriceWholesale,
                         ManufactureDate = ap.ManufactureDate,
                         Idarrival = ap.Idarrival,
-                        NameProduct= ap.ProductOf.Name          
+                        NameProduct = ap.ProductOf.Name
                     }).ToList();
-                grid_ArrivalInfo.ItemsSource = arrivalProducts;
+                grid_ArrivalInfo.ItemsSource = arrId;
             }
         }
 
         public void loaded()
         {
-            grid_Arrivals.ItemsSource = null;
-            grid_Arrivals.Items.Clear();
-            FullArrival = new List<Arrivals>();
-            using (EfContext context = new EfContext())
-            {
-                var arrival = context.Arrivals.Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo);
-                foreach (Arrivals a in arrival )
+            grid_ArrivalInfo.ItemsSource = null;
+            grid_ArrivalInfo.Items.Clear();
+            grid_ArrivalInfo.Items.Refresh();
+            dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
+            dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+            var arrival = context.Arrivals.Include(s=>s.SupplierOf).Include(e=>e.EnterpriseOf).Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo).Select(a=>new ArrivalsModel
                 {
-                    FullArrival.Add(new Arrivals
-                    {
-                        IdArrival = a.IdArrival,
-                        Number = a.Number,
-                        ComesTo = a.ComesTo,
-                        Date = a.Date,
-                        //SupplierInvoice = a.SupplierInvoice,
-                        PaymentType = a.PaymentType,
-                        Currency = a.Currency,
-                        TotalPurchase = a.TotalPurchase,
-                        Comment = a.Comment,
-                        //IdSupplier= a.IdSupplier,
-                        //SupplierOf=a.SupplierOf,
-                        //EnterpriseId=a.EnterpriseId,
-                       // EnterpriseOf=a.EnterpriseOf
-                    });
-                }
-                grid_Arrivals.ItemsSource = FullArrival;
-            }
+                    IdArrival = a.IdArrival,
+                    Number = a.Number,
+                    ComesTo = a.ComesTo,
+                    Date = a.Date,
+                    //SupplierInvoice = a.SupplierInvoice,
+                    PaymentType = a.PaymentType,
+                    Currency = a.Currency,
+                    TotalPurchase = a.TotalPurchase,
+                    Comment = a.Comment,
+                    nameSupplier = a.SupplierOf.NameSupplier,                   
+                    nameEnterprise=a.EnterpriseOf.Name
+                }).ToList();
+             grid_Arrivals.ItemsSource = arrival;          
         }
         private void grid_ArrivalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -135,7 +128,8 @@ namespace ClothWPF.Arrival
 
         private void txt_Date_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            grid_Arrivals.SelectedItem = null;
+            loaded();
         }
     }
 }

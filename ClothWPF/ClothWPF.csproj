@@ -336,9 +336,10 @@
       <DependentUpon>201806191357412_naME1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ListArrivalsModel.cs" />
-    <Compile Include="Models\NewArrivalModel.cs" />
-    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
+    <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
+    <Compile Include="Models\NewArrival\NewArrivalModel.cs" />
+    <Compile Include="Models\AddProduct\ProductModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -356,7 +357,7 @@
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\SupplierModel.cs" />
+    <Compile Include="Models\ArrivalInfo\SupplierModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -421,6 +422,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="General\Classes\" />
+    <Folder Include="Models\Main\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
