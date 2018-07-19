@@ -18,6 +18,7 @@ namespace ClothWPF
     {
         EfContext context = new EfContext();
         int idarrival;
+        public double TotalPurchase { get; set; }
         public List<NewArrivalModel> ArrproductModels;
         public List<Product> _products;
         public NewArrival()
@@ -36,6 +37,7 @@ namespace ClothWPF
                 var data = new NewArrivalModel
                 {
                     IdProduct = addProduct._idproduct,
+
                     Name = addProduct._name,
                     Code = addProduct._code,
                     Article = addProduct._article,
@@ -45,6 +47,7 @@ namespace ClothWPF
                     PriceDollarArrival = addProduct._priceDollar,
                     ManufactureDateArrival = addProduct._manufactureDate
                 };
+                    TotalPurchase += (addProduct._priceDollar * addProduct._count);
                 ArrproductModels.Add(data);
                 arrivalGrid.Items.Add(data);
             }
@@ -70,6 +73,7 @@ namespace ClothWPF
         {
             Arrival.ArrivalInfo info = new Arrival.ArrivalInfo();
             info._formclosing = false;
+                info.totalPurchaise = TotalPurchase;
             info.ShowDialog();
             if(info._formclosing==true)
             {
