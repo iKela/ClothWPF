@@ -113,15 +113,15 @@
                     <gen:BindingProxy x:Key="UserVisibilityProxy"          Data="{Binding UserVisibility}"/>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
-                    <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість"    Binding="{Binding Path=TotalPurchase}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128113;  Відправник"               Binding="{Binding Path=nameSupplier}"      Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128113;  Одержувач"                Binding="{Binding Path=ComesTo}"      Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181;  Оптова ціна"              Binding="{Binding Path=Wholesale}"     Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Валюта"                              Binding="{Binding Path=Currency}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#127970;  Підприємство"             Binding="{Binding Path=nameEnterprise}"    Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
+                    <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість"    Binding="{Binding Path=TotalPurchase}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128113;  Відправник"               Binding="{Binding Path=nameSupplier}"      Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128113;  Одержувач"                Binding="{Binding Path=ComesTo}"           Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181;  Оптова ціна"              Binding="{Binding Path=Wholesale}"         Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Валюта"                              Binding="{Binding Path=Currency}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#127970;  Підприємство"             Binding="{Binding Path=nameEnterprise}"    Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <!--<DataGridTextColumn Header="&#128113;  Отримав"                  Binding="{Binding Path=User}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>-->
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
@@ -143,26 +143,25 @@
             <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
         </Grid>
         <Grid Grid.Row="6" Grid.ColumnSpan="3">
-            <DataGrid x:Name="grid_ArrivalInfo" 
-                      ItemsSource ="{Binding Source = ListArrivalsModel}"  
+            <DataGrid x:Name="grid_ArrivalInfo"  
                       AutoGenerateColumns="False" 
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionChanged="grid_ArrivalInfo_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="50"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"                 Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9289; Штрих-код"           Binding="{Binding Path=BarCode}"              Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9289; Артикул"           Binding="{Binding Path=Article}"              Width="95"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"                Width="80"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9287; Кількість"           Binding="{Binding Path=Count}"                Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Ціна по прайсу"    Binding="{Binding Path=PriceRetail}"         Width="140" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=Sum}"                  Width="85"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"        Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184; Валюта"            Binding="{Binding Path=Currency}"             Width="90"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Сумма знижкі"      Binding="{Binding Path=DiscountSum}"          Width="130" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="% знижкі"          Binding="{Binding Path=DiscountPercentage}"   Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#9289; Штрих-код"           Binding="{Binding Path=BarCode}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#9289; Артикул"             Binding="{Binding Path=Article}"              Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"       Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#9287; Кількість"           Binding="{Binding Path=Count}"                Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181; Ціна по прайсу"    Binding="{Binding Path=PriceRetail}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=Sum}"                  Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128184; Валюта"            Binding="{Binding Path=Currency}"             Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Сумма знижкі"                Binding="{Binding Path=DiscountSum}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="% знижкі"                    Binding="{Binding Path=DiscountPercentage}"   Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
 
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
