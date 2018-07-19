@@ -18,6 +18,7 @@ namespace ClothWPF.Models
         public double? PriceRetailArrival { get; set; }
         public double? PriceWholesaleArrival { get; set; }
         public DateTime? ManufactureDateArrival { get; set; }
+        public double TotalPurchase { get; set; }
         public int IdProduct { get; set; }
         public string Country { get; set; }
     }

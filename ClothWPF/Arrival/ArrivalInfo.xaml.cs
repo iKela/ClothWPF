@@ -19,6 +19,7 @@ namespace ClothWPF.Arrival
         EfContext context = new EfContext();
         public int _idsupplier = 0;
         public int Idarrival = 0;
+        public double totalPurchaise { get; set; }
         public Arrivals ArrInfoAdding { get; set; }
         public ArrivalInfo()
         {
@@ -38,6 +39,7 @@ namespace ClothWPF.Arrival
             }
             var var = DateTime.Today.ToShortDateString() ;
             txt_Date.Text = Convert.ToString(var);
+            
             cmb_Supplier.ItemsSource = null;
             cmb_Supplier.ItemsSource = supplierModels;
             cmb_Supplier.Items.Refresh();
@@ -87,7 +89,8 @@ namespace ClothWPF.Arrival
                             SupplierInvoice = txt_SupplierInvoice.Text,
                             PaymentType = cmb_PaymentType.Text,
                             Currency = cmb_Currency.Text,
-                            Comment = txt_Comment.Text
+                            Comment = txt_Comment.Text,
+                            TotalPurchase = totalPurchaise                            
                         });
                         context.SaveChanges();
                         Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
