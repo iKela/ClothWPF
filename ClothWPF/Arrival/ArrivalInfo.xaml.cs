@@ -119,5 +119,11 @@ namespace ClothWPF.Arrival
         {
             loaded();
         }
+
+        private void btn_NewEnterprise_Click(object sender, RoutedEventArgs e)
+        {
+            Enterprise.EnterpriseWindow enterprise = new Enterprise.EnterpriseWindow();
+            enterprise.ShowDialog();
+        }
     }
 }

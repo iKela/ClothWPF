@@ -23,5 +23,78 @@ namespace ClothWPF.Entities
         public string Email { get; set; }
         public string Fax { get; set; }
         public string Number { get; set; }
+
+        public List<String> EnterprisesList
+        {
+            get
+            {
+                return new List<String>
+            {
+                "Колективна",
+                "Суспільна",
+                "Приватна",
+                "Комунальна",
+                "З іноземними інвестиціями",
+                "Іноземні",
+                "Змішана"
+            };
+            }
+        }
+        public List<String> CreatingWayList
+        {
+            get
+            {
+                return new List<String>
+            {
+                "Унітарне",
+                "Корпоративне"
+            };
+            }
+        }
+        public List<String> EconomicPartnershipList
+        {
+            get
+            {
+                return new List<String>
+            {
+                "Фкціонерне товариство",
+                "Товариство з обмеженою відповідальністю",
+                "Товариство з додатковою відповідальністю",
+                "Командитне товариство",
+                "Повне товариство"
+                };
+            }
+        }
+        public List<String> AssociationOfEnterprisesList
+        {
+            get
+            {
+                return new List<String>
+            {
+                "Асоціація",
+                "Концерт",
+                "Консорціум",
+                "Корпорація",
+                "Холдинг",
+                "Промислово-фінансова група"
+                };
+            }
+        }
+        public List<String> ActivityList
+        {
+            get
+            {
+                return new List<String>
+                {
+                    "Сільськогосподарська",
+                    "Видобувна",
+                    "Переробна",
+                    "Виробнича",
+                    "Фінансова",
+                    "Посередницька",
+                    "Страхова"
+                };
+            }
+        }
     }
 }
