@@ -84,13 +84,14 @@ namespace ClothWPF.Arrival
                             ComesTo = a.ComesTo,
                             Date = a.Date,
                     //SupplierInvoice = a.SupplierInvoice,
-                    PaymentType = a.PaymentType,
+                         //PaymentType = a.PaymentType,
                             Currency = a.Currency,
                             TotalPurchase = a.TotalPurchase,
-                            Comment = a.Comment,
+                         //Comment = a.Comment,
                             nameSupplier = a.SupplierOf.NameSupplier,
                             nameEnterprise = a.EnterpriseOf.Name
                         }).ToList();
+
                     grid_Arrivals.ItemsSource = arrival;
                 }
             }
