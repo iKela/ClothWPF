@@ -130,5 +130,13 @@ namespace ClothWPF.Arrival
             grid_Arrivals.SelectedItem = null;
             loaded();
         }
+
+        private void txt_DateTo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                this.Focusable = false;
+            }
+        }
     }
 }
