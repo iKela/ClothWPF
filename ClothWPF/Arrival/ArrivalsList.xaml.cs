@@ -23,7 +23,6 @@ namespace ClothWPF.Arrival
     /// </summary>
     public partial class ArrivalsList : Window
     {
-       //List<ArrivalsProductModel> arrivalProducts;
         DateTime dateArrivalfrom;
         DateTime dateArrivalTo;
         EfContext context = new EfContext();
@@ -31,9 +30,7 @@ namespace ClothWPF.Arrival
         {
            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
-           // dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
-           txt_DateTo.Text = DateTime.Today.ToShortDateString();
-          //  dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+            txt_DateTo.Text = DateTime.Today.ToShortDateString();
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
@@ -70,11 +67,13 @@ namespace ClothWPF.Arrival
         public void loaded()
         {
             grid_ArrivalInfo.ItemsSource = null;
-            grid_ArrivalInfo.Items.Clear();
-            grid_ArrivalInfo.Items.Refresh();
             dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
             dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
-            var arrival = context.Arrivals.Include(s=>s.SupplierOf).Include(e=>e.EnterpriseOf).Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo).Select(a=>new ArrivalsModel
+            var arrival = context.Arrivals
+                .Include(s=>s.SupplierOf)
+                .Include(e=>e.EnterpriseOf)
+                .Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo)
+                .Select(a=>new ArrivalsModel
                 {
                     IdArrival = a.IdArrival,
                     Number = a.Number,
