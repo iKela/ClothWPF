@@ -83,7 +83,7 @@ namespace ClothWPF.Arrival
                             Number = a.Number,
                             ComesTo = a.ComesTo,
                             Date = a.Date,
-                    //SupplierInvoice = a.SupplierInvoice,
+                            SupplierInvoice = a.SupplierInvoice,
                          //PaymentType = a.PaymentType,
                             Currency = a.Currency,
                             TotalPurchase = a.TotalPurchase,
