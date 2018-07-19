@@ -141,11 +141,11 @@ namespace ClothWPF.Arrival
             loaded();
         }
 
-        private void txt_DateTo_KeyDown(object sender, KeyEventArgs e)
+        private void LostFocus_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                this.Focusable = false;
+                txt_DateTo.Focusable = false;
             }
         }
     }
