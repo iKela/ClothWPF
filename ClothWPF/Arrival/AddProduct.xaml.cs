@@ -101,6 +101,6 @@ namespace ClothWPF
             newProduct._additemClose = false;
             newProduct.ShowDialog();
             //if (newProduct._additemClose == true) loaded();
-        }
+       }
     }
 }

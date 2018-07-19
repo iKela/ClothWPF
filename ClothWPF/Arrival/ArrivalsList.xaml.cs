@@ -66,28 +66,38 @@ namespace ClothWPF.Arrival
 
         public void loaded()
         {
-            grid_ArrivalInfo.ItemsSource = null;
-            dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
-            dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
-            var arrival = context.Arrivals
-                .Include(s=>s.SupplierOf)
-                .Include(e=>e.EnterpriseOf)
-                .Where(a => a.Date >= dateArrivalfrom && a.Date <=dateArrivalTo)
-                .Select(a=>new ArrivalsModel
+            if (DateTime.TryParse(txt_DateFrom.Text, out dateArrivalfrom))
+            {
+                if (DateTime.TryParse(txt_DateTo.Text, out dateArrivalTo))
                 {
-                    IdArrival = a.IdArrival,
-                    Number = a.Number,
-                    ComesTo = a.ComesTo,
-                    Date = a.Date,
+                    dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
+                    dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+                    grid_ArrivalInfo.ItemsSource = null;
+                    var arrival = context.Arrivals
+                        .Include(s => s.SupplierOf)
+                        .Include(e => e.EnterpriseOf)
+                        .Where(a => a.Date >= dateArrivalfrom && a.Date <= dateArrivalTo)
+                        .Select(a => new ArrivalsModel
+                        {
+                            IdArrival = a.IdArrival,
+                            Number = a.Number,
+                            ComesTo = a.ComesTo,
+                            Date = a.Date,
                     //SupplierInvoice = a.SupplierInvoice,
                     PaymentType = a.PaymentType,
-                    Currency = a.Currency,
-                    TotalPurchase = a.TotalPurchase,
-                    Comment = a.Comment,
-                    nameSupplier = a.SupplierOf.NameSupplier,                   
-                    nameEnterprise=a.EnterpriseOf.Name
-                }).ToList();
-             grid_Arrivals.ItemsSource = arrival;          
+                            Currency = a.Currency,
+                            TotalPurchase = a.TotalPurchase,
+                            Comment = a.Comment,
+                            nameSupplier = a.SupplierOf.NameSupplier,
+                            nameEnterprise = a.EnterpriseOf.Name
+                        }).ToList();
+                    grid_Arrivals.ItemsSource = arrival;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введіть правильно Дату!", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         private void grid_ArrivalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
