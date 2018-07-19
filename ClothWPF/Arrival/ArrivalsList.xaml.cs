@@ -141,11 +141,19 @@ namespace ClothWPF.Arrival
             loaded();
         }
 
-        private void LostFocus_KeyDown(object sender, KeyEventArgs e)
+        private void txt_DateFrom_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
-                txt_DateTo.Focusable = false;
+                txt_DateTo.Focus();
+            }
+        }
+
+        private void txt_DateTo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                grid_Arrivals.Focus();
             }
         }
     }
