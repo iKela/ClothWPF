@@ -12,6 +12,7 @@ namespace ClothWPF.Entities
         [Key]
         public int IdEnterprise { get; set; }
         public string Name { get; set; }
+        public string City { get; set; }
         public string Adress { get; set; }
         public string KodEDRPOU { get; set; }
         public string Ownership { get; set; } //За формою властності

@@ -258,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Enterprise\EnterpriseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GridSettingsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -293,6 +297,10 @@
     <Compile Include="Authorization\Classes\DelegateCommand.cs" />
     <Compile Include="CurrencyWindow.xaml.cs">
       <DependentUpon>CurrencyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Enterprise\EnterpriseClass.cs" />
+    <Compile Include="Enterprise\EnterpriseWindow.xaml.cs">
+      <DependentUpon>EnterpriseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
