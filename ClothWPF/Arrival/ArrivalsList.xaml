@@ -100,8 +100,7 @@
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
                       SelectionChanged="grid_Arrivals_SelectionChanged" 
-                      Loaded="grid_Arrivals_Loaded"
-                      AutoGenerateColumns="False">
+                      Loaded="grid_Arrivals_Loaded">
                 <DataGrid.Resources>
                     <gen:BindingProxy x:Key="NumberVisibilityProxy"        Data="{Binding NumberVisibility}"/>
                     <gen:BindingProxy x:Key="DateVisibilityProxy"          Data="{Binding DateVisibility}"/>
@@ -143,13 +142,8 @@
             <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
         </Grid>
         <Grid Grid.Row="6" Grid.ColumnSpan="3">
-            <DataGrid x:Name="grid_ArrivalInfo" 
-                      ItemsSource ="{Binding Source = ListArrivalsModel}"  
-                      AutoGenerateColumns="False" 
-                      HorizontalGridLinesBrush="DarkGray" 
-                      RowBackground="LightGray" 
-                      AlternatingRowBackground="AliceBlue" 
-                      SelectionChanged="grid_ArrivalInfo_SelectionChanged">
+            <DataGrid x:Name="grid_ArrivalInfo" ItemsSource ="{Binding Source = ListArrivalsModel}"  AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" 
+                      AlternatingRowBackground="AliceBlue" SelectionChanged="grid_ArrivalInfo_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="50"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"                 Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
