@@ -306,6 +306,7 @@
     <Compile Include="Entities\ArrivalProduct.cs" />
     <Compile Include="Entities\Enterprise.cs" />
     <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="General\Classes\ExcelDataAccess.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -429,7 +430,6 @@
     <Resource Include="Assets\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="General\Classes\" />
     <Folder Include="Models\Main\" />
   </ItemGroup>
   <ItemGroup />

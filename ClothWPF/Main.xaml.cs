@@ -24,6 +24,7 @@ namespace ClothWPF
     {
         public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
+        General.Classes.DataAccess objDs;
         public Main()
         {
             InitializeComponent();
@@ -44,10 +45,12 @@ namespace ClothWPF
         #endregion
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
                 loaded();
+                LoadExcelInfo();
             }
             catch
             {
@@ -77,6 +80,19 @@ namespace ClothWPF
                     });
                 }
                 clothesGrid.ItemsSource = _ProductFullInfo;
+            }
+        }
+        private void LoadExcelInfo()
+        {
+            objDs = new General.Classes.DataAccess();
+            try
+            {
+                clothesGrid.ItemsSource = null;
+                clothesGrid.ItemsSource = objDs.GetDataFormExcelAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
