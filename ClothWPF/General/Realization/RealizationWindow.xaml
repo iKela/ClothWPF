@@ -1,0 +1,90 @@
+﻿<Window x:Class="ClothWPF.General.Realization.RealizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ClothWPF.General.Realization"
+        mc:Ignorable="d"
+        Title="RealizationWindow" Height="700" Width="1300" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
+        </StackPanel>
+        <GroupBox Grid.Row="2" BorderThickness="0" Header="Інформація про клієнта" FontFamily="Times New Roman" Padding="3">
+            <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="txt_ClientName" Width="300" materialDesign:HintAssist.Hint="Клієнт" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+
+            </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Name="btn_AddProduct" VerticalAlignment="Center" Height="25" Width="25" Margin="10 1" Content="&#xE109;" ToolTip="Додати товар до приходу" Grid.Column="1" FontSize="18" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="3" Click="btn_AddProduct_Click"/>
+        </StackPanel>
+        <Grid Grid.Row="4">
+            <DataGrid x:Name="realizationGrid" 
+                      AutoGenerateColumns="False" 
+                      HorizontalGridLinesBrush="DarkGray" 
+                      RowBackground="LightGray" 
+                      AlternatingRowBackground="AliceBlue" 
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=Count}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128207;  Метраж" Binding="{Binding Path=Lenght}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed" />
+                    <DataGridTextColumn Header="&#128181;  Роздрібна ціна" Binding="{Binding Path=PriceRetail}" Width="120" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181;  Оптова ціна" Binding="{Binding Path=PriceWholesale}" Width="110" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість($)" Binding="{Binding Path=PriceDollar}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PriceUah}" Width="180" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#127757;  Країна виробник" Binding="{Binding Path=Country}" Width="150" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTemplateColumn Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="DeleteProduct"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox Name="txt_FullPrice" materialDesign:HintAssist.Hint="Повна сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+            </StackPanel>
+            <Separator Margin="20"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" />
+                <TextBox Name="txt_DiscountSum" materialDesign:HintAssist.Hint="Сума знижкі" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+            </StackPanel>
+            <Separator Margin="20"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+            </StackPanel>
+            <Separator Margin="300"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox Name="txt_TotalSum" materialDesign:HintAssist.Hint="Сума до оплати" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="30"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="6" VerticalAlignment="Center">
+            <Button Name="btn_Calculation" VerticalAlignment="Top" Margin="0 4" Content="Розрахунок" Width="120" HorizontalAlignment="Center" Click="btn_Calculation_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
