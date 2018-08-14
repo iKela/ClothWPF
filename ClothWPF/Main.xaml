@@ -117,6 +117,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
+                      Visibility="Visible"
                   >
 
                 <DataGrid.Resources>
@@ -164,6 +165,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+       
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2" Visibility="Collapsed">
             <StackPanel>
                 <Grid Height="150" Background="White">

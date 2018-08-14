@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,35 @@ namespace ClothWPF.General.Realization
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
+            {
+                //Product obj = ((FrameworkElement)sender).DataContext as Product;
+                if (realizationGrid.SelectedItem != null)
+                {
+                    try
+                    {
+                        using (EfContext context = new EfContext())
+                        {
+                            //context.Products.Remove(context.Products.Find(obj.IdProduct));
+                            //context.SaveChanges();
+                        }
+                        //loaded();
+                        MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
