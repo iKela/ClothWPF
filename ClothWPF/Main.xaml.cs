@@ -49,7 +49,7 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                loaded();
+                //loaded();
                 LoadExcelInfo();
             }
             catch
@@ -87,8 +87,8 @@ namespace ClothWPF
             objDs = new General.Classes.DataAccess();
             try
             {
-                clothesGrid.ItemsSource = null;
-                clothesGrid.ItemsSource = objDs.GetDataFormExcelAsync().Result;
+                excelInfoGrid.ItemsSource = null;
+                excelInfoGrid.ItemsSource = objDs.GetDataFormExcelAsync().Result;
             }
             catch (Exception ex)
             {

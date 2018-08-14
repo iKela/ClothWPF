@@ -8,12 +8,13 @@ namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
+        public double i { get; set; }
         //public int UId { get; set; } //Уникальный_идентификатор
-        public int Code { get; set; } //Код_товара
+        public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
         public double? PriceUah { get; set; } //Цена
-        public double PriceWholesale { get; set; } //Оптовая_цена
-        public int Count { get; set; } //Количество
+        public double? PriceWholesale { get; set; } //Оптовая_цена
+        public int? Count { get; set; } //Количество
         public string Country { get; set; } //Страна_производитель
         //public double ItemDiscount { get; set; } //Скидка
     }
@@ -27,7 +28,7 @@ namespace ClothWPF.General.Classes
         {
             try
             {
-                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\iKela\\Desktop\\Export.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
+                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\koval\\Downloads\\Export.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
             }
             catch (Exception ex)
             {
@@ -35,13 +36,14 @@ namespace ClothWPF.General.Classes
             }
         }
         public async Task<ObservableCollection<ExcelItem>> GetDataFormExcelAsync()
-        {
+        {      
             ObservableCollection<ExcelItem> Items = new ObservableCollection<ExcelItem>();
             await Conn.OpenAsync();
             Cmd = new OleDbCommand();
             Cmd.Connection = Conn;
             Cmd.CommandText = "Select * from [Export Products Sheet$]";
             var Reader = await Cmd.ExecuteReaderAsync();
+
             try
             {
                 while (Reader.Read())
@@ -50,14 +52,15 @@ namespace ClothWPF.General.Classes
                     {
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
                         //UId = Convert.ToInt32(Reader["Уникальный_идентификатор"]),
-                        Code = Convert.ToInt32(Reader["Код_товара"]),
+                        Code = Reader["Код_товара"].ToString(),
                         Name = Reader["Название_позиции"].ToString(),
-                        PriceUah = Convert.ToDouble(Reader["Цена"]),
-                        //PriceWholesale = Convert.ToDouble(Reader["Оптовая_цена"]), // Не працює через не правильний формат запису числа в Екселі
-                        Count = Convert.ToInt32(Reader["Количество"]),
+                        PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
+                        PriceWholesale = Convert.ToDouble((Reader["Оптовая_цена"].ToString() != "") ? Convert.ToDouble(Reader["Оптовая_цена"].ToString().Replace(".", ",").Substring(0, 5 /*Довжина символів після ких буде все обрізатись виставлена в ручну!!!Потрібно визначити щоб обраізало після ;*/)) : 0), // 
+                        Count = Convert.ToInt32((Reader["Количество"].ToString() != "")? Reader["Количество"] : 0),
                         Country = Reader["Страна_производитель"].ToString(),
                         //ItemDiscount = Convert.ToInt32(Reader["Скидка"])                 
                     });
+                    
                 }
             }
             catch(Exception ex)
