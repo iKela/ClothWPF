@@ -5,14 +5,70 @@ using System.Windows;
 using System.Windows.Controls;
 using ClothWPF.Models;
 using ClothWPF.Entities;
+using System.ComponentModel;
 
 namespace ClothWPF
 {
     /// <summary>
     /// Interaction logic for AddProduct.xaml
     /// </summary>
-    public partial class AddProduct : Window
+    public partial class AddProduct : Window // , INotifyPropertyChanged
     {
+        #region Пошукова система по ТекстБоксу
+        //private string _searchText;
+
+        //public string SearchText
+        //{
+        //    get { return _searchText; }
+        //    set
+        //    {
+        //        _searchText = value;
+
+        //        OnPropertyChanged("SearchText");
+        //        OnPropertyChanged("MyFilteredItems");
+        //    }
+        //}
+
+        //public IEnumerable<ProductModel> MyFilteredItems
+        //{
+        //    get
+        //    {
+        //        if (SearchText == null) return productModels;
+
+        //        return context.Products.Where(x => x.ToUpper().StartsWith(SearchText.ToUpper()));
+        //    }
+        //}
+
+
+        //public AddProduct()
+        //{
+        //    InitializeComponent();
+
+        //    productModels = new List<ProductModel>();
+        //    var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
+        //    {
+        //        Id = ap.IdProduct,
+        //        Code = ap.Code,
+        //        Name = ap.Name,
+        //        Article = ap.Article,
+        //        Count = ap.Count,
+        //        PriceDollar = ap.PriceDollar,
+        //        PriceRetail = ap.PriceRetail,
+        //        PriceUah = ap.PriceUah,
+        //        PriceWholesale = ap.PriceWholesale
+        //    }).ToList();
+
+        //    this.DataContext = this;
+        //}
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //void OnPropertyChanged(string name)
+        //{
+        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
+        //}
+        #endregion
+
         #region
         public bool _close { get; set; }
         public Product Productadding { get; set; }
@@ -29,9 +85,19 @@ namespace ClothWPF
         public string _article { get; set; }
         public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
-        public AddProduct()
+        private string _window { get; set; }
+        public AddProduct(Window win )
         {
-            InitializeComponent();
+            if(win is NewArrival)
+            {
+                InitializeComponent();
+                _window = win.Name;
+            }
+            else if(win is General.Realization.RealizationWindow)
+            {
+                InitializeComponent();
+                _window = win.Name;
+            }
         }
         public void loaded()
         {

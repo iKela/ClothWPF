@@ -70,6 +70,10 @@
                         <Separator/>
                         <MenuItem Name="mi_Settings" Header="Налаштування" Click="mi_Settings_Click"/>
                     </MenuItem>
+                    <MenuItem Name="mi_Realization" Width="75" Header="Реалізація" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                        <MenuItem Name="mi_AddRealization" Header="Новий" Click="mi_AddRealization_Click"/>
+                        <MenuItem Name="mi_RealizationList" Header="Список продаж"/>
+                    </MenuItem>
                     <MenuItem Name="mi_Help" Width="75" Header="Допомога" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
                         <MenuItem Name="mi_ViewHelp" Header="Допомога"/>
                         <MenuItem Name="mi_OpenTeamViewer" Header="TeamViewer" Click="mi_OpenTeamViewer_Click"/>

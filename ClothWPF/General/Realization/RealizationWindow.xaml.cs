@@ -32,7 +32,8 @@ namespace ClothWPF.General.Realization
 
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            AddProduct addProduct = new AddProduct(this);
+            addProduct.ShowDialog();
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
