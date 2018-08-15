@@ -9,6 +9,7 @@ namespace ClothWPF.Models
     public class SupplierModel
     {
         public int    IdSupplier { get; set; }       
+        public int IdEnterprise { get; set; }
         public string NameSupplier { get; set; }
         public string City { get; set; }
         public string AdressSupplier { get; set; }

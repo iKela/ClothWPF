@@ -360,6 +360,10 @@
     <Compile Include="Migrations\201806191357412_naME1.Designer.cs">
       <DependentUpon>201806191357412_naME1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807251640271_enterprise.cs" />
+    <Compile Include="Migrations\201807251640271_enterprise.Designer.cs">
+      <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
@@ -413,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806191357412_naME1.resx">
       <DependentUpon>201806191357412_naME1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807251640271_enterprise.resx">
+      <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

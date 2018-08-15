@@ -95,7 +95,34 @@ namespace ClothWPF.Enterprise
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-
+            using (EfContext context = new EfContext())
+            {
+                try
+                {
+                    context.Enterprises.Add(new Entities.Enterprise
+                    {
+                        Name = txt_Name.Text,
+                        City = txt_City.Text,
+                        Adress = txt_Address.Text,
+                        KodEDRPOU = txt_Code.Text,
+                        Ownership = cmb_OwnershipType.Text,    //За формою властності
+                        CreatingWay = cmb_CreatingWay.Text,    //Залужно від способу утворення та формування статутного капіталу
+                        LegalForm = cmb_LegalForm.Text,//Залежно від організаційно-правової форми 
+                        Activity = cmb_Activity.Text,//Вид діяльності 
+                        IdentificationCode = txt_IdentificationNumber.Text,
+                        Director = txt_Director.Text,
+                        Email = txt_Email.Text,
+                        Fax = txt_Fax.Text
+                    });
+                    context.SaveChanges();
+                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void cmb_LegalForm_MouseDown(object sender, MouseButtonEventArgs e)
