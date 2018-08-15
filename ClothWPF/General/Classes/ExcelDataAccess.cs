@@ -8,7 +8,6 @@ namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
-        public double i { get; set; }
         //public int UId { get; set; } //Уникальный_идентификатор
         public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
