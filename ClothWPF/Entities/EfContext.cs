@@ -17,6 +17,7 @@ namespace ClothWPF
         public DbSet<Arrivals> Arrivals { get; set; }
         public DbSet<ArrivalProduct> ArrivalProducts { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Entities.Enterprise> Enterprises { get; set; }
 
 
         public static string GetConnectionString() //TestVersion

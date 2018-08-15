@@ -36,7 +36,6 @@ namespace ClothWPF.Arrival
         {
             loaded();
         }
-
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             loadedGridArrivalInfo();
@@ -48,7 +47,8 @@ namespace ClothWPF.Arrival
             {
                 var arrId = context.ArrivalProducts
                     .Include(p => p.ProductOf)
-                    .Where(ap => ap.Idarrival == selected.IdArrival).Select(ap => new ArrivalsProductModel
+                    .Where(ap => ap.Idarrival == selected.IdArrival)
+                    .Select(ap => new ArrivalsProductModel
                     {
                         IdArrivalProduct = ap.IdArrivalProduct,
                         Count = ap.Count,

@@ -88,7 +88,7 @@ namespace ClothWPF
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    foreach (var product in ArrproductModels)
+                    foreach (var product in ArrproductModels)   //переробити
                     {
                         context.ArrivalProducts.Add(new ArrivalProduct
                         {
@@ -102,7 +102,7 @@ namespace ClothWPF
                             Idproduct = product.IdProduct
                         });
                         var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
-                        std.PriceDollar = product.PriceRetailArrival;
+                        std.PriceDollar = product.PriceDollarArrival;
                         std.PriceRetail = product.PriceRetailArrival;
                         std.PriceWholesale = product.PriceWholesaleArrival;
                         double? sum = std.Count == null ? product.CountArrival : std.Count + product.CountArrival;
