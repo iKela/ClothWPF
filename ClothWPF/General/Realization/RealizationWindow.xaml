@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF.General.Realization"
         mc:Ignorable="d"
-        Name="RealizationWindow" Title="Реалізація" Height="700" Width="1300" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14">
+        Name="RealizationW" Title="Реалізація" Height="700" Width="1300" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
