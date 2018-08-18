@@ -32,7 +32,7 @@ namespace ClothWPF.General.Realization
 
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct addProduct = new AddProduct(this);
+            Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
         }
 

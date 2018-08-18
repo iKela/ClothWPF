@@ -86,18 +86,9 @@ namespace ClothWPF
         public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
         private string _window { get; set; }
-        public AddProduct(Window win )
+        public AddProduct()
         {
-            if(win is NewArrival)
-            {
-                InitializeComponent();
-                _window = win.Name;
-            }
-            else if(win is General.Realization.RealizationWindow)
-            {
-                InitializeComponent();
-                _window = win.Name;
-            }
+            InitializeComponent();
         }
          public void loaded()
         {
