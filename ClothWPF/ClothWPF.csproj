@@ -317,7 +317,10 @@
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
+    <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Enterprise.cs" />
+    <Compile Include="Entities\Realization.cs" />
+    <Compile Include="Entities\RealizationProduct.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="General\Classes\ExcelDataAccess.cs" />
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">

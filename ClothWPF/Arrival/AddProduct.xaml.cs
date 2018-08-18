@@ -99,7 +99,7 @@ namespace ClothWPF
                 _window = win.Name;
             }
         }
-        public void loaded()
+         public void loaded()
         {
             productModels = new List<ProductModel>();
             var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
@@ -160,12 +160,11 @@ namespace ClothWPF
             txt_SuppierPrice.Text = productModels.Find(s => s.Id == selected.Id).PriceDollar.ToString();
             txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a=>a.IdArrivalProduct).Take(3).Select(a=>a.PriceRetail).Average().ToString();
             txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
-
             //сууукааааа наканецто 5.30 15.08.2018 
         }
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _sampleChoice = 2;
+            _sampleChoice = 2;//видалити при доробленні настройки
             switch (_sampleChoice)
             {
                 case null :
@@ -186,9 +185,9 @@ namespace ClothWPF
             }
         }
         
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            loaded();
+           loaded();
         }
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
