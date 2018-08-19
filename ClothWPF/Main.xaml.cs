@@ -98,7 +98,7 @@ namespace ClothWPF
             //        });
             //    }
                 clothesGrid.ItemsSource = _ProductFullInfo;
-            }
+            //}
         }
         private void LoadExcelInfo()
         {
@@ -310,3 +310,4 @@ namespace ClothWPF
         }
     }
 }
+
