@@ -64,7 +64,7 @@ namespace ClothWPF
             clothesGrid.Items.Clear();
             // _ProductFullInfo = new List<Product>();
             var _ProductFullInfo = context.Products
-                .Include(b =>b.GetGroupProduct)
+               // .Include(b => b.GetGroupProduct)
                 .Select(a => new ProductModel
                 {
                     IdProduct = a.IdProduct,
@@ -96,7 +96,7 @@ namespace ClothWPF
             //            PriceWholesale = product.PriceWholesale,
             //            Country = product.Country
             //        });
-            //    }
+            //}
                 clothesGrid.ItemsSource = _ProductFullInfo;
             }
         }

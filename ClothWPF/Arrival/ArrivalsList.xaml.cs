@@ -45,7 +45,7 @@ namespace ClothWPF.Arrival
             var selected = (ArrivalsModel)grid_Arrivals.SelectedItem;
             if (selected != null)
             {
-                var arrId = context.ArrivalProducts
+               var arrId = context.ArrivalProducts
                     .Include(p => p.ProductOf)
                     .Where(ap => ap.Idarrival == selected.IdArrival)
                     .Select(ap => new ArrivalsProductModel

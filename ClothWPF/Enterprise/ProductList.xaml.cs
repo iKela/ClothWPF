@@ -67,25 +67,43 @@ namespace ClothWPF.Enterprise
         {
             productListGrid.ItemsSource = null;
             productListGrid.Items.Clear();
-            _ProductFullInfo = new List<Entities.Product>();
             using (EfContext context = new EfContext())
-            {
-                foreach (var product in context.Products)
-                {
-                    _ProductFullInfo.Add(new Entities.Product
-                    {
-                        IdProduct = product.IdProduct,
-                        Code = product.Code,
-                        Name = product.Name,
-                        Count = product.Count,
-                        PriceDollar = product.PriceDollar,
-                        PriceUah = product.PriceUah,
-                        PriceRetail = product.PriceRetail,
-                        PriceWholesale = product.PriceWholesale,
-                        Country = product.Country
-                    });
-                }
-                productListGrid.ItemsSource = _ProductFullInfo;
+              {
+                var _ProductFullInfo = context.Products
+              // .Include(b => b.GetGroupProduct)
+              .Select(a => new ProductModel
+              {
+                  IdProduct = a.IdProduct,
+                  Code = a.Code,
+                  Name = a.Name,
+                  Count = a.Count,
+                  PriceDollar = a.PriceDollar,
+                  PriceUah = a.PriceUah,
+                  PriceRetail = a.PriceRetail,
+                  PriceWholesale = a.PriceWholesale,
+                  Country = a.Country,
+                  Namegroup = a.GetGroupProduct.NameGroup
+              }).ToList();
+             
+            //_ProductFullInfo = new List<Entities.Product>();
+            //using (EfContext context = new EfContext())
+            //{
+            //    foreach (var product in context.Products)
+            //    {
+            //        _ProductFullInfo.Add(new Entities.Product
+            //        {
+            //            IdProduct = product.IdProduct,
+            //            Code = product.Code,
+            //            Name = product.Name,
+            //            Count = product.Count,
+            //            PriceDollar = product.PriceDollar,
+            //            PriceUah = product.PriceUah,
+            //            PriceRetail = product.PriceRetail,
+            //            PriceWholesale = product.PriceWholesale,
+            //            Country = product.Country
+            //        });
+            //    }
+            productListGrid.ItemsSource = _ProductFullInfo;
             }
         }
 
