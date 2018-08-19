@@ -23,7 +23,7 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window, IView
     {
-        //public List<Product> _ProductFullInfo;
+        public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
         General.Classes.DataAccess objDs;
         public Main()
@@ -78,25 +78,6 @@ namespace ClothWPF
                     Country = a.Country,
                     Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
-
-
-            //using (EfContext context = new EfContext())
-            //{
-            //    foreach (var product in context.Products)
-            //    {
-            //        _ProductFullInfo.Add(new Product
-            //        {
-            //            IdProduct = product.IdProduct,
-            //            Code = product.Code,
-            //            Name = product.Name,
-            //            Count = product.Count,
-            //            PriceDollar = product.PriceDollar,
-            //            PriceUah = product.PriceUah,
-            //            PriceRetail = product.PriceRetail,
-            //            PriceWholesale = product.PriceWholesale,
-            //            Country = product.Country
-            //        });
-            //}
                 clothesGrid.ItemsSource = _ProductFullInfo;
             //}
         }

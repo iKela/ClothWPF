@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Models.Main;
 
 namespace ClothWPF.Enterprise
 {
@@ -70,7 +71,7 @@ namespace ClothWPF.Enterprise
             using (EfContext context = new EfContext())
               {
                 var _ProductFullInfo = context.Products
-              // .Include(b => b.GetGroupProduct)
+             // .Include(b => b.GetGroupProduct)
               .Select(a => new ProductModel
               {
                   IdProduct = a.IdProduct,
@@ -84,25 +85,6 @@ namespace ClothWPF.Enterprise
                   Country = a.Country,
                   Namegroup = a.GetGroupProduct.NameGroup
               }).ToList();
-             
-            //_ProductFullInfo = new List<Entities.Product>();
-            //using (EfContext context = new EfContext())
-            //{
-            //    foreach (var product in context.Products)
-            //    {
-            //        _ProductFullInfo.Add(new Entities.Product
-            //        {
-            //            IdProduct = product.IdProduct,
-            //            Code = product.Code,
-            //            Name = product.Name,
-            //            Count = product.Count,
-            //            PriceDollar = product.PriceDollar,
-            //            PriceUah = product.PriceUah,
-            //            PriceRetail = product.PriceRetail,
-            //            PriceWholesale = product.PriceWholesale,
-            //            Country = product.Country
-            //        });
-            //    }
             productListGrid.ItemsSource = _ProductFullInfo;
             }
         }
