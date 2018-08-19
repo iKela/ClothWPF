@@ -326,6 +326,7 @@
     <Compile Include="Entities\ArrivalProduct.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Enterprise.cs" />
+    <Compile Include="Entities\GroupProduct.cs" />
     <Compile Include="Entities\Realization.cs" />
     <Compile Include="Entities\RealizationProduct.cs" />
     <Compile Include="Entities\Supplier.cs" />
@@ -374,9 +375,14 @@
     <Compile Include="Migrations\201807251640271_enterprise.Designer.cs">
       <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808181340007_GroupP.Realizations.cs" />
+    <Compile Include="Migrations\201808181340007_GroupP.Realizations.Designer.cs">
+      <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
+    <Compile Include="Models\Main\ProductModel.cs" />
     <Compile Include="Models\NewArrival\NewArrivalModel.cs" />
     <Compile Include="Models\AddProduct\ProductModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -431,6 +437,9 @@
     <EmbeddedResource Include="Migrations\201807251640271_enterprise.resx">
       <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808181340007_GroupP.Realizations.resx">
+      <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -463,9 +472,7 @@
   <ItemGroup>
     <Resource Include="Assets\Login.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Main\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\MinialLogo.png" />

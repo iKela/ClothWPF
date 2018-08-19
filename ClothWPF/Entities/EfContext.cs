@@ -18,9 +18,11 @@ namespace ClothWPF
         public DbSet<ArrivalProduct> ArrivalProducts { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Entities.Enterprise> Enterprises { get; set; }
+        public DbSet<Realization> Realizations { get; set; }
+        public DbSet<RealizationProduct> RealizationProducts { get; set; }
+        public DbSet<GroupProduct> GroupProducts { get; set; }
 
-
-        public static string GetConnectionString() //TestVersion
+       private static string GetConnectionString() //TestVersion
         {
             string dbname = "ClothWPF";
             string username = "nazar1997";

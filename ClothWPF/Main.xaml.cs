@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.IO;
+using ClothWPF.Models.Main;
 
 namespace ClothWPF
 {
@@ -22,7 +23,7 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window, IView
     {
-        public List<Product> _ProductFullInfo;
+        //public List<Product> _ProductFullInfo;
         EfContext context = new EfContext();
         General.Classes.DataAccess objDs;
         public Main()
@@ -61,24 +62,41 @@ namespace ClothWPF
         {
             clothesGrid.ItemsSource = null;
             clothesGrid.Items.Clear();
-            _ProductFullInfo = new List<Product>();
-            using (EfContext context = new EfContext())
-            {
-                foreach (var product in context.Products)
+            // _ProductFullInfo = new List<Product>();
+            var _ProductFullInfo = context.Products
+                .Include(b =>b.GetGroupProduct)
+                .Select(a => new ProductModel
                 {
-                    _ProductFullInfo.Add(new Product
-                    {
-                        IdProduct = product.IdProduct,
-                        Code = product.Code,
-                        Name = product.Name,
-                        Count = product.Count,
-                        PriceDollar = product.PriceDollar,
-                        PriceUah = product.PriceUah,
-                        PriceRetail = product.PriceRetail,
-                        PriceWholesale = product.PriceWholesale,
-                        Country = product.Country
-                    });
-                }
+                    IdProduct = a.IdProduct,
+                    Code = a.Code,
+                    Name = a.Name,
+                    Count = a.Count,
+                    PriceDollar = a.PriceDollar,
+                    PriceUah = a.PriceUah,
+                    PriceRetail = a.PriceRetail,
+                    PriceWholesale = a.PriceWholesale,
+                    Country = a.Country,
+                    Namegroup = a.GetGroupProduct.NameGroup
+                }).ToList();
+
+
+            //using (EfContext context = new EfContext())
+            //{
+            //    foreach (var product in context.Products)
+            //    {
+            //        _ProductFullInfo.Add(new Product
+            //        {
+            //            IdProduct = product.IdProduct,
+            //            Code = product.Code,
+            //            Name = product.Name,
+            //            Count = product.Count,
+            //            PriceDollar = product.PriceDollar,
+            //            PriceUah = product.PriceUah,
+            //            PriceRetail = product.PriceRetail,
+            //            PriceWholesale = product.PriceWholesale,
+            //            Country = product.Country
+            //        });
+            //    }
                 clothesGrid.ItemsSource = _ProductFullInfo;
             }
         }
