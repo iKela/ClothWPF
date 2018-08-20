@@ -14,60 +14,6 @@ namespace ClothWPF
     /// </summary>
     public partial class AddProduct : Window // , INotifyPropertyChanged
     {
-        #region Пошукова система по ТекстБоксу
-        private string _searchText;
-
-        //public string SearchText
-        //{
-        //    get { return _searchText; }
-        //    set
-        //    {
-        //        _searchText = value;
-
-        //        OnPropertyChanged("SearchText");
-        //        OnPropertyChanged("MyFilteredItems");
-        //    }
-        //}
-
-        //public IEnumerable<ProductModel> MyFilteredItems
-        //{
-        //    get
-        //    {
-        //        if (SearchText == null) return productModels;
-
-        //        return context.Products.Where(x => x.ToUpper().StartsWith(SearchText.ToUpper()));
-        //    }
-        //}
-
-
-        //public AddProduct()
-        //{
-        //    InitializeComponent();
-
-        //    productModels = new List<ProductModel>();
-        //    var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
-        //    {
-        //        Id = ap.IdProduct,
-        //        Code = ap.Code,
-        //        Name = ap.Name,
-        //        Article = ap.Article,
-        //        Count = ap.Count,
-        //        PriceDollar = ap.PriceDollar,
-        //        PriceRetail = ap.PriceRetail,
-        //        PriceUah = ap.PriceUah,
-        //        PriceWholesale = ap.PriceWholesale
-        //    }).ToList();
-
-        //    this.DataContext = this;
-        //}
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //void OnPropertyChanged(string name)
-        //{
-        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-        //}
-        #endregion
 
         #region
         public bool _close { get; set; }
@@ -86,10 +32,12 @@ namespace ClothWPF
         public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
         private string _window { get; set; }
-        //public AddProduct()
-        //{
-        //    InitializeComponent();
-        //}
+        bool hasBeenClicked = false;
+
+        public AddProduct()
+        {
+            InitializeComponent();
+        }
          public void loaded()
         {
             productModels = context.Products
@@ -149,8 +97,7 @@ namespace ClothWPF
             txt_SuppierPrice.Text = productModels.Find(s => s.Id == selected.Id).PriceDollar.ToString();
             txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
             txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
-            //    //сууукааааа наканецто 5.30 15.08.2018 
-
+            //сууукааааа наканецто 5.30 15.08.2018
         }
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -186,6 +133,29 @@ namespace ClothWPF
             newProduct._additemClose = false;
             newProduct.ShowDialog();
             //if (newProduct._additemClose == true) loaded();
+        }
+
+        private void cmb_Group_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked = true;
+            }
+        }
+
+        private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var cmbx = sender as ComboBox;
+            cmbx.ItemsSource = from ProductModel in _countries
+                               where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
+                               select item;
+            cmbx.IsDropDownOpen = true;
         }
     }
 }

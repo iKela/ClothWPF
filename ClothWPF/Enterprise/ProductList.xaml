@@ -16,9 +16,6 @@
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Вибір товару" VerticalAlignment="Center" FontSize="20" Margin="10 0" FontFamily="Times New Roman"/>
-                <Separator Margin="5"/>
-                <Button Name="btn_NewProduct" VerticalAlignment="Center" Height="25" Width="85" Margin="10 1" Content="&#10133; Товар" ToolTip="Додати товар до приходу" Grid.Column="1" FontSize="18" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="3" Click="btn_NewProduct_Click"/>
-                <Button Name="btn_NewGroup" VerticalAlignment="Center" Height="25" Width="85" Margin="10 1" Content="&#10133; Група" ToolTip="Додати товар до приходу" Grid.Column="1" FontSize="18" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="3" Click="btn_NewGroup_Click"/>
                 <Separator Margin="10"/>
                 <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="TextBox_Focus"/>
                 <materialDesign:PopupBox Width="25" Background="White" Margin="-10 0" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="True">
