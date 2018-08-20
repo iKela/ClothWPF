@@ -101,7 +101,7 @@ namespace ClothWPF
         private void TripleSample()
         {
             var selected = (ProductModel)AutoName.SelectedItem;
-            Product Productadding = new Product { IdProduct = selected.Id };
+            //Product Productadding = new Product { IdProduct = selected.Id };
             _idproduct = productModels.Find(s => s.Id == selected.Id).Id;
             txt_ProductCode.Text = productModels.Find(s => s.Id == selected.Id).Code;
             txt_Article.Text = productModels.Find(s => s.Id == selected.Id).Article;
@@ -159,6 +159,11 @@ namespace ClothWPF
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TripleSample();
         }
     }
 }

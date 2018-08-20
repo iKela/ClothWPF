@@ -31,7 +31,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                             <materialDesign:PackIcon Kind="PackageVariant" VerticalAlignment="Top" Height="20" Width="20" Margin="0 5 0 0"/>
                             <Separator Margin="10 0"/>
-                            <controls:AutoCompleteBox Name="AutoName" Width="Auto" ValueMemberPath="Name" SelectedItem="{Binding Id}">
+                            <controls:AutoCompleteBox Name="AutoName" Width="Auto" ValueMemberPath="Name" SelectedItem="{Binding Id}" SelectionChanged="AutoName_SelectionChanged">
                                 <controls:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}"></TextBlock>

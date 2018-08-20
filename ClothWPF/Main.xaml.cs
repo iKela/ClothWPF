@@ -287,7 +287,7 @@ namespace ClothWPF
         private void mi_AddRealization_Click(object sender, RoutedEventArgs e)
         {
             General.Realization.RealizationWindow realization = new General.Realization.RealizationWindow();
-            realization.ShowDialog();
+            realization.Show();
         }
     }
 }

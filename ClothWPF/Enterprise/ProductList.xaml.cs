@@ -42,9 +42,10 @@ namespace ClothWPF.Enterprise
                 hasBeenClicked = true;
             }
         }
+        public object item { get; set; }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-
+           item = (ProductModel)productListGrid.SelectedItem;
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
@@ -72,22 +73,22 @@ namespace ClothWPF.Enterprise
               {
                 _ProductFullInfo = context.Products
              // .Include(b => b.GetGroupProduct)
-              .Select(a => new ProductModel
-              {
-                  IdProduct = a.IdProduct,
-                  Code = a.Code,
-                  Name = a.Name,
-                  Count = a.Count,
-                  PriceDollar = a.PriceDollar,
-                  PriceUah = a.PriceUah,
-                  PriceRetail = a.PriceRetail,
-                  PriceWholesale = a.PriceWholesale,
-                  Country = a.Country,
-                  Namegroup = a.GetGroupProduct.NameGroup
-              }).ToList();
+                 .Select(a => new ProductModel
+                 {
+                     IdProduct = a.IdProduct,
+                     Code = a.Code,
+                     Name = a.Name,
+                     Count = a.Count,
+                     PriceDollar = a.PriceDollar,
+                     PriceUah = a.PriceUah,
+                     PriceRetail = a.PriceRetail,
+                     PriceWholesale = a.PriceWholesale,
+                     Country = a.Country,
+                     Namegroup = a.GetGroupProduct.NameGroup
+                 }).ToList();
                 
                 productListGrid.ItemsSource = _ProductFullInfo;
-                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList() + "Всі";
+                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup) + "Всі";
             }
         }
 
@@ -140,7 +141,6 @@ namespace ClothWPF.Enterprise
         {
             if (listBoxGroups.SelectedItem != null)
             {
-
                 productListGrid.ItemsSource = null;
                 productListGrid.ItemsSource = _ProductFullInfo.Where(v => v.Namegroup== listBoxGroups.SelectedItem.ToString());
             }

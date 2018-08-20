@@ -34,6 +34,7 @@ namespace ClothWPF.General.Realization
         {
             Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
+            realizationGrid.Items.Add( addProduct.item);
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
