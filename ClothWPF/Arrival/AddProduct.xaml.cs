@@ -140,17 +140,6 @@ namespace ClothWPF
             //if (newProduct._additemClose == true) loaded();
         }
 
-        private void cmb_Group_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (!hasBeenClicked)
-            {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
-                box.Foreground = new SolidColorBrush(Colors.Black);
-                hasBeenClicked = true;
-            }
-        }
-
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
 
@@ -159,6 +148,17 @@ namespace ClothWPF
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TripleSample();
+        }
+
+        private void AutoGroup_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                box.Foreground = new SolidColorBrush(Colors.Black);
+                hasBeenClicked = true;
+            }
         }
     }
 }
