@@ -73,7 +73,7 @@ namespace ClothWPF
             #endregion
             try
             {
-                _name = cmb_Name.Text; _code = txt_ProductCode.Text; _count = count;
+                _name = AutoName.Text; _code = txt_ProductCode.Text; _count = count;
                 _article = txt_Article.Text; _priceRetail = retailerPrice; _priceWholesale = wholesalePrice;
                 _priceDollar = priceDollar; _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
                 _close = true; Close();
@@ -83,7 +83,7 @@ namespace ClothWPF
         }
         private void SingleSample()
         {
-            var selected = (ProductModel)cmb_Name.SelectedItem;
+            var selected = (ProductModel)AutoName.SelectedItem;
             Product Productadding = new Product { IdProduct = selected.Id };
             _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
             txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
