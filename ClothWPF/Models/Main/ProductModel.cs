@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Models.Main
 {
-    class ProductModel
+    public class ProductModel
     {
         public int IdProduct { get; set; }
         public string Name { get; set; }

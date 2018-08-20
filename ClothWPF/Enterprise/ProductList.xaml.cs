@@ -20,7 +20,7 @@ namespace ClothWPF.Enterprise
     /// </summary>
     public partial class ProductList : Window
     {
-        public List<Entities.Product> _ProductFullInfo;
+        public List<ProductModel> _ProductFullInfo;
         bool hasBeenClicked = false;
 
         public ProductList()
@@ -70,7 +70,7 @@ namespace ClothWPF.Enterprise
             productListGrid.Items.Clear();
             using (EfContext context = new EfContext())
               {
-                var _ProductFullInfo = context.Products
+                _ProductFullInfo = context.Products
              // .Include(b => b.GetGroupProduct)
               .Select(a => new ProductModel
               {
@@ -86,6 +86,7 @@ namespace ClothWPF.Enterprise
                   Namegroup = a.GetGroupProduct.NameGroup
               }).ToList();
             productListGrid.ItemsSource = _ProductFullInfo;
+                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList();
             }
         }
 
@@ -132,6 +133,16 @@ namespace ClothWPF.Enterprise
             tb_SearchByName.Visibility = Visibility.Hidden;
             tb_SearchByProductCode.Visibility = Visibility.Hidden;
             tb_SearchByCountry.Visibility = Visibility.Visible;
+        }
+
+        private void listBoxGroups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listBoxGroups.SelectedItem != null)
+            {
+
+                productListGrid.ItemsSource = null;
+                productListGrid.ItemsSource = _ProductFullInfo.Where(v => v.Namegroup== listBoxGroups.SelectedItem.ToString());
+            }
         }
     }
 }
