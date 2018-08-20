@@ -57,8 +57,8 @@ namespace ClothWPF
                 PriceUah = ap.PriceUah,
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
-            //cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null;
-            AutoName.ItemsSource = productModels.Select(a=>a.Name); //cmb_Name.Items.Refresh();
+            productModels = p;
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = p; //AutoName.Items.Refresh();
 
         }
         public void loaded()
