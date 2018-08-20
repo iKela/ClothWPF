@@ -59,7 +59,7 @@ namespace ClothWPF
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
             productModels = p;
-            cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null; cmb_Name.ItemsSource = p; cmb_Name.Items.Refresh();
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = p; //AutoName.Items.Refresh();
 
         }
         public void loaded()
