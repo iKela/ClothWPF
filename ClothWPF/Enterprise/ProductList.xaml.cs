@@ -85,8 +85,9 @@ namespace ClothWPF.Enterprise
                   Country = a.Country,
                   Namegroup = a.GetGroupProduct.NameGroup
               }).ToList();
-            productListGrid.ItemsSource = _ProductFullInfo;
-                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList();
+                
+                productListGrid.ItemsSource = _ProductFullInfo;
+                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList() + "Всі";
             }
         }
 
