@@ -43,10 +43,9 @@ namespace ClothWPF
                 "bbbbbbbbb",
                 "abc",
             };
-            AutoName.ItemsSource = name;
+            //AutoName.ItemsSource = name;
 
-            productModels = new List<ProductModel>();
-            var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
+            productModels  = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
             {
                 Id = ap.IdProduct,
                 Code = ap.Code,
@@ -58,8 +57,8 @@ namespace ClothWPF
                 PriceUah = ap.PriceUah,
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
-            productModels = p;
-            cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null; cmb_Name.ItemsSource = p; cmb_Name.Items.Refresh();
+            //cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null;
+            AutoName.ItemsSource = productModels.Select(a=>a.Name); //cmb_Name.Items.Refresh();
 
         }
         public void loaded()
@@ -101,7 +100,7 @@ namespace ClothWPF
         }
         private void TripleSample()
         {
-            var selected = (ProductModel)cmb_Name.SelectedItem;
+            var selected = (ProductModel)AutoName.SelectedItem;
             Product Productadding = new Product { IdProduct = selected.Id };
             _idproduct = productModels.Find(s => s.Id == selected.Id).Id;
             txt_ProductCode.Text = productModels.Find(s => s.Id == selected.Id).Code;
