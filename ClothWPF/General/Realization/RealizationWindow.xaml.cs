@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,8 +24,22 @@ namespace ClothWPF.General.Realization
         public RealizationWindow()
         {
             InitializeComponent();
+
         }
 
+        private void CountPrice()
+        {
+            DataRowView dataRow;
+            //int index = realizationGrid.Columns[5].;
+            
+
+            for (int i = 0; i < realizationGrid.Items.Count;i++)
+            {
+                dataRow = (DataRowView)realizationGrid.Items[i];
+                string cellValue = dataRow.Row.ItemArray[5].ToString();
+                MessageBox.Show(cellValue);
+            }
+        }
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
 
@@ -35,6 +50,7 @@ namespace ClothWPF.General.Realization
             Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
             realizationGrid.Items.Add( addProduct.item);
+            CountPrice();
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)

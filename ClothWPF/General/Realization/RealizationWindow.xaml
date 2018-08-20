@@ -42,7 +42,7 @@
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
-                      SelectionMode="Single">
+                      SelectionMode="Single" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
