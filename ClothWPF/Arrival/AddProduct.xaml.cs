@@ -40,19 +40,7 @@ namespace ClothWPF
         }
          public void loaded()
         {
-            productModels = context.Products
-                .Select(ap => new ProductModel     // ар =>-- придумана лямбда
-            {
-                Id = ap.IdProduct,
-                Code = ap.Code,
-                Name = ap.Name,
-                Article = ap.Article,
-                Count = ap.Count,
-                PriceDollar = ap.PriceDollar,
-                PriceRetail = ap.PriceRetail,
-                PriceUah = ap.PriceUah,
-                PriceWholesale = ap.PriceWholesale
-            }).ToList();
+            
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {          
@@ -124,7 +112,7 @@ namespace ClothWPF
         
        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           //oaded();
+           loaded();
         }
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)
@@ -151,10 +139,26 @@ namespace ClothWPF
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
             var cmbx = sender as ComboBox;
-            cmbx.ItemsSource = from ProductModel in _countries
-                               where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
-                               select item;
+                productModels = context.Products
+                .Where(a=>a.Name.ToLower().Contains(cmbx.Text.ToLower()))
+                .Select(ap => new ProductModel     // ар =>-- придумана лямбда
+                {
+                    //Id = ap.IdProduct,
+                   // Code = ap.Code,
+                    Name = ap.Name,
+                    //Article = ap.Article,
+                    //Count = ap.Count,
+                    //PriceDollar = ap.PriceDollar,
+                    //PriceRetail = ap.PriceRetail,
+                    //PriceUah = ap.PriceUah,
+                    //PriceWholesale = ap.PriceWholesale
+                }).ToList();
+            cmbx.ItemsSource = productModels;
+            //from item in _countries
+            //                   where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
+            //                   select item;
             cmbx.IsDropDownOpen = true;
         }
     }
