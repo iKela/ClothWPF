@@ -37,6 +37,13 @@ namespace ClothWPF
         public AddProduct()
         {
             InitializeComponent();
+            List<string> name = new List<string>
+            {
+                "aaaaaaaa",
+                "bbbbbbbbb",
+                "abc",
+            };
+            AutoName.ItemsSource = name;
         }
          public void loaded()
         {
@@ -153,11 +160,11 @@ namespace ClothWPF
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var cmbx = sender as ComboBox;
-            cmbx.ItemsSource = from ProductModel in _countries
-                               where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
-                               select item;
-            cmbx.IsDropDownOpen = true;
+            //var cmbx = sender as ComboBox;
+            //cmbx.ItemsSource = from ProductModel in _countries
+            //                   where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
+            //                   select item;
+            //cmbx.IsDropDownOpen = true;
         }
     }
 }

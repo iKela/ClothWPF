@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:ClothWPF"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
         Title="Додати продукт до приходу"  Height="550" Width="800" MaxHeight="550" MaxWidth="800" MinHeight="550" MinWidth="800" Loaded="Window_Loaded">
     <Grid>
@@ -29,6 +31,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                             <materialDesign:PackIcon Kind="PackageVariant" VerticalAlignment="Top" Height="20" Width="20" Margin="0 5 0 0"/>
                             <Separator Margin="10 0"/>
+                            <controls:AutoCompleteBox Name="AutoName" Width="Auto"/>
                             <ComboBox Name="cmb_Name" Text="Назва" IsEditable="True" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
                                               SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged" GotFocus="cmb_Group_GotFocus">
                                 <ComboBox.Style>
