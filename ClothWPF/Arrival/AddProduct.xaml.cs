@@ -86,6 +86,8 @@ namespace ClothWPF
         public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
         private string _window { get; set; }
+        bool hasBeenClicked = false;
+
         public AddProduct()
         {
             InitializeComponent();
@@ -187,6 +189,16 @@ namespace ClothWPF
             newProduct._additemClose = false;
             newProduct.ShowDialog();
             //if (newProduct._additemClose == true) loaded();
+        }
+
+        private void cmb_Group_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked = true;
+            }
         }
     }
 }
