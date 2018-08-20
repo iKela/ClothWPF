@@ -15,7 +15,7 @@ namespace ClothWPF
     public partial class AddProduct : Window // , INotifyPropertyChanged
     {
         #region Пошукова система по ТекстБоксу
-        //private string _searchText;
+        private string _searchText;
 
         //public string SearchText
         //{
@@ -86,14 +86,14 @@ namespace ClothWPF
         public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
         private string _window { get; set; }
-        public AddProduct()
-        {
-            InitializeComponent();
-        }
+        //public AddProduct()
+        //{
+        //    InitializeComponent();
+        //}
          public void loaded()
         {
-            productModels = new List<ProductModel>();
-            var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
+            productModels = context.Products
+                .Select(ap => new ProductModel     // ар =>-- придумана лямбда
             {
                 Id = ap.IdProduct,
                 Code = ap.Code,
@@ -105,8 +105,6 @@ namespace ClothWPF
                 PriceUah = ap.PriceUah,
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
-            productModels = p;   
-            cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null; cmb_Name.ItemsSource = p;  cmb_Name.Items.Refresh();
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {          
@@ -149,9 +147,10 @@ namespace ClothWPF
             txt_ProductCode.Text = productModels.Find(s => s.Id == selected.Id).Code;
             txt_Article.Text = productModels.Find(s => s.Id == selected.Id).Article;
             txt_SuppierPrice.Text = productModels.Find(s => s.Id == selected.Id).PriceDollar.ToString();
-            txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a=>a.IdArrivalProduct).Take(3).Select(a=>a.PriceRetail).Average().ToString();
+            txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
             txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
-            //сууукааааа наканецто 5.30 15.08.2018 
+            //    //сууукааааа наканецто 5.30 15.08.2018 
+
         }
         private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -178,7 +177,7 @@ namespace ClothWPF
         
        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           loaded();
+           //oaded();
         }
 
         private void btn_NewProduct_Click(object sender, RoutedEventArgs e)

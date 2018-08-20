@@ -29,7 +29,8 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                             <materialDesign:PackIcon Kind="PackageVariant" Height="20" Width="20" Margin="0 5 0 0"/>
                             <TextBlock Text="Назва: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
-                            <TextBox Name="txt_ProductName" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Позиція" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+
+                            <TextBox Name="txt_ProductName" materialDesign:HintAssist.Hint="Позиція" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14" />
                             <ComboBox Name="cmb_Name" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
                   SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged"/>
                         </StackPanel>
