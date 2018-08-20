@@ -43,10 +43,9 @@ namespace ClothWPF
                 "bbbbbbbbb",
                 "abc",
             };
-            AutoName.ItemsSource = name;
+            //AutoName.ItemsSource = name;
 
-            productModels = new List<ProductModel>();
-            var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
+            productModels  = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
             {
                 Id = ap.IdProduct,
                 Code = ap.Code,
@@ -58,8 +57,8 @@ namespace ClothWPF
                 PriceUah = ap.PriceUah,
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
-            productModels = p;
-            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = p; //AutoName.Items.Refresh();
+           
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = productModels; //AutoName.Items.Refresh();
 
         }
         public void loaded()
@@ -101,7 +100,7 @@ namespace ClothWPF
         }
         private void TripleSample()
         {
-            var selected = (ProductModel)cmb_Name.SelectedItem;
+            var selected = (ProductModel)AutoName.SelectedItem;
             Product Productadding = new Product { IdProduct = selected.Id };
             _idproduct = productModels.Find(s => s.Id == selected.Id).Id;
             txt_ProductCode.Text = productModels.Find(s => s.Id == selected.Id).Code;
@@ -160,14 +159,6 @@ namespace ClothWPF
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //var cmbx = sender as ComboBox;
-            //cmbx.ItemsSource = from ProductModel in _countries
-            //                   where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
-            //                   select item;
-            //cmbx.IsDropDownOpen = true;
         }
     }
 }
