@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using ClothWPF.Models;
 using ClothWPF.Entities;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace ClothWPF
 {
@@ -37,13 +38,6 @@ namespace ClothWPF
         public AddProduct()
         {
             InitializeComponent();
-            List<string> name = new List<string>
-            {
-                "aaaaaaaa",
-                "bbbbbbbbb",
-                "abc",
-            };
-            //AutoName.ItemsSource = name;
 
             productModels  = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
             {
@@ -146,19 +140,20 @@ namespace ClothWPF
             //if (newProduct._additemClose == true) loaded();
         }
 
-        private void cmb_Group_GotFocus(object sender, RoutedEventArgs e)
+        private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AutoGroup_GotFocus(object sender, RoutedEventArgs e)
         {
             if (!hasBeenClicked)
             {
                 TextBox box = sender as TextBox;
                 box.Text = String.Empty;
+                box.Foreground = new SolidColorBrush(Colors.Black);
                 hasBeenClicked = true;
             }
-        }
-
-        private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

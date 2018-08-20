@@ -68,7 +68,7 @@
                         <DataGridTextColumn Header="&#128230; Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#9289; Код товару" Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#9289; Артикул" Binding="{Binding Path=Article}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="&#9287; Кількість" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#9287; В наявності" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128207; Метраж" Binding="{Binding Path=Lenght}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed" />
                         <DataGridTextColumn Header="&#128181; Роздрібна ціна" Binding="{Binding Path=PriceRetail}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128181; Оптова ціна" Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
