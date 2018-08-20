@@ -57,8 +57,8 @@ namespace ClothWPF
                 PriceUah = ap.PriceUah,
                 PriceWholesale = ap.PriceWholesale
             }).ToList();
-            productModels = p;
-            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = p; //AutoName.Items.Refresh();
+           
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = productModels; //AutoName.Items.Refresh();
 
         }
         public void loaded()
@@ -159,14 +159,6 @@ namespace ClothWPF
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //var cmbx = sender as ComboBox;
-            //cmbx.ItemsSource = from ProductModel in _countries
-            //                   where item.CountryName.ToLower().Contains(cmbx.Text.ToLower())
-            //                   select item;
-            //cmbx.IsDropDownOpen = true;
         }
     }
 }
