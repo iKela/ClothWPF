@@ -33,12 +33,7 @@
                             <Separator Margin="10 0"/>
                             <controls:AutoCompleteBox Name="AutoName" Width="Auto"/>
                             <ComboBox Name="cmb_Name" Text="Назва" IsEditable="True" Width="150" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding productModels}" DisplayMemberPath="Name"
-                                              SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged" GotFocus="cmb_Group_GotFocus">
-                                <ComboBox.Style>
-                                    <Style>
-                                        <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged" />
-                                    </Style>
-                                </ComboBox.Style>
+                                              SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Name_SelectionChanged" GotFocus="cmb_Group_GotFocus">             
                             </ComboBox>
                             <Button Name="btn_NewProduct" Height="30" Width="30" VerticalAlignment="Top" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нову позицію" Margin="10" Click="btn_NewProduct_Click"/>
                             <Separator Margin="10 0"/>

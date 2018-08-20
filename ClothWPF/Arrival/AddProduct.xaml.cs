@@ -44,8 +44,25 @@ namespace ClothWPF
                 "abc",
             };
             AutoName.ItemsSource = name;
+
+            productModels = new List<ProductModel>();
+            var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
+            {
+                Id = ap.IdProduct,
+                Code = ap.Code,
+                Name = ap.Name,
+                Article = ap.Article,
+                Count = ap.Count,
+                PriceDollar = ap.PriceDollar,
+                PriceRetail = ap.PriceRetail,
+                PriceUah = ap.PriceUah,
+                PriceWholesale = ap.PriceWholesale
+            }).ToList();
+            productModels = p;
+            cmb_Name.ItemsSource = null; cmb_Name.SelectedItem = null; cmb_Name.ItemsSource = p; cmb_Name.Items.Refresh();
+
         }
-         public void loaded()
+        public void loaded()
         {
             productModels = new List<ProductModel>();
             var p = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
