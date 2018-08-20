@@ -87,7 +87,7 @@ namespace ClothWPF.Enterprise
               }).ToList();
                 
                 productListGrid.ItemsSource = _ProductFullInfo;
-                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList() + "Всі";
+                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup).ToList();
             }
         }
 
