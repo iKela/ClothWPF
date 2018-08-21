@@ -28,7 +28,6 @@ namespace ClothWPF.General.Realization
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int rowIndex { get; set; }
-        private int columnIndex { get; set; }
         public RealizationWindow()
         {
             InitializeComponent();
@@ -42,7 +41,6 @@ namespace ClothWPF.General.Realization
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var column = e.Column as DataGridBoundColumn;
-                columnIndex = column.DisplayIndex;
                 if (column != null)
                 {
                     var bindingPath = (column.Binding as Binding).Path.Path;
@@ -55,7 +53,7 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble((Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)? Convert.ToDouble(GetSingleCellValue(rowIndex, 2)): 1)).ToString();/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble((Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)? Convert.ToDouble(GetSingleCellValue(rowIndex, 2)): 1)).ToString();
                     }
                     else if (bindingPath == "CountSale")
                     {
@@ -230,6 +228,62 @@ namespace ClothWPF.General.Realization
             //    std.Count = sum;
             //}
             //context.SaveChanges();
+        }
+
+        private string oldTextDiscount { get; set; }
+        private void txt_ClientDiscount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txt_Discount.Text = txt_ClientDiscount.Text;
+            CountValues();
+        }
+
+        private void txt_ClientDiscount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txt_ClientDiscount.Text = (txt_ClientDiscount.Text + "%");
+            
+        }
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            oldTextDiscount = box.Text;
+            box.Text = "";
+        }
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Text == "")
+            {
+                box.Text = oldTextDiscount;
+            }
+        }
+        private void txt_Discount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //txt_Discount.Text = txt_Discount.Text + "%";
+            CountValues();
+        }
+        private void CountValues()
+        {
+            //string discountSum = "0";
+            //if (txt_FullPrice.Text != "" || txt_FullPrice.Text != "0")
+            //{ 
+            //    if (txt_Discount.Text != "" || txt_Discount.Text != "0")
+            //    {
+            //        discountSum = ((Convert.ToDouble(txt_FullPrice.Text) * Convert.ToDouble(txt_Discount.Text)) / 100).ToString();
+            //        txt_DiscountSum.Text = discountSum;
+            //    }
+            // txt_TotalSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) - Convert.ToDouble(discountSum)) - Convert.ToDouble(txt_Prepayment.Text)).ToString();
+            //}
+        }
+
+        private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountValues();
+        }
+
+        private void txt_Prepayment_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountValues();
+
         }
     }
 }

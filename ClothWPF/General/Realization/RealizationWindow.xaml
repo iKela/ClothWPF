@@ -26,7 +26,7 @@
                 <TextBox Name="txt_ClientName" Width="300" materialDesign:HintAssist.Hint="Клієнт" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" TextChanged="txt_ClientDiscount_TextChanged" LostFocus="txt_ClientDiscount_LostFocus"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
 
@@ -78,16 +78,19 @@
         </Grid>
         <StackPanel Grid.Row="5" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="txt_FullPrice" materialDesign:HintAssist.Hint="Повна сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+                <TextBox Name="txt_FullPrice" materialDesign:HintAssist.Hint="Повна сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"
+                         TextChanged="txt_FullPrice_TextChanged"/>
             </StackPanel>
             <Separator Margin="20"/>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" />
+                <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" 
+                         GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="txt_Discount_TextChanged" />
                 <TextBox Name="txt_DiscountSum" materialDesign:HintAssist.Hint="Сума знижкі" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
             </StackPanel>
             <Separator Margin="20"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+                <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"
+                         TextChanged="txt_Prepayment_TextChanged"/>
             </StackPanel>
             <Separator Margin="300"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
