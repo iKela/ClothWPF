@@ -27,6 +27,7 @@ namespace ClothWPF.General.Realization
         EfContext context = new EfContext();
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
+        private int rowIndex { get; set; }
         public RealizationWindow()
         {
             InitializeComponent();
@@ -45,16 +46,26 @@ namespace ClothWPF.General.Realization
                     var bindingPath = (column.Binding as Binding).Path.Path;
                     if (bindingPath == "PriceWholesale")
                     {
-                        int rowIndex = e.Row.GetIndex();
+                        rowIndex = e.Row.GetIndex();
                         var el = e.EditingElement as TextBox;
 
                         value = el.Text;
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, 8).Content = el.Text;/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
-                        MessageBox.Show(value);
+                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 3)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
                     }
+                    //else if(bindingPath == "Count")
+                    //{
+                    //    rowIndex = e.Row.GetIndex();
+                    //    var el = e.EditingElement as TextBox;
+
+                    //    value = el.Text;
+                    //    // rowIndex has the row index
+                    //    // bindingPath has the column's binding
+                    //    // el.Text has the new, user-entered value
+                    //    GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                    //}
                 }
             }
         }
@@ -68,7 +79,28 @@ namespace ClothWPF.General.Realization
         #endregion
 
         #region Отримати значення колонкі з усіх рядків
-        private void CalculateAddedItems()
+        private string GetSingleCellValue(int roww, int column)
+        {
+            DataGrid dataGrid = realizationGrid as DataGrid;
+            if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
+            { 
+                DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[roww]);
+                if (row != null)
+                {
+                    DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
+             
+                    DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(column) as DataGridCell;
+                    if (cell != null)
+                    {
+                        return ((TextBlock)cell.Content).Text;
+                    }
+                }
+                
+
+            }
+            return null;
+        }
+        private void GetColumnValue()
         {
             DataGrid dataGrid = realizationGrid as DataGrid;
             if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
@@ -125,7 +157,7 @@ namespace ClothWPF.General.Realization
 
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
-            CalculateAddedItems();
+            GetColumnValue();
         }
         
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
