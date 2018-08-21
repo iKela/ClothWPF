@@ -55,7 +55,8 @@
                       AutoGenerateColumns="False"  
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
-                      SelectionMode="Single"                       
+                      SelectionMode="Single"   
+                          IsReadOnly="True"
                       >
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
@@ -75,16 +76,7 @@
                         <DataGridTextColumn Header="&#128184; Закупівельна вартість($)" Binding="{Binding Path=PriceDollar}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128184; Закупівельна вартість(&#x20B4;)" Binding="{Binding Path=PriceUah}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#127757; Країна виробник" Binding="{Binding Path=Country}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Supplier}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTemplateColumn Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Supplier}" Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>                    
                     </DataGrid.Columns>
 
                 </DataGrid>

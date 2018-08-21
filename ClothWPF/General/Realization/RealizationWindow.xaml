@@ -42,17 +42,19 @@
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
-                      SelectionMode="Single" >
+                      SelectionMode="Single"
+                      IsReadOnly="False"
+                      >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=CountSale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"  />
                     <DataGridTextColumn Header="&#9287;  В наявності" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9287;  В резерві" Binding="{Binding Path=CountReserved}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="&#128181;  Ціна" Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="&#128181;  Ціна" Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" />
                     <DataGridTextColumn Header="&#128181;  НДС" Binding="{Binding Path=NDS}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="&#128181;  Знижка" Binding="{Binding Path=Discount}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181;  Сумма" Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="&#128181;  Сума" Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="False"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
