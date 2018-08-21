@@ -154,7 +154,7 @@ namespace ClothWPF
         {
             if (!hasBeenClicked)
             {
-                TextBox box = sender as TextBox;
+                AutoCompleteBox box = sender as AutoCompleteBox;
                 box.Text = String.Empty;
                 box.Foreground = new SolidColorBrush(Colors.Black);
                 hasBeenClicked = true;

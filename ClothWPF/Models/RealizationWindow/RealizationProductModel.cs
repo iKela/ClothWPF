@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClothWPF.Entities
+namespace ClothWPF.Models.RealizationWindow
 {
-    public class RealizationProduct
+    public class RealizationProductModel
     {
-        [Key]
         public int IdRealizationProduct { get; set; }
         public double Count { get; set; }
         public double? PriceDollar { get; set; }
@@ -19,12 +16,8 @@ namespace ClothWPF.Entities
         public double? PriceWholesale { get; set; }
         public double? NDS { get; set; }
         public double? DiscountProduct { get; set; }
-        public double? TotalProductSum { get; set; }
-        [ForeignKey("GetRealization")]
-        public int IdRealization { get; set; }
-        public Realization GetRealization { get; set; }
-        [ForeignKey("ProductOf")]
-        public int Idproduct { get; set; }
-        public Product ProductOf { get; set; }
+        public double? TotalProductSum { get; set; }       
+        public int IdRealization { get; set; }   
+        public int Idproduct { get; set; }    
     }
 }

@@ -21,6 +21,8 @@ namespace ClothWPF.Enterprise
     public partial class ProductList : Window
     {
         public List<ProductModel> _ProductFullInfo;
+        public object item { get; set; }
+        public int idProduct { get; set; }
         bool hasBeenClicked = false;
 
         public ProductList()
@@ -42,7 +44,6 @@ namespace ClothWPF.Enterprise
                 hasBeenClicked = true;
             }
         }
-        public object item { get; set; }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
            item = (ProductModel)productListGrid.SelectedItem;
@@ -88,7 +89,7 @@ namespace ClothWPF.Enterprise
                  }).ToList();
                 
                 productListGrid.ItemsSource = _ProductFullInfo;
-                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup) + "Всі";
+                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
             }
         }
 
@@ -141,8 +142,13 @@ namespace ClothWPF.Enterprise
         {
             if (listBoxGroups.SelectedItem != null)
             {
-                productListGrid.ItemsSource = null;
-                productListGrid.ItemsSource = _ProductFullInfo.Where(v => v.Namegroup== listBoxGroups.SelectedItem.ToString());
+                if (listBoxGroups.SelectedItem.ToString() != "Всі")
+                {
+                    productListGrid.ItemsSource = null;
+                    productListGrid.ItemsSource = _ProductFullInfo.Where(v => v.Namegroup == listBoxGroups.SelectedItem.ToString());
+                }
+                else
+                    listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
             }
         }
     }
