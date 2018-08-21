@@ -49,7 +49,7 @@
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=CountSale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"  />
-                    <DataGridTextColumn Header="&#9287;  В наявності" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="&#9287;  В наявності" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="False"/>
                     <DataGridTextColumn Header="&#9287;  В резерві" Binding="{Binding Path=CountReserved}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#128181;  Ціна" Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" />
                     <DataGridTextColumn Header="&#128181;  НДС" Binding="{Binding Path=NDS}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>

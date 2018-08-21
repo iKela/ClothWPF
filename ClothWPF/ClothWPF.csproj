@@ -340,6 +340,7 @@
     <Compile Include="Entities\RealizationProduct.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="General\Classes\ExcelDataAccess.cs" />
+    <Compile Include="General\Classes\GetDataGridCellValue.cs" />
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
     </Compile>
