@@ -22,6 +22,7 @@ namespace ClothWPF.Enterprise
     {
         public List<ProductModel> _ProductFullInfo;
         public object item { get; set; }
+        public int idProduct { get; set; }
         bool hasBeenClicked = false;
 
         public ProductList()

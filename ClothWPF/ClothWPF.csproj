@@ -412,6 +412,8 @@
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ArrivalInfo\SupplierModel.cs" />
+    <Compile Include="Models\RealizationWindow\RealizationModel.cs" />
+    <Compile Include="Models\RealizationWindow\RealizationProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClothWPF.Models.Main;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -21,11 +22,12 @@ namespace ClothWPF.General.Realization
     /// </summary>
     public partial class RealizationWindow : Window
     {
+        EfContext context = new EfContext();
         public RealizationWindow()
         {
             InitializeComponent();
-
         }
+
 
         private void CountPrice()
         {
@@ -50,7 +52,7 @@ namespace ClothWPF.General.Realization
             Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
             realizationGrid.Items.Add( addProduct.item);
-            CountPrice();
+
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
@@ -58,8 +60,7 @@ namespace ClothWPF.General.Realization
             Close();
         }
 
-        private void btn_Delete_Click(object sender, RoutedEventArgs e)
-        {
+        private void btn_Delete_Click(object sender, RoutedEventArgs e) {
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
                 //Product obj = ((FrameworkElement)sender).DataContext as Product;
@@ -81,10 +82,32 @@ namespace ClothWPF.General.Realization
                     }
                 }
             }
-            else
-            {
+            else{
                 MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+        void Add()
+        {
+            //foreach (var product in )   //переробити
+            //{
+            //    context.RealizationProducts.Add(new Entities.RealizationProduct
+            //    {
+            //        Count = product.CountArrival,
+            //        PriceDollar = product.PriceDollarArrival,
+            //        PriceUah = product.PriceUahArrival,
+            //        PriceRetail = product.PriceRetailArrival,
+            //        PriceWholesale = product.PriceWholesaleArrival,
+        
+            //        Idproduct = product.IdProduct
+            //    });
+            //    var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
+            //    std.PriceDollar = product.PriceDollarArrival;
+            //    std.PriceRetail = product.PriceRetailArrival;
+            //    std.PriceWholesale = product.PriceWholesaleArrival;
+            //    double? sum = std.Count == null ? product.CountArrival : std.Count + product.CountArrival;
+            //    std.Count = sum;
+            //}
+            //context.SaveChanges();
         }
     }
 }
