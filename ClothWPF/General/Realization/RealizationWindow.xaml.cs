@@ -1,4 +1,5 @@
 ﻿using ClothWPF.Models.Main;
+using ClothWPF.Models.RealizationWindow;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,11 +25,12 @@ namespace ClothWPF.General.Realization
     public partial class RealizationWindow : Window
     {
         EfContext context = new EfContext();
+        public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         public RealizationWindow()
         {
             InitializeComponent();
-
+            _ListProduct = new List<RealizationProductModel>();
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
         }
 
@@ -130,7 +132,18 @@ namespace ClothWPF.General.Realization
         {
             Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
-            realizationGrid.Items.Add(addProduct.item);
+            var data = new RealizationProductModel
+            {
+                Idproduct = addProduct._idproduct,
+                Name = addProduct._nameProduct,
+                Code = addProduct._codeProduct,
+                //Article = addProduct._article,
+                Count = addProduct._count,
+                PriceWholesale = addProduct._priceWholesale,
+            };
+            _ListProduct.Add(data);
+            realizationGrid.ItemsSource = _ListProduct;
+           // realizationGrid.Items.Add(addProduct.item);
            // CalculateAddedItem();
         }
 

@@ -23,7 +23,7 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window, IView
     {
-        public List<Product> _ProductFullInfo;
+        public List<ProductModel> _ProductFullInfo;
         EfContext context = new EfContext();
         General.Classes.DataAccess objDs;
         public Main()
@@ -50,7 +50,7 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                //loaded();
+                loaded();
                 LoadExcelInfo();
             }
             catch
@@ -63,7 +63,7 @@ namespace ClothWPF
             clothesGrid.ItemsSource = null;
             clothesGrid.Items.Clear();
             // _ProductFullInfo = new List<Product>();
-            var _ProductFullInfo = context.Products
+            _ProductFullInfo = context.Products
                // .Include(b => b.GetGroupProduct)
                 .Select(a => new ProductModel
                 {

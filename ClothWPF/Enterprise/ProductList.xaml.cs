@@ -21,8 +21,12 @@ namespace ClothWPF.Enterprise
     public partial class ProductList : Window
     {
         public List<ProductModel> _ProductFullInfo;
-        public object item { get; set; }
-        public int idProduct { get; set; }
+        //public object item { get; set; }
+        public int _idproduct { get; set; }
+        public double? _count { get; set; }
+        public string _nameProduct { get; set; }
+        public double? _priceWholesale { get; set; }
+        public string _codeProduct { get; set; }
         bool hasBeenClicked = false;
 
         public ProductList()
@@ -44,9 +48,19 @@ namespace ClothWPF.Enterprise
                 hasBeenClicked = true;
             }
         }
+       
+
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-           item = (ProductModel)productListGrid.SelectedItem;
+            var selected = (ProductModel)productListGrid.SelectedItem;            
+            _idproduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
+            _nameProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Name;
+            _count = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
+            _codeProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
+            _priceWholesale = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
+            
+            //item = (ProductModel)productListGrid.SelectedItem;
+            Close();
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)

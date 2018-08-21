@@ -104,28 +104,28 @@ namespace ClothWPF
             txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
             //сууукааааа наканецто 5.30 15.08.2018
         }
-        private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _sampleChoice = 2;//видалити при доробленні настройки
-            switch (_sampleChoice)
-            {
-                case null :
-                    {
-                        MessageBox.Show("Не вибрано налаштування виведення цін!", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        break;
-                    }
-                case 1 :
-                    {
-                        SingleSample();
-                        break;
-                    }
-                case 2 :
-                    {
-                        TripleSample();
-                        break;
-                    }    
-            }
-        }
+        //private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    _sampleChoice = 2;//видалити при доробленні настройки
+        //    switch (_sampleChoice)
+        //    {
+        //        case null :
+        //            {
+        //                MessageBox.Show("Не вибрано налаштування виведення цін!", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //                break;
+        //            }
+        //        case 1 :
+        //            {
+        //                SingleSample();
+        //                break;
+        //            }
+        //        case 2 :
+        //            {
+        //                TripleSample();
+        //                break;
+        //            }    
+        //    }
+        //}
         
        private void Window_Loaded(object sender, RoutedEventArgs e)
         {

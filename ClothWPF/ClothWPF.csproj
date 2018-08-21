@@ -388,6 +388,10 @@
     <Compile Include="Migrations\201808181340007_GroupP.Realizations.Designer.cs">
       <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808211018583_EditRealizationProduct.cs" />
+    <Compile Include="Migrations\201808211018583_EditRealizationProduct.Designer.cs">
+      <DependentUpon>201808211018583_EditRealizationProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
@@ -450,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808181340007_GroupP.Realizations.resx">
       <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211018583_EditRealizationProduct.resx">
+      <DependentUpon>201808211018583_EditRealizationProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

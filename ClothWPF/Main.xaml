@@ -121,7 +121,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
-                      Visibility="Collapsed"
+                      Visibility="Visible"
                   >
 
                 <DataGrid.Resources>
@@ -176,7 +176,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
-                      Visibility="Visible"
+                      Visibility="Collapsed"
                   >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
