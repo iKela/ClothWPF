@@ -28,6 +28,7 @@ namespace ClothWPF.General.Realization
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int rowIndex { get; set; }
+        private int columnIndex { get; set; }
         public RealizationWindow()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace ClothWPF.General.Realization
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var column = e.Column as DataGridBoundColumn;
+                columnIndex = column.DisplayIndex;
                 if (column != null)
                 {
                     var bindingPath = (column.Binding as Binding).Path.Path;
@@ -53,19 +55,27 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 3)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble((Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)? Convert.ToDouble(GetSingleCellValue(rowIndex, 2)): 1)).ToString();/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
                     }
-                    //else if(bindingPath == "Count")
-                    //{
-                    //    rowIndex = e.Row.GetIndex();
-                    //    var el = e.EditingElement as TextBox;
+                    else if (bindingPath == "CountSale")
+                    {
+                        rowIndex = e.Row.GetIndex();
+                        var el = e.EditingElement as TextBox;
 
-                    //    value = el.Text;
-                    //    // rowIndex has the row index
-                    //    // bindingPath has the column's binding
-                    //    // el.Text has the new, user-entered value
-                    //    GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
-                    //}
+                        value = el.Text;
+                        // rowIndex has the row index
+                        // bindingPath has the column's binding
+                        // el.Text has the new, user-entered value
+                        if (Convert.ToDouble(el.Text) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3)))
+                        {
+                            GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5))).ToString();/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            GetCell(realizationGrid, rowIndex, 2).Content = 0;
+                        }
+                    }
                 }
             }
         }
@@ -189,31 +199,10 @@ namespace ClothWPF.General.Realization
             Close();
         }
 
-        private void btn_Delete_Click(object sender, RoutedEventArgs e) {
-            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
-            {
-                //Product obj = ((FrameworkElement)sender).DataContext as Product;
-                if (realizationGrid.SelectedItem != null)
-                {
-                    try
-                    {
-                        using (EfContext context = new EfContext())
-                        {
-                            //context.Products.Remove(context.Products.Find(obj.IdProduct));
-                            //context.SaveChanges();
-                        }
-                        //loaded();
-                        MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-            else{
-                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+                
         }
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
