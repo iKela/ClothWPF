@@ -43,7 +43,7 @@ namespace ClothWPF.General.Realization
                 if (column != null)
                 {
                     var bindingPath = (column.Binding as Binding).Path.Path;
-                    if (bindingPath == "Ціна")
+                    if (bindingPath == "PriceWholesale")
                     {
                         int rowIndex = e.Row.GetIndex();
                         var el = e.EditingElement as TextBox;
@@ -52,7 +52,7 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, realizationGrid.Columns.Count).Content = (Convert.ToDouble(el.Text) - Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString())); // Пробую відняти Знижку від Ціни і записати в Суму
+                        GetCell(realizationGrid, rowIndex, 8).Content = el.Text;/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
                         MessageBox.Show(value);
                     }
                 }
