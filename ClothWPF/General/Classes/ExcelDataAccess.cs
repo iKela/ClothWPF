@@ -8,7 +8,7 @@ namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
-        //public int UId { get; set; } //Уникальный_идентификатор
+        public Int64 UId { get; set; } //Уникальный_идентификатор
         public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
         public double? PriceUah { get; set; } //Цена
@@ -50,7 +50,7 @@ namespace ClothWPF.General.Classes
                     Items.Add(new ExcelItem()
                     {
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
-                        //UId = Convert.ToInt32(Reader["Уникальный_идентификатор"]),
+                        UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
                         Code = Reader["Код_товара"].ToString(),
                         Name = Reader["Название_позиции"].ToString(),
                         PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
@@ -110,19 +110,19 @@ namespace ClothWPF.General.Classes
         //    return IsSave;
 
         //}
-        private async Task<bool> CheckIfRecordExistAsync(ExcelItem item)
-        {
-            bool IsRecordExist = false;
-            Cmd.CommandText = "Select * from [Export Products Sheet$] where ItemCode=@Код_товара";
-            var Reader = await Cmd.ExecuteReaderAsync();
-            if (Reader.HasRows)
-            {
-                IsRecordExist = true;
-            }
+        //private async Task<bool> CheckIfRecordExistAsync(ExcelItem item)
+        //{
+        //    bool IsRecordExist = false;
+        //    Cmd.CommandText = "Select * from [Export Products Sheet$] where ItemCode=@Код_товара";
+        //    var Reader = await Cmd.ExecuteReaderAsync();
+        //    if (Reader.HasRows)
+        //    {
+        //        IsRecordExist = true;
+        //    }
 
-            Reader.Close();
-            return IsRecordExist;
-        }
+        //    Reader.Close();
+        //    return IsRecordExist;
+        //}
     }
 
 }
