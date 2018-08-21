@@ -167,22 +167,7 @@ namespace ClothWPF.General.Realization
         }
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid dataGrid = realizationGrid as DataGrid;
-            if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
-            {
-                // find row for the first selected item
-                DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[0]);
-                if (row != null)
-                {
-                    DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
-                    // find grid cell object for the cell with index 0
-                    DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(0) as DataGridCell;
-                    if (cell != null)
-                    {
-                        Console.WriteLine(((TextBlock)cell.Content).Text);
-                    }
-                }
-            }
+            
         }
     }
 }
