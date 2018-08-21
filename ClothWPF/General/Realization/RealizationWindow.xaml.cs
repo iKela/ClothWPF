@@ -138,6 +138,11 @@ namespace ClothWPF.General.Realization
                 Name = addProduct._nameProduct,
                 Code = addProduct._codeProduct,
                 //Article = addProduct._article,
+                CountSale=0,
+                CountReserved=0,
+                Discount=0,
+                NDS=0,
+                Sum=0,
                 Count = addProduct._count,
                 PriceWholesale = addProduct._priceWholesale,
             };
