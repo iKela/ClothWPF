@@ -26,7 +26,7 @@
                 <TextBox Name="txt_ClientName" Width="300" materialDesign:HintAssist.Hint="Клієнт" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" TextChanged="txt_ClientDiscount_TextChanged" LostFocus="txt_ClientDiscount_LostFocus"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
 
@@ -46,15 +46,24 @@
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="&#9289;  Код товару" Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="&#9287;  Кількість" Binding="{Binding Path=CountSale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"  />
-                    <DataGridTextColumn Header="&#9287;  В наявності" Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="&#9287;  В резерві" Binding="{Binding Path=CountReserved}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="&#128181;  Ціна" Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" />
-                    <DataGridTextColumn Header="&#128181;  НДС" Binding="{Binding Path=NDS}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181;  Знижка" Binding="{Binding Path=Discount}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181;  Сума" Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="0" 
+                                        IsReadOnly="True"/>
+                    <DataGridTextColumn Header="&#9289;  Код товару"     Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="1"
+                                        IsReadOnly="True"/>
+                    <DataGridTextColumn Header="&#9287;  Кількість"      Binding="{Binding Path=CountSale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="2" 
+                                        />
+                    <DataGridTextColumn Header="&#9287;  В наявності"    Binding="{Binding Path=Count}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="3" 
+                                        IsReadOnly="False" />
+                    <DataGridTextColumn Header="&#9287;  В резерві"      Binding="{Binding Path=CountReserved}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="4"
+                                        IsReadOnly="False" Visibility="Collapsed"/>
+                    <DataGridTextColumn Header="&#128181;  Ціна"         Binding="{Binding Path=PriceWholesale}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="5"
+                                        />
+                    <DataGridTextColumn Header="&#128181;  НДС"          Binding="{Binding Path=NDS}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="6"
+                                        />
+                    <DataGridTextColumn Header="&#128181;  Знижка"       Binding="{Binding Path=Discount}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="7"
+                                        />
+                    <DataGridTextColumn Header="&#128181;  Сума"         Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="8"
+                                        IsReadOnly="False"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -69,16 +78,19 @@
         </Grid>
         <StackPanel Grid.Row="5" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="txt_FullPrice" materialDesign:HintAssist.Hint="Повна сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+                <TextBox Name="txt_FullPrice" materialDesign:HintAssist.Hint="Повна сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"
+                         TextChanged="txt_FullPrice_TextChanged"/>
             </StackPanel>
             <Separator Margin="20"/>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" />
+                <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" 
+                         GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="txt_Discount_TextChanged" />
                 <TextBox Name="txt_DiscountSum" materialDesign:HintAssist.Hint="Сума знижкі" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
             </StackPanel>
             <Separator Margin="20"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
+                <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"
+                         TextChanged="txt_Prepayment_TextChanged"/>
             </StackPanel>
             <Separator Margin="300"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

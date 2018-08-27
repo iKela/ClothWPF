@@ -53,19 +53,27 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 3)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                        GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble((Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)? Convert.ToDouble(GetSingleCellValue(rowIndex, 2)): 1)).ToString();
                     }
-                    //else if(bindingPath == "Count")
-                    //{
-                    //    rowIndex = e.Row.GetIndex();
-                    //    var el = e.EditingElement as TextBox;
+                    else if (bindingPath == "CountSale")
+                    {
+                        rowIndex = e.Row.GetIndex();
+                        var el = e.EditingElement as TextBox;
 
-                    //    value = el.Text;
-                    //    // rowIndex has the row index
-                    //    // bindingPath has the column's binding
-                    //    // el.Text has the new, user-entered value
-                    //    GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
-                    //}
+                        value = el.Text;
+                        // rowIndex has the row index
+                        // bindingPath has the column's binding
+                        // el.Text has the new, user-entered value
+                        if (Convert.ToDouble(el.Text) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3)))
+                        {
+                            GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5))).ToString();/*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            GetCell(realizationGrid, rowIndex, 2).Content = 0;
+                        }
+                    }
                 }
             }
         }
@@ -189,31 +197,10 @@ namespace ClothWPF.General.Realization
             Close();
         }
 
-        private void btn_Delete_Click(object sender, RoutedEventArgs e) {
-            if (Thread.CurrentPrincipal.IsInRole("Administrators"))
-            {
-                //Product obj = ((FrameworkElement)sender).DataContext as Product;
-                if (realizationGrid.SelectedItem != null)
-                {
-                    try
-                    {
-                        using (EfContext context = new EfContext())
-                        {
-                            //context.Products.Remove(context.Products.Find(obj.IdProduct));
-                            //context.SaveChanges();
-                        }
-                        //loaded();
-                        MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-            else{
-                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+                
         }
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -241,6 +228,62 @@ namespace ClothWPF.General.Realization
             //    std.Count = sum;
             //}
             //context.SaveChanges();
+        }
+
+        private string oldTextDiscount { get; set; }
+        private void txt_ClientDiscount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txt_Discount.Text = txt_ClientDiscount.Text;
+            CountValues();
+        }
+
+        private void txt_ClientDiscount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txt_ClientDiscount.Text = (txt_ClientDiscount.Text + "%");
+            
+        }
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            oldTextDiscount = box.Text;
+            box.Text = "";
+        }
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Text == "")
+            {
+                box.Text = oldTextDiscount;
+            }
+        }
+        private void txt_Discount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //txt_Discount.Text = txt_Discount.Text + "%";
+            CountValues();
+        }
+        private void CountValues()
+        {
+            //string discountSum = "0";
+            //if (txt_FullPrice.Text != "" || txt_FullPrice.Text != "0")
+            //{ 
+            //    if (txt_Discount.Text != "" || txt_Discount.Text != "0")
+            //    {
+            //        discountSum = ((Convert.ToDouble(txt_FullPrice.Text) * Convert.ToDouble(txt_Discount.Text)) / 100).ToString();
+            //        txt_DiscountSum.Text = discountSum;
+            //    }
+            // txt_TotalSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) - Convert.ToDouble(discountSum)) - Convert.ToDouble(txt_Prepayment.Text)).ToString();
+            //}
+        }
+
+        private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountValues();
+        }
+
+        private void txt_Prepayment_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountValues();
+
         }
     }
 }
