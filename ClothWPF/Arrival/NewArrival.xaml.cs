@@ -21,8 +21,9 @@ namespace ClothWPF
         public double TotalPurchase { get; set; }
         public List<NewArrivalModel> ArrproductModels;
         public List<Product> _products;
-        public NewArrival()
+        public NewArrival(EfContext context)
         {
+            this.context = context;
             InitializeComponent();
             ArrproductModels = new List<NewArrivalModel>();    
         }

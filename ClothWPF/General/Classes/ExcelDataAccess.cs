@@ -3,11 +3,15 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Linq;
+using System.Windows.Data;
+using ClothWPF.Entities;
 
 namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
+
         public Int64 UId { get; set; } //Уникальный_идентификатор
         public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
@@ -20,14 +24,17 @@ namespace ClothWPF.General.Classes
 
     public class DataAccess
     {
+        private readonly EfContext context;
+
         OleDbConnection Conn;
         OleDbCommand Cmd;
 
-        public DataAccess()
+        public DataAccess(EfContext context)
         {
+            this.context = context;
             try
             {
-                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\koval\\Downloads\\Export.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
+                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Yuriy\\Downloads\\export-products-21-06-18_20-18-51.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
             }
             catch (Exception ex)
             {
@@ -35,22 +42,23 @@ namespace ClothWPF.General.Classes
             }
         }
         public async Task<ObservableCollection<ExcelItem>> GetDataFormExcelAsync()
-        {      
+        {
+           // this.context = context;
             ObservableCollection<ExcelItem> Items = new ObservableCollection<ExcelItem>();
             await Conn.OpenAsync();
             Cmd = new OleDbCommand();
             Cmd.Connection = Conn;
             Cmd.CommandText = "Select * from [Export Products Sheet$]";
             var Reader = await Cmd.ExecuteReaderAsync();
-
+            int a = 0;
             try
             {
-                while (Reader.Read())
+                while (Reader.Read() && a < 9)
                 {
-                    Items.Add(new ExcelItem()
+                    var data=new ExcelItem()
                     {
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
-                        UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
+                       // UId = Convert.ToInt32((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
                         Code = Reader["Код_товара"].ToString(),
                         Name = Reader["Название_позиции"].ToString(),
                         PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
@@ -58,11 +66,33 @@ namespace ClothWPF.General.Classes
                         Count = Convert.ToInt32((Reader["Количество"].ToString() != "")? Reader["Количество"] : 0),
                         Country = Reader["Страна_производитель"].ToString(),
                         //ItemDiscount = Convert.ToInt32(Reader["Скидка"])                 
-                    });
-                    
-                }
+                    };
+                    //var dbItem = context.Products.SingleOrDefault(p => p.IdProduct == data.UId);
+                    //if (dbItem == null)
+                   // {
+                        var item = new Product
+                        {                   
+                            Name = data.Name,
+                            Code = data.Code,
+                            Count = data.Count,
+                            PriceUah = data.PriceUah,
+                            PriceWholesale = data.PriceWholesale,
+                            Country = data.Country
+                           // Idgroup = 2
+                        };
+                        context.Products.Add(item);
+                    //}
+                    //else
+                    //{
+                    //    //dbItem.Count -= data.Count;
+                    //    ////context.Entry(dbItem);
+                    //    //context.SaveChanges();
+                    //}
+                    a++;
+                 }
+                        context.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }

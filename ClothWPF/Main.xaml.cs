@@ -24,11 +24,12 @@ namespace ClothWPF
     public partial class Main : Window, IView
     {
         public List<ProductModel> _ProductFullInfo;
-        EfContext context = new EfContext();
+        private readonly EfContext context;
         General.Classes.DataAccess objDs;
         public Main()
         {
             InitializeComponent();
+            context = new EfContext();
         }
 
         #region IView Members
@@ -50,8 +51,8 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                loaded();
                 LoadExcelInfo();
+                loaded();
             }
             catch
             {
@@ -76,14 +77,13 @@ namespace ClothWPF
                     PriceRetail = a.PriceRetail,
                     PriceWholesale = a.PriceWholesale,
                     Country = a.Country,
-                    Namegroup = a.GetGroupProduct.NameGroup
+                   // Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
-                clothesGrid.ItemsSource = _ProductFullInfo;
-            //}
-        }
+                clothesGrid.ItemsSource = _ProductFullInfo;       
+    }
         private void LoadExcelInfo()
         {
-            objDs = new General.Classes.DataAccess();
+            objDs = new General.Classes.DataAccess(this.context);
             try
             {
                 excelInfoGrid.ItemsSource = null;
@@ -96,7 +96,7 @@ namespace ClothWPF
         }
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
-            NewArrival newArrival = new NewArrival();
+            NewArrival newArrival = new NewArrival(this.context);
             newArrival.ShowDialog();
             loaded();
         }

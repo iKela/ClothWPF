@@ -99,7 +99,7 @@ namespace ClothWPF.Enterprise
                      PriceRetail = a.PriceRetail,
                      PriceWholesale = a.PriceWholesale,
                      Country = a.Country,
-                     Namegroup = a.GetGroupProduct.NameGroup
+                     //Namegroup = a.GetGroupProduct.NameGroup
                  }).ToList();
                 
                 productListGrid.ItemsSource = _ProductFullInfo;
