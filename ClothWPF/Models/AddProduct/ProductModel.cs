@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ClothWPF.Models
 {
    public class ProductModel
-    {
+   {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Article { get; set; }
@@ -19,5 +19,4 @@ namespace ClothWPF.Models
         public double? PriceWholesale { get; set; }
         public string ManufactureDate { get; set; }
     }
-    
 }

@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.IO;
 using ClothWPF.Models.Main;
+using ClothWPF.Helpes;
+using ClothWPF.General.Classes;
 
 namespace ClothWPF
 {
@@ -24,12 +26,28 @@ namespace ClothWPF
     public partial class Main : Window, IView
     {
         public List<ProductModel> _ProductFullInfo;
-        private readonly EfContext context;
+        private EfContext context;
         General.Classes.DataAccess objDs;
         public Main()
         {
+            ConnectionProvider _connectionProvider = new ConnectionProvider();
+            _connectionProvider.Conected += _connectionProvider_Conected;
+            _connectionProvider.ConnectRun();
             InitializeComponent();
-            context = new EfContext();
+            //context = new EfContext();
+        }
+        private void _connectionProvider_Conected(EfContext eFContext)
+        {
+            context = eFContext;
+
+            Dispatcher.BeginInvoke(new Action(() => 
+            {
+                Lbl_load.Content = "Підключення виконано успішно";
+                //LoadExcelInfo();
+                //loaded();
+            }));
+            LoadExcelInfo();
+            loaded();
         }
 
         #region IView Members
@@ -46,13 +64,12 @@ namespace ClothWPF
         }
         #endregion
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
+        {    
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                LoadExcelInfo();
-                loaded();
+                //LoadExcelInfo();
+              // loaded();
             }
             catch
             {
@@ -61,8 +78,11 @@ namespace ClothWPF
         }
         public void loaded()
         {
-            clothesGrid.ItemsSource = null;
-            clothesGrid.Items.Clear();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                clothesGrid.ItemsSource = null;
+                clothesGrid.Items.Clear();
+            }));
             // _ProductFullInfo = new List<Product>();
             _ProductFullInfo = context.Products
                // .Include(b => b.GetGroupProduct)
@@ -79,15 +99,21 @@ namespace ClothWPF
                     Country = a.Country,
                    // Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
-                clothesGrid.ItemsSource = _ProductFullInfo;       
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                clothesGrid.ItemsSource = _ProductFullInfo;
+            }));
     }
         private void LoadExcelInfo()
         {
             objDs = new General.Classes.DataAccess(this.context);
             try
             {
-                excelInfoGrid.ItemsSource = null;
-                excelInfoGrid.ItemsSource = objDs.GetDataFormExcelAsync().Result;
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    excelInfoGrid.ItemsSource = null;
+                    excelInfoGrid.ItemsSource = objDs.GetDataFormExcelAsync().Result;
+                }));
             }
             catch (Exception ex)
             {

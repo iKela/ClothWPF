@@ -315,6 +315,7 @@
     <Compile Include="Arrival\Supplier\SupplierInfo.xaml.cs">
       <DependentUpon>SupplierInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AsynkConnect.cs" />
     <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
     <Compile Include="Authorization\Classes\AuthentationService.cs" />
     <Compile Include="Authorization\Classes\AuthenticationViewModel.cs" />
@@ -345,6 +346,7 @@
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpes\ConnectionProvaider.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

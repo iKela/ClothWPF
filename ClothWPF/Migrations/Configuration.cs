@@ -9,7 +9,7 @@ namespace ClothWPF.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ClothWPF.EfContext context)
