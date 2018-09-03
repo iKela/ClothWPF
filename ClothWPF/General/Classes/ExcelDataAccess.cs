@@ -3,11 +3,18 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Linq;
+using System.Windows.Data;
+using ClothWPF.Entities;
+using System.Transactions;
+using System.Collections.Generic;
+
 
 namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
+
         public Int64 UId { get; set; } //Уникальный_идентификатор
         public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
@@ -20,57 +27,93 @@ namespace ClothWPF.General.Classes
 
     public class DataAccess
     {
+        private  EfContext context;
+
         OleDbConnection Conn;
         OleDbCommand Cmd;
+        List<ExcelItem> EXItem;
 
-        public DataAccess()
+        public DataAccess(EfContext context)
         {
+           this.context = context;
             try
             {
-                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\koval\\Downloads\\Export.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
+                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Yuriy\\Downloads\\export-products-21-06-18_20-18-51.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                //Dispatcher.BeginInvoke(new Action(() =>
+                //{
+                //    int a=25;
+                //}));
+                int a = 23;
+
+
             }
         }
         public async Task<ObservableCollection<ExcelItem>> GetDataFormExcelAsync()
-        {      
+        {
+            // this.context = context;
             ObservableCollection<ExcelItem> Items = new ObservableCollection<ExcelItem>();
             await Conn.OpenAsync();
             Cmd = new OleDbCommand();
             Cmd.Connection = Conn;
             Cmd.CommandText = "Select * from [Export Products Sheet$]";
-            var Reader = await Cmd.ExecuteReaderAsync();
-
+            var Reader = await Cmd.ExecuteReaderAsync();    
+            EXItem = new List<ExcelItem>();
             try
             {
+                
+                //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Product]");
                 while (Reader.Read())
                 {
-                    Items.Add(new ExcelItem()
+                    var data = new ExcelItem()
                     {
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
-                        UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
+                        // UId = Convert.ToInt32((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
                         Code = Reader["Код_товара"].ToString(),
-                        Name = Reader["Название_позиции"].ToString(),
+                        //Name = Reader["Название_позиции"].ToString(),
                         PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
                         PriceWholesale = Convert.ToDouble((Reader["Оптовая_цена"].ToString() != "") ? Convert.ToDouble(Reader["Оптовая_цена"].ToString().Replace(".", ",").Substring(0, 5 /*Довжина символів після ких буде все обрізатись виставлена в ручну!!!Потрібно визначити щоб обраізало після ;*/)) : 0), // 
-                        Count = Convert.ToInt32((Reader["Количество"].ToString() != "")? Reader["Количество"] : 0),
+                        Count = Convert.ToInt32((Reader["Количество"].ToString() != "") ? Reader["Количество"] : 0),
                         Country = Reader["Страна_производитель"].ToString(),
-                        //ItemDiscount = Convert.ToInt32(Reader["Скидка"])                 
-                    });
-                    
+                        //ItemDiscount = Convert.ToInt32(Reader["Скидка"])      
+                    };
+                    Items.Add(data);
                 }
+                    Reader.Close();
+                    Conn.Close();
+                //using (TransactionScope scope = new TransactionScope())
+                //{
+                    context.Configuration.AutoDetectChangesEnabled = false;
+                    context.Configuration.ValidateOnSaveEnabled = false;
+                    int count = 0;
+                foreach (var Eitem in Items)
+                {
+                    count++;
+                    context.Products.Add(new Product
+                    {
+                        //Name = Reader["Название_позиции"].ToString(),
+                        Code = Eitem.Code,
+                        Count = Eitem.Count,
+                        PriceUah = Eitem.PriceUah,
+                        PriceWholesale = Eitem.PriceWholesale,
+                        Country = Eitem.Country
+                        // Idgroup = 2
+                    });
+                }
+                    context.SaveChanges();
+                    context.Configuration.AutoDetectChangesEnabled = true;
+                    context.Configuration.ValidateOnSaveEnabled = true;
+                //    scope.Complete();
+             //   }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Reader.Close();
-            Conn.Close();
             return Items;
         }
-
         //public async Task<bool> InsertOrUpdateRowInExcelAsync(ExcelItem item)
         //{
         //    bool IsSave = false;

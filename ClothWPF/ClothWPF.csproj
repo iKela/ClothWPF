@@ -315,6 +315,7 @@
     <Compile Include="Arrival\Supplier\SupplierInfo.xaml.cs">
       <DependentUpon>SupplierInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AsynkConnect.cs" />
     <Compile Include="Authorization\Classes\AnonymousIdentity.cs" />
     <Compile Include="Authorization\Classes\AuthentationService.cs" />
     <Compile Include="Authorization\Classes\AuthenticationViewModel.cs" />
@@ -336,6 +337,7 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Enterprise.cs" />
     <Compile Include="Entities\GroupProduct.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Realization.cs" />
     <Compile Include="Entities\RealizationProduct.cs" />
     <Compile Include="Entities\Supplier.cs" />
@@ -344,12 +346,12 @@
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpes\ConnectionProvaider.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="BindingProxy.cs" />
     <Compile Include="Entities\EfContext.cs" />
-    <Compile Include="Entities\Product.cs" />
     <Compile Include="GridSettingsForm.xaml.cs">
       <DependentUpon>GridSettingsForm.xaml</DependentUpon>
     </Compile>
@@ -357,41 +359,9 @@
     <Compile Include="MainFolder\ProductSubtraction.xaml.cs">
       <DependentUpon>ProductSubtraction.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806121124224_new.cs" />
-    <Compile Include="Migrations\201806121124224_new.Designer.cs">
-      <DependentUpon>201806121124224_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806121218078_editSupplier.cs" />
-    <Compile Include="Migrations\201806121218078_editSupplier.Designer.cs">
-      <DependentUpon>201806121218078_editSupplier.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806140922416_update.cs" />
-    <Compile Include="Migrations\201806140922416_update.Designer.cs">
-      <DependentUpon>201806140922416_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806140930338_qw.cs" />
-    <Compile Include="Migrations\201806140930338_qw.Designer.cs">
-      <DependentUpon>201806140930338_qw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806151406168_updateArrProdstrToInt.cs" />
-    <Compile Include="Migrations\201806151406168_updateArrProdstrToInt.Designer.cs">
-      <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806191357412_naME1.cs" />
-    <Compile Include="Migrations\201806191357412_naME1.Designer.cs">
-      <DependentUpon>201806191357412_naME1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807251640271_enterprise.cs" />
-    <Compile Include="Migrations\201807251640271_enterprise.Designer.cs">
-      <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808181340007_GroupP.Realizations.cs" />
-    <Compile Include="Migrations\201808181340007_GroupP.Realizations.Designer.cs">
-      <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808211018583_EditRealizationProduct.cs" />
-    <Compile Include="Migrations\201808211018583_EditRealizationProduct.Designer.cs">
-      <DependentUpon>201808211018583_EditRealizationProduct.cs</DependentUpon>
+    <Compile Include="Migrations\201808271653116_1.cs" />
+    <Compile Include="Migrations\201808271653116_1.Designer.cs">
+      <DependentUpon>201808271653116_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -432,32 +402,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201806121124224_new.resx">
-      <DependentUpon>201806121124224_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806121218078_editSupplier.resx">
-      <DependentUpon>201806121218078_editSupplier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806140922416_update.resx">
-      <DependentUpon>201806140922416_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806140930338_qw.resx">
-      <DependentUpon>201806140930338_qw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806151406168_updateArrProdstrToInt.resx">
-      <DependentUpon>201806151406168_updateArrProdstrToInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806191357412_naME1.resx">
-      <DependentUpon>201806191357412_naME1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807251640271_enterprise.resx">
-      <DependentUpon>201807251640271_enterprise.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808181340007_GroupP.Realizations.resx">
-      <DependentUpon>201808181340007_GroupP.Realizations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808211018583_EditRealizationProduct.resx">
-      <DependentUpon>201808211018583_EditRealizationProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808271653116_1.resx">
+      <DependentUpon>201808271653116_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

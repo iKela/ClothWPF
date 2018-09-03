@@ -24,7 +24,7 @@ namespace ClothWPF.Entities
         [MaxLength(59)]
         public string Country { get; set; }
         [ForeignKey("GetGroupProduct")]
-        public int Idgroup { get; set; }
+        public int? Idgroup { get; set; }
         public GroupProduct GetGroupProduct { get; set; }
     }
 }
