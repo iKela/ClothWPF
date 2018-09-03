@@ -89,16 +89,15 @@ namespace ClothWPF.General.Realization
         #region Отримати значення колонкі з усіх рядків
         private string GetSingleCellValue(int roww, int column)
         {
-            DataGrid dataGrid = realizationGrid as DataGrid;
+            var dataGrid = realizationGrid as DataGrid;
             if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
             { 
-                DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[roww]);
+                var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[roww]);
                 if (row != null)
                 {
-                    DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
-             
-                    DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(column) as DataGridCell;
-                    if (cell != null)
+                    var presenter = GetVisualChild<DataGridCellsPresenter>(row);
+
+                    if (presenter.ItemContainerGenerator.ContainerFromIndex(column) is DataGridCell cell)
                     {
                         return ((TextBlock)cell.Content).Text;
                     }
@@ -110,13 +109,13 @@ namespace ClothWPF.General.Realization
         }
         private void GetColumnValue()
         {
-            DataGrid dataGrid = realizationGrid as DataGrid;
+            var dataGrid = realizationGrid as DataGrid;
             if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
             {
 
                 for (int i = 0; i < realizationGrid.Items.Count; i++)
                 {
-                    DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[i]);
+                    DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(i);
                     if (row != null)
                     {
                         int index = 0;
@@ -136,13 +135,12 @@ namespace ClothWPF.General.Realization
                             if (txt_FullPrice.Text != "")
                             {
                                 txt_FullPrice.Text = (Convert.ToDouble(txt_FullPrice.Text) + Convert.ToDouble(((TextBlock)cell.Content).Text)).ToString();
-
                             }
                             else
                             {
                                 txt_FullPrice.Text += ((TextBlock)cell.Content).Text;
                             }
-                        }
+                        } 
                     }
                 }
 
