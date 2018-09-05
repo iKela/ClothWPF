@@ -153,12 +153,12 @@ namespace ClothWPF
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
-                var obj = ((FrameworkElement)sender).DataContext as Product;
+                var obj = ((FrameworkElement)sender).DataContext as ProductModel;
                 if (clothesGrid.SelectedItem != null)
                 {
                     try
                     {
-                        using (EfContext context = new EfContext())
+                        using (var context = new EfContext())
                         {
                             context.Products.Remove(context.Products.Find(obj.IdProduct));
                             context.SaveChanges();
