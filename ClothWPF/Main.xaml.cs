@@ -201,7 +201,7 @@ namespace ClothWPF
             {
                 if (clothesGrid.SelectedItem != null)
                 {
-                    var selected = (Product)clothesGrid.SelectedItem;
+                    var selected = (ProductModel)clothesGrid.SelectedItem;
                     addItem.Title = "Редагувати";
                     addItem.btn_Add.Content = "Зберегти";
                     addItem.Productadding = new Product { IdProduct = selected.IdProduct };
