@@ -46,7 +46,7 @@ namespace ClothWPF
                 //LoadExcelInfo();
                 //loaded();
             }));
-            LoadExcelInfo();
+            //LoadExcelInfo();
             loaded();
         }
 
@@ -282,7 +282,7 @@ namespace ClothWPF
             {
                 if (clothesGrid.SelectedItem != null)
                 {
-                    var selected = (Product)clothesGrid.SelectedItem;
+                    var selected = (ProductModel)clothesGrid.SelectedItem;
                     productSubtraction.Title = "Відняти";
                     productSubtraction.subtraction = new Product { IdProduct = selected.IdProduct };
                     productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;

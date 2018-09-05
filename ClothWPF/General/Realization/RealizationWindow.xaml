@@ -39,10 +39,12 @@
         <Grid Grid.Row="4">
             <DataGrid x:Name="realizationGrid" 
                       AutoGenerateColumns="False" 
+                      CanUserAddRows="False"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
+                      
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>
