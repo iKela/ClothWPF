@@ -43,7 +43,7 @@ namespace ClothWPF.General.Realization
         {
             SaveGridChanges(sender, e);
             GetColumnValue();
-            CountValues();
+            //CountValues();
         }
 
         void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
@@ -80,9 +80,7 @@ namespace ClothWPF.General.Realization
                         // el.Text has the new, user-entered value
                         if (Convert.ToDouble(el.Text) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3)))
                         {
-                            GetCell(realizationGrid, rowIndex, 8).Content =
-                                (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)))
-                                .ToString(); /*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                            GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5))).ToString(); /*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
                         }
                         else
                         {
@@ -165,8 +163,8 @@ namespace ClothWPF.General.Realization
                             if (txt_FullPrice.Text != "")
                             {
                                 txt_FullPrice.Text =
-                                    (Convert.ToDouble(txt_FullPrice.Text) +
-                                     Convert.ToDouble(((TextBlock) cell.Content).Text)).ToString();
+                                    ((Convert.ToDouble(txt_FullPrice.Text)) +
+                                     (Convert.ToDouble(((TextBlock) cell.Content).Text))).ToString();
                             }
                             else
                             {
@@ -294,30 +292,55 @@ namespace ClothWPF.General.Realization
             {
                 box.Text = oldTextDiscount;
             }
-        }
-
-        private void txt_Discount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //txt_Discount.Text = txt_Discount.Text + "%";
-            if (Convert.ToInt32(txt_FullPrice.Text) != 0 || txt_FullPrice.Text != "")
+            else
             {
+                if (Equals(sender, txt_Discount))
+                {
+                    CountDiscount();
+                }
                 CountValues();
             }
         }
 
+        private void txt_Discount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CountValues();
+        }
+
         private void CountValues()
         {
-            txt_TotalSum.Text  = (Convert.ToInt32(txt_FullPrice.Text) - Convert.ToInt32(txt_DiscountSum) - ((txt_Prepayment.Text != "")? Convert.ToInt32(txt_Prepayment.Text) : 0)).ToString();
+            txt_TotalSum.Text  = (Convert.ToDouble(txt_FullPrice.Text) - Convert.ToDouble(txt_DiscountSum.Text) - ((txt_Prepayment.Text != "")? Convert.ToDouble(txt_Prepayment.Text) : 0)).ToString();
         }
 
         private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * ((Convert.ToDouble(txt_Discount.Text) > 0)? Convert.ToDouble(txt_Discount.Text): 1 )) / 100).ToString(CultureInfo.CurrentCulture);
+            CountDiscount();
+            CountValues();
         }
 
+        private void CountDiscount()
+        {
+            if (txt_Discount.Text == "")
+            {
+                txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * 0) / 100).ToString();
+
+            }
+            else
+            {
+                txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * Convert.ToDouble(txt_Discount.Text)) / 100).ToString();
+            }
+        }
         private void txt_Prepayment_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void TextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+               realizationGrid.Focus();
+            }
         }
     }
 }
