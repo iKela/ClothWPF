@@ -46,7 +46,7 @@ namespace ClothWPF
                 //LoadExcelInfo();
                 //loaded();
             }));
-            LoadExcelInfo();
+            //LoadExcelInfo();
             loaded();
         }
 
@@ -153,7 +153,7 @@ namespace ClothWPF
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
-                Product obj = ((FrameworkElement)sender).DataContext as Product;
+                var obj = ((FrameworkElement)sender).DataContext as Product;
                 if (clothesGrid.SelectedItem != null)
                 {
                     try
