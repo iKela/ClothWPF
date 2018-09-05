@@ -70,7 +70,7 @@ namespace ClothWPF.General.Classes
                     var data = new ExcelItem()
                     {
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
-                        // UId = Convert.ToInt32((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Цена"] : 0),
+                        UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Уникальный_идентификатор"] : 0),
                         Code = Reader["Код_товара"].ToString(),
                         //Name = Reader["Название_позиции"].ToString(),
                         PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
@@ -93,7 +93,8 @@ namespace ClothWPF.General.Classes
                     count++;
                     context.Products.Add(new Product
                     {
-                        //Name = Reader["Название_позиции"].ToString(),
+                        Uid=Eitem.UId,
+                        Name = Eitem.Name,
                         Code = Eitem.Code,
                         Count = Eitem.Count,
                         PriceUah = Eitem.PriceUah,
