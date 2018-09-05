@@ -12,7 +12,7 @@ namespace ClothWPF.Entities
     {
         [Key]
         public int IdProduct { get; set; }
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Name { get; set; }
         public string Article { get; set; }
         public string Code { get; set; }
