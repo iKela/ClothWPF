@@ -46,7 +46,7 @@ namespace ClothWPF
                 //LoadExcelInfo();
                 //loaded();
             }));
-            //LoadExcelInfo();
+            LoadExcelInfo();
             loaded();
         }
 
