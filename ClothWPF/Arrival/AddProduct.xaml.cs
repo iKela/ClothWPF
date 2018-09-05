@@ -86,11 +86,11 @@ namespace ClothWPF
             var selected = (ProductModel)AutoName.SelectedItem;
             Product Productadding = new Product { IdProduct = selected.Id };
             _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
-            txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Code;
-            txt_Article.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).Article;
-            txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceDollar.ToString();
-            txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceRetail.ToString();
-            txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id).PriceWholesale.ToString();
+            txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.Code ?? throw new InvalidOperationException();
+            txt_Article.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.Article ?? throw new InvalidOperationException();
+            txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceDollar.ToString() ?? throw new InvalidOperationException();
+            txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceRetail.ToString() ?? throw new InvalidOperationException();
+            txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceWholesale.ToString() ?? throw new InvalidOperationException();
         }
         private void TripleSample()
         {
