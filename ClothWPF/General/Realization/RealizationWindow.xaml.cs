@@ -42,7 +42,7 @@ namespace ClothWPF.General.Realization
         void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             SaveGridChanges(sender, e);
-            GetColumnValue();
+            //GetColumnValue();
             CountValues();
         }
 
@@ -299,20 +299,20 @@ namespace ClothWPF.General.Realization
         private void txt_Discount_TextChanged(object sender, TextChangedEventArgs e)
         {
             //txt_Discount.Text = txt_Discount.Text + "%";
-            if (Convert.ToInt32(txt_FullPrice.Text) != 0 || txt_FullPrice.Text != "")
-            {
-                CountValues();
-            }
+            //if (Convert.ToInt32(txt_FullPrice.Text) != 0 || txt_FullPrice.Text != "")
+            //{
+            //    CountValues();
+            //}
         }
 
         private void CountValues()
         {
-            txt_TotalSum.Text  = (Convert.ToInt32(txt_FullPrice.Text) - Convert.ToInt32(txt_DiscountSum) - ((txt_Prepayment.Text != "")? Convert.ToInt32(txt_Prepayment.Text) : 0)).ToString();
+            //txt_TotalSum.Text  = (Convert.ToInt32(txt_FullPrice.Text) - Convert.ToInt32(txt_DiscountSum) - ((txt_Prepayment.Text != "")? Convert.ToInt32(txt_Prepayment.Text) : 0)).ToString();
         }
 
         private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * ((Convert.ToDouble(txt_Discount.Text) > 0)? Convert.ToDouble(txt_Discount.Text): 1 )) / 100).ToString(CultureInfo.CurrentCulture);
+            //txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * ((Convert.ToDouble(txt_Discount.Text) > 0)? Convert.ToDouble(txt_Discount.Text): 1 )) / 100).ToString(CultureInfo.CurrentCulture);
         }
 
         private void txt_Prepayment_TextChanged(object sender, TextChangedEventArgs e)
