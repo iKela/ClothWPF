@@ -48,7 +48,7 @@
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="0" 
+                    <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="0" 
                                         IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9289;  Код товару"     Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="1"
                                         IsReadOnly="True"/>
