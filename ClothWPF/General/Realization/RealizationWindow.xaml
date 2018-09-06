@@ -39,10 +39,12 @@
         <Grid Grid.Row="4">
             <DataGrid x:Name="realizationGrid" 
                       AutoGenerateColumns="False" 
+                      CanUserAddRows="False"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
+                      
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>
@@ -84,13 +86,13 @@
             <Separator Margin="20"/>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <TextBox Name="txt_Discount" materialDesign:HintAssist.Hint="Знижка" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" TextAlignment="Center" 
-                         GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="txt_Discount_TextChanged" />
+                         GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="txt_Discount_TextChanged" KeyDown="TextBox_OnKeyDown"/>
                 <TextBox Name="txt_DiscountSum" materialDesign:HintAssist.Hint="Сума знижкі" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"/>
             </StackPanel>
             <Separator Margin="20"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBox Name="txt_Prepayment" materialDesign:HintAssist.Hint="Передоплата" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20"
-                         TextChanged="txt_Prepayment_TextChanged"/>
+                         TextChanged="txt_Prepayment_TextChanged" KeyDown="TextBox_OnKeyDown" LostFocus="TextBox_LostFocus"/>
             </StackPanel>
             <Separator Margin="300"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

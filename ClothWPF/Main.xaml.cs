@@ -46,7 +46,7 @@ namespace ClothWPF
                 //LoadExcelInfo();
                 //loaded();
             }));
-            LoadExcelInfo();
+            //LoadExcelInfo();
             loaded();
         }
 
@@ -153,12 +153,12 @@ namespace ClothWPF
         {
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
-                var obj = ((FrameworkElement)sender).DataContext as Product;
+                var obj = ((FrameworkElement)sender).DataContext as ProductModel;
                 if (clothesGrid.SelectedItem != null)
                 {
                     try
                     {
-                        using (EfContext context = new EfContext())
+                        using (var context = new EfContext())
                         {
                             context.Products.Remove(context.Products.Find(obj.IdProduct));
                             context.SaveChanges();
@@ -282,7 +282,7 @@ namespace ClothWPF
             {
                 if (clothesGrid.SelectedItem != null)
                 {
-                    var selected = (Product)clothesGrid.SelectedItem;
+                    var selected = (ProductModel)clothesGrid.SelectedItem;
                     productSubtraction.Title = "Відняти";
                     productSubtraction.subtraction = new Product { IdProduct = selected.IdProduct };
                     productSubtraction._nowcount = _ProductFullInfo.FirstOrDefault(s => s.IdProduct == selected.IdProduct).Count;
