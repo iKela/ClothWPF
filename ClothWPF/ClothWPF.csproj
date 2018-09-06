@@ -371,6 +371,10 @@
     <Compile Include="Migrations\201809050813121_addUid.Designer.cs">
       <DependentUpon>201809050813121_addUid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809060652034_maxliength.cs" />
+    <Compile Include="Migrations\201809060652034_maxliength.Designer.cs">
+      <DependentUpon>201809060652034_maxliength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
@@ -418,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809050813121_addUid.resx">
       <DependentUpon>201809050813121_addUid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809060652034_maxliength.resx">
+      <DependentUpon>201809060652034_maxliength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
