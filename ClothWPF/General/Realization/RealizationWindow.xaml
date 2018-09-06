@@ -44,7 +44,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
-                      
+                      SelectedIndex="{Binding IdRealizationProduct}"
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>

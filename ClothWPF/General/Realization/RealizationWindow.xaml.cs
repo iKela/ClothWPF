@@ -43,8 +43,8 @@ namespace ClothWPF.General.Realization
         void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             SaveGridChanges(sender, e);
-            GetColumnValue();
-            //CountValues();
+            //GetColumnValue();
+            CountValues();
         }
 
         void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
