@@ -28,6 +28,7 @@ namespace ClothWPF.General.Realization
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int rowIndex { get; set; }
+        Enterprise.ProductList addProduct = new Enterprise.ProductList();
         public RealizationWindow()
         {
             InitializeComponent();
@@ -168,7 +169,6 @@ namespace ClothWPF.General.Realization
         
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
             var data = new RealizationProductModel
             {
@@ -202,7 +202,7 @@ namespace ClothWPF.General.Realization
         }
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            var edit = _ListProduct.Where(a=>a.==realizationGrid.SelectedItem).
         }
         void Add()
         {

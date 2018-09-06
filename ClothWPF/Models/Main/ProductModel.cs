@@ -9,6 +9,7 @@ namespace ClothWPF.Models.Main
     public class ProductModel
     {
         public int IdProduct { get; set; }
+        public Int64 Uid { get; set; }
         public string Name { get; set; }
         public string Article { get; set; }
         public string Code { get; set; }
