@@ -72,7 +72,7 @@ namespace ClothWPF.General.Classes
                         //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
                         UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Уникальный_идентификатор"] : 0),
                         Code = Reader["Код_товара"].ToString(),
-                        //Name = Reader["Название_позиции"].ToString(),
+                        Name = Reader["Название_позиции"].ToString(),
                         PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
                         PriceWholesale = Convert.ToDouble((Reader["Оптовая_цена"].ToString() != "") ? Convert.ToDouble(Reader["Оптовая_цена"].ToString().Replace(".", ",").Substring(0, 5 /*Довжина символів після ких буде все обрізатись виставлена в ручну!!!Потрібно визначити щоб обраізало після ;*/)) : 0), // 
                         Count = Convert.ToInt32((Reader["Количество"].ToString() != "") ? Reader["Количество"] : 0),
@@ -85,12 +85,16 @@ namespace ClothWPF.General.Classes
                     Conn.Close();
                 //using (TransactionScope scope = new TransactionScope())
                 //{
+                
                     context.Configuration.AutoDetectChangesEnabled = false;
                     context.Configuration.ValidateOnSaveEnabled = false;
-                    int count = 0;
+                  
                 foreach (var Eitem in Items)
                 {
-                    count++;
+                    var d = context.Products
+                        .SingleOrDefault(a => a.Uid == Eitem.UId);
+                    if (d != null)
+                        continue;
                     context.Products.Add(new Product
                     {
                         Uid=Eitem.UId,
