@@ -239,11 +239,6 @@ namespace ClothWPF.General.Realization
 
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           edit = _ListProduct.Where(a => a.IdRealizationProduct == realizationGrid.SelectedIndex);
-        }
-
         void Add()
         {
             //foreach (var product in )   //переробити
@@ -346,6 +341,11 @@ namespace ClothWPF.General.Realization
             {
                realizationGrid.Focus();
             }
+        }
+
+        private void realizationGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            realizationGrid.Items.Refresh();
         }
     }
 }
