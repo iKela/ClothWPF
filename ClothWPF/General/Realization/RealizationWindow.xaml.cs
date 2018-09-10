@@ -64,14 +64,13 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        if (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) != 0)
-                        {
+           
                             GetCell(realizationGrid, rowIndex, 8).Content =
                                 (Convert.ToDouble(el.Text) * Convert.ToDouble(
                                      (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
                                          ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
                                          : 1)).ToString();
-                        }         
+                           
                         //edit = GetCell(realizationGrid, rowIndex, 8).Content;
                         //MessageBox.Show(edit.ToString());
                     }
@@ -163,17 +162,19 @@ namespace ClothWPF.General.Realization
                             }
                         }
 
-                        DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(index) as DataGridCell;
+                        var cell= presenter.ItemContainerGenerator.ContainerFromIndex(index) as DataGridCell;
                         if (cell != null)
                         {
-                            //if (txt_FullPrice.Text != "")
-                            //{
-                            //    txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + Convert.ToDouble((Convert.ToString(((TextBlock) cell.Content).Text)))).ToString();
-                            //}
-                            //else
-                            //{
-                                txt_FullPrice.Text +=  cell.Content;
-                            //}
+                            string cellValue = cell.ContentStringFormat;
+                        
+                            if (txt_FullPrice.Text != "")
+                            {
+                                txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + (Convert.ToDouble(cellValue))).ToString();
+                            }
+                            else
+                            {
+                              txt_FullPrice.Text +=  cell.Content;
+                            }
                         }
                     }
                 }
@@ -217,7 +218,7 @@ namespace ClothWPF.General.Realization
                 CountReserved = 0,
                 Discount = 0,
                 NDS = 0,
-                Sum = 0,
+                //Sum = 0,
                 Count = addProduct._count,
                 PriceWholesale = addProduct._priceWholesale,
             };
@@ -320,15 +321,15 @@ namespace ClothWPF.General.Realization
 
         private void CountDiscount()
         {
-            //if (txt_Discount.Text == "")
-            //{
-            //    txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * 0) / 100).ToString();
+            if (txt_Discount.Text == "")
+            {
+                txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * 0) / 100).ToString();
 
-            //}
-            //else
-            //{
-            //    txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * Convert.ToDouble(txt_Discount.Text)) / 100).ToString();
-            //}
+            }
+            else
+            {
+                txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * Convert.ToDouble(txt_Discount.Text)) / 100).ToString();
+            }
         }
         private void txt_Prepayment_TextChanged(object sender, TextChangedEventArgs e)
         {

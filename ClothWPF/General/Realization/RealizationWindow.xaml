@@ -39,7 +39,7 @@
         <Grid Grid.Row="4">
             <DataGrid x:Name="realizationGrid" 
                       AutoGenerateColumns="False" 
-                      CanUserAddRows="True"
+                      CanUserAddRows="False"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
