@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,11 +18,24 @@ namespace ClothWPF.Authorization.Loading
     /// <summary>
     /// Interaction logic for LoadingWindow.xaml
     /// </summary>
-    public partial class LoadingWindow : Window
+    [PrincipalPermission(SecurityAction.Demand)]
+    public partial class LoadingWindow : Window, IView
     {
         public LoadingWindow()
         {
             InitializeComponent();
+        }
+
+        public IViewModel ViewModel
+        {
+            get
+            {
+                return DataContext as IViewModel;
+            }
+            set
+            {
+                DataContext = value;
+            }
         }
     }
 }

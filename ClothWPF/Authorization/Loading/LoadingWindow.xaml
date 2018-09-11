@@ -3,29 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:ClothWPF.Authorization.Loading"
         mc:Ignorable="d"
         Title="LoadingWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="450" Width="800">
     <Grid>
-        <Ellipse Height="50" Width="50">
-            <ColorAnimationUsingKeyFrames Storyboard.TargetName="ellipse0" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
-                <SplineColorKeyFrame KeyTime="00:00:00.0" Value="{StaticResource FilledColor}"/>
-                <SplineColorKeyFrame KeyTime="00:00:01.6" Value="{StaticResource UnfilledColor}"/>
-            </ColorAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse0" Storyboard.TargetProperty="Width" >
-                <DoubleAnimationUsingKeyFrames.KeyFrames>
-                    <SplineDoubleKeyFrame  KeyTime="00:00:00.0" Value="15" />
-                    <SplineDoubleKeyFrame  KeyTime="00:00:01.0" Value="12" />
-                    <SplineDoubleKeyFrame  KeyTime="00:00:01.6" Value="0" />
-                </DoubleAnimationUsingKeyFrames.KeyFrames>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ellipse0" Storyboard.TargetProperty="Height" >
-                <DoubleAnimationUsingKeyFrames.KeyFrames>
-                    <SplineDoubleKeyFrame  KeyTime="00:00:00.0" Value="15" />
-                    <SplineDoubleKeyFrame  KeyTime="00:00:01.0" Value="12" />
-                    <SplineDoubleKeyFrame  KeyTime="00:00:01.6" Value="0" />
-                </DoubleAnimationUsingKeyFrames.KeyFrames>
-            </DoubleAnimationUsingKeyFrames>
-        </Ellipse>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <fa:ImageAwesome Icon="Spinner" Spin="True" Height="48" Width="48" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

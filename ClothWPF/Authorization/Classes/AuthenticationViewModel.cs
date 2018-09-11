@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Controls;
 using System.Security;
 using System.Windows;
+using ClothWPF.Authorization.Loading;
 
 namespace ClothWPF.Authorization
 {
@@ -99,7 +100,7 @@ namespace ClothWPF.Authorization
                                         form.Hide();
                             }
                         }
-                        view = new Main();
+                        view = new LoadingWindow();
                     }
                     else
                     {
@@ -111,7 +112,7 @@ namespace ClothWPF.Authorization
 
                             }
                         }
-                        view = new Main();
+                        view = new LoadingWindow();
                     }
 
                     view.Show();
