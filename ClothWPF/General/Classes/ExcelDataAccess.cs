@@ -94,7 +94,7 @@ namespace ClothWPF.General.Classes
                     i++;
                     var d = context.Products
                         .SingleOrDefault(a => a.Uid == Eitem.UId);
-                    if (d != null && i<15)
+                    if (d != null )
                     {
                         context.Products.Add(new Product
                         {
@@ -108,6 +108,8 @@ namespace ClothWPF.General.Classes
                             // Idgroup = 2
                         });
                     }
+                    if(i<15)
+                        break;
                 }
                     context.SaveChanges();
                     context.Configuration.AutoDetectChangesEnabled = true;

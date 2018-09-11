@@ -7,6 +7,7 @@ using ClothWPF.Models;
 using ClothWPF.Entities;
 using System.ComponentModel;
 using System.Windows.Media;
+using ClothWPF.Helpes;
 
 namespace ClothWPF
 {
@@ -20,7 +21,7 @@ namespace ClothWPF
         public bool _close { get; set; }
         public Product Productadding { get; set; }
         public List<ProductModel> productModels;
-        EfContext context = new EfContext();
+        private EfContext context;
         public int _idproduct { get; set; }
         public string _name { get; set; }
         public string _code { get; set; }
@@ -39,18 +40,7 @@ namespace ClothWPF
         {
             InitializeComponent();
 
-            productModels  = context.Products.Select(ap => new ProductModel     // ар =>-- придумана лямбда
-            {
-                Id = ap.IdProduct,
-                Code = ap.Code,
-                Name = ap.Name,
-                Article = ap.Article,
-                Count = ap.Count,
-                PriceDollar = ap.PriceDollar,
-                PriceRetail = ap.PriceRetail,
-                PriceUah = ap.PriceUah,
-                PriceWholesale = ap.PriceWholesale
-            }).ToList();
+          
            
             AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = productModels; //AutoName.Items.Refresh();
 
