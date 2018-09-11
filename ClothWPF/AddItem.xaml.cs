@@ -73,6 +73,7 @@ namespace ClothWPF
                         }
                         MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                         _additemClose = true;
+                        
                         Close();
                     }
                     catch (Exception ex)

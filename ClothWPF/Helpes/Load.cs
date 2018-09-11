@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Helpes
 {
-    public class LoadedProvaider
+    public class Load
     {
         public List<ProductModel> _ProductFullInfo { get; set; }
         public EfContext context;
-
-        public Task ConnecTask()
+        public Load()
         {
-            return Task.Run(() =>
-            {
-                EfContext context = new EfContext();
-            });
+            context = new EfContext();
+
         }
 
-        public void loaded()
+        public List<ProductModel> loaded()
         {
             _ProductFullInfo = context.Products
                 // .Include(b => b.GetGroupProduct)
@@ -37,6 +34,8 @@ namespace ClothWPF.Helpes
                     Country = a.Country,
                     // Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
+            return _ProductFullInfo;
         }
+
     }
 }

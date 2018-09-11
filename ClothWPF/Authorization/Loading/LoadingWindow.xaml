@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:ClothWPF.Authorization.Loading"
         mc:Ignorable="d"
-        Title="LoadingWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="450" Width="800">
+        Title="LoadingWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="450" Width="800" Loaded="Window_Loaded" ContentRendered="Window_ContentRendered">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
             <Grid>
-                <fa:ImageAwesome Icon="Spinner" Spin="True" Height="48" Width="48" />
+                <!--<fa:ImageAwesome Name="ImageAwesome" Icon="Spinner" Spin="True"  Height="48" Width="48" />-->
             </Grid>
         </StackPanel>
     </Grid>

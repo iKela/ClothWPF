@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.IO;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Models.Main;
 using ClothWPF.Helpes;
 using ClothWPF.General.Classes;
@@ -25,34 +26,32 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window
     {
-        private List<ProductModel> _ProductFullInfo;
+        public List<ProductModel> _ProductFullInfo { get; set; }
         private EfContext context;
         General.Classes.DataAccess objDs;
-        public Main()
+        public Main(EfContext conn)
         {
             InitializeComponent();
-            LoadedProvaider conn = new LoadedProvaider();
-            conn.loaded();
-            _ProductFullInfo = conn._ProductFullInfo;
+           // LoadedProvaider conn = new LoadedProvaider();
+            //_ProductFullInfo = conn.loaded();
             //ConnectionProvider _connectionProvider = new ConnectionProvider();
             //_connectionProvider.Conected += _connectionProvider_Conected;
             //_connectionProvider.ConnectRun();
-           
-            context = conn.context;
-            //context = new EfContext();
-               LoadExcelInfo();
-               loaded();
-        }
-        private void _connectionProvider_Conected(EfContext eFContext)
-        {
-            //context = eFContext;
 
-            Dispatcher.BeginInvoke(new Action(() => 
-            {
-                Lbl_load.Content = "Підключення виконано успішно";
-               
-            }));
+            context = conn;
+            //context = new EfContext();
+            
         }
+        //private void _connectionProvider_Conected(EfContext eFContext)
+        //{
+        //    //context = eFContext;
+
+        //    Dispatcher.BeginInvoke(new Action(() => 
+        //    {
+        //        Lbl_load.Content = "Підключення виконано успішно";
+               
+        //    }));
+        //}
 
         #region IView Members
         public IViewModel ViewModel
@@ -72,6 +71,8 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
+                //LoadExcelInfo();
+                loaded();
             }
             catch
             {
@@ -85,9 +86,7 @@ namespace ClothWPF
             {
                 clothesGrid.ItemsSource = null;
                 clothesGrid.Items.Clear();
-            }));
-            // _ProductFullInfo = new List<Product>();
-            
+            }));  
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 clothesGrid.ItemsSource =_ProductFullInfo;
@@ -95,7 +94,7 @@ namespace ClothWPF
     }
         private void LoadExcelInfo()
         {
-            objDs = new General.Classes.DataAccess(this.context);
+            objDs = new General.Classes.DataAccess(context);
             try
             {
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -111,7 +110,7 @@ namespace ClothWPF
         }
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
-            NewArrival newArrival = new NewArrival(this.context);
+            NewArrival newArrival = new NewArrival(context);
             newArrival.ShowDialog();
             loaded();
         }
@@ -170,6 +169,9 @@ namespace ClothWPF
         {
             AddItem addItem = new AddItem();
             addItem.ShowDialog();
+            Load l = new Load();
+            _ProductFullInfo = null;
+            _ProductFullInfo = l.loaded();
             loaded();
         }
         private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)
