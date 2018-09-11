@@ -72,7 +72,7 @@
     </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="FirstColumn" Width="50"/>
+            <ColumnDefinition  x:Name="FirstColumn" Width="50"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Column="0"
