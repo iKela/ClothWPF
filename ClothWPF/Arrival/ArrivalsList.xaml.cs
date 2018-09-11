@@ -167,7 +167,31 @@ namespace ClothWPF.Arrival
         {
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
-           // FirstColumn.Width = new GridLength(50);
+            //FirstColumn.Width = new GridLength(50);
         }
+        private void SetUpComesVizualization()
+        {
+            grid_Arrivals.Visibility = Visibility.Visible;
+            grid_ArrivalInfo.Visibility = Visibility.Visible;
+            GridRealization.Visibility = Visibility.Collapsed;
+            GridRealizationItems.Visibility = Visibility.Collapsed;
+        }
+        private void SetUpRealizationVizualization()
+        {
+            grid_Arrivals.Visibility = Visibility.Collapsed;
+            grid_ArrivalInfo.Visibility = Visibility.Collapsed;
+            GridRealization.Visibility = Visibility.Visible;
+            GridRealizationItems.Visibility = Visibility.Visible;
+        }
+        private void HamgurgerComes_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetUpComesVizualization();
+        }
+
+        private void HamburgerRealizations_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetUpRealizationVizualization();
+        }
+
     }
 }
