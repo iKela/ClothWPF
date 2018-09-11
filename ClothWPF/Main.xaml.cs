@@ -23,7 +23,7 @@ namespace ClothWPF
     /// </summary>
     ///
     [PrincipalPermission(SecurityAction.Demand)]
-    public partial class Main : Window, IView
+    public partial class Main : Window
     {
         private List<ProductModel> _ProductFullInfo;
         private EfContext context;
