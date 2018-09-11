@@ -46,8 +46,8 @@ namespace ClothWPF.General.Realization
         void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             SaveGridChanges(sender, e);
-            //GetColumnValue();
-            //CountValues();
+            GetColumnValue();
+            CountValues();
         }
 
         void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
@@ -168,18 +168,18 @@ namespace ClothWPF.General.Realization
                             }
                         }
 
-                        DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(index) as DataGridCell;
+                        var cell= presenter.ItemContainerGenerator.ContainerFromIndex(index) as DataGridCell;
                         if (cell != null)
                         {
+                            string cellValue = cell.ContentStringFormat;
+                        
                             if (txt_FullPrice.Text != "")
                             {
-                                txt_FullPrice.Text =
-                                    ((Convert.ToDouble(txt_FullPrice.Text)) +
-                                     (Convert.ToDouble(((TextBlock) cell.Content).Text))).ToString();
+                                txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + (Convert.ToDouble(cellValue))).ToString();
                             }
                             else
                             {
-                                txt_FullPrice.Text += cell.Content;
+                              txt_FullPrice.Text +=  cell.Content;
                             }
                         }
                     }
@@ -329,7 +329,8 @@ namespace ClothWPF.General.Realization
 
         private void CountValues()
         {
-            txt_TotalSum.Text  = (Convert.ToDouble(txt_FullPrice.Text) - Convert.ToDouble(txt_DiscountSum.Text) - ((txt_Prepayment.Text != "")? Convert.ToDouble(txt_Prepayment.Text) : 0)).ToString();
+           if(txt_FullPrice.Text != "")
+           txt_TotalSum.Text  = ((Convert.ToDouble(txt_FullPrice.Text) - (((txt_DiscountSum.Text) != "")? Convert.ToDouble(txt_DiscountSum.Text) : 0 ) - ((txt_Prepayment.Text != "")? Convert.ToDouble(txt_Prepayment.Text) : 0))).ToString();
         }
 
         private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)

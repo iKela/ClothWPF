@@ -45,7 +45,7 @@ namespace ClothWPF
                 Lbl_load.Content = "Підключення виконано успішно";
                
             }));
-            LoadExcelInfo();
+            //LoadExcelInfo();
             loaded();
         }
 
