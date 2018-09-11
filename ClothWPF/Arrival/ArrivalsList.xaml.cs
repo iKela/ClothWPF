@@ -161,13 +161,13 @@ namespace ClothWPF.Arrival
         {
             btn_ShowHamburger.Visibility = Visibility.Collapsed;
             btn_HideHamburger.Visibility = Visibility.Visible;
-            FirstColumn.Width = new GridLength(200);
+            //FirstColumn.Width = new GridLength(200);
         }
         private void btn_HideHamburger_Click(object sender, RoutedEventArgs e)
         {
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
-            FirstColumn.Width = new GridLength(50);
+           // FirstColumn.Width = new GridLength(50);
         }
     }
 }
