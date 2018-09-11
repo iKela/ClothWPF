@@ -193,7 +193,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF0042A2" Visibility="Collapsed">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2"
+              Background="#FF0042A2" 
+              Visibility="Collapsed">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button Name="btn_HideHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btn_HideHamburger_Click">

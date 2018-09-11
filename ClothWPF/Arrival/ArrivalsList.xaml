@@ -34,147 +34,282 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ExpendColumn">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FirstColumn">
+            <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+        </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="NarrowColumn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FirstColumn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btn_ShowHamburger">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+            <BeginStoryboard Storyboard="{StaticResource ExpendColumn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btn_HideHamburger">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+            <BeginStoryboard Storyboard="{StaticResource NarrowColumn}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Name="FirstColumn" Width="50"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="45"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Menu>
-                <MenuItem Header="Файл" Margin="5 0" FontFamily="Times New Roman" FontSize="14" Height="30">
-                    <MenuItem Name="mi_CloseWindow" Header="Вихід" Click="btn_CloseWindow_Click"/>
-                </MenuItem>
-                <MenuItem Header="Таблиця" Margin="5 0" FontFamily="Times New Roman" FontSize="14" Height="30">
-                    <MenuItem Name="mi_GridsSettings" Header="Налаштування" Click="Settings_Click"/>
-                </MenuItem>
-            </Menu>
-        </StackPanel>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Column="0"
+              Background="#FF0042A2" 
+              Visibility="Visible">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button Name="btn_HideHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btn_HideHamburger_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF004AA2" Width="25" Height="25"/>
+                    </Button>
+                    <Button Name="btn_ShowHamburger" Width="50" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btn_ShowHamburger_Click">
+                        <materialDesign:PackIcon Kind="Menu" Foreground="#FF004AA2" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF31A1FF">
+                    <ListViewItem Height="60" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" >
+                            <materialDesign:PackIcon Kind="ViewList"  Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Склад" ToolTip="Функціонал для управління складом." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Calendar" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Календар" ToolTip="Можливість планувати робочий графік."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TrendingUp" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Графіки" ToolTip="Графіки продаж та аналітика рентабельності." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="270"/>
-                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel  Orientation="Horizontal" Grid.Column="0">
-                <TextBox Name="txt_DateFrom" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0"  Height="30" VerticalAlignment="Bottom" KeyDown="txt_DateFrom_KeyDown"/>
-                <TextBlock Text=" по " VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="14"/>
-                <TextBox Name="txt_DateTo" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0" KeyDown="txt_DateTo_KeyDown" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <TextBlock Text="&#128113;" VerticalAlignment="Center" Margin="5 0"/>
-                <ComboBox Name="cmb_Supplier" Text="Постачальник" Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Menu>
+                    <MenuItem Header="Файл" Margin="5 0" FontFamily="Times New Roman" FontSize="14" Height="30">
+                        <MenuItem Name="mi_CloseWindow" Header="Вихід" Click="btn_CloseWindow_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Таблиця" Margin="5 0" FontFamily="Times New Roman" FontSize="14" Height="30">
+                        <MenuItem Name="mi_GridsSettings" Header="Налаштування" Click="Settings_Click"/>
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel  Orientation="Horizontal" Grid.Column="0">
+                    <TextBox Name="txt_DateFrom" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0"  Height="30" VerticalAlignment="Bottom" KeyDown="txt_DateFrom_KeyDown"/>
+                    <TextBlock Text=" по " VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="14"/>
+                    <TextBox Name="txt_DateTo" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0" KeyDown="txt_DateTo_KeyDown" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBlock Text="&#128113;" VerticalAlignment="Center" Margin="5 0"/>
+                    <ComboBox Name="cmb_Supplier" Text="Постачальник" Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
                           SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Supplier_SelectionChanged"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <TextBlock Text="&#127970;" VerticalAlignment="Center" Margin="5 0"/>
-                <ComboBox Name="cmb_Enterprise" Text="Підприємство"  Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <TextBlock Text="&#127970;" VerticalAlignment="Center" Margin="5 0"/>
+                    <ComboBox Name="cmb_Enterprise" Text="Підприємство"  Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
                           SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Enterprise_SelectionChanged"/>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="3">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <TextBox Name="txt_Search" Tag="&#128269;" FontFamily="Times New Roman" FontSize="12" Height="30" Width="150" Margin="10 0" Style="{StaticResource MyWaterMarkStyle}"/>
-            </StackPanel>
-            <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
-        </Grid>
-        <Grid Grid.Row="4" Grid.ColumnSpan="3">
-            <DataGrid x:Name="grid_Arrivals"
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <TextBox Name="txt_Search" Tag="&#128269;" FontFamily="Times New Roman" FontSize="12" Height="30" Width="150" Margin="10 0" Style="{StaticResource MyWaterMarkStyle}"/>
+                </StackPanel>
+                <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
+            </Grid>
+            <Grid Grid.Row="4" Grid.ColumnSpan="3">
+                <DataGrid x:Name="grid_Arrivals"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
                       SelectionChanged="grid_Arrivals_SelectionChanged" 
                       Loaded="grid_Arrivals_Loaded"
-                      AutoGenerateColumns="False">
-                <DataGrid.Resources>
-                    <gen:BindingProxy x:Key="NumberVisibilityProxy"        Data="{Binding NumberVisibility}"/>
-                    <gen:BindingProxy x:Key="DateVisibilityProxy"          Data="{Binding DateVisibility}"/>
-                    <gen:BindingProxy x:Key="PurchaseTotalVisibilityProxy" Data="{Binding PurchaseTotalVisibility}"/>
-                    <gen:BindingProxy x:Key="SupplierVisibilityProxy"      Data="{Binding SupplierVisibility}"/>
-                    <gen:BindingProxy x:Key="ReceiverVisibilityProxy"      Data="{Binding ReceiverVisibility}"/>
-                    <gen:BindingProxy x:Key="WholesaleVisibilityProxy"     Data="{Binding WholesaleVisibility}"/>
-                    <gen:BindingProxy x:Key="EnterpriseVisibilityProxy"    Data="{Binding EnterpriseVisibility}"/>
-                    <gen:BindingProxy x:Key="UserVisibilityProxy"          Data="{Binding UserVisibility}"/>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
-                    <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184;  Закупівельна вартість"    Binding="{Binding Path=TotalPurchase}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128113;  Відправник"               Binding="{Binding Path=nameSupplier}"      Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128113;  Одержувач"                Binding="{Binding Path=ComesTo}"           Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181;  Оптова ціна"              Binding="{Binding Path=Wholesale}"         Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Валюта"                              Binding="{Binding Path=Currency}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#127970;  Підприємство"             Binding="{Binding Path=nameEnterprise}"    Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <!--<DataGridTextColumn Header="&#128113;  Отримав"                  Binding="{Binding Path=User}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>-->
-                    <DataGridTemplateColumn Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
-                                    <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        <Grid Grid.Row="5">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <TextBox Name="txt_SearchProduct" Tag="&#128269;" FontFamily="Times New Roman" FontSize="12" Height="30" Width="150" Margin="10 0" Style="{StaticResource MyWaterMarkStyle}"/>
-            </StackPanel>
-            <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
-        </Grid>
-        <Grid Grid.Row="6" Grid.ColumnSpan="3">
-            <DataGrid x:Name="grid_ArrivalInfo"  
+                      AutoGenerateColumns="False"
+                      Visibility="Visible">
+                    <DataGrid.Resources>
+                        <gen:BindingProxy x:Key="NumberVisibilityProxy"        Data="{Binding NumberVisibility}"/>
+                        <gen:BindingProxy x:Key="DateVisibilityProxy"          Data="{Binding DateVisibility}"/>
+                        <gen:BindingProxy x:Key="PurchaseTotalVisibilityProxy" Data="{Binding PurchaseTotalVisibility}"/>
+                        <gen:BindingProxy x:Key="SupplierVisibilityProxy"      Data="{Binding SupplierVisibility}"/>
+                        <gen:BindingProxy x:Key="ReceiverVisibilityProxy"      Data="{Binding ReceiverVisibility}"/>
+                        <gen:BindingProxy x:Key="WholesaleVisibilityProxy"     Data="{Binding WholesaleVisibility}"/>
+                        <gen:BindingProxy x:Key="EnterpriseVisibilityProxy"    Data="{Binding EnterpriseVisibility}"/>
+                        <gen:BindingProxy x:Key="UserVisibilityProxy"          Data="{Binding UserVisibility}"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184;  Закупівельна вартість"    Binding="{Binding Path=TotalPurchase}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128113;  Відправник"               Binding="{Binding Path=nameSupplier}"      Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128113;  Одержувач"                Binding="{Binding Path=ComesTo}"           Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181;  Оптова ціна"              Binding="{Binding Path=Wholesale}"         Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Валюта"                              Binding="{Binding Path=Currency}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#127970;  Підприємство"             Binding="{Binding Path=nameEnterprise}"    Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <!--<DataGridTextColumn Header="&#128113;  Отримав"                  Binding="{Binding Path=User}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>-->
+                        <DataGridTemplateColumn Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
+                                        <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="GridRealization"
+                      HorizontalGridLinesBrush="DarkGray" 
+                      RowBackground="LightGray" 
+                      AlternatingRowBackground="AliceBlue" 
+                      SelectionMode="Single"
+                      SelectionChanged="grid_Arrivals_SelectionChanged" 
+                      Loaded="grid_Arrivals_Loaded"
+                      AutoGenerateColumns="False"
+                      Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128113;  Контрагент"               Binding="{Binding Path=nameCounterparty}"  Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128113;  Організація"              Binding="{Binding Path=nameOrganization}"  Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184;  Сума"                     Binding="{Binding Path=TotalPurchase}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#127970;  Зі складу"                Binding="{Binding Path=nameWarehouse}"    Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <!--<DataGridTextColumn Header="&#128113;  Отримав"                  Binding="{Binding Path=User}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>-->
+                        <DataGridTemplateColumn Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
+                                        <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Row="5">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <TextBox Name="txt_SearchProduct" Tag="&#128269;" FontFamily="Times New Roman" FontSize="12" Height="30" Width="150" Margin="10 0" Style="{StaticResource MyWaterMarkStyle}"/>
+                </StackPanel>
+                <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
+            </Grid>
+            <Grid Grid.Row="6" Grid.ColumnSpan="3">
+                <DataGrid x:Name="grid_ArrivalInfo"  
                       AutoGenerateColumns="False" 
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
-                      SelectionChanged="grid_ArrivalInfo_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9289; Штрих-код"           Binding="{Binding Path=BarCode}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9289; Артикул"             Binding="{Binding Path=Article}"              Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"       Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#9287; Кількість"           Binding="{Binding Path=Count}"                Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Ціна по прайсу"    Binding="{Binding Path=PriceRetail}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=Sum}"                  Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="&#128184; Валюта"            Binding="{Binding Path=Currency}"             Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Сумма знижкі"                Binding="{Binding Path=DiscountSum}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="% знижкі"                    Binding="{Binding Path=DiscountPercentage}"   Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                      SelectionChanged="grid_ArrivalInfo_SelectionChanged"
+                      Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#9289; Штрих-код"           Binding="{Binding Path=BarCode}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#9289; Артикул"             Binding="{Binding Path=Article}"              Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"       Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#9287; Кількість"           Binding="{Binding Path=Count}"                Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181; Ціна по прайсу"    Binding="{Binding Path=PriceRetail}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=Sum}"                  Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184; Валюта"            Binding="{Binding Path=Currency}"             Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Сумма знижкі"                Binding="{Binding Path=DiscountSum}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="% знижкі"                    Binding="{Binding Path=DiscountPercentage}"   Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
 
-                    <DataGridTemplateColumn Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
-                                    <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                        <DataGridTemplateColumn Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
+                                        <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="GridRealizationItems"  
+                      AutoGenerateColumns="False" 
+                      HorizontalGridLinesBrush="DarkGray" 
+                      RowBackground="LightGray" 
+                      AlternatingRowBackground="AliceBlue" 
+                      SelectionChanged="grid_ArrivalInfo_SelectionChanged"
+                      Visibility="Visible">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#9289; Код"           Binding="{Binding Path=BarCode}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"       Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="% Знижка"                    Binding="{Binding Path=DiscountPercentage}"   Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+
+                        <DataGridTemplateColumn Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="btn_Edit" Width="25" Height="25" Padding="0" Content="&#xE104;" FontFamily="Segoe MDL2 Assets" Click="btn_Edit_Click"/>
+                                        <Button Name="btn_Delete" Width="25" Height="25" Padding="0" Content="&#xE107;" FontFamily="Segoe MDL2 Assets" Click="btn_Delete_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
         </Grid>
     </Grid>
 </Window>
