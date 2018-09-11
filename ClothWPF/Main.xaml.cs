@@ -30,15 +30,18 @@ namespace ClothWPF
         General.Classes.DataAccess objDs;
         public Main()
         {
+            InitializeComponent();
             LoadedProvaider conn = new LoadedProvaider();
+            conn.loaded();
             _ProductFullInfo = conn._ProductFullInfo;
             //ConnectionProvider _connectionProvider = new ConnectionProvider();
             //_connectionProvider.Conected += _connectionProvider_Conected;
             //_connectionProvider.ConnectRun();
-            InitializeComponent();
            
             context = conn.context;
             //context = new EfContext();
+               LoadExcelInfo();
+               loaded();
         }
         private void _connectionProvider_Conected(EfContext eFContext)
         {
@@ -69,8 +72,6 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                //LoadExcelInfo();
-               loaded();
             }
             catch
             {
