@@ -38,7 +38,7 @@ namespace ClothWPF.General.Classes
            this.context = context;
             try
             {
-                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Yuriy\\Downloads\\export-products-21-06-18_20-18-51.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
+                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\adm\\Downloads\\export-products-21-06-18_20-18-51.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
             }
             catch (Exception ex)
             {
@@ -88,24 +88,26 @@ namespace ClothWPF.General.Classes
                 
                     context.Configuration.AutoDetectChangesEnabled = false;
                     context.Configuration.ValidateOnSaveEnabled = false;
-                  
+                int i = 0;
                 foreach (var Eitem in Items)
                 {
+                    i++;
                     var d = context.Products
                         .SingleOrDefault(a => a.Uid == Eitem.UId);
-                    if (d != null)
-                        continue;
-                    context.Products.Add(new Product
+                    if (d != null && i<15)
                     {
-                        Uid=Eitem.UId,
-                        Name = Eitem.Name,
-                        Code = Eitem.Code,
-                        Count = Eitem.Count,
-                        PriceUah = Eitem.PriceUah,
-                        PriceWholesale = Eitem.PriceWholesale,
-                        Country = Eitem.Country
-                        // Idgroup = 2
-                    });
+                        context.Products.Add(new Product
+                        {
+                            Uid = Eitem.UId,
+                            Name = Eitem.Name,
+                            Code = Eitem.Code,
+                            Count = Eitem.Count,
+                            PriceUah = Eitem.PriceUah,
+                            PriceWholesale = Eitem.PriceWholesale,
+                            Country = Eitem.Country
+                            // Idgroup = 2
+                        });
+                    }
                 }
                     context.SaveChanges();
                     context.Configuration.AutoDetectChangesEnabled = true;

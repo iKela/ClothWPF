@@ -29,12 +29,15 @@ namespace ClothWPF.General.Realization
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int rowIndex { get; set; }
-        private object edit;
-       
+        private double sum { get; set; }
+       public  List<int> IdList { get; set; }
+        private int getid;
         public RealizationWindow()
         {
             InitializeComponent();
             _ListProduct = new List<RealizationProductModel>();
+            IdList= new List<int>();
+            IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
         }
 
@@ -69,8 +72,11 @@ namespace ClothWPF.General.Realization
                                  (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
                                      ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
                                      : 1)).ToString();
-                        //edit = GetCell(realizationGrid, rowIndex, 8).Content;
-                        //MessageBox.Show(edit.ToString());
+                        sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(
+                                   (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
+                                       ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
+                                       : 1));
+                        _ListProduct.Find(a=>a.Idproduct==getid).Sum = sum;
                     }
                     else if (bindingPath == "CountSale")
                     {
@@ -84,6 +90,8 @@ namespace ClothWPF.General.Realization
                         if (Convert.ToDouble(el.Text) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3)))
                         {
                             GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5))).ToString(); /*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
+                            sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));
+                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
                         }
                         else
                         {
@@ -206,23 +214,37 @@ namespace ClothWPF.General.Realization
         {
             Enterprise.ProductList addProduct = new Enterprise.ProductList();
             addProduct.ShowDialog();
-            var data = new RealizationProductModel
+            //if (!addProduct._allow)
+            try
             {
-                Idproduct = addProduct._idproduct,
-                Name = addProduct._nameProduct,
-                Code = addProduct._codeProduct,
-                //Article = addProduct._article,
-                CountSale = 0,
-                CountReserved = 0,
-                Discount = 0,
-                NDS = 0,
-                Sum = 0,
-                Count = addProduct._count,
-                PriceWholesale = addProduct._priceWholesale,
-            };
-            _ListProduct.Add(data);
-            realizationGrid.ItemsSource = _ListProduct;
-            realizationGrid.Items.Refresh();
+                
+                    var data = new RealizationProductModel
+                    {
+                        Idproduct = addProduct._idproduct,
+                        Name = addProduct._nameProduct,
+                        Code = addProduct._codeProduct,
+                        //Article = addProduct._article,
+                        CountSale = 0,
+                        CountReserved = 0,
+                        Discount = 0,
+                        NDS = 0,
+                        Sum = 0,
+                        Count = addProduct._count,
+                        PriceWholesale = addProduct._priceWholesale,
+                    };
+               // if (!_ListProduct.Where(a => a.Idproduct == data.Idproduct).)
+                if (!IdList.Contains(data.Idproduct))
+                {
+                    _ListProduct.Add(data);
+                    IdList.Add(addProduct._idproduct);
+
+                    realizationGrid.ItemsSource = _ListProduct;
+                    realizationGrid.Items.Refresh();
+                }
+            }
+            catch (Exception exception)
+            {
+            }    
             // realizationGrid.Items.Add(addProduct.item);
             // CalculateAddedItem();
         }
@@ -344,6 +366,19 @@ namespace ClothWPF.General.Realization
         private void realizationGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             realizationGrid.Items.Refresh();
+        }
+
+        private void RealizationGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+            var selected = (RealizationProductModel)realizationGrid.SelectedItem;
+            getid = _ListProduct.Find(s => s.Idproduct == selected.Idproduct).Idproduct;
+            }
+            catch (Exception exception)
+            {
+                getid = 0;
+            }
         }
     }
 }

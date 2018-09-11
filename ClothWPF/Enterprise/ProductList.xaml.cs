@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.General.Realization;
 using ClothWPF.Models.Main;
 
 namespace ClothWPF.Enterprise
@@ -28,6 +29,8 @@ namespace ClothWPF.Enterprise
         public double? _priceWholesale { get; set; }
         public string _codeProduct { get; set; }
         bool hasBeenClicked = false;
+        public bool _allow { get; set; }
+
 
         public ProductList()
         {
@@ -49,18 +52,24 @@ namespace ClothWPF.Enterprise
             }
         }
        
-
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            var selected = (ProductModel)productListGrid.SelectedItem;            
-            _idproduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
-            _nameProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Name;
-            _count = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
-            _codeProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
-            _priceWholesale = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
-            
+            var GetId = new RealizationWindow();
+            var selected = (ProductModel)productListGrid.SelectedItem;
+
+            _allow = GetId._ListProduct.Exists(a =>  a.Idproduct == _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct);
+            if (!_allow)
+            {
+                _idproduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
+                _nameProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Name;
+                _count = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
+                _codeProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
+                _priceWholesale = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
+
+            }
             //item = (ProductModel)productListGrid.SelectedItem;
             Close();
+            
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
@@ -85,9 +94,9 @@ namespace ClothWPF.Enterprise
             productListGrid.ItemsSource = null;
             productListGrid.Items.Clear();
             using (EfContext context = new EfContext())
-              {
+            {
                 _ProductFullInfo = context.Products
-             // .Include(b => b.GetGroupProduct)
+                 // .Include(b => b.GetGroupProduct)
                  .Select(a => new ProductModel
                  {
                      IdProduct = a.IdProduct,
@@ -101,7 +110,7 @@ namespace ClothWPF.Enterprise
                      Country = a.Country,
                      //Namegroup = a.GetGroupProduct.NameGroup
                  }).ToList();
-                
+
                 productListGrid.ItemsSource = _ProductFullInfo;
                 listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
             }

@@ -25,7 +25,7 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window, IView
     {
-        public List<ProductModel> _ProductFullInfo;
+        public List<ProductModel> _ProductFullInfo { get; set; }
         private EfContext context;
         General.Classes.DataAccess objDs;
         public Main()
@@ -43,8 +43,7 @@ namespace ClothWPF
             Dispatcher.BeginInvoke(new Action(() => 
             {
                 Lbl_load.Content = "Підключення виконано успішно";
-                //LoadExcelInfo();
-                //loaded();
+               
             }));
             LoadExcelInfo();
             loaded();

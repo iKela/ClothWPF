@@ -336,6 +336,7 @@
     <Compile Include="Entities\ArrivalProduct.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Enterprise.cs" />
+    <Compile Include="Entities\ExcelTable.cs" />
     <Compile Include="Entities\GroupProduct.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Realization.cs" />
@@ -374,6 +375,10 @@
     <Compile Include="Migrations\201809060652034_maxliength.cs" />
     <Compile Include="Migrations\201809060652034_maxliength.Designer.cs">
       <DependentUpon>201809060652034_maxliength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809101354504_Excel.cs" />
+    <Compile Include="Migrations\201809101354504_Excel.Designer.cs">
+      <DependentUpon>201809101354504_Excel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -425,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809060652034_maxliength.resx">
       <DependentUpon>201809060652034_maxliength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809101354504_Excel.resx">
+      <DependentUpon>201809101354504_Excel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
