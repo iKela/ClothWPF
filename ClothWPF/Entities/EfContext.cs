@@ -21,6 +21,7 @@ namespace ClothWPF
         public DbSet<Realization> Realizations { get; set; }
         public DbSet<RealizationProduct> RealizationProducts { get; set; }
         public DbSet<GroupProduct> GroupProducts { get; set; }
+        public DbSet<ExcelTable> ExcelTables { get; set; }
 
        private static string GetConnectionString() //TestVersion
         {
