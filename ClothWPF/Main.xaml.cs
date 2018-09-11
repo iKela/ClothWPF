@@ -25,28 +25,30 @@ namespace ClothWPF
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window, IView
     {
-        public List<ProductModel> _ProductFullInfo { get; set; }
+        private List<ProductModel> _ProductFullInfo;
         private EfContext context;
         General.Classes.DataAccess objDs;
         public Main()
         {
-            ConnectionProvider _connectionProvider = new ConnectionProvider();
-            _connectionProvider.Conected += _connectionProvider_Conected;
-            _connectionProvider.ConnectRun();
+            LoadedProvaider conn = new LoadedProvaider();
+            _ProductFullInfo = conn._ProductFullInfo;
+            //ConnectionProvider _connectionProvider = new ConnectionProvider();
+            //_connectionProvider.Conected += _connectionProvider_Conected;
+            //_connectionProvider.ConnectRun();
             InitializeComponent();
+           
+            context = conn.context;
             //context = new EfContext();
         }
         private void _connectionProvider_Conected(EfContext eFContext)
         {
-            context = eFContext;
+            //context = eFContext;
 
             Dispatcher.BeginInvoke(new Action(() => 
             {
                 Lbl_load.Content = "Підключення виконано успішно";
                
             }));
-            //LoadExcelInfo();
-            loaded();
         }
 
         #region IView Members
@@ -68,7 +70,7 @@ namespace ClothWPF
             try
             {
                 //LoadExcelInfo();
-              // loaded();
+               loaded();
             }
             catch
             {
@@ -77,30 +79,17 @@ namespace ClothWPF
         }
         public void loaded()
         {
+           
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 clothesGrid.ItemsSource = null;
                 clothesGrid.Items.Clear();
             }));
             // _ProductFullInfo = new List<Product>();
-            _ProductFullInfo = context.Products
-               // .Include(b => b.GetGroupProduct)
-                .Select(a => new ProductModel
-                {
-                    IdProduct = a.IdProduct,
-                    Code = a.Code,
-                    Name = a.Name,
-                    Count = a.Count,
-                    PriceDollar = a.PriceDollar,
-                    PriceUah = a.PriceUah,
-                    PriceRetail = a.PriceRetail,
-                    PriceWholesale = a.PriceWholesale,
-                    Country = a.Country,
-                   // Namegroup = a.GetGroupProduct.NameGroup
-                }).ToList();
+            
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                clothesGrid.ItemsSource = _ProductFullInfo;
+                clothesGrid.ItemsSource =_ProductFullInfo;
             }));
     }
         private void LoadExcelInfo()

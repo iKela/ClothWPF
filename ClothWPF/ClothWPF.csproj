@@ -364,6 +364,7 @@
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpes\ConnectionProvaider.cs" />
+    <Compile Include="Helpes\LoadedProvaider.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
