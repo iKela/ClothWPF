@@ -61,7 +61,7 @@ namespace ClothWPF.Enterprise
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            Close(); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
