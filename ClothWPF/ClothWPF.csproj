@@ -400,7 +400,12 @@
     <Compile Include="Migrations\201809101354504_Excel.Designer.cs">
       <DependentUpon>201809101354504_Excel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809171405408_editRealization.cs" />
+    <Compile Include="Migrations\201809171405408_editRealization.Designer.cs">
+      <DependentUpon>201809171405408_editRealization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
     <Compile Include="Models\Main\ProductModel.cs" />
@@ -453,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809101354504_Excel.resx">
       <DependentUpon>201809101354504_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809171405408_editRealization.resx">
+      <DependentUpon>201809171405408_editRealization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
