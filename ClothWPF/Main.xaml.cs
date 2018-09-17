@@ -29,11 +29,11 @@ namespace ClothWPF
         public List<ProductModel> _ProductFullInfo { get; set; }
         public EfContext context;
         General.Classes.DataAccess objDs;
+        Load load = new Load();
         public Main()
         {
             InitializeComponent();
             _ProductFullInfo = ConstList.GetList;
-            Load load = new Load();
             context = load.context;
             // LoadedProvaider conn = new LoadedProvaider();
             //_ProductFullInfo = conn.loaded();
@@ -115,6 +115,8 @@ namespace ClothWPF
             NewArrival newArrival = new NewArrival(this.context);
            // newArrival._ProductModels = _ProductFullInfo;
             newArrival.ShowDialog();
+            load.loaded();
+            _ProductFullInfo = ConstList.GetList;
             loaded();
         }
         private void btn_Logout_Click(object sender, RoutedEventArgs e)
@@ -149,11 +151,11 @@ namespace ClothWPF
                 {
                     try
                     {
-                        using (var context = new EfContext())
-                        {
+                       
                             context.Products.Remove(context.Products.Find(obj.IdProduct));
                             context.SaveChanges();
-                        }
+                       load.loaded();
+                        _ProductFullInfo=ConstList.GetList;
                         loaded();
                         MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -212,6 +214,8 @@ namespace ClothWPF
                 MessageBox.Show(ex.Message);
             }
             addItem.ShowDialog();
+            load.loaded();
+            _ProductFullInfo = ConstList.GetList;
             loaded();
         }
 
@@ -286,6 +290,8 @@ namespace ClothWPF
                 MessageBox.Show(ex.Message);
             }
             productSubtraction.ShowDialog();
+            load.loaded();
+            _ProductFullInfo = ConstList.GetList;
             loaded();
         }
 

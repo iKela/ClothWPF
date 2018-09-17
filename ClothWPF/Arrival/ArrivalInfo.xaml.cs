@@ -27,11 +27,14 @@ namespace ClothWPF.Arrival
         public ArrivalInfo()
         {
             InitializeComponent();
+              int i  = context.Realizations.Count()+1;
+            txt_Number.Text = i.ToString();
         }
         public void loaded()
         {
             supplierModels = null;
             supplierModels = new List<SupplierModel>();
+            enterpriseModels = null;
             enterpriseModels = new List<EnterpriseModel>();
 
             foreach (var e in context.Enterprises)
@@ -56,6 +59,7 @@ namespace ClothWPF.Arrival
             cmb_Supplier.ItemsSource = null;
             cmb_Supplier.ItemsSource = supplierModels;
             cmb_Supplier.Items.Refresh();
+            cmb_Enterprise.ItemsSource = null;
             cmb_Enterprise.ItemsSource = enterpriseModels;
             cmb_Enterprise.Items.Refresh();
         }
@@ -126,6 +130,7 @@ namespace ClothWPF.Arrival
             Supplier.SupplierInfo form = new Supplier.SupplierInfo();
             form._supplierClose = false;
             form.ShowDialog();
+            
             if (form._supplierClose == true) { loaded(); }
         }
 
@@ -142,6 +147,7 @@ namespace ClothWPF.Arrival
         {
             Enterprise.EnterpriseWindow enterprise = new Enterprise.EnterpriseWindow();
             enterprise.ShowDialog();
+           loaded();
         }
 
         private void Cmb_Enterprise_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
