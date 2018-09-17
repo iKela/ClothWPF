@@ -11,6 +11,7 @@ namespace ClothWPF.Models.RealizationWindow
         public int IdRealizationProduct { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
+        public double? Count { get; set; }
         public double? CountSale { get; set; }
         public double? CountReserved { get; set; }
         public double? PriceDollar { get; set; }

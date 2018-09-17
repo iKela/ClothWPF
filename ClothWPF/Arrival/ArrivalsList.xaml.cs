@@ -254,5 +254,14 @@ namespace ClothWPF.Arrival
             SetUpRealizationVizualization();
         }
 
+        private void GridRealizationItems_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadedGridRealizationInfo();
+        }
+
+        private void GridRealization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadedRealization();
+        }
     }
 }
