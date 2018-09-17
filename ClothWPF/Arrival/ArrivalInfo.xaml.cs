@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ClothWPF.Models;
+using ClothWPF.Models.ArrivalInfo;
 
 namespace ClothWPF.Arrival
 {
@@ -16,6 +17,7 @@ namespace ClothWPF.Arrival
        public bool _formclosing { get; set; }
         public Entities.Supplier Supplieradding { get; set; }
         public List<SupplierModel> supplierModels;
+        public List<EnterpriseModel> enterpriseModels;
         EfContext context = new EfContext();
         public int _idsupplier = 0;
         public int Idarrival = 0;
@@ -29,6 +31,16 @@ namespace ClothWPF.Arrival
         {
             supplierModels = null;
             supplierModels = new List<SupplierModel>();
+            enterpriseModels = new List<EnterpriseModel>();
+
+            foreach (var e in context.Enterprises)
+            {
+                enterpriseModels.Add(new EnterpriseModel
+                {
+                    IdEnterprise = e.IdEnterprise,
+                    Name = e.Name
+                });
+            }
             foreach (var p in context.Suppliers)
             {
                 supplierModels.Add(new SupplierModel
