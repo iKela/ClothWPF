@@ -150,6 +150,7 @@ namespace ClothWPF
                 box.Foreground = new SolidColorBrush(Colors.Black);
                 hasBeenClicked = true;
             }
+            hasBeenClicked = false;
         }
     }
 }

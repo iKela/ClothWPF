@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         xmlns:gen="clr-namespace:ClothWPF"
@@ -72,7 +73,7 @@
     </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition  x:Name="FirstColumn" Width="50"/>
+            <ColumnDefinition  x:Name="FirstColumn" Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Column="0"
@@ -88,22 +89,26 @@
                     </Button>
                 </Grid>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF31A1FF">
-                    <ListViewItem Height="60" IsEnabled="False">
-                        <StackPanel Orientation="Horizontal" >
-                            <materialDesign:PackIcon Kind="ViewList"  Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Склад" ToolTip="Функціонал для управління складом." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                    <ListViewItem Name="HamgurgerComes" Height="60" IsEnabled="True">
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Center" 
+                                    Height="60"
+                                    Width="200"
+                                    Background="Transparent" 
+                                    MouseDown="HamgurgerComes_OnMouseDown">
+                            <materialDesign:PackIcon Kind="BasketFill"  Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Приходи" ToolTip="Список приходів." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60" IsEnabled="False">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Calendar" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Календар" ToolTip="Можливість планувати робочий графік."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60" IsEnabled="False">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="TrendingUp" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Графіки" ToolTip="Графіки продаж та аналітика рентабельності." FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                    <ListViewItem Name="HamburgerRealizations" Height="60" IsEnabled="True">
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Center" 
+                                    Height="60" 
+                                    Width="200"
+                                    Background="Transparent" 
+                                    MouseDown="HamburgerRealizations_OnMouseDown">
+                            <materialDesign:PackIcon Kind="Cart" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Реалізації" ToolTip="Список реалізацій."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
@@ -169,6 +174,7 @@
             </Grid>
             <Grid Grid.Row="4" Grid.ColumnSpan="3">
                 <DataGrid x:Name="grid_Arrivals"
+                          CanUserAddRows="False"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
