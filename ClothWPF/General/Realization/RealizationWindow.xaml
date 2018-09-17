@@ -26,7 +26,10 @@
                 <TextBox Name="txt_ClientName" Width="300" materialDesign:HintAssist.Hint="Клієнт" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" TextChanged="txt_ClientDiscount_TextChanged" LostFocus="txt_ClientDiscount_LostFocus"/>
+                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" 
+                         TextChanged="txt_ClientDiscount_TextChanged" 
+                         LostFocus="TextBox_LostFocus"
+                         KeyDown="TextBox_OnKeyDown"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
 
@@ -39,7 +42,7 @@
         <Grid Grid.Row="4">
             <DataGrid x:Name="realizationGrid" 
                       AutoGenerateColumns="False" 
-                      CanUserAddRows="False"
+                      CanUserAddRows="True"
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
@@ -51,8 +54,6 @@
                       IsReadOnly="False"
                       >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
-                                        IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="0" 
                                         IsReadOnly="True"/>
                     <DataGridTextColumn Header="&#9289;  Код товару"     Binding="{Binding Path=Code}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="1"
@@ -71,6 +72,8 @@
                                         />
                     <DataGridTextColumn Header="&#128181;  Сума"         Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="8"
                                         IsReadOnly="False"/>
+                    <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                                        IsReadOnly="True"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
