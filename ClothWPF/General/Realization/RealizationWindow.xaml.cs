@@ -112,7 +112,7 @@ namespace ClothWPF.General.Realization
                             Console.WriteLine(ex);
                             throw;
                         }
-                                                       GetColumnValue();
+                                                    GetColumnValue();
                             CountValues();
  
                             //MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
@@ -167,43 +167,8 @@ namespace ClothWPF.General.Realization
         }
 
         private void GetColumnValue()
-        {
-            var dataGrid = realizationGrid as DataGrid;
-            if (realizationGrid.Items.Count != 0)
-            {
-                var index = 0;
-                for (int i = 0; i < realizationGrid.Items.Count - 1; i++)
-                {
-                    DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[i]);
-                    if (row != null)
-                    {
-                        DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
-
-                        foreach (DataGridColumn Sum in realizationGrid.Columns)
-                        {
-                            if (Sum.DisplayIndex == 8)
-                            {
-                                index = Sum.DisplayIndex;
-                            }
-                        }
-
-                        if (presenter.ItemContainerGenerator.ContainerFromIndex(index) is DataGridCell cell)
-                        {
-                            string cellValue = cell.ContentStringFormat;
-                        
-                            if (txt_FullPrice.Text != "")
-                            {
-                                txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + Convert.ToDouble(GetSingleCellValue(i, 8))).ToString();
-                            }
-                            else
-                            {
-                              txt_FullPrice.Text = cell.Content.ToString();
-                            }
-                        }
-                    }
-                }
-
-            }
+        { 
+             txt_FullPrice.Text = _ListProduct.Sum(a=>a.Sum).ToString();
         }
 
         static T GetVisualChild<T>(Visual parent) where T : Visual
