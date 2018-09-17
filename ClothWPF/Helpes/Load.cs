@@ -32,6 +32,7 @@ namespace ClothWPF.Helpes
                     PriceRetail = a.PriceRetail,
                     PriceWholesale = a.PriceWholesale,
                     Country = a.Country,
+                    Uid = a.Uid
                     // Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
             ConstList.Init(_ProductFullInfo);

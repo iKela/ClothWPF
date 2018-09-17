@@ -12,7 +12,7 @@ namespace ClothWPF.Entities
     {
         [Key]
         public int IdRealizationProduct { get; set; }
-        public double Count { get; set; }
+        public double? Count { get; set; }
         public double? PriceDollar { get; set; }
         public double? PriceUah { get; set; }
         public double? PriceRetail { get; set; }

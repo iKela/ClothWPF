@@ -38,10 +38,11 @@ namespace ClothWPF
         //private string _window { get; set; }
         bool hasBeenClicked = false;
 
-        public AddProduct()
+        public AddProduct(EfContext efContext)
         {
             InitializeComponent();
             productModels = ConstList.GetList;
+            context = efContext;
             AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = productModels; //AutoName.Items.Refresh();
         }
         public void loaded()
@@ -75,25 +76,25 @@ namespace ClothWPF
         {
             var selected = (ProductModel)AutoName.SelectedItem;
             //Product Productadding = new Product { IdProduct = selected.IdProduct };
-            try
-            {
+            //try
+            //{
                 _idproduct = productModels.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
                 txt_ProductCode.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Code;
                 txt_Article.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Article;
                 txt_SuppierPrice.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
                 txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
                 txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
-                //сууукааааа наканецто 5.30 15.08.2018
-            }
-            catch
-            {
-                _idproduct = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct).IdProduct;
-                txt_ProductCode.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Code;
-                txt_Article.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Article;
-                txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceDollar.ToString();
-                txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceRetail.ToString();
-                txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceWholesale.ToString();
-            }
+            //сууукааааа наканецто 5.30 15.08.2018
+            //}
+            //catch
+            //{
+            //    _idproduct = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct).IdProduct;
+            //    txt_ProductCode.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Code;
+            //    txt_Article.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Article;
+            //    txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceDollar.ToString();
+            //    txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceRetail.ToString();
+            //    txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceWholesale.ToString();
+            //}
         }
         //private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
