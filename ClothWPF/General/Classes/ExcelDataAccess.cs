@@ -79,6 +79,8 @@ namespace ClothWPF.General.Classes
                         Country = Reader["Страна_производитель"].ToString(),
                         //ItemDiscount = Convert.ToInt32(Reader["Скидка"])      
                     };
+                    var uid = ConstList._FullInfo.Find(a => a.Uid == data.UId);
+                    if(uid!=null)
                         ConstList.excelItems.Add(data);
                 }
                     Reader.Close();

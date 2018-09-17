@@ -33,7 +33,7 @@ namespace ClothWPF
         
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
-            AddProduct addProduct = new AddProduct();
+            AddProduct addProduct = new AddProduct(this.context);
             //addProduct.productModels = _ProductModels
             addProduct._close = false;
             addProduct.ShowDialog();

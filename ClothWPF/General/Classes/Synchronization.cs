@@ -11,17 +11,20 @@ namespace ClothWPF.General.Classes
 {
     public class Synchronization
     {
+        public List<ExcelItem> TodayList;
+        public List<ExcelItem> YesterdayList;
         public List<ProductModel> _ProductSynchronization= new List<ProductModel>();
         private EfContext context;
         public Synchronization()
         {
-            foreach (var one in ConstList._FullInfo)
+            foreach (var one in TodayList)
             {
-                var id = ConstList.excelItems.SingleOrDefault(a => a.UId == one.Uid);
-                context.ExcelTables.Add(new ExcelTable
+                foreach (var two in YesterdayList)
                 {
-
-                });
+                    
+                      //  _ProductSynchronization.Where(a=>a.Uid==two.UId).Select(a=>a.Count=two.)
+                  
+                }
             }
         }
     }

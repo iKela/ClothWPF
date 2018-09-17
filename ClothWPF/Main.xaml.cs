@@ -33,6 +33,8 @@ namespace ClothWPF
         {
             InitializeComponent();
             _ProductFullInfo = ConstList.GetList;
+            Load load = new Load();
+            context = load.context;
             // LoadedProvaider conn = new LoadedProvaider();
             //_ProductFullInfo = conn.loaded();
             //ConnectionProvider _connectionProvider = new ConnectionProvider();
@@ -71,7 +73,7 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                //LoadExcelInfo();
+                LoadExcelInfo();
                 loaded();
             }
             catch
@@ -110,7 +112,7 @@ namespace ClothWPF
         }
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
-            NewArrival newArrival = new NewArrival(context);
+            NewArrival newArrival = new NewArrival(this.context);
            // newArrival._ProductModels = _ProductFullInfo;
             newArrival.ShowDialog();
             loaded();
