@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using ClothWPF.Authorization.Loading;
+using ClothWPF.Models.Main;
 
 namespace ClothWPF
 {
@@ -70,10 +72,20 @@ namespace ClothWPF
                                 Country = cmb_Country.Text
                             });
                             context.SaveChanges();
+                            ConstList._FullInfo.Add(new ProductModel
+                            {
+                                Name = txt_Name.Text,
+                                Article = txt_Article.Text,
+                                Code = txt_ProductCode.Text,
+                                PriceDollar = priceDollar,
+                                PriceUah = priceUah,
+                                PriceRetail = retailerPrice,
+                                PriceWholesale = wholesalePrice,
+                                Country = cmb_Country.Text
+                            });
                         }
                         MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                         _additemClose = true;
-                        
                         Close();
                     }
                     catch (Exception ex)

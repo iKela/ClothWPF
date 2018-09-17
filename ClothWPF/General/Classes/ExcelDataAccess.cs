@@ -8,13 +8,13 @@ using System.Windows.Data;
 using ClothWPF.Entities;
 using System.Transactions;
 using System.Collections.Generic;
+using ClothWPF.Authorization.Loading;
 
 
 namespace ClothWPF.General.Classes
 {
     public class ExcelItem
     {
-
         public Int64 UId { get; set; } //Уникальный_идентификатор
         public string Code { get; set; } //Код_товара
         public string Name { get; set; } //Название_позиции
@@ -31,7 +31,7 @@ namespace ClothWPF.General.Classes
 
         OleDbConnection Conn;
         OleDbCommand Cmd;
-        List<ExcelItem> EXItem;
+       
 
         public DataAccess(EfContext context)
         {
@@ -54,13 +54,13 @@ namespace ClothWPF.General.Classes
         public async Task<ObservableCollection<ExcelItem>> GetDataFormExcelAsync()
         {
             // this.context = context;
-            ObservableCollection<ExcelItem> Items = new ObservableCollection<ExcelItem>();
+            //ObservableCollection<ExcelItem> Items = new ObservableCollection<ExcelItem>();
             await Conn.OpenAsync();
             Cmd = new OleDbCommand();
             Cmd.Connection = Conn;
             Cmd.CommandText = "Select * from [Export Products Sheet$]";
             var Reader = await Cmd.ExecuteReaderAsync();    
-            EXItem = new List<ExcelItem>();
+            
             try
             {
                 
@@ -79,49 +79,48 @@ namespace ClothWPF.General.Classes
                         Country = Reader["Страна_производитель"].ToString(),
                         //ItemDiscount = Convert.ToInt32(Reader["Скидка"])      
                     };
-                    Items.Add(data);
+                        ConstList.excelItems.Add(data);
                 }
                     Reader.Close();
                     Conn.Close();
                 //using (TransactionScope scope = new TransactionScope())
                 //{
                 
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                    context.Configuration.ValidateOnSaveEnabled = false;
-                int i = 0;
-                foreach (var Eitem in Items)
-                {
-                    i++;
-                    var d = context.Products
-                        .SingleOrDefault(a => a.Uid == Eitem.UId);
-                    if (d != null )
-                    {
-                        context.Products.Add(new Product
-                        {
-                            Uid = Eitem.UId,
-                            Name = Eitem.Name,
-                            Code = Eitem.Code,
-                            Count = Eitem.Count,
-                            PriceUah = Eitem.PriceUah,
-                            PriceWholesale = Eitem.PriceWholesale,
-                            Country = Eitem.Country
-                            // Idgroup = 2
-                        });
-                    }
-                    if(i<15)
-                        break;
-                }
-                    context.SaveChanges();
-                    context.Configuration.AutoDetectChangesEnabled = true;
-                    context.Configuration.ValidateOnSaveEnabled = true;
-                //    scope.Complete();
+                //    context.Configuration.AutoDetectChangesEnabled = false;
+                //    context.Configuration.ValidateOnSaveEnabled = false;
+                //int i = 0;
+                //foreach (var Eitem in Items)
+                //{
+                //    i++;
+                //    var d = context.Products
+                //        .SingleOrDefault(a => a.Uid == Eitem.UId);
+                //    if (d != null )
+                //    {
+                //        context.Products.Add(new Product
+                //        {
+                //            Uid = Eitem.UId,
+                //            Name = Eitem.Name,
+                //            Code = Eitem.Code,
+                //            Count = Eitem.Count,
+                //            PriceUah = Eitem.PriceUah,
+                //            PriceWholesale = Eitem.PriceWholesale,
+                //            Country = Eitem.Country
+                //            // Idgroup = 2
+                //        });
+                //    }
+
+                //}
+                //    context.SaveChanges();
+                //    context.Configuration.AutoDetectChangesEnabled = true;
+                //    context.Configuration.ValidateOnSaveEnabled = true;
+                ////    scope.Complete();
              //   }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            return Items;
+            return ConstList.GetExcelItems;
         }
         //public async Task<bool> InsertOrUpdateRowInExcelAsync(ExcelItem item)
         //{

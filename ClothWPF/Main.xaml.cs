@@ -27,20 +27,20 @@ namespace ClothWPF
     public partial class Main : Window
     {
         public List<ProductModel> _ProductFullInfo { get; set; }
-        private EfContext context;
+        public EfContext context;
         General.Classes.DataAccess objDs;
-        public Main(EfContext conn)
+        public Main()
         {
             InitializeComponent();
-           // LoadedProvaider conn = new LoadedProvaider();
+            _ProductFullInfo = ConstList.GetList;
+            // LoadedProvaider conn = new LoadedProvaider();
             //_ProductFullInfo = conn.loaded();
             //ConnectionProvider _connectionProvider = new ConnectionProvider();
             //_connectionProvider.Conected += _connectionProvider_Conected;
             //_connectionProvider.ConnectRun();
 
-            context = conn;
             //context = new EfContext();
-            
+
         }
         //private void _connectionProvider_Conected(EfContext eFContext)
         //{
@@ -111,6 +111,7 @@ namespace ClothWPF
         private void mi_NewArrival_Click(object sender, RoutedEventArgs e)
         {
             NewArrival newArrival = new NewArrival(context);
+           // newArrival._ProductModels = _ProductFullInfo;
             newArrival.ShowDialog();
             loaded();
         }
@@ -168,10 +169,8 @@ namespace ClothWPF
         private void mi_AddItem_Click(object sender, RoutedEventArgs e)
         {
             AddItem addItem = new AddItem();
-            addItem.ShowDialog();
-            Load l = new Load();
-            _ProductFullInfo = null;
-            _ProductFullInfo = l.loaded();
+            addItem.ShowDialog();                       
+            _ProductFullInfo = ConstList.GetList;
             loaded();
         }
         private void mi_WarehouseCondition_Click(object sender, RoutedEventArgs e)

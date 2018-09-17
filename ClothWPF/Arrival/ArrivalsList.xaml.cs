@@ -61,6 +61,7 @@ namespace ClothWPF.Arrival
                         NameProduct = ap.ProductOf.Name
                     }).ToList();
                 grid_ArrivalInfo.ItemsSource = arrId;
+                grid_ArrivalInfo.Items.Refresh();
             }
         }
 

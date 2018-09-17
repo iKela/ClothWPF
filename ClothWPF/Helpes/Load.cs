@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClothWPF.Authorization.Loading;
 
 namespace ClothWPF.Helpes
 {
@@ -14,10 +15,9 @@ namespace ClothWPF.Helpes
         public Load()
         {
             context = new EfContext();
-
         }
 
-        public List<ProductModel> loaded()
+        public void  loaded()
         {
             _ProductFullInfo = context.Products
                 // .Include(b => b.GetGroupProduct)
@@ -34,8 +34,8 @@ namespace ClothWPF.Helpes
                     Country = a.Country,
                     // Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
-            return _ProductFullInfo;
+            ConstList.Init(_ProductFullInfo);
         }
-
+       
     }
 }

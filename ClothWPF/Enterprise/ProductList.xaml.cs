@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.General.Realization;
 using ClothWPF.Models.Main;
 
@@ -68,8 +69,7 @@ namespace ClothWPF.Enterprise
 
             }
             //item = (ProductModel)productListGrid.SelectedItem;
-            Close();
-            
+            Close();            
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
@@ -93,27 +93,28 @@ namespace ClothWPF.Enterprise
         {
             productListGrid.ItemsSource = null;
             productListGrid.Items.Clear();
-            using (EfContext context = new EfContext())
-            {
-                _ProductFullInfo = context.Products
-                 // .Include(b => b.GetGroupProduct)
-                 .Select(a => new ProductModel
-                 {
-                     IdProduct = a.IdProduct,
-                     Code = a.Code,
-                     Name = a.Name,
-                     Count = a.Count,
-                     PriceDollar = a.PriceDollar,
-                     PriceUah = a.PriceUah,
-                     PriceRetail = a.PriceRetail,
-                     PriceWholesale = a.PriceWholesale,
-                     Country = a.Country,
-                     //Namegroup = a.GetGroupProduct.NameGroup
-                 }).ToList();
+            //using (EfContext context = new EfContext())
+            //{
+            //    _ProductFullInfo = context.Products
+            //     // .Include(b => b.GetGroupProduct)
+            //     .Select(a => new ProductModel
+            //     {
+            //         IdProduct = a.IdProduct,
+            //         Code = a.Code,
+            //         Name = a.Name,
+            //         Count = a.Count,
+            //         PriceDollar = a.PriceDollar,
+            //         PriceUah = a.PriceUah,
+            //         PriceRetail = a.PriceRetail,
+            //         PriceWholesale = a.PriceWholesale,
+            //         Country = a.Country,
+            //         //Namegroup = a.GetGroupProduct.NameGroup
+            //     }).ToList();
 
+            //}
+            _ProductFullInfo = ConstList.GetList;
                 productListGrid.ItemsSource = _ProductFullInfo;
                 listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
-            }
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)

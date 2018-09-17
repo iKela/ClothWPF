@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
 using System.Transactions;
+using ProductModel = ClothWPF.Models.Main.ProductModel;
+
 
 namespace ClothWPF
 {
@@ -16,11 +18,12 @@ namespace ClothWPF
     /// </summary>
     public partial class NewArrival : Window
     {
-        EfContext context = new EfContext();
+        private EfContext context;
         int idarrival;
         public double TotalPurchase { get; set; }
         public List<NewArrivalModel> ArrproductModels;
-        public List<Product> _products;
+        //public List<Product> _products;
+        //public List<ProductModel> _ProductModels;
         public NewArrival(EfContext context)
         {
             this.context = context;
@@ -31,6 +34,7 @@ namespace ClothWPF
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
             AddProduct addProduct = new AddProduct();
+            //addProduct.productModels = _ProductModels
             addProduct._close = false;
             addProduct.ShowDialog();
             if (addProduct._close == true)
@@ -38,7 +42,6 @@ namespace ClothWPF
                 var data = new NewArrivalModel
                 {
                     IdProduct = addProduct._idproduct,
-
                     Name = addProduct._name,
                     Code = addProduct._code,
                     Article = addProduct._article,

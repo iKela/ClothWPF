@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using ClothWPF.Models;
+using ClothWPF.Models.Main;
 using ClothWPF.Entities;
 using System.ComponentModel;
+using System.Data.Entity.Core.Common.EntitySql;
 using System.Windows.Media;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Helpes;
 
 namespace ClothWPF
@@ -19,7 +21,7 @@ namespace ClothWPF
 
         #region
         public bool _close { get; set; }
-        public Product Productadding { get; set; }
+        //public Product Productadding { get; set; }
         public List<ProductModel> productModels;
         private EfContext context;
         public int _idproduct { get; set; }
@@ -31,19 +33,16 @@ namespace ClothWPF
         public double _priceDollar { get; set; }
         public DateTime? _manufactureDate { get; set; }
         public string _article { get; set; }
-        public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
+       // public int? _sampleChoice { get; set; } // якщо ноль то не буде грузити
         #endregion
-        private string _window { get; set; }
+        //private string _window { get; set; }
         bool hasBeenClicked = false;
 
         public AddProduct()
         {
             InitializeComponent();
-
-          
-           
+            productModels = ConstList.GetList;
             AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = productModels; //AutoName.Items.Refresh();
-
         }
         public void loaded()
         {
@@ -71,28 +70,30 @@ namespace ClothWPF
                 MessageBox.Show(ex.Message);
             }
         }
-        private void SingleSample()
+       
+        private void FunctionFeeling()
         {
             var selected = (ProductModel)AutoName.SelectedItem;
-            Product Productadding = new Product { IdProduct = selected.Id };
-            _idproduct = productModels.FirstOrDefault(s => s.Id == selected.Id).Id;
-            txt_ProductCode.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.Code ?? throw new InvalidOperationException();
-            txt_Article.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.Article ?? throw new InvalidOperationException();
-            txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceDollar.ToString() ?? throw new InvalidOperationException();
-            txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceRetail.ToString() ?? throw new InvalidOperationException();
-            txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.Id == selected.Id)?.PriceWholesale.ToString() ?? throw new InvalidOperationException();
-        }
-        private void TripleSample()
-        {
-            var selected = (ProductModel)AutoName.SelectedItem;
-            //Product Productadding = new Product { IdProduct = selected.Id };
-            _idproduct = productModels.Find(s => s.Id == selected.Id).Id;
-            txt_ProductCode.Text = productModels.Find(s => s.Id == selected.Id).Code;
-            txt_Article.Text = productModels.Find(s => s.Id == selected.Id).Article;
-            txt_SuppierPrice.Text = productModels.Find(s => s.Id == selected.Id).PriceDollar.ToString();
-            txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
-            txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.Id).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
-            //сууукааааа наканецто 5.30 15.08.2018
+            //Product Productadding = new Product { IdProduct = selected.IdProduct };
+            try
+            {
+                _idproduct = productModels.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
+                txt_ProductCode.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Code;
+                txt_Article.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Article;
+                txt_SuppierPrice.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
+                txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
+                txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
+                //сууукааааа наканецто 5.30 15.08.2018
+            }
+            catch
+            {
+                _idproduct = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct).IdProduct;
+                txt_ProductCode.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Code;
+                txt_Article.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.Article;
+                txt_SuppierPrice.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceDollar.ToString();
+                txt_PriceRetailer.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceRetail.ToString();
+                txt_PriceWholeSale.Text = productModels.FirstOrDefault(s => s.IdProduct == selected.IdProduct)?.PriceWholesale.ToString();
+            }
         }
         //private void cmb_Name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
@@ -116,8 +117,8 @@ namespace ClothWPF
         //            }    
         //    }
         //}
-        
-       private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            loaded();
         }
@@ -137,7 +138,7 @@ namespace ClothWPF
 
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TripleSample();
+            FunctionFeeling();
         }
 
         private void AutoGroup_GotFocus(object sender, RoutedEventArgs e)
