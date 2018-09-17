@@ -32,7 +32,7 @@
                             <materialDesign:PackIcon Kind="PackageVariant" VerticalAlignment="Center" Height="20" Width="20"/>
                             <Separator Margin="10 0"/>
                             <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Text="Позиція" Width="150" ValueMemberPath="Name" SelectedItem="{Binding Id}"
-                                                      Height="30" FontFamily="Times New Roman" FontSize="20" GotFocus="AutoGroup_GotFocus" SelectionChanged="AutoName_SelectionChanged">
+                                                      Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged">
                                 <controls:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}"></TextBlock>
