@@ -38,7 +38,7 @@ namespace ClothWPF.General.Classes
            this.context = context;
             try
             {
-                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\adm\\Downloads\\export-products-21-06-18_20-18-51.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
+                Conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\koval\\Downloads\\Exoirt.xlsx;Extended Properties=\"Excel 12.0 Xml;HDR=YES;\"");
             }
             catch (Exception ex)
             {

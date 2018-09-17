@@ -73,7 +73,7 @@ namespace ClothWPF
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
             try
             {
-                LoadExcelInfo();
+                //LoadExcelInfo();
                 loaded();
             }
             catch

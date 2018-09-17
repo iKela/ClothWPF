@@ -140,5 +140,10 @@ namespace ClothWPF.Arrival
             Enterprise.EnterpriseWindow enterprise = new Enterprise.EnterpriseWindow();
             enterprise.ShowDialog();
         }
+
+        private void Cmb_Enterprise_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

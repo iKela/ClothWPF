@@ -35,7 +35,7 @@
                             <!--<xctk:MaskedTextBox x:Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>-->
                         </StackPanel>
                         <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
-                        <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                        <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
@@ -43,7 +43,7 @@
                             <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10"/>
+                            <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="Cmb_Enterprise_OnSelectionChanged"/>
                             <Button Name="btn_NewEnterprise" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewEnterprise_Click"/>
                         </StackPanel>
                     </StackPanel>
