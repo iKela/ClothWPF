@@ -43,14 +43,12 @@ namespace ClothWPF.General.Realization
 
         #region Витяг та призначення значення після його зміни в комірці
 
-        void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            SaveGridChanges(sender, e);
-            //GetColumnValue();
-           // CountValues();
+            SaveGridChanges(sender, e);           
         }
 
-        void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
+        private void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
@@ -62,30 +60,36 @@ namespace ClothWPF.General.Realization
                     {
                         rowIndex = e.Row.GetIndex();
 
-                        if (e.EditingElement is TextBox el)
+                        if (e.EditingElement is TextBox el && Math.Abs(Convert.ToDouble(GetSingleCellValue(rowIndex, 2))) > 0)
                         {
                             value = el.Text;
                             // rowIndex has the row index
                             // bindingPath has the column's binding
                             // el.Text has the new, user-entered value
+                            
                             try
                             {
-                                sum = Convert.ToDouble(Convert.ToDouble(el.Text) * Convert.ToDouble(
+                                sum = Convert.ToDouble(el.Text) * Convert.ToDouble(
                                                            (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
                                                                ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
-                                                               : 1));
+                                                               : 1);
+                                GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                                _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+
                             }
                             catch (Exception ex)
                             {
                                 Console.WriteLine(ex);
                                 throw;
                             }
+                            GetColumnValue();
+                            CountValues();
                            
                         }
 
-                        GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                       
 
-                        _ListProduct.Find(a=>a.Idproduct==getid).Sum = sum;
+                       
                     }
                     else if (bindingPath == "CountSale")
                     {
@@ -99,15 +103,17 @@ namespace ClothWPF.General.Realization
                         try
                         {
                             sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));
-                            GetCell(realizationGrid, rowIndex, 8).Content = sum.ToString();
+                            GetCell(realizationGrid, rowIndex, 8).Content = sum;
                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(ex);
                             throw;
                         }
-                           
+                                                       GetColumnValue();
+                            CountValues();
  
                             //MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
                             //    MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -165,13 +171,12 @@ namespace ClothWPF.General.Realization
             var dataGrid = realizationGrid as DataGrid;
             if (realizationGrid.Items.Count != 0)
             {
-
-                for (int i = 0; i < realizationGrid.Items.Count; i++)
+                var index = 0;
+                for (int i = 0; i < realizationGrid.Items.Count - 1; i++)
                 {
                     DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[i]);
                     if (row != null)
                     {
-                        int index = 0;
                         DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
 
                         foreach (DataGridColumn Sum in realizationGrid.Columns)
@@ -182,18 +187,17 @@ namespace ClothWPF.General.Realization
                             }
                         }
 
-                        var cell= presenter.ItemContainerGenerator.ContainerFromIndex(index) as DataGridCell;
-                        if (cell != null)
+                        if (presenter.ItemContainerGenerator.ContainerFromIndex(index) is DataGridCell cell)
                         {
                             string cellValue = cell.ContentStringFormat;
                         
                             if (txt_FullPrice.Text != "")
                             {
-                                txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + (Convert.ToDouble(cellValue))).ToString();
+                                txt_FullPrice.Text = ((Convert.ToDouble(txt_FullPrice.Text)) + Convert.ToDouble(GetSingleCellValue(i, 8))).ToString();
                             }
                             else
                             {
-                              txt_FullPrice.Text +=  cell.Content;
+                              txt_FullPrice.Text = cell.Content.ToString();
                             }
                         }
                     }
@@ -305,13 +309,6 @@ namespace ClothWPF.General.Realization
             txt_Discount.Text = txt_ClientDiscount.Text;
             CountValues();
         }
-
-        private void txt_ClientDiscount_LostFocus(object sender, RoutedEventArgs e)
-        {
-            txt_ClientDiscount.Text = (txt_ClientDiscount.Text + "%");
-
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox box = sender as TextBox;
@@ -330,6 +327,12 @@ namespace ClothWPF.General.Realization
             {
                 if (Equals(sender, txt_Discount))
                 {
+                    CountDiscount();
+                }
+
+                if (Equals(sender, txt_ClientDiscount) && txt_FullPrice.Text != "")
+                {
+                    txt_ClientDiscount.Text = txt_ClientDiscount.Text;
                     CountDiscount();
                 }
                 CountValues();
@@ -357,7 +360,7 @@ namespace ClothWPF.General.Realization
         {
             if (txt_Discount.Text == "")
             {
-                txt_DiscountSum.Text = ((Convert.ToDouble(txt_FullPrice.Text) * 0) / 100).ToString();
+                txt_DiscountSum.Text = 0.ToString();
 
             }
             else
