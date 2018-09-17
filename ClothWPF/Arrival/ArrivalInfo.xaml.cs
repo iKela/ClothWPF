@@ -20,6 +20,7 @@ namespace ClothWPF.Arrival
         public List<EnterpriseModel> enterpriseModels;
         EfContext context = new EfContext();
         public int _idsupplier = 0;
+        public int _identerprise = 0;
         public int Idarrival = 0;
         public double totalPurchaise { get; set; }
         public Arrivals ArrInfoAdding { get; set; }
@@ -55,6 +56,8 @@ namespace ClothWPF.Arrival
             cmb_Supplier.ItemsSource = null;
             cmb_Supplier.ItemsSource = supplierModels;
             cmb_Supplier.Items.Refresh();
+            cmb_Enterprise.ItemsSource = enterpriseModels;
+            cmb_Enterprise.Items.Refresh();
         }
         private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
         {
@@ -143,7 +146,15 @@ namespace ClothWPF.Arrival
 
         private void Cmb_Enterprise_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var selected = (EnterpriseModel)cmb_Enterprise.SelectedItem;
+                _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdEnterprise).IdEnterprise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
