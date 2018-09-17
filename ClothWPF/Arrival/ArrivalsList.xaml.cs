@@ -15,6 +15,7 @@ using ClothWPF.Entities;
 using System.Data.Entity;
 using ClothWPF.Models;
 using ClothWPF.Models.ArrivalsList;
+using ClothWPF.Models.RealizationWindow;
 
 namespace ClothWPF.Arrival
 {
@@ -99,6 +100,65 @@ namespace ClothWPF.Arrival
             else
             {
                 MessageBox.Show("Введіть правильно Дату!", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        public void loadedRealization()
+        {
+            if (DateTime.TryParse(txt_DateFrom.Text, out dateArrivalfrom))
+            {
+                if (DateTime.TryParse(txt_DateTo.Text, out dateArrivalTo))
+                {
+                    dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
+                    dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+                    GridRealization.ItemsSource = null;
+                    var realiz = context.Realizations
+                        .Include(s => s.GetClient)                        
+                        .Where(a => a.DateRealization >= dateArrivalfrom && a.DateRealization <= dateArrivalTo)
+                        .Select(a => new RealizationModel
+                        {
+                            IdRealization = a.IdRealization,
+                            Number = a.Number,
+                            Comment = a.Comment,
+                            Currency = a.Currency,
+                            PaymentSum = a.PaymentSum,
+                            PaymentType = a.PaymentType,                           
+                            TotalPurshaise = a.TotalPurshaise,                            
+                            ClientName = a.GetClient.NameClient,                           
+                        }).ToList();
+
+                    GridRealization.ItemsSource = realiz;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введіть правильно Дату!", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        private void loadedGridRealizationInfo()
+        {
+            var selected = (RealizationModel)GridRealization.SelectedItem;
+            if (selected != null)
+            {
+                var arrId = context.RealizationProducts
+                    .Include(p => p.ProductOf)
+                    .Where(ap => ap.IdRealization == selected.IdRealization)
+                    .Select(ap => new RealizationProductModel
+                    {
+                        IdRealizationProduct = ap.IdRealizationProduct,
+                        Name = ap.ProductOf.Name,
+                        Code = ap.ProductOf.Code,
+                        CountSale = ap.Count,
+                        NDS = ap.NDS,
+                        Discount = ap.DiscountProduct,
+                        Sum = ap.TotalProductSum,
+                        PriceDollar = ap.PriceDollar,
+                        PriceUah = ap.PriceUah,
+                        PriceRetail = ap.PriceRetail,
+                        PriceWholesale = ap.PriceWholesale,
+                        IdRealization = ap.IdRealization,                        
+                    }).ToList();
+                GridRealizationItems.ItemsSource = arrId;
+                GridRealizationItems.Items.Refresh();
             }
         }
         private void grid_ArrivalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)

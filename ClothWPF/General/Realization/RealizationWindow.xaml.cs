@@ -25,7 +25,7 @@ namespace ClothWPF.General.Realization
     /// </summary>
     public partial class RealizationWindow : Window
     {
-        EfContext context = new EfContext();
+        EfContext context ;
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int rowIndex { get; set; }
@@ -276,26 +276,26 @@ namespace ClothWPF.General.Realization
 
         void Add()
         {
-            //foreach (var product in )   //переробити
-            //{
-            //    context.RealizationProducts.Add(new Entities.RealizationProduct
-            //    {
-            //        Count = product.CountArrival,
-            //        PriceDollar = product.PriceDollarArrival,
-            //        PriceUah = product.PriceUahArrival,
-            //        PriceRetail = product.PriceRetailArrival,
-            //        PriceWholesale = product.PriceWholesaleArrival,
-
-            //        Idproduct = product.IdProduct
-            //    });
-            //    var std = context.Products.Where(c => c.IdProduct == product.IdProduct).FirstOrDefault();
-            //    std.PriceDollar = product.PriceDollarArrival;
-            //    std.PriceRetail = product.PriceRetailArrival;
-            //    std.PriceWholesale = product.PriceWholesaleArrival;
-            //    double? sum = std.Count == null ? product.CountArrival : std.Count + product.CountArrival;
-            //    std.Count = sum;
-            //}
-            //context.SaveChanges();
+            foreach (var product in _ListProduct)   //переробити
+            {
+                context.RealizationProducts.Add(new Entities.RealizationProduct
+                {
+                    Count    = product.CountSale,
+                    PriceDollar = product.PriceDollar,
+                    PriceUah = product.PriceUah,
+                    PriceRetail = product.PriceRetail,
+                    PriceWholesale = product.PriceWholesale,
+                    NDS = product.NDS,
+                    DiscountProduct = product.Discount,
+                    TotalProductSum = product.Sum,      
+                    IdRealization = product.IdRealization,
+                    Idproduct = product.Idproduct
+                });
+                var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();                
+                double? sum = std.Count - product.CountSale;
+                std.Count = sum;
+            }
+            context.SaveChanges();
         }
 
         private string oldTextDiscount { get; set; }
