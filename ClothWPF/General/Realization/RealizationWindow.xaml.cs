@@ -46,8 +46,8 @@ namespace ClothWPF.General.Realization
         void realizationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             SaveGridChanges(sender, e);
-            GetColumnValue();
-            CountValues();
+            //GetColumnValue();
+           // CountValues();
         }
 
         void SaveGridChanges(object sender, DataGridCellEditEndingEventArgs e)
@@ -57,25 +57,34 @@ namespace ClothWPF.General.Realization
                 var column = e.Column as DataGridBoundColumn;
                 if (column != null)
                 {
-                    var bindingPath = (column.Binding as Binding).Path.Path;
+                    var bindingPath = (column.Binding as Binding)?.Path.Path;
                     if (bindingPath == "PriceWholesale")
                     {
                         rowIndex = e.Row.GetIndex();
-                        var el = e.EditingElement as TextBox;
 
-                        value = el.Text;
-                        // rowIndex has the row index
-                        // bindingPath has the column's binding
-                        // el.Text has the new, user-entered value
-                        GetCell(realizationGrid, rowIndex, 8).Content =
-                            (Convert.ToDouble(el.Text) * Convert.ToDouble(
-                                 (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
-                                     ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
-                                     : 1)).ToString();
-                        sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(
-                                   (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
-                                       ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
-                                       : 1));
+                        if (e.EditingElement is TextBox el)
+                        {
+                            value = el.Text;
+                            // rowIndex has the row index
+                            // bindingPath has the column's binding
+                            // el.Text has the new, user-entered value
+                            try
+                            {
+                                sum = Convert.ToDouble(Convert.ToDouble(el.Text) * Convert.ToDouble(
+                                                           (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
+                                                               ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
+                                                               : 1));
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                                throw;
+                            }
+                           
+                        }
+
+                        GetCell(realizationGrid, rowIndex, 8).Content = sum;
+
                         _ListProduct.Find(a=>a.Idproduct==getid).Sum = sum;
                     }
                     else if (bindingPath == "CountSale")
@@ -87,18 +96,23 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        if (Convert.ToDouble(el.Text) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3)))
+                        try
                         {
-                            GetCell(realizationGrid, rowIndex, 8).Content = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5))).ToString(); /*- Convert.ToDouble(GetCell(realizationGrid, rowIndex, 7).Content.ToString()));*/ // Пробую відняти Знижку від Ціни і записати в Суму
                             sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));
-                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                            GetCell(realizationGrid, rowIndex, 8).Content = sum.ToString();
+                            _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                            GetCell(realizationGrid, rowIndex, 2).Content = 0;
+                            Console.WriteLine(ex);
+                            throw;
                         }
+                           
+ 
+                            //MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
+                            //    MessageBoxButton.OK, MessageBoxImage.Warning);
+                            ////GetCell(realizationGrid, rowIndex, 2).Content = 0.ToString();
+                        
                     }
                 }
             }
@@ -127,7 +141,7 @@ namespace ClothWPF.General.Realization
         private string GetSingleCellValue(int roww, int column)
         {
             var dataGrid = realizationGrid as DataGrid;
-            if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
+            if (realizationGrid.Items.Count != 0)
             {
                 var row = (DataGridRow) dataGrid.ItemContainerGenerator.ContainerFromItem(realizationGrid.Items[roww]);
                 if (row != null)
@@ -149,7 +163,7 @@ namespace ClothWPF.General.Realization
         private void GetColumnValue()
         {
             var dataGrid = realizationGrid as DataGrid;
-            if (realizationGrid.Items != null && realizationGrid.Items.Count > 0)
+            if (realizationGrid.Items.Count != 0)
             {
 
                 for (int i = 0; i < realizationGrid.Items.Count; i++)
