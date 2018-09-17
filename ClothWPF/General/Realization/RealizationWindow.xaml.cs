@@ -296,7 +296,7 @@ namespace ClothWPF.General.Realization
                     Idproduct = product.Idproduct
                 });
                 var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();                
-                double? sum = std.Count - product.CountS;
+                double? sum = std.Count - product.CountSale;
                 std.Count = sum;
             }
             context.SaveChanges();
