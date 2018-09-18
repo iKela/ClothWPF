@@ -61,7 +61,11 @@
                          TextChanged="txt_ClientDiscount_TextChanged" 
                          LostFocus="TextBox_LostFocus"
                          KeyDown="TextBox_OnKeyDown"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="cmb_Organization" Text="Виберіть організацію" ItemsSource="{Binding Path=ListOfOrganizations}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10 0" SelectionChanged="Cmb_Organization_OnSelectionChanged"/>
+                    <Button Name="btn_NewOrganization" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нову організацію" Height="25" Width="25" Click="Btn_NewOrganization_OnClick"/>
+                </StackPanel>
+                </StackPanel>
             <StackPanel Orientation="Horizontal">
 
             </StackPanel>
