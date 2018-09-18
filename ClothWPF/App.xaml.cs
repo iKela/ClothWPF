@@ -1,5 +1,7 @@
 ﻿using ClothWPF.Authorization;
 using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 
 namespace ClothWPF
@@ -18,6 +20,8 @@ namespace ClothWPF
 
             base.OnStartup(e);
 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("uk-Ua");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("uk-Ua");
             //Show the login view
             AuthenticationViewModel viewModel = new AuthenticationViewModel(new AuthenticationService());
             IView loginWindow = new Login(viewModel);

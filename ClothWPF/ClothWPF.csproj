@@ -306,6 +306,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Realization\RealizationInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Realization\RealizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,6 +376,9 @@
     <Compile Include="General\Classes\Synchronization.cs" />
     <Compile Include="General\Customer\WCustomer.xaml.cs">
       <DependentUpon>WCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\Realization\RealizationInfo.xaml.cs">
+      <DependentUpon>RealizationInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
