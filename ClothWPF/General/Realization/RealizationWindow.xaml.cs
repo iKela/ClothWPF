@@ -29,6 +29,7 @@ namespace ClothWPF.General.Realization
         EfContext context ;
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
+        public int _idRealiz = 0;
         private int rowIndex { get; set; }
         private double sum { get; set; }
        public  List<int> IdList { get; set; }
@@ -204,6 +205,7 @@ namespace ClothWPF.General.Realization
 
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
+            Add();
             //GetColumnValue();
         }
 
@@ -278,6 +280,7 @@ namespace ClothWPF.General.Realization
                 double? sum = std.Count - product.CountSale;
                 std.Count = sum;
             }
+            _idRealiz = context.Realizations.Select(c => c.IdRealization).Max();
             context.SaveChanges();
         }
 
