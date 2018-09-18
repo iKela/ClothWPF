@@ -65,11 +65,11 @@ namespace ClothWPF.General.Customer
         {
             double maxamountofdebt = 0;
             Double.TryParse(txt_MaxAmountOfDebt.Text, out maxamountofdebt);
-            using (EfContext context = new EfContext())
-            {
-                try
-                {
-                    context.Client.Add(new Customer
+            //using (EfContext context = new EfContext())
+            //{
+            //    try
+            //    {
+            //        context.Client.Add(new Customer
     //                {
     //    NameClient =txt_Name.Text,
     //    Town 
@@ -90,15 +90,15 @@ namespace ClothWPF.General.Customer
     //    IndividualTaxNumber 
     //    KindOfResponsibility 
     //});
-                    context.SaveChanges();
+                //    context.SaveChanges();
                     
-                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                //    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                //    Close();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
             }
         }
     }
