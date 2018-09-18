@@ -26,7 +26,7 @@ namespace ClothWPF.General.Realization
     /// </summary>
     public partial class RealizationWindow : Window
     {
-        EfContext context ;
+        
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         public int _idRealiz = 0;
@@ -206,10 +206,38 @@ namespace ClothWPF.General.Realization
 
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
-            RealizationInfo info = new RealizationInfo();
-            info.ShowDialog();
-            Add();
-            //GetColumnValue();
+            using (EfContext context = new EfContext())
+            {
+
+                context.Realizations.Add(new Entities.Realization
+                {
+                   
+                });
+                context.SaveChanges();
+             //   Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
+
+                foreach (var product in _ListProduct)   //переробити
+                {
+                    context.RealizationProducts.Add(new Entities.RealizationProduct
+                    {
+                        Count = product.CountSale,
+                        PriceDollar = product.PriceDollar,
+                        PriceUah = product.PriceUah,
+                        PriceRetail = product.PriceRetail,
+                        PriceWholesale = product.PriceWholesale,
+                        NDS = product.NDS,
+                        DiscountProduct = product.Discount,
+                        TotalProductSum = product.Sum,
+                        IdRealization = product.IdRealization,
+                        Idproduct = product.Idproduct
+                    });
+                    var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
+                    double? sum = std.Count - product.CountSale;
+                    std.Count = sum;
+                }
+                _idRealiz = context.Realizations.Select(c => c.IdRealization).Max();
+                context.SaveChanges();
+            }
         }
 
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
@@ -262,30 +290,7 @@ namespace ClothWPF.General.Realization
 
         }
 
-        void Add()
-        {
-            foreach (var product in _ListProduct)   //переробити
-            {
-                context.RealizationProducts.Add(new Entities.RealizationProduct
-                {
-                    Count    = product.CountSale,
-                    PriceDollar = product.PriceDollar,
-                    PriceUah = product.PriceUah,
-                    PriceRetail = product.PriceRetail,
-                    PriceWholesale = product.PriceWholesale,
-                    NDS = product.NDS,
-                    DiscountProduct = product.Discount,
-                    TotalProductSum = product.Sum,      
-                    IdRealization = product.IdRealization,
-                    Idproduct = product.Idproduct
-                });
-                var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();                
-                double? sum = std.Count - product.CountSale;
-                std.Count = sum;
-            }
-            _idRealiz = context.Realizations.Select(c => c.IdRealization).Max();
-            context.SaveChanges();
-        }
+        
 
         private string oldTextDiscount { get; set; }
 
