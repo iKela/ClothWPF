@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ClothWPF.General.Realization"
         mc:Ignorable="d"
         Name="RealizationW" Title="Реалізація" Height="700" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14">
@@ -32,13 +34,30 @@
                 <SolidColorBrush Color="White"/>
             </TextBlock.Foreground>
         </TextBlock>
-        <GroupBox Grid.Row="2" BorderThickness="0" Header="Інформація про клієнта" FontFamily="Times New Roman" Padding="3">
+        <GroupBox Grid.Row="2" BorderThickness="0" Header="Загальна інформація" FontFamily="Times New Roman" Padding="3">
             <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+                   
+                    <Separator Margin="10"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <xctk:MaskedTextBox x:Name="TxtRealizationDate" materialDesign:HintAssist.Hint="Дата реалізації" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>
+                    </StackPanel>
+                </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_ClientName" Width="300" materialDesign:HintAssist.Hint="Клієнт" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" 
+                <TextBlock Text="Контрагент" VerticalAlignment="Center"/>
+                <Separator Margin="10"/>
+                <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding Id}"
+                                          Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged">
+                    <controls:AutoCompleteBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </controls:AutoCompleteBox.ItemTemplate>
+                </controls:AutoCompleteBox>
+                <Separator Margin="5 0"/>
+                    <Button Name="btn_NewCustomer" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового контрагента" Height="25" Width="25" Click="btn_NewCustomer_Click"/>
+                    <TextBox Name="txt_ClientDiscount" Width="60" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0" 
                          TextChanged="txt_ClientDiscount_TextChanged" 
                          LostFocus="TextBox_LostFocus"
                          KeyDown="TextBox_OnKeyDown"/>

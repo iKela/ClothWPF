@@ -41,6 +41,7 @@ namespace ClothWPF.General.Realization
             IdList= new List<int>();
             IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
+            TxtRealizationDate.Text = DateTime.Today.Date.ToShortDateString().Replace(".", null);
         }
 
         #region Витяг та призначення значення після його зміни в комірці
@@ -381,6 +382,16 @@ namespace ClothWPF.General.Realization
             {
                 getid = 0;
             }
+        }
+
+        private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void btn_NewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
