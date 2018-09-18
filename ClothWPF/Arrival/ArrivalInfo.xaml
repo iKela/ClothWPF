@@ -7,7 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
-        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
+        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
