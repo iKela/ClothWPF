@@ -99,7 +99,7 @@ namespace ClothWPF.General.Customer
                 //{
                 //    MessageBox.Show(ex.Message);
                 //}
-            }
+            //}
         }
     }
 }
