@@ -21,6 +21,7 @@ namespace ClothWPF.General.Customer
     /// </summary>
     public partial class WCustomer : Window
     {
+        
         public WCustomer()
         {
             InitializeComponent();
@@ -69,27 +70,27 @@ namespace ClothWPF.General.Customer
             {
                 try
                 {
-                    context.Client.Add(new Customer
-    //                {
-    //    NameClient =txt_Name.Text,
-    //    Town 
-    //    Adress 
-    //    Number
-    //    Email 
-    //    Region 
-    //    Discount
-    //    DiscountCardNumber
-    //    Currency 
-    //    Category 
-    //    FullName
-    //    Legaladress
-    //    MaxAmountOfDebt 
-    //    VATPlayerNumber 
-    //    ContractDate                
-    //    ContractNumber 
-    //    IndividualTaxNumber 
-    //    KindOfResponsibility 
-    //});
+                    context.Clients.Add(new Client
+                    {
+                        NameClient = txt_Name.Text,
+                        Town = txt_City.Text,
+                        Adress = txt_Address.Text,
+                        Number = txt_PhoneNumber.Text,
+                        Email = txt_Email.Text,
+                        Region = txt_Region.Text,
+                        Discount = Convert.ToDouble(TxtDiscount.Text),
+                        DiscountCardNumber = TxtDiscountCardNumber.Text,
+                        Currency = cmb_Currency.Text,
+                        Category = cmb_Category.Text,
+                        FullName = TxtFullName.Text,
+                        Legaladress = TxtLegalAddress.Text,
+                        MaxAmountOfDebt = Convert.ToDouble(txt_MaxAmountOfDebt.Text),
+                        VATPlayerNumber = txt_VATPlayerNumber.Text,
+                        ContractDate = Convert.ToDateTime(txt_ContractDate.Text),
+                        ContractNumber = txt_ContractNumber.Text,
+                        IndividualTaxNumber = txt_IndividualTaxNumber.Text,
+                        KindOfResponsibility = cmb_KindOfResponsibility.Text
+                    });
                     context.SaveChanges();
                     
                     MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
