@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Entities;
 
 namespace ClothWPF.General.Customer
 {
@@ -22,6 +24,7 @@ namespace ClothWPF.General.Customer
         public WCustomer()
         {
             InitializeComponent();
+
         }
 
         private void Btn_CloseWindow_OnClick(object sender, RoutedEventArgs e)
@@ -60,7 +63,43 @@ namespace ClothWPF.General.Customer
 
         private void Btn_Add_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            double maxamountofdebt = 0;
+            Double.TryParse(txt_MaxAmountOfDebt.Text, out maxamountofdebt);
+            using (EfContext context = new EfContext())
+            {
+                try
+                {
+    //                context.Client.Add(new Customer
+    //                {
+    //    NameClient =txt_Name.Text,
+    //    Town 
+    //    Adress 
+    //    Number
+    //    Email 
+    //    Region 
+    //    Discount
+    //    DiscountCardNumber
+    //    Currency 
+    //    Category 
+    //    FullName
+    //    Legaladress
+    //    MaxAmountOfDebt 
+    //    VATPlayerNumber 
+    //    ContractDate                
+    //    ContractNumber 
+    //    IndividualTaxNumber 
+    //    KindOfResponsibility 
+    //});
+                    context.SaveChanges();
+                    
+                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

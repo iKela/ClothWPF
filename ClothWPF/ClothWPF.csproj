@@ -411,10 +411,15 @@
     <Compile Include="Migrations\201809171405408_editRealization.Designer.cs">
       <DependentUpon>201809171405408_editRealization.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809180832442_editCustomer.cs" />
+    <Compile Include="Migrations\201809180832442_editCustomer.Designer.cs">
+      <DependentUpon>201809180832442_editCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
+    <Compile Include="Models\Client\Customer.cs" />
     <Compile Include="Models\Main\ProductModel.cs" />
     <Compile Include="Models\NewArrival\NewArrivalModel.cs" />
     <Compile Include="Models\AddProduct\ProductModel.cs" />
@@ -468,6 +473,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809171405408_editRealization.resx">
       <DependentUpon>201809171405408_editRealization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809180832442_editCustomer.resx">
+      <DependentUpon>201809180832442_editCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
