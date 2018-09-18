@@ -7,6 +7,7 @@ using ClothWPF.Models.Main;
 using ClothWPF.Entities;
 using System.ComponentModel;
 using System.Data.Entity.Core.Common.EntitySql;
+using System.Windows.Input;
 using System.Windows.Media;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Helpes;
@@ -152,6 +153,6 @@ namespace ClothWPF
                 hasBeenClicked = true;
             }
             hasBeenClicked = false;
-        }
+        } 
     }
 }

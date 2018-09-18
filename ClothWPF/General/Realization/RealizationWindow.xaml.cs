@@ -3,6 +3,7 @@ using ClothWPF.Models.RealizationWindow;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -69,10 +70,13 @@ namespace ClothWPF.General.Realization
                             
                             try
                             {
-                                sum = Convert.ToDouble(el.Text) * Convert.ToDouble(
-                                                           (Convert.ToDouble(GetSingleCellValue(rowIndex, 2)) > 0)
-                                                               ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2))
-                                                               : 1);
+                                sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(
+                                                           (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")) > 0)
+                                                           ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))
+                                                           : 1)) - ((Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(
+                                                           (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")) > 0)
+                                                            ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))
+                                                            : 1)) * (Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ","))) / 100);
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
 
@@ -100,25 +104,35 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        try
-                        {
-                            sum = (Convert.ToDouble(el.Text) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5)));
+                        if ((Convert.ToDouble(el.Text.Replace(".", ",")) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ","))))
+                        { 
+                            sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) - (Convert.ToDouble(el.Text.Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".",",")) / 100);
                             GetCell(realizationGrid, rowIndex, 8).Content = sum;
                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
 
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex);
-                            throw;
-                        }
-                                                    GetColumnValue();
+                            GetColumnValue();
                             CountValues();
- 
-                            //MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
-                            //    MessageBoxButton.OK, MessageBoxImage.Warning);
-                            ////GetCell(realizationGrid, rowIndex, 2).Content = 0.ToString();
-                        
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                            realizationGrid.CancelEdit();
+                        }
+                    }
+                    else if (bindingPath == "Discount")
+                    {
+                        rowIndex = e.Row.GetIndex();
+                        var el = e.EditingElement as TextBox;
+
+                        value = el.Text;
+
+                            sum = (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) -(Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(el.Text.Replace(".",",")) / 100);
+                            GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                            _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+
+                        GetColumnValue();
+                        CountValues();
                     }
                 }
             }
@@ -312,7 +326,7 @@ namespace ClothWPF.General.Realization
         private void CountValues()
         {
            if(txt_FullPrice.Text != "")
-           txt_TotalSum.Text  = ((Convert.ToDouble(txt_FullPrice.Text) - (((txt_DiscountSum.Text) != "")? Convert.ToDouble(txt_DiscountSum.Text) : 0 ) - ((txt_Prepayment.Text != "")? Convert.ToDouble(txt_Prepayment.Text) : 0))).ToString();
+           txt_TotalSum.Text  = ((Convert.ToDouble(txt_FullPrice.Text) - (((txt_DiscountSum.Text) != "")? Convert.ToDouble(txt_DiscountSum.Text) : 0 ) - ((txt_Prepayment.Text != "")? Convert.ToDouble(txt_Prepayment.Text) : 0))).ToString("C");
         }
 
         private void txt_FullPrice_TextChanged(object sender, TextChangedEventArgs e)
