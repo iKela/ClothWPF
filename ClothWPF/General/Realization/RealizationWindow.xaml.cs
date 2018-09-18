@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Entities;
 
 namespace ClothWPF.General.Realization
 {
@@ -29,15 +30,30 @@ namespace ClothWPF.General.Realization
         
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
-        public int _idRealiz = 0;
+        private int idClient;
         private int rowIndex { get; set; }
         private double sum { get; set; }
-       public  List<int> IdList { get; set; }
+        public  List<int> IdList { get; set; }
+        public List<Client> Clients;
         private int getid;
+        private EfContext context;
         public RealizationWindow()
         {
             InitializeComponent();
             _ListProduct = new List<RealizationProductModel>();
+            Clients = new List<Client>();
+            context = new EfContext();
+            foreach (var c in context.Clients)
+            {
+                Clients.Add( new Client
+                {
+                    IDClient = c.IDClient,
+                    NameClient = c.NameClient,
+                    Discount = c.Discount
+                }); 
+            }
+            int i = context.Realizations.Count() + 1;
+            AutoName.ItemsSource = Clients;
             IdList= new List<int>();
             IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
@@ -212,10 +228,15 @@ namespace ClothWPF.General.Realization
                 context.Realizations.Add(new Entities.Realization
                 {
                     Number = txt_Number.Text,
-                   DateRealization = Convert.ToDateTime(TxtRealizationDate.Text)
+                    DateRealization = Convert.ToDateTime(TxtRealizationDate.Text),
+                    PercentageDiscount = Convert.ToDouble(txt_Discount.Text),
+                    TotalPurshaise = Convert.ToDouble(txt_FullPrice.Text),
+                    PaymentSum = Convert.ToDouble(txt_Prepayment.Text),
+                    TotalSum = Convert.ToDouble(txt_TotalSum.Text),
+                    IdClient = idClient
                 });
                 context.SaveChanges();
-             //   Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
+                int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
 
                 foreach (var product in _ListProduct)   //переробити
                 {
@@ -229,14 +250,14 @@ namespace ClothWPF.General.Realization
                         NDS = product.NDS,
                         DiscountProduct = product.Discount,
                         TotalProductSum = product.Sum,
-                        IdRealization = product.IdRealization,
+                        IdRealization = Idrealiz,
                         Idproduct = product.Idproduct
                     });
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
                     std.Count = sum;
                 }
-                _idRealiz = context.Realizations.Select(c => c.IdRealization).Max();
+               
                 context.SaveChanges();
             }
         }
@@ -392,7 +413,9 @@ namespace ClothWPF.General.Realization
 
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            var selected = (Client)AutoName.SelectedItem;
+            idClient = selected.IDClient;
+            txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
         }
 
         private void btn_NewCustomer_Click(object sender, RoutedEventArgs e)

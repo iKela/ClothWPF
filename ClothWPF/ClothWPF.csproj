@@ -425,6 +425,10 @@
     <Compile Include="Migrations\201809180832442_editCustomer.Designer.cs">
       <DependentUpon>201809180832442_editCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809181547232_preReliz.cs" />
+    <Compile Include="Migrations\201809181547232_preReliz.Designer.cs">
+      <DependentUpon>201809181547232_preReliz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -486,6 +490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809180832442_editCustomer.resx">
       <DependentUpon>201809180832442_editCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181547232_preReliz.resx">
+      <DependentUpon>201809181547232_preReliz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -21,6 +21,7 @@ namespace ClothWPF.Entities
         public double? SumDiscount { get; set; }
         public double? Prepayment { get; set; }
         public double TotalPurshaise { get; set; }
+        public double TotalSum { get; set; }
         public double? PaymentSum { get; set; }
         [ForeignKey("GetClient")]
         public int IdClient { get; set; }

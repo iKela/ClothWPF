@@ -27,7 +27,7 @@ namespace ClothWPF.Arrival
         public ArrivalInfo()
         {
             InitializeComponent();
-              int i  = context.Realizations.Count()+1;
+              int i  = context.Arrivals.Count()+1;
             txt_Number.Text = i.ToString();
         }
         public void loaded()
