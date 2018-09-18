@@ -108,7 +108,7 @@
                                     Background="Transparent" 
                                     MouseDown="HamburgerRealizations_OnMouseDown">
                             <materialDesign:PackIcon Kind="Cart" Width="35" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Реалізації" ToolTip="Список реалізацій."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                            <TextBlock Text="Реалізація" ToolTip="Список продаж."  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

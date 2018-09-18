@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ClothWPF.Enterprise"
         mc:Ignorable="d"
-        Title="ProductList"  Height="700" Width="1300" Icon="/ClothWPF;component/Assets/MinialLogo.png" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14" Loaded="Window_Loaded">
+        Title="ProductList"  Height="700" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Times New Roman" FontSize="14" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
