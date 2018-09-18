@@ -211,7 +211,8 @@ namespace ClothWPF.General.Realization
 
                 context.Realizations.Add(new Entities.Realization
                 {
-                   
+                    Number = txt_Number.Text,
+                   DateRealization = Convert.ToDateTime(TxtRealizationDate.Text)
                 });
                 context.SaveChanges();
              //   Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
