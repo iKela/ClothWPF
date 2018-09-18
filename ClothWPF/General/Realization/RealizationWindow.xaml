@@ -20,6 +20,18 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
         </StackPanel>
+        <Grid Grid.Row="1" Background="#FF0042A2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Реалізація" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="White"/>
+            </TextBlock.Foreground>
+        </TextBlock>
         <GroupBox Grid.Row="2" BorderThickness="0" Header="Інформація про клієнта" FontFamily="Times New Roman" Padding="3">
             <StackPanel>
             <StackPanel Orientation="Horizontal">

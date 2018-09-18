@@ -122,5 +122,10 @@ namespace ClothWPF
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
