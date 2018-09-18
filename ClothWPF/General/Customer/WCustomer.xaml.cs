@@ -69,7 +69,7 @@ namespace ClothWPF.General.Customer
             {
                 try
                 {
-    //                context.Client.Add(new Customer
+                    context.Client.Add(new Customer
     //                {
     //    NameClient =txt_Name.Text,
     //    Town 

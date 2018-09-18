@@ -23,6 +23,7 @@ namespace ClothWPF
         public DbSet<RealizationProduct> RealizationProducts { get; set; }
         public DbSet<GroupProduct> GroupProducts { get; set; }
         public DbSet<ExcelTable> ExcelTables { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
        private static string GetConnectionString() //TestVersion
         {
