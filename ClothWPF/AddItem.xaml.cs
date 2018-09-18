@@ -162,5 +162,15 @@ namespace ClothWPF
                 e.Handled = true;
             }
         }
+
+        private void CheckBox_Discount_OnChecked(object sender, RoutedEventArgs e)
+        {
+            txt_Discount.Visibility = Visibility.Visible;
+        }
+
+        private void CheckBox_Discount_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            txt_Discount.Visibility = Visibility.Collapsed;
+        }
     }
 }

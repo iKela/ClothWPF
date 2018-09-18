@@ -153,6 +153,16 @@ namespace ClothWPF
                 hasBeenClicked = true;
             }
             hasBeenClicked = false;
-        } 
+        }
+
+        private void ChBox_Discount_OnChecked(object sender, RoutedEventArgs e)
+        {
+            txt_Discont.Visibility = Visibility.Visible;
+        }
+
+        private void ChBox_Discount_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            txt_Discont.Visibility = Visibility.Collapsed;
+        }
     }
 }

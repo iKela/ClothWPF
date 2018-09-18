@@ -104,7 +104,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Name="grb_Prce" FontSize="14" FontFamily="Times New Roman" Grid.Column="1"  Header="Ціна" Margin="11,10,10,0" VerticalAlignment="Top" Height="160" Width="170">
+            <GroupBox Name="grb_Prce" FontSize="14" FontFamily="Times New Roman" Grid.Column="1"  Header="Ціна" Margin="11,10,10,0" VerticalAlignment="Top" Height="Auto" Width="170">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_PriceRetailer" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Ціна в роздріб" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
@@ -115,11 +115,11 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" IsEnabled="False">
-                            <CheckBox Name="chBox_Discount"/>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Name="chBox_Discount" Checked="ChBox_Discount_OnChecked" Unchecked="ChBox_Discount_OnUnchecked"/>
                             <TextBlock Text="Знижка" FontSize="14" FontWeight="Bold"/>
                         </StackPanel>
-                        <TextBox Name="txt_Discont" Visibility="Collapsed" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Знижка (грн.)" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <TextBox Name="txt_Discont" Visibility="Collapsed" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Знижка %" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_PriceWholeSale" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Оптова ціна" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
