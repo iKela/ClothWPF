@@ -1,13 +1,13 @@
-﻿<Window x:Class="ClothWPF.Arrival.ArrivalInfo"
+﻿<Window x:Class="ClothWPF.General.Realization.RealizationInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClothWPF.General.Realization"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
-        Title="Прихід" Name="ArrivalWindow" Height="450" Width="510" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
+        Title="RealizationInfo" Height="450" Width="510" WindowStartupLocation="CenterScreen" FontSize="14" FontFamily="Times New Roman" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -30,39 +30,44 @@
             <GroupBox Header="Головна інформація" FontFamily="Times New Roman" Padding="3">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
+                        <Separator Margin="55 0"/>
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  CaretIndex="0" FontSize="14"/>
-                            <!--<xctk:MaskedTextBox x:Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>-->
+                            <xctk:MaskedTextBox x:Name="TxtRealizationDate" materialDesign:HintAssist.Hint="Дата реалізації" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>
                         </StackPanel>
-                        <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
-                        <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" Visibility="Collapsed"/>
+                        <TextBox Name="txt_ComesFrom" Width="150" materialDesign:HintAssist.Hint="Склад: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" DisplayMemberPath="NameSupplier" IsEditable="False" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="cmb_SelectSupplier"/>
-                            <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
+                            <ComboBox Name="cmb_Customer" Text="Контрагент" ItemsSource="{Binding Path=ListOfCustomers}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="Cmb_Customer_OnSelectionChanged"/>
+                            <Button Name="btn_NewCustomer" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового контрагента" Height="25" Width="25" Click="btn_NewCustomer_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="Cmb_Enterprise_OnSelectionChanged"/>
-                            <Button Name="btn_NewEnterprise" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewEnterprise_Click"/>
+                            <ComboBox Name="cmb_Organization" Text="Виберіть організацію" ItemsSource="{Binding Path=ListOfOrganizations}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="Cmb_Organization_OnSelectionChanged"/>
+                            <Button Name="btn_NewOrganization" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нову організацію" Height="25" Width="25" Click="Btn_NewOrganization_OnClick"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
                         <ComboBox Name="cmb_PaymentType" Text="Спосіб оплати" ItemsSource="{Binding Path=ListOfPaymentTypes}" IsEditable="True" IsReadOnly="True" Width="Auto" Margin="10">
                             <ComboBoxItem Content="Переказ Приват24"/>
                             <ComboBoxItem Content="Банківський переказ"/>
                             <ComboBoxItem Content="Оплата платіжною карткою"/>
                             <ComboBoxItem Content="Оплата готівкою"/>
                         </ComboBox>
+                        <Separator Margin="28 0"></Separator>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <xctk:MaskedTextBox x:Name="TxtDeliveryDate" materialDesign:HintAssist.Hint="Дата відправлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" >
-                        <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
-                        <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" Margin="10" >
+                        <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 " FontFamily="Times New Roman" FontSize="14"/>
+                        <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Bottom">
                             <ComboBoxItem Content="$"/>
                             <ComboBoxItem Content="&#8372;"/>
                             <ComboBoxItem Content="&#8364;"/>
                         </ComboBox>
+                        <Separator Margin="33 0"/>
+                        <TextBox Name="TxtSum" Width="Auto" materialDesign:HintAssist.Hint="Сума" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
@@ -82,8 +87,8 @@
                 </StackPanel>
             </GroupBox>
         </Grid>
-      
-        <Grid Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
             <StackPanel Grid.Column="2" >
                 <Button Name="btn_Add" VerticalAlignment="Top" Margin="0 7 7 0" Content="Додати" Width="120" HorizontalAlignment="Center" Click="btn_Add_Click"/>
             </StackPanel>

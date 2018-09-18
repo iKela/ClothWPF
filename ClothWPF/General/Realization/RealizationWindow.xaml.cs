@@ -204,7 +204,8 @@ namespace ClothWPF.General.Realization
 
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
-            //GetColumnValue();
+            RealizationInfo info = new RealizationInfo();
+            info.ShowDialog();
         }
 
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
