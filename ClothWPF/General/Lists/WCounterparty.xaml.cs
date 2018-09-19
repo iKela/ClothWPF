@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Entities;
 
 namespace ClothWPF.General.Lists
 {
@@ -20,10 +21,40 @@ namespace ClothWPF.General.Lists
     public partial class WCounterparty : Window
     {
         bool hasBeenClicked = false;
-
+        private List<Supplier> s;
         public WCounterparty()
         {
             InitializeComponent();
+            s=new List<Supplier>();
+            using (EfContext c= new EfContext())
+            {
+                foreach (var v in c.Suppliers)
+                {
+                    s.Add(new Supplier
+                    {
+                        NameSupplier = v.NameSupplier,
+                        City = v.City,
+                        AdressSupplier = v.AdressSupplier,
+                        NumberSupplier = v.NumberSupplier,
+                        Email = v.Email,
+                        Currency = v.Currency,
+                        Discount = v.Discount,
+                        Region = v.Region,
+                        DiscountCardNumber = v.DiscountCardNumber,
+                        Category = v.Category,
+                        FullName = v.FullName,
+                        LegalAddress = v.LegalAddress,
+                        MaxAmountOfDebt = v.MaxAmountOfDebt,
+                        VATPlayerNumber = v.VATPlayerNumber,
+                        ContractNumber = v.ContractNumber,
+                        ContractDate = v.ContractDate,
+                        IndividualTaxNumber = v.IndividualTaxNumber,
+                        KindOfResponsibility = v.KindOfResponsibility
+                    });
+                }
+            }
+
+            GridCounterparty.ItemsSource = s;
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
