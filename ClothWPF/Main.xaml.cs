@@ -12,7 +12,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.IO;
+using ClothWPF.Arrival.Supplier;
 using ClothWPF.Authorization.Loading;
+using ClothWPF.Enterprise;
 using ClothWPF.Models.Main;
 using ClothWPF.Helpes;
 using ClothWPF.General.Classes;
@@ -357,6 +359,30 @@ namespace ClothWPF
         {
             WItemList itemList = new WItemList();
             itemList.Show();
+        }
+
+        private void CounterpartyList_OnClick(object sender, RoutedEventArgs e)
+        {
+            WCounterparty counterparty = new WCounterparty();
+            counterparty.Show();
+        }
+
+        private void OrganizationList_OnClick(object sender, RoutedEventArgs e)
+        {
+            WOrganizationList oraganizations = new WOrganizationList();
+            oraganizations.Show();
+        }
+
+        private void MiNewCounterparty_OnClick(object sender, RoutedEventArgs e)
+        {
+            SupplierInfo supplier = new SupplierInfo();
+            supplier.Show();
+        }
+
+        private void MiNewOrganization_OnClick(object sender, RoutedEventArgs e)
+        {
+            EnterpriseWindow enterprise = new EnterpriseWindow();
+            enterprise.Show();
         }
     }
 }
