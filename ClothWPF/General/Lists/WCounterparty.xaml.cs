@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Arrival.Supplier;
 using ClothWPF.Entities;
 
 namespace ClothWPF.General.Lists
@@ -70,30 +71,33 @@ namespace ClothWPF.General.Lists
         {
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
-                //var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
+                var filtered = s.Where(product => product.NameSupplier.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByCity.Visibility == Visibility.Visible)
             {
-                //var filtered = _ProductFullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
+                var filtered = s.Where(product => product.City.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByPhoneNumber.Visibility == Visibility.Visible)
             {
-                // var filtered = _ProductFullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
+                var filtered = s.Where(product => product.NumberSupplier.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByRegion.Visibility == Visibility.Visible)
             {
-               
+                var filtered = s.Where(product => product.Region.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchDicountCard.Visibility == Visibility.Visible)
             {
-
+                var filtered = s.Where(product => product.DiscountCardNumber.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchEmail.Visibility == Visibility.Visible)
             {
-
+                var filtered = s.Where(product => product.Email.StartsWith(txt_Search.Text));
+                GridCounterparty.ItemsSource = filtered;
             }
         }
 
@@ -159,7 +163,8 @@ namespace ClothWPF.General.Lists
 
         private void BtnAddCounterparty_Click(object sender, RoutedEventArgs e)
         {
-            
+            SupplierInfo supplier = new SupplierInfo();
+            supplier.ShowDialog();
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)

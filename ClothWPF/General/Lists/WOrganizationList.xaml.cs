@@ -63,17 +63,18 @@ namespace ClothWPF.General.Lists
         {
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
-                //var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
+                var filtered = this.e.Where(product => product.Name.StartsWith(txt_Search.Text));
+                GridOrganizations.ItemsSource = filtered;
             }
             if (tb_SearchByCity.Visibility == Visibility.Visible)
             {
-                //var filtered = _ProductFullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
+                var filtered = this.e.Where(product => product.City.StartsWith(txt_Search.Text));
+                GridOrganizations.ItemsSource = filtered;
             }
             if (tb_SearchEmail.Visibility == Visibility.Visible)
             {
-
+                var filtered = this.e.Where(product => product.Email.StartsWith(txt_Search.Text));
+                GridOrganizations.ItemsSource = filtered;
             }
         }
 
