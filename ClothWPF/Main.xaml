@@ -142,11 +142,11 @@
                         <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="MiItemList"/>
                     </MenuItem>
                     <MenuItem Header="Контрагент" Template="{StaticResource VsMenuTop}">
-                        <MenuItem Header="Додати контрагента" Template="{StaticResource VsMenuSub}" />
-                        <MenuItem Header="Список контрагентів" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Name="MiNewCounterparty" Header="Додати контрагента" Template="{StaticResource VsMenuSub}" Click="MiNewCounterparty_OnClick"/>
+                        <MenuItem Name="MiCounterpartyList" Header="Список контрагентів" Template="{StaticResource VsMenuSub}" Click="CounterpartyList_OnClick" />
                         <Separator/>
-                        <MenuItem Header="Додати організацію" Template="{StaticResource VsMenuSub}" />
-                        <MenuItem Header="Список організацій" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Name="MiNewOrganization" Header="Додати організацію" Template="{StaticResource VsMenuSub}" Click="MiNewOrganization_OnClick" />
+                        <MenuItem Name="MiOrganizationList" Header="Список організацій" Template="{StaticResource VsMenuSub}" Click="OrganizationList_OnClick" />
                     </MenuItem>
                     <MenuItem Header="Налаштування" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiGeneral" Header="Загальні" Template="{StaticResource VsMenuSub}" Click="mi_Settings_Click"/>
