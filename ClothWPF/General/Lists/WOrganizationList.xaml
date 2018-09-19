@@ -19,7 +19,7 @@
                 <Button Name="BtnAddOrganization" ToolTip="Додати нову організацію" Background="AliceBlue" Padding="0" Click="BtnAddOrganization_Click" Margin="10 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Text="Організація" Foreground="Black" Margin="5 0"/>
-                        <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
+                        <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
                     </StackPanel>
                 </Button>
                 <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="TextBox_Focus"/>
@@ -34,20 +34,8 @@
                             <Button Name="btn_SearchByCity" Content="Місто" Click="btn_SearchByCity_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="5" Name="tb_SearchByRegion" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
-                            <Button Name="btn_SearchByRegion" Content="Регіон" Click="btn_SearchByRegion_Click"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="5" Name="tb_SearchByPhoneNumber" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
-                            <Button Name="btn_SearchByPhoneNumber" Content="Номер телефону" Click="btn_SearchPhoneNumber"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="5" Name="tb_SearchEmail" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
                             <Button Name="btn_SearchByEmail" Content="E-mail" Click="btn_SearchByEmail_Click"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="5" Name="tb_SearchDicountCard" VerticalAlignment="Center" Width="15" Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Visibility="Hidden"/>
-                            <Button Name="btn_SearchByDuscountCard" Content="Дисконтна картка" Click="btn_SearchByDiscountCard"/>
                         </StackPanel>
                     </StackPanel>
                 </materialDesign:PopupBox>
@@ -74,13 +62,16 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Назва" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Місто" Binding="{Binding Path=City}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Регіон" Binding="{Binding Path=Region}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Адреса" Binding="{Binding Path=Address}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Номер телефону" Binding="{Binding Path=PhoneNumber}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="" Binding="{Binding Path=Address}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Адреса" Binding="{Binding Path=KodEDRPOU}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="E-mail" Binding="{Binding Path=Email}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Знижка%" Binding="{Binding Path=Discount}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Дисконтна картка" Binding="{Binding Path=DiscountCardNumber}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Валюта" Binding="{Binding Path=Currency}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Факс" Binding="{Binding Path=Fax}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Тип власності" Binding="{Binding Path=Ownership}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Спосіб утворення" Binding="{Binding Path=CreatingWay}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Організаційно-правова форма" Binding="{Binding Path=LegalForm}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Тип діяльності" Binding="{Binding Path=Activity}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Індентифікаційний код" Binding="{Binding Path=IdentificationCode}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Директор" Binding="{Binding Path=Director}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                 </DataGrid.Columns>
 
             </DataGrid>

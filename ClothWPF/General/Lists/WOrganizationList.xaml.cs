@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Enterprise;
 
 namespace ClothWPF.General.Lists
 {
@@ -46,19 +47,6 @@ namespace ClothWPF.General.Lists
                 //var filtered = _ProductFullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
                 // productListGrid.ItemsSource = filtered;
             }
-            if (tb_SearchByPhoneNumber.Visibility == Visibility.Visible)
-            {
-                // var filtered = _ProductFullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
-                // productListGrid.ItemsSource = filtered;
-            }
-            if (tb_SearchByRegion.Visibility == Visibility.Visible)
-            {
-
-            }
-            if (tb_SearchDicountCard.Visibility == Visibility.Visible)
-            {
-
-            }
             if (tb_SearchEmail.Visibility == Visibility.Visible)
             {
 
@@ -69,9 +57,6 @@ namespace ClothWPF.General.Lists
         {
             tb_SearchByName.Visibility = Visibility.Visible;
             tb_SearchByCity.Visibility = Visibility.Hidden;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Hidden;
-            tb_SearchByRegion.Visibility = Visibility.Hidden;
-            tb_SearchDicountCard.Visibility = Visibility.Hidden;
             tb_SearchEmail.Visibility = Visibility.Hidden;
         }
 
@@ -79,55 +64,23 @@ namespace ClothWPF.General.Lists
         {
             tb_SearchByName.Visibility = Visibility.Hidden;
             tb_SearchByCity.Visibility = Visibility.Visible;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Hidden;
-            tb_SearchByRegion.Visibility = Visibility.Hidden;
-            tb_SearchDicountCard.Visibility = Visibility.Hidden;
             tb_SearchEmail.Visibility = Visibility.Hidden;
         }
-
-        private void btn_SearchByRegion_Click(object sender, RoutedEventArgs e)
-        {
-            tb_SearchByName.Visibility = Visibility.Hidden;
-            tb_SearchByCity.Visibility = Visibility.Hidden;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Hidden;
-            tb_SearchByRegion.Visibility = Visibility.Visible;
-            tb_SearchDicountCard.Visibility = Visibility.Hidden;
-            tb_SearchEmail.Visibility = Visibility.Hidden;
-        }
-
-        private void btn_SearchPhoneNumber(object sender, RoutedEventArgs e)
-        {
-            tb_SearchByName.Visibility = Visibility.Hidden;
-            tb_SearchByCity.Visibility = Visibility.Hidden;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Visible;
-            tb_SearchByRegion.Visibility = Visibility.Hidden;
-            tb_SearchDicountCard.Visibility = Visibility.Hidden;
-            tb_SearchEmail.Visibility = Visibility.Hidden;
-        }
-
         private void btn_SearchByEmail_Click(object sender, RoutedEventArgs e)
         {
             tb_SearchByName.Visibility = Visibility.Hidden;
             tb_SearchByCity.Visibility = Visibility.Hidden;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Hidden;
-            tb_SearchByRegion.Visibility = Visibility.Hidden;
-            tb_SearchDicountCard.Visibility = Visibility.Hidden;
             tb_SearchEmail.Visibility = Visibility.Visible;
         }
-
-        private void btn_SearchByDiscountCard(object sender, RoutedEventArgs e)
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            tb_SearchByName.Visibility = Visibility.Hidden;
-            tb_SearchByCity.Visibility = Visibility.Hidden;
-            tb_SearchByPhoneNumber.Visibility = Visibility.Hidden;
-            tb_SearchByRegion.Visibility = Visibility.Hidden;
-            tb_SearchDicountCard.Visibility = Visibility.Visible;
-            tb_SearchEmail.Visibility = Visibility.Hidden;
+            Close();
         }
 
-        private void BtnAddCounterparty_Click(object sender, RoutedEventArgs e)
+        private void BtnAddOrganization_Click(object sender, RoutedEventArgs e)
         {
-
+            EnterpriseWindow enterprise = new EnterpriseWindow();
+            enterprise.ShowDialog();
         }
     }
 }
