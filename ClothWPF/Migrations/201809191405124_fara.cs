@@ -26,7 +26,7 @@ namespace ClothWPF.Migrations
             DropColumn("dbo.Suppliers", "KindOfPartnership");
             DropColumn("dbo.Suppliers", "IdentificationCode");
             DropColumn("dbo.GroupProducts", "RungGroup");
-            DropTable("dbo.Clients");
+          //  DropTable("dbo.Clients");
         }
         
         public override void Down()

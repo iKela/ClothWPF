@@ -112,7 +112,7 @@ namespace ClothWPF.Arrival
                     dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
                     GridRealization.ItemsSource = null;
                     var realiz = context.Realizations
-                        .Include(s => s.GetClient)                        
+                        //.Include(s => s.GetClient)                        
                         .Where(a => a.DateRealization >= dateArrivalfrom && a.DateRealization <= dateArrivalTo)
                         .Select(a => new RealizationModel
                         {
@@ -123,7 +123,7 @@ namespace ClothWPF.Arrival
                             PaymentSum = a.PaymentSum,
                             PaymentType = a.PaymentType,                           
                             TotalPurshaise = a.TotalPurshaise,                            
-                            ClientName = a.GetClient.NameSupplier,                           
+                            //ClientName = a.GetClient.NameSupplier,                           
                         }).ToList();
 
                     GridRealization.ItemsSource = realiz;
