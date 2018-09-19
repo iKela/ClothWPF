@@ -70,7 +70,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
                     <TextBox Name="TxtDiscount" Width="200" materialDesign:HintAssist.Hint="Знижка%" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                     <Separator Margin="25 0"/>
-                    <TextBox Name="TxtDiscountCardNumber" Width="200" materialDesign:HintAssist.Hint="Знижка%" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <TextBox Name="TxtDiscountCardNumber" Width="200" materialDesign:HintAssist.Hint="Номер дисконтної картки" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="47" Margin="25 0">
                         <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
                         <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">

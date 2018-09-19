@@ -302,7 +302,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Lists\WCounterparty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Lists\WItemList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="General\Lists\WOrganizationList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,8 +385,14 @@
     <Compile Include="General\Classes\ExcelDataAccess.cs" />
     <Compile Include="General\Classes\GetDataGridCellValue.cs" />
     <Compile Include="General\Classes\Synchronization.cs" />
+    <Compile Include="General\Lists\WCounterparty.xaml.cs">
+      <DependentUpon>WCounterparty.xaml</DependentUpon>
+    </Compile>
     <Compile Include="General\Lists\WItemList.xaml.cs">
       <DependentUpon>WItemList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\Lists\WOrganizationList.xaml.cs">
+      <DependentUpon>WOrganizationList.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Realization\RealizationInfo.xaml.cs">
       <DependentUpon>RealizationInfo.xaml</DependentUpon>
