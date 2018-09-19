@@ -37,13 +37,15 @@ namespace ClothWPF.Items.Group
 
         private void Btn_Add_OnClick(object sender, RoutedEventArgs e)
         {
+            double nds = 0;
+            Double.TryParse(TxtNDS.Text, out nds);
             using (EfContext contex = new EfContext())
             {
                 contex.GroupProducts.Add(new GroupProduct
                 {
                     NameGroup = TxtName.Text,
                     CodeGroup = TxtCode.Text,
-                    Nds = Convert.ToDouble(TxtNDS.Text),
+                    Nds = nds,
                     DescriptionGroup = TxtDescription.Text
                     //IdSubGrop = 
                 });

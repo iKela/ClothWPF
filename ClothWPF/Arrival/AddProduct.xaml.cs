@@ -57,10 +57,10 @@ namespace ClothWPF
             double count = 0;
             double wholesalePrice = 0;
             double retailerPrice = 0;
-            double priceDollar = 0;
             Double.TryParse(txt_Count.Text, out count);
             Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
             Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
+            double priceDollar = 0;
             Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
             #endregion
             try
@@ -84,6 +84,7 @@ namespace ClothWPF
                 txt_ProductCode.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Code;
                 txt_Article.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Article;
                 txt_SuppierPrice.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
+                txt_Group.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Namegroup;
                 txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
                 txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
             //сууукааааа наканецто 5.30 15.08.2018
