@@ -42,16 +42,9 @@
                             
                             <Button Name="btn_NewProduct" Height="30" Width="30" VerticalAlignment="Top" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нову позицію" Margin="10" Click="btn_NewProduct_Click"/>
                             <Separator Margin="10 0"/>
-                            <controls:AutoCompleteBox Name="AutoGroup" Foreground="Gray" Text="Група" Width="150" ValueMemberPath="Name" SelectedItem="{Binding Id}"
-                                                      Height="30" FontFamily="Times New Roman" FontSize="20" GotFocus="AutoGroup_GotFocus">
-                                <controls:AutoCompleteBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
-                                    </DataTemplate>
-                                </controls:AutoCompleteBox.ItemTemplate>
-                            </controls:AutoCompleteBox>
-                            <Button Name="btn_NewGroup" Height="30" Width="30" VerticalAlignment="Top" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0"
-                                    ToolTip="Створити нову групу" Margin="10" Click="btn_NewGroup_Click" />
+                            <StackPanel>
+                                <TextBox Name="TxtGroup" materialDesign:HintAssist.Hint="Група" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                             <TextBox Name="txt_Count" materialDesign:HintAssist.Hint="Кількість" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100" FontFamily="Timew New Roman" FontSize="14"/>
