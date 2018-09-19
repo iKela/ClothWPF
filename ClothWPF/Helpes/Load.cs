@@ -20,7 +20,7 @@ namespace ClothWPF.Helpes
         public void  loaded()
         {
             _ProductFullInfo = context.Products
-                // .Include(b => b.GetGroupProduct)
+                 
                 .Select(a => new ProductModel
                 {
                     IdProduct = a.IdProduct,
@@ -32,8 +32,8 @@ namespace ClothWPF.Helpes
                     PriceRetail = a.PriceRetail,
                     PriceWholesale = a.PriceWholesale,
                     Country = a.Country,
-                    Uid = a.Uid
-                    // Namegroup = a.GetGroupProduct.NameGroup
+                    Uid = a.Uid,
+                    Namegroup = a.GetGroupProduct.NameGroup
                 }).ToList();
             ConstList.Init(_ProductFullInfo);
         }

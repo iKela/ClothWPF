@@ -449,11 +449,14 @@
     <Compile Include="Migrations\201809181547232_preReliz.Designer.cs">
       <DependentUpon>201809181547232_preReliz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809191405124_fara.cs" />
+    <Compile Include="Migrations\201809191405124_fara.Designer.cs">
+      <DependentUpon>201809191405124_fara.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
-    <Compile Include="Models\Client\Customer.cs" />
     <Compile Include="Models\Group\GroupModel.cs" />
     <Compile Include="Models\Main\ProductModel.cs" />
     <Compile Include="Models\NewArrival\NewArrivalModel.cs" />
@@ -514,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809181547232_preReliz.resx">
       <DependentUpon>201809181547232_preReliz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809191405124_fara.resx">
+      <DependentUpon>201809191405124_fara.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
