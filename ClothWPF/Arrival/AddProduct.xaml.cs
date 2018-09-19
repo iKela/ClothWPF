@@ -84,7 +84,7 @@ namespace ClothWPF
                 txt_ProductCode.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Code;
                 txt_Article.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Article;
                 txt_SuppierPrice.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).PriceDollar.ToString();
-            txt_GroupProduct.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Namegroup;
+                txt_Group.Text = productModels.Find(s => s.IdProduct == selected.IdProduct).Namegroup;
                 txt_PriceRetailer.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceRetail).Average().ToString();
                 txt_PriceWholeSale.Text = context.ArrivalProducts.Where(p => p.Idproduct == selected.IdProduct).OrderByDescending(a => a.IdArrivalProduct).Take(3).Select(a => a.PriceWholesale).Average().ToString();
             //сууукааааа наканецто 5.30 15.08.2018
