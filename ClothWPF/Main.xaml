@@ -139,13 +139,13 @@
                     </MenuItem>
                     <MenuItem Header="Товари" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiNewItem"  Header="Додати позицію" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
-                        <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
+                        <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="MiItemList"/>
                     </MenuItem>
                     <MenuItem Header="Контрагент" Template="{StaticResource VsMenuTop}">
-                        <MenuItem Header="Добавити контрагента" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Header="Додати контрагента" Template="{StaticResource VsMenuSub}" />
                         <MenuItem Header="Список контрагентів" Template="{StaticResource VsMenuSub}" />
                         <Separator/>
-                        <MenuItem Header="Добавити організацію" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Header="Додати організацію" Template="{StaticResource VsMenuSub}" />
                         <MenuItem Header="Список організацій" Template="{StaticResource VsMenuSub}" />
                     </MenuItem>
                     <MenuItem Header="Налаштування" Template="{StaticResource VsMenuTop}">

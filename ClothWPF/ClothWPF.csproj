@@ -302,11 +302,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\Customer\WCustomer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="General\Lists\WGroupList.xaml">
+    <Page Include="General\Lists\WItemList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -382,11 +378,8 @@
     <Compile Include="General\Classes\ExcelDataAccess.cs" />
     <Compile Include="General\Classes\GetDataGridCellValue.cs" />
     <Compile Include="General\Classes\Synchronization.cs" />
-    <Compile Include="General\Customer\WCustomer.xaml.cs">
-      <DependentUpon>WCustomer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="General\Lists\WGroupList.xaml.cs">
-      <DependentUpon>WGroupList.xaml</DependentUpon>
+    <Compile Include="General\Lists\WItemList.xaml.cs">
+      <DependentUpon>WItemList.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Realization\RealizationInfo.xaml.cs">
       <DependentUpon>RealizationInfo.xaml</DependentUpon>

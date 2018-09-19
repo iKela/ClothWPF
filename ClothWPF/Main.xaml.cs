@@ -16,6 +16,7 @@ using ClothWPF.Authorization.Loading;
 using ClothWPF.Models.Main;
 using ClothWPF.Helpes;
 using ClothWPF.General.Classes;
+using ClothWPF.General.Lists;
 
 namespace ClothWPF
 {
@@ -350,6 +351,12 @@ namespace ClothWPF
                 box.Text = String.Empty;
                 hasBeenClicked = true;
             }
+        }
+
+        private void MiItemList(object sender, RoutedEventArgs e)
+        {
+            WItemList itemList = new WItemList();
+            itemList.Show();
         }
     }
 }
