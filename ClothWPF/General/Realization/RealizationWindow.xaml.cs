@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Arrival.Supplier;
 using ClothWPF.Entities;
 
 namespace ClothWPF.General.Realization
@@ -34,24 +35,24 @@ namespace ClothWPF.General.Realization
         private int rowIndex { get; set; }
         private double sum { get; set; }
         public  List<int> IdList { get; set; }
-        
+        private List<Supplier> supplier;
         private int getid;
         private EfContext context;
         public RealizationWindow()
         {
             InitializeComponent();
             _ListProduct = new List<RealizationProductModel>();
-            //Clients = new List<Client>();
+            supplier = new List<Supplier>();
             context = new EfContext();
-            //foreach (var c in context.Clients)
-            //{
-            //    Clients.Add( new Client
-            //    {
-            //        IDClient = c.IDClient,
-            //        NameClient = c.NameClient,
-            //        Discount = c.Discount
-            //    }); 
-            //}
+            foreach (var c in context.Suppliers)
+            {
+                supplier.Add(new Supplier
+                {
+                    IdSupplier = c.IdSupplier,
+                    NameSupplier = c.NameSupplier,
+                    Discount = c.Discount
+                });
+            }
             int i = context.Realizations.Count() + 1;
             txt_Number.Text = i.ToString();
          //   AutoName.ItemsSource = Clients;
@@ -59,7 +60,7 @@ namespace ClothWPF.General.Realization
             IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
             TxtRealizationDate.Text = DateTime.Today.Date.ToShortDateString().Replace(".", null);
-            //AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = Clients; //AutoName.Items.Refresh();
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = supplier; //AutoName.Items.Refresh();
         }
 
         #region Витяг та призначення значення після його зміни в комірці
@@ -417,9 +418,9 @@ namespace ClothWPF.General.Realization
         {
             try
             {
-                //var selected = (Client)AutoName.SelectedItem;
-                //idClient = selected.IDClient;
-                //txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
+                var selected = (Supplier)AutoName.SelectedItem;
+                idClient = selected.IdSupplier;
+                txt_ClientDiscount.Text = supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount.ToString();
 
             }
             catch(Exception ex)
@@ -429,8 +430,8 @@ namespace ClothWPF.General.Realization
 
         private void btn_NewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            //General.Customer.WCustomer customer = new General.Customer.WCustomer();
-            //customer.ShowDialog();
+            SupplierInfo customer = new SupplierInfo();
+            customer.ShowDialog();
         }
 
         private void Cmb_Organization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
