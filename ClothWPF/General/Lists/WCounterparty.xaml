@@ -72,11 +72,11 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Назва" Binding="{Binding Path=Name}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Назва" Binding="{Binding Path=NameSupplier}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Місто" Binding="{Binding Path=City}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Регіон" Binding="{Binding Path=Region}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Адреса" Binding="{Binding Path=Address}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Номер телефону" Binding="{Binding Path=PhoneNumber}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Адреса" Binding="{Binding Path=AdressSupplier}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Номер телефону" Binding="{Binding Path=NumberSupplier}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="E-mail" Binding="{Binding Path=Email}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Знижка%" Binding="{Binding Path=Discount}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                     <DataGridTextColumn Header="Дисконтна картка" Binding="{Binding Path=DiscountCardNumber}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
