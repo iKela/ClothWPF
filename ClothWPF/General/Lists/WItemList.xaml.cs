@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Authorization.Loading;
+using ClothWPF.Entities;
 using ClothWPF.Items.Group;
 
 namespace ClothWPF.General.Lists
@@ -22,11 +23,12 @@ namespace ClothWPF.General.Lists
     public partial class WItemList : Window
     {
         bool hasBeenClicked = false;
-
+        private List<GroupProduct> g;
         public WItemList()
         {
             InitializeComponent();
             productListGrid.ItemsSource = ConstList.GetList;
+         
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
