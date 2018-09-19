@@ -11,22 +11,22 @@
         Title="WItemList" Height="700" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
-        <RowDefinition Height="50"/>
+        <RowDefinition Height="40"/>
         <RowDefinition/>
         <RowDefinition Height="40"/>
     </Grid.RowDefinitions>
     <Grid Grid.Row="0">
         <StackPanel Orientation="Horizontal">
-                <Button Background="AliceBlue" Padding="0" Click="btn_AddProduct_Click" Margin="10 0">
+                <Button Name="btn_AddProduct" Background="AliceBlue" Padding="0" Click="btn_AddProduct_Click" Margin="10 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Товар" Foreground="Black" Margin="5 0"/>
-                    <Button Name="btn_AddProduct" Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
+                    <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
                 </StackPanel>
                 </Button>
-            <Button Background="AliceBlue" Padding="0" Click="BtnAddGroup_Click" Margin="10 0">
+                <Button Name="BtnAddGroup" Background="AliceBlue" Padding="0" Click="BtnAddGroup_Click" Margin="10 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Група" Foreground="Black" Margin="5 0"/>
-                    <Button Name="BtnAddGroup" Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
+                    <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" ToolTip="Додати товар до приходу" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
                 </StackPanel>
             </Button>
                 <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="TextBox_Focus"/>
