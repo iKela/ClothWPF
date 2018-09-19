@@ -181,7 +181,7 @@ namespace ClothWPF
 
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
-             Items.Group.WNewGroup newGroup = new WNewGroup();
+            WNewGroup newGroup = new WNewGroup();
             newGroup.ShowDialog();
         }
     }

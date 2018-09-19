@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Helpes;
+using ClothWPF.Items.Group;
 
 namespace ClothWPF
 {
@@ -135,7 +136,8 @@ namespace ClothWPF
 
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
-
+            WNewGroup group = new WNewGroup();
+            group.ShowDialog();
         }
 
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
