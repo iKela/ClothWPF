@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Entities;
 
 namespace ClothWPF.Items.Group
 {
@@ -31,7 +32,23 @@ namespace ClothWPF.Items.Group
 
         private void AutoGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
+        }
+
+        private void Btn_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            using (EfContext contex = new EfContext())
+            {
+                contex.GroupProducts.Add(new GroupProduct
+                {
+                    NameGroup = TxtName.Text,
+                    CodeGroup = TxtCode.Text,
+                    Nds = Convert.ToDouble(TxtNDS.Text),
+                    DescriptionGroup = TxtDescription.Text
+                    //IdSubGrop = 
+                });
+                contex.SaveChanges();
+            }
         }
     }
 }

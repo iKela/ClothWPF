@@ -1,5 +1,6 @@
 ﻿using ClothWPF.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,7 +8,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Items.Group;
+using ClothWPF.Models.ArrivalInfo;
 using ClothWPF.Models.Main;
+using ClothWPF.Models.Group;
 
 namespace ClothWPF
 {
@@ -16,15 +19,33 @@ namespace ClothWPF
     /// </summary>
     public partial class AddItem : Window
     {
-        EfContext context = new EfContext();
+     
       
         public Product Productadding { get; set; }
         public bool _additemClose { get; set; }
+        public List<GroupModel> groupModel;
         bool field = false;
+        int _idgroup=0;
         public AddItem()
         {
             InitializeComponent();
             txt_DolCurrency.Text = Properties.Settings.Default.CurrencyExchangeDol.ToString();
+            groupModel = null;
+            groupModel = new List<GroupModel>();
+            using (EfContext ect = new EfContext())
+            {
+                
+            foreach (var e in ect.GroupProducts)
+            {
+                groupModel.Add(new GroupModel
+                {
+                    IdGroup = e.IdGroup,
+                    NameGroup = e.NameGroup
+                });
+            }
+            }
+
+            AutoGroup.ItemsSource = groupModel;
         }
         
         private void btn_Add_Click(object sender, RoutedEventArgs e)
@@ -70,7 +91,8 @@ namespace ClothWPF
                                 PriceUah = priceUah,
                                 PriceRetail = retailerPrice,
                                 PriceWholesale = wholesalePrice,
-                                Country = cmb_Country.Text
+                                Country = cmb_Country.Text,
+                                Idgroup = _idgroup
                             });
                             context.SaveChanges();
                             ConstList._FullInfo.Add(new ProductModel
@@ -82,7 +104,7 @@ namespace ClothWPF
                                 PriceUah = priceUah,
                                 PriceRetail = retailerPrice,
                                 PriceWholesale = wholesalePrice,
-                                Country = cmb_Country.Text
+                                Country = cmb_Country.Text                                
                             });
                         }
                         MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -176,7 +198,8 @@ namespace ClothWPF
 
         private void AutoGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            var selected = (GroupModel)AutoGroup.SelectedItem;
+            _idgroup = groupModel.FirstOrDefault(s => s.IdGroup== selected.IdGroup).IdGroup;
         }
 
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
