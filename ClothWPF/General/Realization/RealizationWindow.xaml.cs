@@ -429,8 +429,8 @@ namespace ClothWPF.General.Realization
 
         private void btn_NewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            General.Customer.WCustomer customer = new General.Customer.WCustomer();
-            customer.ShowDialog();
+            //General.Customer.WCustomer customer = new General.Customer.WCustomer();
+            //customer.ShowDialog();
         }
 
         private void Cmb_Organization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
