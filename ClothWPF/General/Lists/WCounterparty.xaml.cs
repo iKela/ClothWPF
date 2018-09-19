@@ -130,5 +130,10 @@ namespace ClothWPF.General.Lists
         {
             
         }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

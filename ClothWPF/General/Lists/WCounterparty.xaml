@@ -19,7 +19,7 @@
                 <Button Name="BtnAddCounterparty" ToolTip="Додати нового контрагента" Background="AliceBlue" Padding="0" Click="BtnAddCounterparty_Click" Margin="10 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Text="Контрагент" Foreground="Black" Margin="5 0"/>
-                        <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;" FontSize="Auto" FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
+                        <Button Height="Auto" Width="Auto" Margin="10 0" Content="&#xE109;"  FontFamily="Segoe MDL2 Assets" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="4"/>
                     </StackPanel>
                 </Button>
                 <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="TextBox_Focus"/>
