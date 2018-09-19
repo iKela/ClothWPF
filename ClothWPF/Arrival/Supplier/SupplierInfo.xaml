@@ -44,36 +44,41 @@
             <StackPanel Grid.Row="1" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
                     <TextBox Name="txt_City" Width="200" materialDesign:HintAssist.Hint="Місто" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <Separator Margin="25 0"/>
+                    <TextBox Name="txt_Address" Width="200" materialDesign:HintAssist.Hint="Адреса" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
-                    <TextBox Name="txt_Address" Width="200" materialDesign:HintAssist.Hint="Адреса" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <TextBox Name="txt_PhoneNumber" Width="200" materialDesign:HintAssist.Hint="Номер телефону" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
-                    <TextBox Name="txt_PhoneNumber" Width="200" materialDesign:HintAssist.Hint="Номер телефону" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
                     <TextBox Name="txt_Email" Width="200" materialDesign:HintAssist.Hint="E-mail" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
                         <TextBox Name="txt_Region" Width="200" materialDesign:HintAssist.Hint="Регіон" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="47" Margin="190 0">
-                    <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
-                    <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
-                        <ComboBoxItem Content="$"/>
-                        <ComboBoxItem Content="&#8372;"/>
-                        <ComboBoxItem Content="&#8364;"/>
-                    </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
+                    <TextBox Name="TxtDiscount" Width="200" materialDesign:HintAssist.Hint="Знижка%" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <Separator Margin="25 0"/>
+                    <TextBox Name="TxtDiscountCardNumber" Width="200" materialDesign:HintAssist.Hint="Знижка%" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="47" Margin="25 0">
+                        <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
+                        <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
+                            <ComboBoxItem Content="$"/>
+                            <ComboBoxItem Content="&#8372;"/>
+                            <ComboBoxItem Content="&#8364;"/>
+                        </ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -95,7 +100,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="170 0">
                     <ComboBox Name="cmb_KindOfResponsibility" Text="Тип відповідальності" ItemsSource="{Binding Path=ListOfKindsOfResponsibility}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
-                        <ComboBoxItem Content="Приватна особа"/>
+                        <ComboBoxItem Content="Фізична особа"/>
                         <ComboBoxItem Content="Приватний підприємець"/>
                         <ComboBoxItem Content="Юридична особа"/>
                     </ComboBox>
@@ -103,14 +108,12 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <StackPanel Orientation="Horizontal" Margin="10 0">
-                    <ComboBox Name="cmb_KindOfPartnership" Text="Тип партнерства" ItemsSource="{Binding Path=ListOfKindsOfPartnership}" IsEditable="True" IsReadOnly="True" Width="200" FontSize="14" FontFamily="Times New Roman">
-                        <ComboBoxItem Content="Постачальник"/>
-                    </ComboBox>
+                    <TextBox Name="TxtFullName" Width="200" materialDesign:HintAssist.Hint="Повна назва" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0">
-                    <TextBox Name="txt_IdentificationCode" Width="200" materialDesign:HintAssist.Hint="Ідентифікаційний код" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <TextBox Name="TxtLegalAddress" Width="200" materialDesign:HintAssist.Hint="Юридична адреса" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3">
@@ -135,10 +138,10 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-    <Grid Grid.Row="3" VerticalAlignment="Center">
-        <StackPanel>
-            <Button Name="btn_Add" VerticalAlignment="Top" Margin="0 4" Content="Додати" Width="120" HorizontalAlignment="Center" Click="btn_Add_Click"/>
-        </StackPanel>
-    </Grid>
+        <Grid Grid.Row="3" VerticalAlignment="Center">
+            <StackPanel>
+                <Button Name="btn_Add" VerticalAlignment="Top" Margin="0 4" Content="Додати" Width="120" HorizontalAlignment="Center" Click="btn_Add_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
