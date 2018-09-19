@@ -306,6 +306,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Lists\WGroupList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Realization\RealizationInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GridSettingsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Group\WNewGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +385,9 @@
     <Compile Include="General\Customer\WCustomer.xaml.cs">
       <DependentUpon>WCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="General\Lists\WGroupList.xaml.cs">
+      <DependentUpon>WGroupList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="General\Realization\RealizationInfo.xaml.cs">
       <DependentUpon>RealizationInfo.xaml</DependentUpon>
     </Compile>
@@ -385,6 +396,9 @@
     </Compile>
     <Compile Include="Helpes\ConnectionProvaider.cs" />
     <Compile Include="Helpes\Load.cs" />
+    <Compile Include="Items\Group\WNewGroup.xaml.cs">
+      <DependentUpon>WNewGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

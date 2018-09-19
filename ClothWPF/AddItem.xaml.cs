@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ClothWPF.Authorization.Loading;
+using ClothWPF.Items.Group;
 using ClothWPF.Models.Main;
 
 namespace ClothWPF
@@ -180,7 +181,8 @@ namespace ClothWPF
 
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
         {
-            
+             Items.Group.WNewGroup newGroup = new WNewGroup();
+            newGroup.ShowDialog();
         }
     }
 }
