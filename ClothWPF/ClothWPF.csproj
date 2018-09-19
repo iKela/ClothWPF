@@ -448,6 +448,7 @@
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsProductModel.cs" />
     <Compile Include="Models\Client\Customer.cs" />
+    <Compile Include="Models\Group\GroupModel.cs" />
     <Compile Include="Models\Main\ProductModel.cs" />
     <Compile Include="Models\NewArrival\NewArrivalModel.cs" />
     <Compile Include="Models\AddProduct\ProductModel.cs" />
