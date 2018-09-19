@@ -7,7 +7,7 @@
         xmlns:col ="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen"  Closed="Window_Closed" Loaded="Window_Loaded" Icon="Assets/MinialLogo.png" TabIndex="1">
+        Title="InSoP Management Software" Height="750" Width="1300" FontFamily="Times New Roman" WindowStartupLocation="CenterScreen" WindowStyle="None"  Closed="Window_Closed" Loaded="Window_Loaded" Icon="Assets/MinialLogo.png" TabIndex="1">
 
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -26,6 +26,83 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
+        <BooleanToVisibilityConverter x:Key="btv" />
+
+        <!-- style a top level menu item -->
+        <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40">
+                <!-- label, icons, etc. -->
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter Property="Background" Value="#106EBE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- style a non-top level menu item -->
+        <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
+            <DockPanel TextBlock.FontSize="15px" x:Name="panel">
+                <!-- label, icons, etc. -->
+                <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="20" Margin="5,0" />
+                <Label Content="{TemplateBinding Header}" Foreground="Black" Margin="0,5,5,5" />
+
+                <!-- draw the right arrow only if this menu item has sub items -->
+                <Image Source="icon_right.png" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </DockPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- style the separator -->
+        <ControlTemplate x:Key="VsMenuSep" TargetType="Separator">
+            <Border Height="1" Background="#E0E0E0" />
+        </ControlTemplate>
+
+        <!-- style the VSOnline -->
+        <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40" Orientation="Horizontal" Background="#005A9E">
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+                <Image Source="icon_down.png" Height="20" Margin="0,0,5,0" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- some base stuff -->
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#0078D7" />
+            <Setter Property="Height" Value="40px" />
+        </Style>
+
     </Window.Resources>
 
     <Window.Triggers>
@@ -38,50 +115,65 @@
     </Window.Triggers>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="120*"/>
         </Grid.RowDefinitions>
-        <Grid Background="#FF2196F3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" IsEnabled="False">
-                <ComboBox Width="120" Margin="10 0 0 0" FontSize="18" HorizontalAlignment="Center" Visibility="Collapsed">
-                    <ComboBoxItem>Склад №1</ComboBoxItem>
-                    <ComboBoxItem>Склад №2</ComboBoxItem>
-                    <ComboBoxItem>Склад №3</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="2">
-                <Menu VerticalAlignment="Bottom">
-                    <MenuItem Name="mi_Document" Width="75" Header="Файл" Style="{StaticResource MeinMenuItemStyle}" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" >
-                        <MenuItem Name="mi_NewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Click="mi_NewArrival_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
+        </StackPanel>
+        <Grid Row="1">
+        <StackPanel>
+                <Menu IsMainMenu="True">
+                    <MenuItem Header="InSoP MS" Template="{StaticResource VsOnline}" >
+                        <MenuItem Name="MIClose" Header="Вихід" Icon="Login.png" Template="{StaticResource VsMenuSub}" Click="MIClose_OnClick" />
                     </MenuItem>
-                    <MenuItem Name="mi_Product" Width="75" Header="Товар" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_NewItem"  Header="Новий" IsEnabled="True" Click="mi_AddItem_Click"/>
+                    <MenuItem Header="Закупівлі" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiNewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Template="{StaticResource VsMenuSub}" Click="mi_NewArrival_Click"/>
+                        <MenuItem Name="MiArrivalsList" Header="Список приходів" Template="{StaticResource VsMenuSub}" Click="mi_ArrivalsList_Click"/>
                     </MenuItem>
-                    <MenuItem Name="mi_Warehouse" Width="75" Header="Склад" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_WarehouseCondition" Header="Стан складу" Click="mi_WarehouseCondition_Click" IsEnabled="False"/>
+                    <MenuItem Header="Реалізація" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiAddRealization" Header="Нова реалізація" Template="{StaticResource VsMenuSub}" Click="mi_AddRealization_Click"/>
+                        <MenuItem Name="MiRealizationList" Header="Список продаж" Template="{StaticResource VsMenuSub}" Click="MiRealizationList_OnClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Товари" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiNewItem"  Header="Додати позицію" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
+                        <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Контрагент" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Header="Добавити контрагента" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Header="Список контрагентів" Template="{StaticResource VsMenuSub}" />
                         <Separator/>
-                        <MenuItem Name="mi_ArrivalsList" Header="Список приходів" Click="mi_ArrivalsList_Click"/>
-                        <Separator/>
-                        <MenuItem Name="mi_Settings" Header="Налаштування" Click="mi_Settings_Click"/>
+                        <MenuItem Header="Добавити організацію" Template="{StaticResource VsMenuSub}" />
+                        <MenuItem Header="Список організацій" Template="{StaticResource VsMenuSub}" />
                     </MenuItem>
-                    <MenuItem Name="mi_Realization" Width="75" Header="Реалізація" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_AddRealization" Header="Новий" Click="mi_AddRealization_Click"/>
-                        <MenuItem Name="mi_RealizationList" Header="Список продаж"/>
+                    <MenuItem Header="Налаштування" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiGeneral" Header="Загальні" Template="{StaticResource VsMenuSub}" Click="mi_Settings_Click"/>
                     </MenuItem>
-                    <MenuItem Name="mi_Help" Width="75" Header="Допомога" Style="{StaticResource MeinMenuItemStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
-                        <MenuItem Name="mi_ViewHelp" Header="Допомога"/>
-                        <MenuItem Name="mi_OpenTeamViewer" Header="TeamViewer" Click="mi_OpenTeamViewer_Click"/>
+                    <MenuItem Header="Help" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiOpenTeamViewer" Header="TeamViewer" Template="{StaticResource VsMenuSub}" Click="mi_OpenTeamViewer_Click" />
                     </MenuItem>
+                    <Button Visibility="Collapsed" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="40" VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
+                            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                                <StackPanel IsEnabled="False">
+                                    <Button Name="btn_Account" Content="Кабінет"/>
+                                    <Button Name="btn_AccountSettings" Content="Налаштування"/>
+                                    <Button Name="btn_Help" Content="Допомога"/>
+                                    <Separator/>
+                                    <Button Name="btn_Logout" Content="Вийти з облікового запису" Click="btn_Logout_Click"/>
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </StackPanel>
+                    </Button>
                 </Menu>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2">
-                <TextBox Name="txt_Search" Width="150" Background="White" KeyUp="txt_Search_KeyUp"/>
+        </Grid>
+        <Grid Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="Txt_Search_OnGotFocus"/>
                 <materialDesign:PopupBox Width="25" Background="White" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="True">
                     <StackPanel Orientation="Vertical" Width="100">
                         <StackPanel Orientation="Horizontal">
@@ -99,22 +191,8 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <Button Grid.Column="4" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
-                    <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                        <StackPanel IsEnabled="False">
-                            <Button Name="btn_Account" Content="Кабінет"/>
-                            <Button Name="btn_AccountSettings" Content="Налаштування"/>
-                            <Button Name="btn_Help" Content="Допомога"/>
-                            <Separator/>
-                            <Button Name="btn_Logout" Content="Вийти з облікового запису" Click="btn_Logout_Click"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                </StackPanel>
-            </Button>
-            </Grid>
-        <Grid Grid.Row="2">
+        </Grid>
+        <Grid Grid.Row="3">
             <DataGrid x:Name="clothesGrid" 
                       AutoGenerateColumns="False" 
                       HorizontalGridLinesBrush="DarkGray" 
