@@ -21,10 +21,34 @@ namespace ClothWPF.General.Lists
     public partial class WOrganizationList : Window
     {
         bool hasBeenClicked = false;
-
+        private List<Entities.Enterprise> e;
         public WOrganizationList()
         {
             InitializeComponent();
+            e = new List<Entities.Enterprise>();
+            using (EfContext c = new EfContext())
+            {
+                foreach (var v in c.Enterprises)
+                {
+                    e.Add(new Entities.Enterprise
+                    {
+                        Name = v.Name,
+                        City = v.City,
+                        Adress = v.Adress,
+                        KodEDRPOU = v.KodEDRPOU,
+                        Ownership = v.Ownership,
+                        CreatingWay = v.CreatingWay,
+                        LegalForm = v.LegalForm,
+                        Activity = v.Activity,
+                        IdentificationCode = v.IdentificationCode,
+                        Director = v.Director,
+                        Email = v.Email,
+                        Fax = v.Fax,
+                        Number = v.Number
+                    });
+                }
+            }
+            GridOrganizations.ItemsSource = e;
         }
         private void TextBox_Focus(object sender, RoutedEventArgs e)
         {
