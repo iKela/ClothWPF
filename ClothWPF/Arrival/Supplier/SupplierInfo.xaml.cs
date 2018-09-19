@@ -63,11 +63,21 @@ namespace ClothWPF.Arrival.Supplier
                 {
                     context.Suppliers.Add(new Entities.Supplier
                     {
-                        NameSupplier = txt_Name.Text, City = txt_City.Text, AdressSupplier = txt_Address.Text,
-                        NumberSupplier = txt_PhoneNumber.Text, Email = txt_Email.Text, Region = txt_Region.Text,
-                        Currency = cmb_Currency.Text, Category = cmb_Category.Text, KindOfPartnership = cmb_KindOfPartnership.Text,
-                        IdentificationCode = txt_IdentificationCode.Text, MaxAmountOfDebt= maxamountofdebt, VATPlayerNumber = txt_VATPlayerNumber.Text,
-                        ContractNumber = txt_ContractNumber.Text, ContractDate = Convert.ToDateTime(txt_ContractDate.Text), IndividualTaxNumber = txt_IndividualTaxNumber.Text
+                        NameSupplier = txt_Name.Text,
+                        City = txt_City.Text,
+                        AdressSupplier = txt_Address.Text,
+                        NumberSupplier = txt_PhoneNumber.Text,
+                        Email = txt_Email.Text, Region = txt_Region.Text,
+                        Currency = cmb_Currency.Text,
+                        Discount = Convert.ToDouble(TxtDiscount.Text),
+                        Category = cmb_Category.Text,
+                        FullName = TxtFullName.Text,
+                        LegalAddress = TxtLegalAddress.Text,
+                        MaxAmountOfDebt= maxamountofdebt,
+                        VATPlayerNumber = txt_VATPlayerNumber.Text,
+                        ContractNumber = txt_ContractNumber.Text,
+                        ContractDate = Convert.ToDateTime(txt_ContractDate.Text),
+                        KindOfResponsibility = cmb_KindOfResponsibility.Text                     
                     });
                     context.SaveChanges();
                     _supplierClose = true;

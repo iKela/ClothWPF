@@ -367,7 +367,6 @@
     </Compile>
     <Compile Include="Entities\Arrival.cs" />
     <Compile Include="Entities\ArrivalProduct.cs" />
-    <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Enterprise.cs" />
     <Compile Include="Entities\ExcelTable.cs" />
     <Compile Include="Entities\GroupProduct.cs" />

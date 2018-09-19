@@ -34,32 +34,32 @@ namespace ClothWPF.General.Realization
         private int rowIndex { get; set; }
         private double sum { get; set; }
         public  List<int> IdList { get; set; }
-        public List<Client> Clients;
+        
         private int getid;
         private EfContext context;
         public RealizationWindow()
         {
             InitializeComponent();
             _ListProduct = new List<RealizationProductModel>();
-            Clients = new List<Client>();
+            //Clients = new List<Client>();
             context = new EfContext();
-            foreach (var c in context.Clients)
-            {
-                Clients.Add( new Client
-                {
-                    IDClient = c.IDClient,
-                    NameClient = c.NameClient,
-                    Discount = c.Discount
-                }); 
-            }
+            //foreach (var c in context.Clients)
+            //{
+            //    Clients.Add( new Client
+            //    {
+            //        IDClient = c.IDClient,
+            //        NameClient = c.NameClient,
+            //        Discount = c.Discount
+            //    }); 
+            //}
             int i = context.Realizations.Count() + 1;
             txt_Number.Text = i.ToString();
-            AutoName.ItemsSource = Clients;
+         //   AutoName.ItemsSource = Clients;
             IdList= new List<int>();
             IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
             TxtRealizationDate.Text = DateTime.Today.Date.ToShortDateString().Replace(".", null);
-            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = Clients; //AutoName.Items.Refresh();
+            //AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = Clients; //AutoName.Items.Refresh();
         }
 
         #region Витяг та призначення значення після його зміни в комірці
@@ -417,9 +417,9 @@ namespace ClothWPF.General.Realization
         {
             try
             {
-                var selected = (Client)AutoName.SelectedItem;
-                idClient = selected.IDClient;
-                txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
+                //var selected = (Client)AutoName.SelectedItem;
+                //idClient = selected.IDClient;
+                //txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
 
             }
             catch(Exception ex)
