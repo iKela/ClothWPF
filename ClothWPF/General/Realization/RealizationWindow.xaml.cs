@@ -30,7 +30,7 @@ namespace ClothWPF.General.Realization
         
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
-        private int idClient;
+        private int idClient { get; set; }
         private int rowIndex { get; set; }
         private double sum { get; set; }
         public  List<int> IdList { get; set; }
@@ -53,11 +53,11 @@ namespace ClothWPF.General.Realization
                 }); 
             }
             int i = context.Realizations.Count() + 1;
-            AutoName.ItemsSource = Clients;
             IdList= new List<int>();
             IdList.Add(0);
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
             TxtRealizationDate.Text = DateTime.Today.Date.ToShortDateString().Replace(".", null);
+            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = Clients; //AutoName.Items.Refresh();
         }
 
         #region Витяг та призначення значення після його зміни в комірці
@@ -413,9 +413,16 @@ namespace ClothWPF.General.Realization
 
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = (Client)AutoName.SelectedItem;
-            idClient = selected.IDClient;
-            txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
+            try
+            {
+                var selected = (Client)AutoName.SelectedItem;
+                idClient = selected.IDClient;
+                txt_ClientDiscount.Text = Clients.Find(s => s.IDClient == selected.IDClient).Discount.ToString();
+
+            }
+            catch(Exception ex)
+            {
+            }
         }
 
         private void btn_NewCustomer_Click(object sender, RoutedEventArgs e)

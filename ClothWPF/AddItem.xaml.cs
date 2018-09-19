@@ -172,5 +172,15 @@ namespace ClothWPF
         {
             txt_Discount.Visibility = Visibility.Collapsed;
         }
+
+        private void AutoGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void btn_NewGroup_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

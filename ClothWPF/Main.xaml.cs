@@ -23,11 +23,14 @@ namespace ClothWPF
     /// Interaction logic for Main.xaml
     /// </summary>
     ///
+    ///        bool hasBeenClicked = false;
+
     [PrincipalPermission(SecurityAction.Demand)]
     public partial class Main : Window
     {
         public List<ProductModel> _ProductFullInfo { get; set; }
         public EfContext context;
+        bool hasBeenClicked = false;
         General.Classes.DataAccess objDs;
         Load load = new Load();
         public Main()
@@ -227,6 +230,15 @@ namespace ClothWPF
 
         private void txt_Search_KeyUp(object sender, KeyEventArgs e)
         {
+
+            if (e.Key == Key.Enter)
+            {
+                if (txt_Search.Text == "")
+                {
+                    txt_Search.Text = "Пошук";
+                }
+                clothesGrid.Focus();
+            }
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
                 var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
@@ -312,6 +324,32 @@ namespace ClothWPF
         {
             General.Realization.RealizationWindow realization = new General.Realization.RealizationWindow();
             realization.Show();
+        }
+
+        private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MIClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MiRealizationList_OnClick(object sender, RoutedEventArgs e)
+        {
+            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
+            arrivalsList.Show();
+        }
+
+        private void Txt_Search_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked = true;
+            }
         }
     }
 }

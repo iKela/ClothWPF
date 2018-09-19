@@ -41,17 +41,17 @@
                    
                     <Separator Margin="10"/>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <xctk:MaskedTextBox x:Name="TxtRealizationDate" materialDesign:HintAssist.Hint="Дата реалізації" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>
+                        <xctk:MaskedTextBox x:Name="TxtRealizationDate" materialDesign:HintAssist.Hint="Дата реалізації" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00/00/0000" CaretIndex="0" FontSize="14"/>
                     </StackPanel>
                 </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Контрагент" VerticalAlignment="Center"/>
                 <Separator Margin="10"/>
-                <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding Id}"
+                <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Width="150" ValueMemberPath="NameClient" SelectedItem="{Binding IDClient}"
                                           Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged">
                     <controls:AutoCompleteBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text="{Binding NameClient}"/>
                         </DataTemplate>
                     </controls:AutoCompleteBox.ItemTemplate>
                 </controls:AutoCompleteBox>
