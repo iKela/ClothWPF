@@ -53,6 +53,7 @@ namespace ClothWPF.General.Realization
                 }); 
             }
             int i = context.Realizations.Count() + 1;
+            txt_Number.Text = i.ToString();
             AutoName.ItemsSource = Clients;
             IdList= new List<int>();
             IdList.Add(0);
