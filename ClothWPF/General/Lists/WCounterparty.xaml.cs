@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Arrival.Supplier;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Entities;
 
 namespace ClothWPF.General.Lists
@@ -22,40 +23,11 @@ namespace ClothWPF.General.Lists
     public partial class WCounterparty : Window
     {
         bool hasBeenClicked = false;
-        private List<Supplier> s;
+       
         public WCounterparty()
         {
             InitializeComponent();
-            s=new List<Supplier>();
-            using (EfContext c= new EfContext())
-            {
-                foreach (var v in c.Suppliers)
-                {
-                    s.Add(new Supplier
-                    {
-                        NameSupplier = v.NameSupplier,
-                        City = v.City,
-                        AdressSupplier = v.AdressSupplier,
-                        NumberSupplier = v.NumberSupplier,
-                        Email = v.Email,
-                        Currency = v.Currency,
-                        Discount = v.Discount,
-                        Region = v.Region,
-                        DiscountCardNumber = v.DiscountCardNumber,
-                        Category = v.Category,
-                        FullName = v.FullName,
-                        LegalAddress = v.LegalAddress,
-                        MaxAmountOfDebt = v.MaxAmountOfDebt,
-                        VATPlayerNumber = v.VATPlayerNumber,
-                        ContractNumber = v.ContractNumber,
-                        ContractDate = v.ContractDate,
-                        IndividualTaxNumber = v.IndividualTaxNumber,
-                        KindOfResponsibility = v.KindOfResponsibility
-                    });
-                }
-            }
-
-            GridCounterparty.ItemsSource = s;
+            GridCounterparty.ItemsSource = ConstList.GetSupplierList;
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
@@ -71,32 +43,32 @@ namespace ClothWPF.General.Lists
         {
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.NameSupplier.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.NameSupplier.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByCity.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.City.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.City.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByPhoneNumber.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.NumberSupplier.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.NumberSupplier.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchByRegion.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.Region.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.Region.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchDicountCard.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.DiscountCardNumber.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.DiscountCardNumber.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
             if (tb_SearchEmail.Visibility == Visibility.Visible)
             {
-                var filtered = s.Where(product => product.Email.StartsWith(txt_Search.Text));
+                var filtered = ConstList.GetSupplierList.Where(product => product.Email.StartsWith(txt_Search.Text));
                 GridCounterparty.ItemsSource = filtered;
             }
         }

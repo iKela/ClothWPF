@@ -25,7 +25,7 @@ namespace ClothWPF
         public bool _additemClose { get; set; }
         public List<GroupModel> groupModel;
         bool field = false;
-        int _idgroup=0;
+        public int _idgroup=0;
         public AddItem()
         {
             InitializeComponent();
@@ -66,6 +66,10 @@ namespace ClothWPF
                 {
                     try
                     {
+                        if (_idgroup ==0)
+                        {
+                            _idgroup = 1;
+                        }
                         if (Productadding != null)
                         {
                             var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
@@ -91,7 +95,7 @@ namespace ClothWPF
                                 PriceUah = priceUah,
                                 PriceRetail = retailerPrice,
                                 PriceWholesale = wholesalePrice,
-                                Country = cmb_Country.Text,
+                                Country = cmb_Country.Text,                              
                                 Idgroup = _idgroup
                             });
                             context.SaveChanges();

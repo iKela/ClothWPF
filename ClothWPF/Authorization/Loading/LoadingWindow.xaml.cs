@@ -97,6 +97,16 @@ namespace ClothWPF.Authorization.Loading
             _Enterprise = InList;
         }
 
+        public static List<EnterpriseModel> GetEnterpriseList
+        {
+            get { return _Enterprise; }
+        }
+
+        public static List<SupplierModel> GetSupplierList
+        {
+            get { return _Supplier; }
+        }
+
         public static List<ProductModel> GetList
         {
             get { return _FullInfo; }
