@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,21 @@ namespace ClothWPF.Models.RealizationWindow
         public double? Sum { get; set; }   
         public  double? Profit { get; set; }
         public int IdRealization { get; set; }   
-        public int Idproduct { get; set; }    
+        public int Idproduct { get; set; }
+
+        public Color BackgroundColor
+        {
+            get
+            {
+                if (Profit < 0)
+                {
+                    return Color.LightCoral;
+                }
+                else
+                {
+                    return Color.Red;
+                }
+            }
+        }
     }
 }
