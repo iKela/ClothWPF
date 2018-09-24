@@ -23,7 +23,6 @@ namespace ClothWPF.General.Lists
     public partial class WItemList : Window
     {
         bool hasBeenClicked = false;
-        private List<GroupProduct> g;
         public WItemList()
         {
             InitializeComponent();

@@ -71,7 +71,24 @@ namespace ClothWPF.Helpes
 
         public void loadedEnterprise()
         {
-           // _EnterpriseModels= context.
+            _EnterpriseModels = context.Enterprises.Select(a => new EnterpriseModel
+            {
+                IdEnterprise = a.IdEnterprise,
+                Name = a.Name,
+                City = a.City,
+                Adress = a.Adress,
+                KodEDRPOU = a.KodEDRPOU,
+                Ownership = a.Ownership,
+                CreatingWay = a.CreatingWay,
+                LegalForm = a.LegalForm,
+                Activity = a.Activity,
+                IdentificationCode = a.IdentificationCode,
+                Director = a.Director,
+                Email = a.Email,
+                Fax = a.Fax,
+                Number = a.Number
+            }).ToList();
+            ConstList.InitEnterprise(_EnterpriseModels);
         }
     }
 }
