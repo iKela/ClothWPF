@@ -125,31 +125,12 @@ namespace ClothWPF
         
         private void txt_PriceDollar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            field = false;
-        }
-
-        private void txt_PriceUah_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            field = true;
-        }
-
-        private void btn_CurrencyExhange_Click(object sender, RoutedEventArgs e)
-        {
             double num;
-            if (field == true)
-            {
-                double.TryParse(txt_PriceUah.Text.ToString(), out num);
-                num = num / Properties.Settings.Default.CurrencyExchangeDol;
-                txt_PriceDollar.Text = num.ToString();
-                field = true;
-            }
-            else
-            {
-                double.TryParse(txt_PriceDollar.Text.ToString(), out num);
-                num = num * Properties.Settings.Default.CurrencyExchangeDol;
-                txt_PriceUah.Text = num.ToString();
-                field = false;
-            }
+
+            double.TryParse(txt_PriceDollar.Text.ToString(), out num);
+            num = num * Properties.Settings.Default.CurrencyExchangeDol;
+            txt_PriceUah.Text = num.ToString();
+            field = false;
         }
 
         private void txt_DolCurrency_Click(object sender, RoutedEventArgs e)
