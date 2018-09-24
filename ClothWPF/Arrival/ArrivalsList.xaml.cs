@@ -36,10 +36,12 @@ namespace ClothWPF.Arrival
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
             loaded();
+            loadedRealization();
         }
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             loadedGridArrivalInfo();
+            loadedGridRealizationInfo();
         }
         private void loadedGridArrivalInfo()
         {
