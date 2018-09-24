@@ -34,6 +34,7 @@ namespace ClothWPF.General.Realization
         private int idClient { get; set; }
         private int rowIndex { get; set; }
         private double sum { get; set; }
+        private double profit { get; set; }
         public  List<int> IdList { get; set; }
         private List<Supplier> supplier;
         private int getid;
@@ -223,6 +224,13 @@ namespace ClothWPF.General.Realization
 
         #endregion
 
+        private void CalculateProfit()
+        {
+            //foreach (DataGridRow row in realizationGrid.Items)
+            //{
+            //    Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))) - 
+            //}
+        }
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
             double fullprice = 0;
