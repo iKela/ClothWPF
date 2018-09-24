@@ -225,6 +225,14 @@ namespace ClothWPF.General.Realization
 
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
+            double fullprice = 0;
+            double discount = 0;
+            double prepayment = 0;
+            Double.TryParse(txt_FullPrice.Text, out fullprice);
+            Double.TryParse(txt_Discount.Text, out discount);
+            Double.TryParse(txt_Prepayment.Text, out prepayment);
+            double totalsum = 0;
+            Double.TryParse(txt_TotalSum.Text, out totalsum);
             using (EfContext context = new EfContext())
             {
 
@@ -232,10 +240,10 @@ namespace ClothWPF.General.Realization
                 {
                     Number = txt_Number.Text,
                     DateRealization = Convert.ToDateTime(TxtRealizationDate.Text),
-                    PercentageDiscount = Convert.ToDouble(txt_Discount.Text),
-                    TotalPurshaise = Convert.ToDouble(txt_FullPrice.Text),
-                    PaymentSum = Convert.ToDouble(txt_Prepayment.Text),
-                    TotalSum = Convert.ToDouble(txt_TotalSum.Text),
+                    PercentageDiscount = discount,
+                    TotalPurshaise = fullprice,
+                    PaymentSum = prepayment,
+                    TotalSum = totalsum,
                     IdClient = idClient
                 });
                 context.SaveChanges();
@@ -279,6 +287,7 @@ namespace ClothWPF.General.Realization
                         Name = addProduct._nameProduct,
                         Code = addProduct._codeProduct,
                         //Article = addProduct._article,
+                        PriceUah = addProduct._supplierPrice,
                         CountSale = 0,
                         CountReserved = 0,
                         Discount = 0,
