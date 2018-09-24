@@ -108,14 +108,8 @@
                     <DataGridTextColumn Header="&#128181;  Сума"         Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="8"
                                         IsReadOnly="False"/>
                     <DataGridTextColumn Header="&#128181;  Заробіток"    Binding="{Binding Path=Profit}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="9"
-                                        IsReadOnly="False">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="Background" Value="{Binding Path=BackgroundColor}" />
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                                        IsReadOnly="False"/>
+                        <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         IsReadOnly="True" Visibility="Collapsed"/>
                     <DataGridCheckBoxColumn Header="Оптова ціна" Binding="{Binding Path = WholesalePriceBool}" Width="Auto" CanUserResize="False"/>
                     <DataGridTemplateColumn Width="100">

@@ -25,20 +25,5 @@ namespace ClothWPF.Models.RealizationWindow
         public  double? Profit { get; set; }
         public int IdRealization { get; set; }   
         public int Idproduct { get; set; }
-
-        public Color BackgroundColor
-        {
-            get
-            {
-                if (Profit < 0)
-                {
-                    return Color.LightCoral;
-                }
-                else
-                {
-                    return Color.Red;
-                }
-            }
-        }
     }
 }
