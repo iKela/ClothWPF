@@ -41,7 +41,7 @@ namespace ClothWPF.Arrival
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             loadedGridArrivalInfo();
-            loadedGridRealizationInfo();
+            
         }
         private void loadedGridArrivalInfo()
         {
@@ -114,7 +114,7 @@ namespace ClothWPF.Arrival
                     dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
                     GridRealization.ItemsSource = null;
                     var realiz = context.Realizations
-                        .Include(s => s.GetClient)                        
+                        .Include(s => s.GetSupplier)                        
                         .Where(a => a.DateRealization >= dateArrivalfrom && a.DateRealization <= dateArrivalTo)
                         .Select(a => new RealizationModel
                         {
@@ -126,7 +126,7 @@ namespace ClothWPF.Arrival
                             PaymentType = a.PaymentType,                           
                             TotalPurshaise = a.TotalPurshaise,
                             DateRealization = a.DateRealization,
-                            ClientName = a.GetClient.NameSupplier,                           
+                            ClientName = a.GetSupplier.NameSupplier,                           
                         }).ToList();
                     GridRealization.ItemsSource = realiz;
                 }
@@ -175,7 +175,6 @@ namespace ClothWPF.Arrival
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
@@ -258,12 +257,12 @@ namespace ClothWPF.Arrival
 
         private void GridRealizationItems_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            loadedGridRealizationInfo();
+       
         }
 
         private void GridRealization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            loadedRealization();
+            loadedGridRealizationInfo();
         }
     }
 }

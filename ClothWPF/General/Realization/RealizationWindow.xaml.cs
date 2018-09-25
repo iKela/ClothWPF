@@ -272,7 +272,7 @@ namespace ClothWPF.General.Realization
                     TotalPurshaise = fullprice,
                     PaymentSum = prepayment,
                     TotalSum = totalsum,
-                    IdClient = idClient
+                    IdSupplier = idClient
                 });
                 context.SaveChanges();
                 int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
@@ -290,13 +290,13 @@ namespace ClothWPF.General.Realization
                         DiscountProduct = product.Discount,
                         TotalProductSum = product.Sum,
                         IdRealization = Idrealiz,
-                        Idproduct = product.Idproduct
+                        Idproduct = product.Idproduct,
+                        Profit = product.Profit
                     });
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
                     std.Count = sum;
-                }
-               
+                }             
                 context.SaveChanges();
             }
         }

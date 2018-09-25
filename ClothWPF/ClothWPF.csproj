@@ -457,6 +457,14 @@
     <Compile Include="Migrations\201809191422514_faraf.Designer.cs">
       <DependentUpon>201809191422514_faraf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809241421121_tottoros.cs" />
+    <Compile Include="Migrations\201809241421121_tottoros.Designer.cs">
+      <DependentUpon>201809241421121_tottoros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250755173_newVariable.cs" />
+    <Compile Include="Migrations\201809250755173_newVariable.Designer.cs">
+      <DependentUpon>201809250755173_newVariable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -527,6 +535,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809191422514_faraf.resx">
       <DependentUpon>201809191422514_faraf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241421121_tottoros.resx">
+      <DependentUpon>201809241421121_tottoros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250755173_newVariable.resx">
+      <DependentUpon>201809250755173_newVariable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
