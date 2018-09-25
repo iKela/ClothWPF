@@ -1,16 +1,20 @@
-﻿using ClothWPF.Models.Main;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClothWPF.Authorization.Loading;
+using ClothWPF.Models;
+using ClothWPF.Models.ArrivalInfo;
+using ProductModel = ClothWPF.Models.Main.ProductModel;
 
 namespace ClothWPF.Helpes
 {
     public class Load
     {
         public List<ProductModel> _ProductFullInfo { get; set; }
+        public List<EnterpriseModel> _EnterpriseModels { get; set; }
+        public List<SupplierModel> _SupplierModels { get; set; }
         public EfContext context;
         public Load()
         {
@@ -37,6 +41,54 @@ namespace ClothWPF.Helpes
                 }).ToList();
             ConstList.Init(_ProductFullInfo);
         }
-       
+
+        public void loadedSuplier()
+        {
+            _SupplierModels = context.Suppliers.Select(a => new SupplierModel
+            {
+                IdSupplier = a.IdSupplier,
+                NameSupplier = a.NameSupplier,
+                City = a.City,
+                AdressSupplier = a.AdressSupplier,
+                NumberSupplier = a.NumberSupplier,
+                Email = a.Email,
+                Currency = a.Currency,
+                Discount = a.Discount,
+                Region = a.Region,
+                DiscountCardNumber = a.DiscountCardNumber,
+                Category = a.Category,
+                FullName = a.FullName,
+                LegalAddress = a.LegalAddress,
+                MaxAmountOfDebt = a.MaxAmountOfDebt,
+                VATPlayerNumber = a.VATPlayerNumber,
+                ContractNumber = a.ContractNumber,
+                ContractDate = a.ContractDate,
+                IndividualTaxNumber = a.IndividualTaxNumber,
+                KindOfResponsibility = a.KindOfResponsibility
+            }).ToList();
+            ConstList.InitSupplier(_SupplierModels);
+        }
+
+        public void loadedEnterprise()
+        {
+            _EnterpriseModels = context.Enterprises.Select(a => new EnterpriseModel
+            {
+                IdEnterprise = a.IdEnterprise,
+                Name = a.Name,
+                City = a.City,
+                Adress = a.Adress,
+                KodEDRPOU = a.KodEDRPOU,
+                Ownership = a.Ownership,
+                CreatingWay = a.CreatingWay,
+                LegalForm = a.LegalForm,
+                Activity = a.Activity,
+                IdentificationCode = a.IdentificationCode,
+                Director = a.Director,
+                Email = a.Email,
+                Fax = a.Fax,
+                Number = a.Number
+            }).ToList();
+            ConstList.InitEnterprise(_EnterpriseModels);
+        }
     }
 }

@@ -230,12 +230,12 @@
                       AutoGenerateColumns="False"
                       Visibility="Visible" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdRealization}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128197;  Дата"                     Binding="{Binding Path=Date}"              Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="&#128113;  Контрагент"               Binding="{Binding Path=nameCounterparty}"  Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128113;  Контрагент"               Binding="{Binding Path=ClientName}"  Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128113;  Організація"              Binding="{Binding Path=nameOrganization}"  Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="&#128184;  Сума"                     Binding="{Binding Path=TotalPurchase}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128184;  Сума"                     Binding="{Binding Path=TotalPurshaise}"     Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#127970;  Зі складу"                Binding="{Binding Path=nameWarehouse}"    Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <!--<DataGridTextColumn Header="&#128113;  Отримав"                  Binding="{Binding Path=User}"          Width="100" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>-->
                         <DataGridTemplateColumn Width="100">

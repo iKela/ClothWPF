@@ -27,6 +27,7 @@ namespace ClothWPF.Enterprise
         public int _idproduct { get; set; }
         public double? _count { get; set; }
         public string _nameProduct { get; set; }
+        public double? _supplierPrice { get; set; }
         public double? _priceWholesale { get; set; }
         public string _codeProduct { get; set; }
         bool hasBeenClicked = false;
@@ -66,6 +67,7 @@ namespace ClothWPF.Enterprise
                 _count = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
                 _codeProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
                 _priceWholesale = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
+                _supplierPrice = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceUah;
 
             }
             //item = (ProductModel)productListGrid.SelectedItem;

@@ -17,7 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.General.Classes;
 using ClothWPF.Helpes;
-using ClothWPF.Models.Main;
+using ClothWPF.Models;
+using ClothWPF.Models.ArrivalInfo;
+using ProductModel = ClothWPF.Models.Main.ProductModel;
 using ThicknessConverter = Xceed.Wpf.DataGrid.Converters.ThicknessConverter;
 
 namespace ClothWPF.Authorization.Loading
@@ -75,6 +77,8 @@ namespace ClothWPF.Authorization.Loading
 
     static class ConstList
     {
+        public static List<EnterpriseModel> _Enterprise = new List<EnterpriseModel>();
+        public static List<SupplierModel> _Supplier = new List<SupplierModel>();
         public static List<ProductModel> _FullInfo = new List<ProductModel>();
         public static ObservableCollection<ExcelItem> excelItems = new ObservableCollection<ExcelItem>();
 
@@ -82,6 +86,27 @@ namespace ClothWPF.Authorization.Loading
         {
             _FullInfo = inList;
         }
+
+        public static void InitSupplier(List<SupplierModel> inList)
+        {
+            _Supplier = inList;
+        }
+
+        public static void InitEnterprise(List<EnterpriseModel> InList)
+        {
+            _Enterprise = InList;
+        }
+
+        public static List<EnterpriseModel> GetEnterpriseList
+        {
+            get { return _Enterprise; }
+        }
+
+        public static List<SupplierModel> GetSupplierList
+        {
+            get { return _Supplier; }
+        }
+
         public static List<ProductModel> GetList
         {
             get { return _FullInfo; }

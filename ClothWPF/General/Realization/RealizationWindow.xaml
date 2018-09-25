@@ -107,8 +107,11 @@
                                         />
                     <DataGridTextColumn Header="&#128181;  Сума"         Binding="{Binding Path=Sum}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="8"
                                         IsReadOnly="False"/>
-                    <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
-                                        IsReadOnly="True"/>
+                    <DataGridTextColumn Header="&#128181;  Заробіток"    Binding="{Binding Path=Profit}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" DisplayIndex="9"
+                                        IsReadOnly="False"/>
+                        <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
+                                        IsReadOnly="True" Visibility="Collapsed"/>
+                    <DataGridCheckBoxColumn Header="Оптова ціна" Binding="{Binding Path = WholesalePriceBool}" Width="Auto" CanUserResize="False"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

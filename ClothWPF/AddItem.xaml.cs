@@ -25,7 +25,7 @@ namespace ClothWPF
         public bool _additemClose { get; set; }
         public List<GroupModel> groupModel;
         bool field = false;
-        int _idgroup=0;
+        public int _idgroup=0;
         public AddItem()
         {
             InitializeComponent();
@@ -66,6 +66,10 @@ namespace ClothWPF
                 {
                     try
                     {
+                        if (_idgroup ==0)
+                        {
+                            _idgroup = 1;
+                        }
                         if (Productadding != null)
                         {
                             var product = context.Products.Where(c => c.IdProduct == Productadding.IdProduct).FirstOrDefault();
@@ -91,7 +95,7 @@ namespace ClothWPF
                                 PriceUah = priceUah,
                                 PriceRetail = retailerPrice,
                                 PriceWholesale = wholesalePrice,
-                                Country = cmb_Country.Text,
+                                Country = cmb_Country.Text,                              
                                 Idgroup = _idgroup
                             });
                             context.SaveChanges();
@@ -125,31 +129,12 @@ namespace ClothWPF
         
         private void txt_PriceDollar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            field = false;
-        }
-
-        private void txt_PriceUah_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            field = true;
-        }
-
-        private void btn_CurrencyExhange_Click(object sender, RoutedEventArgs e)
-        {
             double num;
-            if (field == true)
-            {
-                double.TryParse(txt_PriceUah.Text.ToString(), out num);
-                num = num / Properties.Settings.Default.CurrencyExchangeDol;
-                txt_PriceDollar.Text = num.ToString();
-                field = true;
-            }
-            else
-            {
-                double.TryParse(txt_PriceDollar.Text.ToString(), out num);
-                num = num * Properties.Settings.Default.CurrencyExchangeDol;
-                txt_PriceUah.Text = num.ToString();
-                field = false;
-            }
+
+            double.TryParse(txt_PriceDollar.Text.ToString(), out num);
+            num = num * Properties.Settings.Default.CurrencyExchangeDol;
+            txt_PriceUah.Text = num.ToString();
+            field = false;
         }
 
         private void txt_DolCurrency_Click(object sender, RoutedEventArgs e)

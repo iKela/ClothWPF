@@ -9,8 +9,32 @@ using System.Threading.Tasks;
 
 namespace ClothWPF
 {
+    public class SampleInitializer : DropCreateDatabaseIfModelChanges<EfContext>
+    {
+        //protected override void Seed(EfContext context)
+        //{
+        //    List<City> cities = new List<City>
+        //    {
+        //        new City { Name = "Москва" },
+        //        new City { Name = "Санкт-Петербург" },
+        //        new City { Name = "Казань" }
+        //        // ...
+        //    };
+
+        //    foreach (City city in cities)
+        //        context.Cities.Add(city);
+
+        //    context.SaveChanges();
+        //    base.Seed(context);
+        //}
+    }
+
     public class EfContext : DbContext
     {
+        static EfContext()
+        {
+           // Database.SetInitializer<EfContext>(new SampleInitializer());
+        }
         public EfContext() : base(GetConnectionString())
         { }
 
@@ -22,7 +46,6 @@ namespace ClothWPF
         public DbSet<Realization> Realizations { get; set; }
         public DbSet<RealizationProduct> RealizationProducts { get; set; }
         public DbSet<GroupProduct> GroupProducts { get; set; }
-        public DbSet<ExcelTable> ExcelTables { get; set; }
        
 
        private static string GetConnectionString() //TestVersion

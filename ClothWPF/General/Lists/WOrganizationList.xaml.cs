@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Enterprise;
 
 namespace ClothWPF.General.Lists
@@ -21,34 +22,11 @@ namespace ClothWPF.General.Lists
     public partial class WOrganizationList : Window
     {
         bool hasBeenClicked = false;
-        private List<Entities.Enterprise> e;
+        
         public WOrganizationList()
         {
-            InitializeComponent();
-            e = new List<Entities.Enterprise>();
-            using (EfContext c = new EfContext())
-            {
-                foreach (var v in c.Enterprises)
-                {
-                    e.Add(new Entities.Enterprise
-                    {
-                        Name = v.Name,
-                        City = v.City,
-                        Adress = v.Adress,
-                        KodEDRPOU = v.KodEDRPOU,
-                        Ownership = v.Ownership,
-                        CreatingWay = v.CreatingWay,
-                        LegalForm = v.LegalForm,
-                        Activity = v.Activity,
-                        IdentificationCode = v.IdentificationCode,
-                        Director = v.Director,
-                        Email = v.Email,
-                        Fax = v.Fax,
-                        Number = v.Number
-                    });
-                }
-            }
-            GridOrganizations.ItemsSource = e;
+            InitializeComponent();            
+            GridOrganizations.ItemsSource = ConstList.GetEnterpriseList;
         }
         private void TextBox_Focus(object sender, RoutedEventArgs e)
         {
@@ -63,17 +41,17 @@ namespace ClothWPF.General.Lists
         {
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
-                var filtered = this.e.Where(product => product.Name.StartsWith(txt_Search.Text));
+                var filtered = ConstList._Enterprise.Where(product => product.Name.StartsWith(txt_Search.Text));
                 GridOrganizations.ItemsSource = filtered;
             }
             if (tb_SearchByCity.Visibility == Visibility.Visible)
             {
-                var filtered = this.e.Where(product => product.City.StartsWith(txt_Search.Text));
+                var filtered = ConstList._Enterprise.Where(product => product.City.StartsWith(txt_Search.Text));
                 GridOrganizations.ItemsSource = filtered;
             }
             if (tb_SearchEmail.Visibility == Visibility.Visible)
             {
-                var filtered = this.e.Where(product => product.Email.StartsWith(txt_Search.Text));
+                var filtered = ConstList._Enterprise.Where(product => product.Email.StartsWith(txt_Search.Text));
                 GridOrganizations.ItemsSource = filtered;
             }
         }

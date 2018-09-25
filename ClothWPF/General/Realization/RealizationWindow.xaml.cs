@@ -14,12 +14,20 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Arrival.Supplier;
 using ClothWPF.Entities;
+using static System.Windows.Media.Brushes;
+using Binding = System.Windows.Data.Binding;
+using DataGrid = System.Windows.Controls.DataGrid;
+using DataGridCell = System.Windows.Controls.DataGridCell;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MessageBox = System.Windows.MessageBox;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace ClothWPF.General.Realization
 {
@@ -34,6 +42,7 @@ namespace ClothWPF.General.Realization
         private int idClient { get; set; }
         private int rowIndex { get; set; }
         private double sum { get; set; }
+        private double? profit { get; set; }
         public  List<int> IdList { get; set; }
         private List<Supplier> supplier;
         private int getid;
@@ -98,9 +107,25 @@ namespace ClothWPF.General.Realization
                                                            (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")) > 0)
                                                             ? Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))
                                                             : 1)) * (Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ","))) / 100);
+                                if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah <=
+                                    Convert.ToDouble(el.Text.Replace(".", ",")))
+                                {
+                                    profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
+                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                }
+                                else if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah >
+                                         Convert.ToDouble(el.Text.Replace(".", ",")))
+                                {
+                                   profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
+                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                }
+                               
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                                GetCell(realizationGrid, rowIndex, 9).Content = profit;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                                _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
+                              
                             }
                             catch (Exception ex)
                             {
@@ -223,8 +248,20 @@ namespace ClothWPF.General.Realization
 
         #endregion
 
+        private void CalculateProfit()
+        {
+            
+        }
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
+            double fullprice = 0;
+            double discount = 0;
+            double prepayment = 0;
+            Double.TryParse(txt_FullPrice.Text, out fullprice);
+            Double.TryParse(txt_Discount.Text, out discount);
+            Double.TryParse(txt_Prepayment.Text, out prepayment);
+            double totalsum = 0;
+            Double.TryParse(txt_TotalSum.Text, out totalsum);
             using (EfContext context = new EfContext())
             {
 
@@ -232,11 +269,11 @@ namespace ClothWPF.General.Realization
                 {
                     Number = txt_Number.Text,
                     DateRealization = Convert.ToDateTime(TxtRealizationDate.Text),
-                    PercentageDiscount = Convert.ToDouble(txt_Discount.Text),
-                    TotalPurshaise = Convert.ToDouble(txt_FullPrice.Text),
-                    PaymentSum = Convert.ToDouble(txt_Prepayment.Text),
-                    TotalSum = Convert.ToDouble(txt_TotalSum.Text),
-                    IdClient = idClient
+                    PercentageDiscount = discount,
+                    TotalPurshaise = fullprice,
+                    PaymentSum = prepayment,
+                    TotalSum = totalsum,
+                    IdSupplier = idClient
                 });
                 context.SaveChanges();
                 int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
@@ -254,7 +291,8 @@ namespace ClothWPF.General.Realization
                         DiscountProduct = product.Discount,
                         TotalProductSum = product.Sum,
                         IdRealization = Idrealiz,
-                        Idproduct = product.Idproduct
+                        Idproduct = product.Idproduct,
+                        Profit = product.Profit
                     });
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
@@ -280,6 +318,7 @@ namespace ClothWPF.General.Realization
                         Name = addProduct._nameProduct,
                         Code = addProduct._codeProduct,
                         //Article = addProduct._article,
+                        PriceUah = addProduct._supplierPrice,
                         CountSale = 0,
                         CountReserved = 0,
                         Discount = 0,
