@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Arrival.Supplier;
 using ClothWPF.Entities;
+using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
 using DataGrid = System.Windows.Controls.DataGrid;
 using DataGridCell = System.Windows.Controls.DataGridCell;
@@ -114,9 +116,8 @@ namespace ClothWPF.General.Realization
                                 else if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah >
                                          Convert.ToDouble(el.Text.Replace(".", ",")))
                                 {
-                                    profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
+                                   profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
                                              _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
-                                    GetCell(realizationGrid, rowIndex, 9).Background = Brushes.LightCoral;
                                 }
                                
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
@@ -124,7 +125,7 @@ namespace ClothWPF.General.Realization
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
                                 _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
-
+                              
                             }
                             catch (Exception ex)
                             {
