@@ -123,9 +123,7 @@ namespace ClothWPF.General.Realization
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
                                 GetCell(realizationGrid, rowIndex, 9).Content = profit;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
-                                _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
-
-                              
+                                //_ListProduct.Find(a => a.Idproduct == getid).Profit = profit;   
                             }
                             catch (Exception ex)
                             {
@@ -133,13 +131,8 @@ namespace ClothWPF.General.Realization
                                 throw;
                             }
                             GetColumnValue();
-                            CountValues();
-                           
-                        }
-
-                       
-
-                       
+                            CountValues();                         
+                        }                                       
                     }
                     else if (bindingPath == "CountSale")
                     {
@@ -197,7 +190,6 @@ namespace ClothWPF.General.Realization
                 Console.WriteLine(e);
                 throw;
             }
-
         }
 
         #endregion
@@ -264,7 +256,9 @@ namespace ClothWPF.General.Realization
             Double.TryParse(txt_TotalSum.Text, out totalsum);
             using (EfContext context = new EfContext())
             {
-
+                var objectDefault = context.Suppliers.Where(c => c.IdSupplier == idClient).FirstOrDefault();
+                double? TCPurshaise = objectDefault.TotalClientPurshaise + totalsum;
+                objectDefault.TotalClientPurshaise = TCPurshaise;
                 context.Realizations.Add(new Entities.Realization
                 {
                     Number = txt_Number.Text,
@@ -273,7 +267,8 @@ namespace ClothWPF.General.Realization
                     TotalPurshaise = fullprice,
                     PaymentSum = prepayment,
                     TotalSum = totalsum,
-                    IdSupplier = idClient
+                    IdSupplier = idClient,
+                    Profit = profit
                 });
                 context.SaveChanges();
                 int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
@@ -292,7 +287,7 @@ namespace ClothWPF.General.Realization
                         TotalProductSum = product.Sum,
                         IdRealization = Idrealiz,
                         Idproduct = product.Idproduct,
-                        Profit = product.Profit
+                        
                     });
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
@@ -308,8 +303,7 @@ namespace ClothWPF.General.Realization
             addProduct.ShowDialog();
             //if (!addProduct._allow)
             try
-            {
-                
+            {  
                     var data = new RealizationProductModel
                     {
                         Idproduct = addProduct._idproduct,

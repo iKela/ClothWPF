@@ -20,6 +20,7 @@ namespace ClothWPF.Models.RealizationWindow
         public double TotalPurshaise { get; set; }
         public double? PaymentSum { get; set; }
         public string ClientName { get; set; }
+        public double? Profit { get; set; }
     }
 }
 

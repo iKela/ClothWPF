@@ -29,5 +29,6 @@ namespace ClothWPF.Entities
         public DateTime? ContractDate { get; set; }
         public string IndividualTaxNumber { get; set; }
         public string KindOfResponsibility { get; set; }
+        public double? TotalClientPurshaise { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace ClothWPF.Entities
         public double? TotalProductSum { get; set; }
         [ForeignKey("GetRealization")]
         public int IdRealization { get; set; }
-        public double? Profit { get; set; }
+
         public Realization GetRealization { get; set; }
         [ForeignKey("ProductOf")]
         public int Idproduct { get; set; }
