@@ -23,6 +23,7 @@ namespace ClothWPF.Entities
         public double TotalPurshaise { get; set; }
         public double TotalSum { get; set; }
         public double? PaymentSum { get; set; }
+        public double? Profit { get; set; }
         [ForeignKey("GetSupplier")]
         public int IdSupplier { get; set; }
         public Supplier GetSupplier { get; set; }

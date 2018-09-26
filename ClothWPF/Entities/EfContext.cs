@@ -37,7 +37,6 @@ namespace ClothWPF
         }
         public EfContext() : base(GetConnectionString())
         { }
-
         public DbSet<Product> Products { get; set; }
         public DbSet<Arrivals> Arrivals { get; set; }
         public DbSet<ArrivalProduct> ArrivalProducts { get; set; }
@@ -46,8 +45,6 @@ namespace ClothWPF
         public DbSet<Realization> Realizations { get; set; }
         public DbSet<RealizationProduct> RealizationProducts { get; set; }
         public DbSet<GroupProduct> GroupProducts { get; set; }
-       
-
        private static string GetConnectionString() //TestVersion
         {
             string dbname = "ClothWPF";
@@ -67,5 +64,4 @@ namespace ClothWPF
         //    return "Data Source=" + hostname + ";Initial Catalog = " + dbname + ";User ID=" + username + ";Password=" + password + ";";
         //}
     }
-
 }
