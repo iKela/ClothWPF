@@ -173,7 +173,7 @@
         </Grid>
         <Grid Row="2">
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="txt_Search" Text="Пошук"  Width="200" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="Txt_Search_OnGotFocus"/>
+                <TextBox Name="txt_Search" Tag="&#128269;"  Width="150" VerticalAlignment="Center" Background="White" KeyUp="txt_Search_KeyUp" GotFocus="Txt_Search_OnGotFocus" Style="{StaticResource MyWaterMarkStyle}"/>
                 <materialDesign:PopupBox Width="25" Background="White" FontSize="14" PlacementMode="BottomAndAlignLeftEdges" StaysOpen="False" IsEnabled="True">
                     <StackPanel Orientation="Vertical" Width="100">
                         <StackPanel Orientation="Horizontal">
@@ -191,6 +191,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
+            <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
         </Grid>
         <Grid Grid.Row="3">
             <DataGrid x:Name="clothesGrid" 

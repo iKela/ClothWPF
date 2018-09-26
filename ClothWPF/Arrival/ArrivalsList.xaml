@@ -48,10 +48,10 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="ExpendColumn">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FirstColumn">
-            <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
-            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
-        </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FirstColumn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="NarrowColumn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="FirstColumn">
@@ -133,7 +133,7 @@
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                 <Menu>
                     <MenuItem Header="Файл" Margin="5 0" FontFamily="Times New Roman" FontSize="14" Height="30">
                         <MenuItem Name="mi_CloseWindow" Header="Вихід" Click="btn_CloseWindow_Click"/>
@@ -173,6 +173,10 @@
                 <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
             </Grid>
             <Grid Grid.Row="4" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1157*"/>
+                </Grid.ColumnDefinitions>
                 <DataGrid x:Name="grid_Arrivals"
                           CanUserAddRows="False"
                       HorizontalGridLinesBrush="DarkGray" 
@@ -182,7 +186,7 @@
                       SelectionChanged="grid_Arrivals_SelectionChanged" 
                       Loaded="grid_Arrivals_Loaded"
                       AutoGenerateColumns="False"
-                      Visibility="Collapsed">
+                      Visibility="Collapsed" Grid.ColumnSpan="2">
                     <DataGrid.Resources>
                         <gen:BindingProxy x:Key="NumberVisibilityProxy"        Data="{Binding NumberVisibility}"/>
                         <gen:BindingProxy x:Key="DateVisibilityProxy"          Data="{Binding DateVisibility}"/>
@@ -224,7 +228,7 @@
                       SelectionChanged="GridRealization_OnSelectionChanged"
                       Loaded="grid_Arrivals_Loaded"
                       AutoGenerateColumns="False"
-                      Visibility="Visible">
+                      Visibility="Visible" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdRealization}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -247,11 +251,16 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="5" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                     <TextBox Name="txt_SearchProduct" Tag="&#128269;" FontFamily="Times New Roman" FontSize="12" Height="30" Width="150" Margin="10 0" Style="{StaticResource MyWaterMarkStyle}"/>
                 </StackPanel>
                 <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 0">
+                    <TextBox Name="TxtTotalSum" materialDesign:HintAssist.Hint="Заробіток" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                </StackPanel>
             </Grid>
             <Grid Grid.Row="6" Grid.ColumnSpan="3">
                 <DataGrid x:Name="grid_ArrivalInfo"  
