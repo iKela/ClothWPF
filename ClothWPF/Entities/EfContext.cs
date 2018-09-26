@@ -31,10 +31,10 @@ namespace ClothWPF
 
     public class EfContext : DbContext
     {
-        static EfContext()
-        {
-           // Database.SetInitializer<EfContext>(new SampleInitializer());
-        }
+        //static EfContext()
+        //{
+        //   // Database.SetInitializer<EfContext>(new SampleInitializer());
+        //}
         public EfContext() : base(GetConnectionString())
         { }
         public DbSet<Product> Products { get; set; }
