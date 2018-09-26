@@ -41,6 +41,8 @@ namespace ClothWPF.General.Realization
         public List<RealizationProductModel> _ListProduct;
         private string value { get; set; }
         private int idClient { get; set; }
+        private double? TCPurshaise { get; set; }
+        private double? ClientDiscount { get; set; }
         private int rowIndex { get; set; }
         private double sum { get; set; }
         private double? profit { get; set; }
@@ -248,18 +250,18 @@ namespace ClothWPF.General.Realization
         private void btn_Calculation_Click(object sender, RoutedEventArgs e)
         {
             double fullprice = 0;
-            double discount = 0;
-            double prepayment = 0;
             Double.TryParse(txt_FullPrice.Text, out fullprice);
+            double discount = 0;
             Double.TryParse(txt_Discount.Text, out discount);
+            double prepayment = 0;
             Double.TryParse(txt_Prepayment.Text, out prepayment);
             double totalsum = 0;
             Double.TryParse(txt_TotalSum.Text, out totalsum);
             using (EfContext context = new EfContext())
             {
                 var objectDefault = context.Suppliers.Where(c => c.IdSupplier == idClient).FirstOrDefault();
-                double? TCPurshaise = objectDefault.TotalClientPurshaise + totalsum;
-                objectDefault.TotalClientPurshaise = TCPurshaise;
+                double? TCPurshaiseTemp = objectDefault.TotalClientPurshaise + totalsum;
+                objectDefault.TotalClientPurshaise = TCPurshaiseTemp;
                 context.Realizations.Add(new Entities.Realization
                 {
                     Number = txt_Number.Text,
@@ -287,8 +289,7 @@ namespace ClothWPF.General.Realization
                         DiscountProduct = product.Discount,
                         TotalProductSum = product.Sum,
                         IdRealization = Idrealiz,
-                        Idproduct = product.Idproduct,
-                        
+                        Idproduct = product.Idproduct,    
                     });
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
@@ -453,8 +454,9 @@ namespace ClothWPF.General.Realization
             {
                 var selected = (Supplier)AutoName.SelectedItem;
                 idClient = selected.IdSupplier;
-                txt_ClientDiscount.Text = supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount.ToString();
-
+                ClientDiscount= supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount;
+                TCPurshaise = supplier.Find(s => s.IdSupplier == selected.IdSupplier).TotalClientPurshaise;
+                txt_ClientDiscount.Text = ClientDiscount.ToString();
             }
             catch(Exception ex)
             {
@@ -480,7 +482,24 @@ namespace ClothWPF.General.Realization
 
         private void Txt_TotalSum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            double totalsumTemp = 0;
+            Double.TryParse(txt_FullPrice.Text, out totalsumTemp);
+            if (TCPurshaise + totalsumTemp >=5000 && TCPurshaise + totalsumTemp <= 10000 && ClientDiscount==0)
+            {
+                ClientDiscount = 3;
+                txt_ClientDiscount.Text = ClientDiscount.ToString();
+            }
+            if (TCPurshaise + totalsumTemp >= 10000 && TCPurshaise + totalsumTemp <= 20000)
+            {
+                ClientDiscount = 5;
+                txt_ClientDiscount.Text = ClientDiscount.ToString();
+            }
+            if (TCPurshaise + totalsumTemp >= 20000)
+            {
+                ClientDiscount = 7;
+            txt_ClientDiscount.Text = ClientDiscount.ToString();
+            }
+           
         }
     }
 }
