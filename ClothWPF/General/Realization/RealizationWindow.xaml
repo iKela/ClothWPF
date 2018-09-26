@@ -142,7 +142,7 @@
             </StackPanel>
             <Separator Margin="300"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Name="txt_TotalSum" materialDesign:HintAssist.Hint="Сума до оплати" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="30"/>
+                <TextBox Name="txt_TotalSum" materialDesign:HintAssist.Hint="Сума до оплати" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="30" TextChanged="Txt_TotalSum_OnTextChanged"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="6" VerticalAlignment="Center">

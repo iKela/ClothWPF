@@ -126,9 +126,10 @@ namespace ClothWPF.Arrival
                             PaymentType = a.PaymentType,                           
                             TotalPurshaise = a.TotalPurshaise,
                             DateRealization = a.DateRealization,
-                            ClientName = a.GetSupplier.NameSupplier,                           
+                            ClientName = a.GetSupplier.NameSupplier,  
                         }).ToList();
                     GridRealization.ItemsSource = realiz;
+                    //TxtTotalProfitSum.Text = 
                 }
             }
             else
@@ -223,13 +224,11 @@ namespace ClothWPF.Arrival
         {
             btn_ShowHamburger.Visibility = Visibility.Collapsed;
             btn_HideHamburger.Visibility = Visibility.Visible;
-            //FirstColumn.Width = new GridLength(200);
         }
         private void btn_HideHamburger_Click(object sender, RoutedEventArgs e)
         {
             btn_ShowHamburger.Visibility = Visibility.Visible;
             btn_HideHamburger.Visibility = Visibility.Collapsed;
-            //FirstColumn.Width = new GridLength(50);
         }
         private void SetUpComesVizualization()
         {
@@ -237,6 +236,7 @@ namespace ClothWPF.Arrival
             grid_ArrivalInfo.Visibility = Visibility.Visible;
             GridRealization.Visibility = Visibility.Collapsed;
             GridRealizationItems.Visibility = Visibility.Collapsed;
+            TxtTotalProfitSum.Visibility = Visibility.Collapsed;
         }
         private void SetUpRealizationVizualization()
         {
@@ -244,6 +244,8 @@ namespace ClothWPF.Arrival
             grid_ArrivalInfo.Visibility = Visibility.Collapsed;
             GridRealization.Visibility = Visibility.Visible;
             GridRealizationItems.Visibility = Visibility.Visible;
+
+            TxtTotalProfitSum.Visibility = Visibility.Visible;
         }
         private void HamgurgerComes_OnMouseDown(object sender, MouseButtonEventArgs e)
         {

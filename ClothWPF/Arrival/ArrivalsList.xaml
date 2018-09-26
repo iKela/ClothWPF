@@ -157,7 +157,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBlock Text="&#128113;" VerticalAlignment="Center" Margin="5 0"/>
-                    <ComboBox Name="cmb_Supplier" Text="Постачальник" Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
+                    <ComboBox Name="cmb_Supplier" Text="Контрагент" Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
                           SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Supplier_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
@@ -259,7 +259,7 @@
             </Grid>
             <Grid Grid.Row="5" Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 0">
-                    <TextBox Name="TxtTotalSum" materialDesign:HintAssist.Hint="Заробіток" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                    <TextBox Name="TxtTotalProfitSum" materialDesign:HintAssist.Hint="Заробіток" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="6" Grid.ColumnSpan="3">

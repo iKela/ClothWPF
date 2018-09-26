@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Arrival.Supplier;
+using ClothWPF.Enterprise;
 using ClothWPF.Entities;
 using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
@@ -478,6 +479,12 @@ namespace ClothWPF.General.Realization
         }
 
         private void Btn_NewOrganization_OnClick(object sender, RoutedEventArgs e)
+        {
+            Enterprise.EnterpriseWindow entpr = new EnterpriseWindow();
+            entpr.ShowDialog();
+        }
+
+        private void Txt_TotalSum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             
         }
