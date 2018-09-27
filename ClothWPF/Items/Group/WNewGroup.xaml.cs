@@ -33,15 +33,7 @@ namespace ClothWPF.Items.Group
         private void AutoGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-        private void ClearWindow()
-        {
-            foreach (Control ctl in PanelMain.Children)
-            {
-                if (ctl.GetType() == typeof(TextBox))
-                    ((TextBox)ctl).Text = String.Empty;
-            }
-        }
+        }      
         private void Btn_Add_OnClick(object sender, RoutedEventArgs e)
         {
             double nds = 0;
@@ -50,10 +42,14 @@ namespace ClothWPF.Items.Group
             {
                 try
                 {
-                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;                   
+                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
+                    MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" вже існує!", "Info",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    TxtName.SelectionBrush = Brushes.LightCoral;
+                    TxtName.Focus();
+                    TxtName.SelectAll();
                 }
                 catch
-
                 {
                     contex.GroupProducts.Add(new GroupProduct
                     {
@@ -61,12 +57,10 @@ namespace ClothWPF.Items.Group
                         CodeGroup = TxtCode.Text,
                         Nds = nds,
                         DescriptionGroup = TxtDescription.Text
-                        //IdSubGrop = 
                     });
                     contex.SaveChanges();
                     MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" успішно створена!", "Info",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    ClearWindow();
                     Close();
                 }
 
