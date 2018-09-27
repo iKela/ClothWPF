@@ -41,8 +41,13 @@ namespace ClothWPF.Items.Group
             Double.TryParse(TxtNDS.Text, out nds);
             using (EfContext contex = new EfContext())
             {
-                var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
-                if (name != TxtName.Text)
+                try
+                {
+                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
+                   
+                }
+                catch
+
                 {
                     contex.GroupProducts.Add(new GroupProduct
                     {
@@ -54,8 +59,8 @@ namespace ClothWPF.Items.Group
                     });
                     contex.SaveChanges();
                 }
+
             }
-            
         }
     }
 }
