@@ -22,6 +22,7 @@ using System.Windows.Shapes;
 using ClothWPF.Arrival.Supplier;
 using ClothWPF.Enterprise;
 using ClothWPF.Entities;
+using ClothWPF.Models;
 using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
 using DataGrid = System.Windows.Controls.DataGrid;
@@ -68,11 +69,10 @@ namespace ClothWPF.General.Realization
             int i = context.Realizations.Count() + 1;
             txt_Number.Text = i.ToString();
           AutoName.ItemsSource = supplier;
-            IdList= new List<int>();
-            IdList.Add(0);
+            IdList= new List<int>();//??
+            IdList.Add(0);//??
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
             TxtRealizationDate.Text = DateTime.Today.Date.ToShortDateString().Replace(".", null);
-            AutoName.ItemsSource = null; AutoName.SelectedItem = null; AutoName.ItemsSource = supplier; //AutoName.Items.Refresh();
         }
 
         #region Витяг та призначення значення після його зміни в комірці
@@ -446,13 +446,13 @@ namespace ClothWPF.General.Realization
             {
                 getid = 0;
             }
-        }
+        }   
 
         private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                var selected = (Supplier)AutoName.SelectedItem;
+                var selected = (SupplierModel)AutoName.SelectedItem;
                 idClient = selected.IdSupplier;
                 ClientDiscount= supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount;
                 TCPurshaise = supplier.Find(s => s.IdSupplier == selected.IdSupplier).TotalClientPurshaise;

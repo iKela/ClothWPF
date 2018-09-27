@@ -465,6 +465,10 @@
     <Compile Include="Migrations\201809250755173_newVariable.Designer.cs">
       <DependentUpon>201809250755173_newVariable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261228116_discount.cs" />
+    <Compile Include="Migrations\201809261228116_discount.Designer.cs">
+      <DependentUpon>201809261228116_discount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -541,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250755173_newVariable.resx">
       <DependentUpon>201809250755173_newVariable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261228116_discount.resx">
+      <DependentUpon>201809261228116_discount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

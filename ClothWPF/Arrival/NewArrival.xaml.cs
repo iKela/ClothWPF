@@ -33,8 +33,7 @@ namespace ClothWPF
         
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e) 
         {
-            AddProduct addProduct = new AddProduct(this.context);
-            //addProduct.productModels = _ProductModels
+            AddProduct addProduct = new AddProduct(this.context);           
             addProduct._close = false;
             addProduct.ShowDialog();
             if (addProduct._close == true)
@@ -88,8 +87,8 @@ namespace ClothWPF
        
         private void Add()
         {
-            try
-            {
+            //try
+            //{
                 using (TransactionScope scope = new TransactionScope())
                 {
                     foreach (var product in ArrproductModels)   //переробити
@@ -116,11 +115,11 @@ namespace ClothWPF
                     scope.Complete();
                 }
                 Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
