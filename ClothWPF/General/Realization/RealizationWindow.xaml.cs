@@ -23,6 +23,7 @@ using ClothWPF.Arrival.Supplier;
 using ClothWPF.Enterprise;
 using ClothWPF.Entities;
 using ClothWPF.Models;
+using System.Transactions;
 using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
 using DataGrid = System.Windows.Controls.DataGrid;
@@ -257,45 +258,49 @@ namespace ClothWPF.General.Realization
             Double.TryParse(txt_Prepayment.Text, out prepayment);
             double totalsum = 0;
             Double.TryParse(txt_TotalSum.Text, out totalsum);
-            using (EfContext context = new EfContext())
+            using (TransactionScope scope = new TransactionScope())
             {
-                var objectDefault = context.Suppliers.Where(c => c.IdSupplier == idClient).FirstOrDefault();
-                double? TCPurshaiseTemp = objectDefault.TotalClientPurshaise + totalsum;
-                objectDefault.TotalClientPurshaise = TCPurshaiseTemp;
-                context.Realizations.Add(new Entities.Realization
+                using (EfContext context = new EfContext())
                 {
-                    Number = txt_Number.Text,
-                    DateRealization = Convert.ToDateTime(TxtRealizationDate.Text),
-                    PercentageDiscount = discount,
-                    TotalPurshaise = fullprice,
-                    PaymentSum = prepayment,
-                    TotalSum = totalsum,
-                    IdSupplier = idClient,
-                    Profit = profit
-                });
-                context.SaveChanges();
-                int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
-
-                foreach (var product in _ListProduct)   //переробити
-                {
-                    context.RealizationProducts.Add(new Entities.RealizationProduct
+                    var objectDefault = context.Suppliers.Where(c => c.IdSupplier == idClient).FirstOrDefault();
+                    double? TCPurshaiseTemp = objectDefault.TotalClientPurshaise + totalsum;
+                    objectDefault.TotalClientPurshaise = TCPurshaiseTemp;
+                    context.Realizations.Add(new Entities.Realization
                     {
-                        Count = product.CountSale,
-                        PriceDollar = product.PriceDollar,
-                        PriceUah = product.PriceUah,
-                        PriceRetail = product.PriceRetail,
-                        PriceWholesale = product.PriceWholesale,
-                        NDS = product.NDS,
-                        DiscountProduct = product.Discount,
-                        TotalProductSum = product.Sum,
-                        IdRealization = Idrealiz,
-                        Idproduct = product.Idproduct,    
+                        Number = txt_Number.Text,
+                        DateRealization = Convert.ToDateTime(TxtRealizationDate.Text),
+                        PercentageDiscount = discount,
+                        TotalPurshaise = fullprice,
+                        PaymentSum = prepayment,
+                        TotalSum = totalsum,
+                        IdSupplier = idClient,
+                        Profit = profit
                     });
-                    var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
-                    double? sum = std.Count - product.CountSale;
-                    std.Count = sum;
-                }              
-                context.SaveChanges();
+                    context.SaveChanges();
+                    int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
+
+                    foreach (var product in _ListProduct)   //переробити
+                    {
+                        context.RealizationProducts.Add(new Entities.RealizationProduct
+                        {
+                            Count = product.CountSale,
+                            PriceDollar = product.PriceDollar,
+                            PriceUah = product.PriceUah,
+                            PriceRetail = product.PriceRetail,
+                            PriceWholesale = product.PriceWholesale,
+                            NDS = product.NDS,
+                            DiscountProduct = product.Discount,
+                            TotalProductSum = product.Sum,
+                            IdRealization = Idrealiz,
+                            Idproduct = product.Idproduct,
+                        });
+                        var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
+                        double? sum = std.Count - product.CountSale;
+                        std.Count = sum;
+                    }
+                    context.SaveChanges();
+                }
+                scope.Complete();
             }
         }
 

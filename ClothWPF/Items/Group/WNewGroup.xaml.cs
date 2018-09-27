@@ -41,16 +41,21 @@ namespace ClothWPF.Items.Group
             Double.TryParse(TxtNDS.Text, out nds);
             using (EfContext contex = new EfContext())
             {
-                contex.GroupProducts.Add(new GroupProduct
+                var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
+                if (name != TxtName.Text)
                 {
-                    NameGroup = TxtName.Text,
-                    CodeGroup = TxtCode.Text,
-                    Nds = nds,
-                    DescriptionGroup = TxtDescription.Text
-                    //IdSubGrop = 
-                });
-                contex.SaveChanges();
+                    contex.GroupProducts.Add(new GroupProduct
+                    {
+                        NameGroup = TxtName.Text,
+                        CodeGroup = TxtCode.Text,
+                        Nds = nds,
+                        DescriptionGroup = TxtDescription.Text
+                        //IdSubGrop = 
+                    });
+                    contex.SaveChanges();
+                }
             }
+            
         }
     }
 }

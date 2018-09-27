@@ -87,8 +87,8 @@ namespace ClothWPF
        
         private void Add()
         {
-            //try
-            //{
+            try
+            {
                 using (TransactionScope scope = new TransactionScope())
                 {
                     foreach (var product in ArrproductModels)   //переробити
@@ -115,11 +115,11 @@ namespace ClothWPF
                     scope.Complete();
                 }
                 Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.ToString());
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
