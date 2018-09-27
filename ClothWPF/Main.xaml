@@ -129,17 +129,17 @@
                     <MenuItem Header="InSoP MS" Template="{StaticResource VsOnline}" >
                         <MenuItem Name="MIClose" Header="Вихід" Icon="Login.png" Template="{StaticResource VsMenuSub}" Click="MIClose_OnClick" />
                     </MenuItem>
-                    <MenuItem Header="Закупівлі" Template="{StaticResource VsMenuTop}">
+                    <MenuItem Header="Товари" Template="{StaticResource VsMenuTop}">
+                        <MenuItem Name="MiNewItem"  Header="Додати позицію" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
+                        <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="MiItemList"/>
+                    </MenuItem>
+                    <MenuItem Header="Закупівля" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiNewArrival" Header="Новий прихід" ToolTip="Додавання нового приходу. Дає можливість додати до бази даних складу велику кількість товарів що поступили на склад." Template="{StaticResource VsMenuSub}" Click="mi_NewArrival_Click"/>
                         <MenuItem Name="MiArrivalsList" Header="Список приходів" Template="{StaticResource VsMenuSub}" Click="mi_ArrivalsList_Click"/>
                     </MenuItem>
                     <MenuItem Header="Реалізація" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiAddRealization" Header="Нова реалізація" Template="{StaticResource VsMenuSub}" Click="mi_AddRealization_Click"/>
                         <MenuItem Name="MiRealizationList" Header="Список продаж" Template="{StaticResource VsMenuSub}" Click="MiRealizationList_OnClick"/>
-                    </MenuItem>
-                    <MenuItem Header="Товари" Template="{StaticResource VsMenuTop}">
-                        <MenuItem Name="MiNewItem"  Header="Додати позицію" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="mi_AddItem_Click"/>
-                        <MenuItem Name="MiItems"  Header="Список товарів" IsEnabled="True" Template="{StaticResource VsMenuSub}" Click="MiItemList"/>
                     </MenuItem>
                     <MenuItem Header="Контрагент" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiNewCounterparty" Header="Додати контрагента" Template="{StaticResource VsMenuSub}" Click="MiNewCounterparty_OnClick"/>
