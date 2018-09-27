@@ -294,9 +294,7 @@ namespace ClothWPF.General.Realization
                     var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                     double? sum = std.Count - product.CountSale;
                     std.Count = sum;
-
-                }
-               
+                }              
                 context.SaveChanges();
             }
         }
@@ -347,8 +345,6 @@ namespace ClothWPF.General.Realization
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-
-
         }        
 
         private string oldTextDiscount { get; set; }

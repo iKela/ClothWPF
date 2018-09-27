@@ -127,9 +127,10 @@ namespace ClothWPF.Arrival
                             TotalPurshaise = a.TotalPurshaise,
                             DateRealization = a.DateRealization,
                             ClientName = a.GetSupplier.NameSupplier,  
+                            Profit = a.Profit
                         }).ToList();
                     GridRealization.ItemsSource = realiz;
-                    //TxtTotalProfitSum.Text = 
+                    TxtTotalProfitSum.Text = realiz.Select(a => a.Profit).Sum().ToString();
                 }
             }
             else
