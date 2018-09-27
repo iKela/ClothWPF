@@ -448,7 +448,7 @@ namespace ClothWPF.General.Realization
         {
             try
             {
-                var selected = (SupplierModel)AutoName.SelectedItem;
+                var selected = (Supplier)AutoName.SelectedItem;
                 idClient = selected.IdSupplier;
                 ClientDiscount= supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount;
                 TCPurshaise = supplier.Find(s => s.IdSupplier == selected.IdSupplier).TotalClientPurshaise;
