@@ -34,7 +34,14 @@ namespace ClothWPF.Items.Group
         {
 
         }
-
+        private void ClearWindow()
+        {
+            foreach (Control ctl in PanelMain.Children)
+            {
+                if (ctl.GetType() == typeof(TextBox))
+                    ((TextBox)ctl).Text = String.Empty;
+            }
+        }
         private void Btn_Add_OnClick(object sender, RoutedEventArgs e)
         {
             double nds = 0;
@@ -43,8 +50,7 @@ namespace ClothWPF.Items.Group
             {
                 try
                 {
-                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
-                   
+                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;                   
                 }
                 catch
 
@@ -58,49 +64,17 @@ namespace ClothWPF.Items.Group
                         //IdSubGrop = 
                     });
                     contex.SaveChanges();
+                    MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" успішно створена!", "Info",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearWindow();
+                    Close();
                 }
 
             }
         }
     }
 }
-            try
-            {      
-                using (EfContext contex = new EfContext())
-                {
-                    var name = contex.GroupProducts.SingleOrDefault(a => a.NameGroup == TxtName.Text).NameGroup;
-                    if (name != TxtName.Text)
-                    {
-                        contex.GroupProducts.Add(new GroupProduct
-                        {
-                            NameGroup = TxtName.Text,
-                            CodeGroup = TxtCode.Text,
-                            Nds = nds,
-                            DescriptionGroup = TxtDescription.Text
-                            //IdSubGrop = 
-                        });
-                        contex.SaveChanges();
+           
                 
-                        MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" успішно створена!", "Info",
-                            MessageBoxButton.OK, MessageBoxImage.Information);
-                        ClearWindow();
-                        Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void ClearWindow()
-        {
-            foreach (Control ctl in PanelMain.Children)
-            {
-                if (ctl.GetType() == typeof(TextBox))
-                    ((TextBox) ctl).Text = String.Empty;
-            }
-        }
-    }
-}
+                      
+                       
