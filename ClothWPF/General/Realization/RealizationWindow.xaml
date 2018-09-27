@@ -47,7 +47,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Контрагент" VerticalAlignment="Center"/>
                 <Separator Margin="10"/>
-                <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Width="150" ValueMemberPath="NameClient" SelectedItem="{Binding IdSupplier}"
+                <controls:AutoCompleteBox Name="AutoName" Foreground="Gray" Width="150" ValueMemberPath="NameSupplier" SelectedItem="{Binding IdSupplier}"
                                           Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged">
                     <controls:AutoCompleteBox.ItemTemplate>
                         <DataTemplate>
