@@ -39,17 +39,39 @@ namespace ClothWPF.Items.Group
         {
             double nds = 0;
             Double.TryParse(TxtNDS.Text, out nds);
-            using (EfContext contex = new EfContext())
+            try
             {
-                contex.GroupProducts.Add(new GroupProduct
+                using (EfContext contex = new EfContext())
                 {
-                    NameGroup = TxtName.Text,
-                    CodeGroup = TxtCode.Text,
-                    Nds = nds,
-                    DescriptionGroup = TxtDescription.Text
-                    //IdSubGrop = 
-                });
-                contex.SaveChanges();
+                    contex.GroupProducts.Add(new GroupProduct
+                    {
+                        NameGroup = TxtName.Text,
+                        CodeGroup = TxtCode.Text,
+                        Nds = nds,
+                        DescriptionGroup = TxtDescription.Text
+                        //IdSubGrop = 
+                    });
+                    contex.SaveChanges();
+                }
+
+                MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" успішно створена!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearWindow();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+           
+
+        }
+
+        private void ClearWindow()
+        {
+            foreach (Control ctl in PanelMain.Children)
+            {
+                if (ctl.GetType() == typeof(TextBox))
+                    ((TextBox)ctl).Text = String.Empty;
             }
         }
     }
