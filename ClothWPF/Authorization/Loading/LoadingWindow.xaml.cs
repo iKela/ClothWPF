@@ -19,6 +19,7 @@ using ClothWPF.General.Classes;
 using ClothWPF.Helpes;
 using ClothWPF.Models;
 using ClothWPF.Models.ArrivalInfo;
+using ClothWPF.Models.Group;
 using ProductModel = ClothWPF.Models.Main.ProductModel;
 using ThicknessConverter = Xceed.Wpf.DataGrid.Converters.ThicknessConverter;
 
@@ -77,19 +78,38 @@ namespace ClothWPF.Authorization.Loading
 
     static class ConstList
     {
+        public static List<GroupModel> _Group = new List<GroupModel>();
         public static List<EnterpriseModel> _Enterprise = new List<EnterpriseModel>();
         public static List<SupplierModel> _Supplier = new List<SupplierModel>();
         public static List<ProductModel> _FullInfo = new List<ProductModel>();
         public static ObservableCollection<ExcelItem> excelItems = new ObservableCollection<ExcelItem>();
 
+        public static void InitGroup(List<GroupModel> inList)
+        {
+            _Group = inList;
+        }
+
+        public static List<GroupModel> GetGroupList
+        {
+            get { return _Group; }
+        }
+
         public static void Init(List<ProductModel> inList)
         {
             _FullInfo = inList;
+        }
+        public static List<ProductModel> GetList
+        {
+            get { return _FullInfo; }
         }
 
         public static void InitSupplier(List<SupplierModel> inList)
         {
             _Supplier = inList;
+        }
+        public static List<SupplierModel> GetSupplierList
+        {
+            get { return _Supplier; }
         }
 
         public static void InitEnterprise(List<EnterpriseModel> InList)
@@ -102,15 +122,7 @@ namespace ClothWPF.Authorization.Loading
             get { return _Enterprise; }
         }
 
-        public static List<SupplierModel> GetSupplierList
-        {
-            get { return _Supplier; }
-        }
 
-        public static List<ProductModel> GetList
-        {
-            get { return _FullInfo; }
-        }
         public  static ObservableCollection<ExcelItem> GetExcelItems
         {
             get { return excelItems; }

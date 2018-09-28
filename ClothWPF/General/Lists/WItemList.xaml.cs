@@ -27,7 +27,7 @@ namespace ClothWPF.General.Lists
         {
             InitializeComponent();
             productListGrid.ItemsSource = ConstList.GetList;
-         
+            TVGroups.ItemsSource = ConstList.GetGroupList;
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
@@ -87,12 +87,16 @@ namespace ClothWPF.General.Lists
         {
             AddItem newItem = new AddItem();
             newItem.ShowDialog();
+            productListGrid.ItemsSource = null;
+            productListGrid.ItemsSource = ConstList.GetList;
         }
 
         private void BtnAddGroup_Click(object sender, RoutedEventArgs e)
         {
             WNewGroup addGroup = new WNewGroup();
             addGroup.ShowDialog();
+            TVGroups.ItemsSource = null;
+            TVGroups.ItemsSource = ConstList.GetGroupList;
         }
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
