@@ -8,6 +8,32 @@
         xmlns:local="clr-namespace:ClothWPF.Enterprise"
         mc:Ignorable="d"
         Height="450" Width="600" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:HeaderedSeparator}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:HeaderedSeparator}">
+                        <Grid Height="{TemplateBinding Height}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Separator Grid.Column="0" Width="Auto"/>
+                            <TextBlock Grid.Column="1" 
+                                       VerticalAlignment="Center" Margin="5 0" 
+                                       Text="{TemplateBinding Header}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="12"
+                                       FontStyle="Italic"
+                                       Foreground="Gray"/>
+                            <Separator Grid.Column="2" Width="Auto"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -89,23 +115,21 @@
                   SelectedIndex="{Binding Index}" SelectionChanged="cmb_CreatingWay_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3">
-                <ComboBox Name="cmb_LegalForm" Text="Організаційно-правова форма" IsEditable="True" IsReadOnly="True" Width="Auto" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding CreatingWayList}"
+                <ComboBox Name="cmb_LegalForm" Text="Організаційно-правова форма" IsEditable="True" IsReadOnly="True" Width="Auto" FontFamily="Timew New Roman" FontSize="14"
                    SelectionChanged="cmb_CreatingWay_SelectionChanged">
-                    <MenuItem Name="MiEconomicParthnership" Header="Господарське товариство">
-                        <MenuItem Uid="1" Header="Aкціонерне товариство" Click="MenuItem_OnClick"/>
-                        <MenuItem Uid="2" Header="Товариство з обмеженою відповідальністю"/>
-                        <MenuItem Uid="3" Header="Товариство з додатковою відповідальністю"/>
-                        <MenuItem Uid="4" Header="Командитне товариство"/>
-                        <MenuItem Uid="5" Header="Повне товариство"/>
-                    </MenuItem>
-                    <MenuItem Name="MiAssociationOfEnterprises" Header="Об'єднання підприємств">
-                        <MenuItem Header="Асоціація"/>
-                        <MenuItem Header="Концерн"/>
-                        <MenuItem Header="Консорціум"/>
-                        <MenuItem Header="Корпорація"/>
-                        <MenuItem Header="Холдинг"/>
-                        <MenuItem Header="Промислово-фінансова група"/>
-                    </MenuItem>
+                    <local:HeaderedSeparator Header="Господарське товариство"/>
+                    <ComboBoxItem Content="Aкціонерне товариство"/>
+                    <ComboBoxItem Uid="2" Content="Товариство з обмеженою відповідальністю"/>
+                    <ComboBoxItem Uid="3" Content="Товариство з додатковою відповідальністю"/>
+                    <ComboBoxItem Uid="4" Content="Командитне товариство"/>
+                    <ComboBoxItem Uid="5" Content="Повне товариство"/>
+                    <local:HeaderedSeparator Header="Об'єднання підприємств"/>
+                    <ComboBoxItem Content="Асоціація"/>
+                    <ComboBoxItem Content="Концерн"/>
+                    <ComboBoxItem Content="Консорціум"/>
+                    <ComboBoxItem Content="Корпорація"/>
+                    <ComboBoxItem Content="Холдинг"/>
+                    <ComboBoxItem Content="Промислово-фінансова група"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="4">

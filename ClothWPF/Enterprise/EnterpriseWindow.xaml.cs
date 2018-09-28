@@ -33,7 +33,7 @@ namespace ClothWPF.Enterprise
         {   
             DataContext = new EnterpriseClass();
         }
-
+       
         private void cmb_OwnershipType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -124,14 +124,19 @@ namespace ClothWPF.Enterprise
                 }
             }
         }
+    }
+    public class HeaderedSeparator : Control
+    {
+        public static DependencyProperty HeaderProperty =
+            DependencyProperty.Register(
+                "Header",
+                typeof(string),
+                typeof(HeaderedSeparator));
 
-        private void cmb_LegalForm_MouseDown(object sender, MouseButtonEventArgs e)
+        public string Header
         {
-        }
-
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            cmb_LegalForm.Text = 
+            get => (string)GetValue(HeaderProperty);
+            set => SetValue(HeaderProperty, value);
         }
     }
 }
