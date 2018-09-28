@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Entities;
 using ClothWPF.Items.Group;
+using ClothWPF.Models.Main;
 
 namespace ClothWPF.General.Lists
 {
@@ -105,7 +106,21 @@ namespace ClothWPF.General.Lists
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            
+            var select = (ProductModel) TVGroups.SelectedItem;           
+            var arrId = ConstList._FullInfo
+                .Where(ap => ap.Namegroup == select.Namegroup)
+                .Select(ap => new ProductModel
+                {
+                    Name = ap.Name,
+                    Article = ap.Article,
+                    Code = ap.Code,
+                    Country = ap.Country,
+                    PriceDollar = ap.PriceDollar,
+                    PriceRetail = ap.PriceRetail,
+                    PriceWholesale = ap.PriceWholesale
+                }).ToList();
+            productListGrid.ItemsSource = arrId;
+            productListGrid.Items.Refresh();
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
