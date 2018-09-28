@@ -57,7 +57,7 @@
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <TreeView SelectedItemChanged="TreeView_OnSelectedItemChanged">
+                <TreeView Name="TVGroups" SelectedItemChanged="TreeView_OnSelectedItemChanged">
                 </TreeView>
             </Grid>
             <Grid Grid.Column="1">

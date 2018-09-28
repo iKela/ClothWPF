@@ -52,25 +52,39 @@ namespace ClothWPF
             
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
-        {          
-            #region Double Parse
-            double count = 0;
-            double wholesalePrice = 0;
-            double retailerPrice = 0;
-            Double.TryParse(txt_Count.Text, out count);
-            Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
-            Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
-            double priceDollar = 0;
-            Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
-            #endregion
-            try
+        {
+            if (txt_PriceRetailer.Text != String.Empty || txt_PriceWholeSale.Text != String.Empty)
             {
-                _name = AutoName.Text; _code = txt_ProductCode.Text; _count = count;
-                _article = txt_Article.Text; _priceRetail = retailerPrice; _priceWholesale = wholesalePrice;
-                _priceDollar = priceDollar; _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
-                _close = true; Close();
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                #region Double Parse
+
+                double count = 0;
+                double wholesalePrice = 0;
+                double retailerPrice = 0;
+                Double.TryParse(txt_Count.Text, out count);
+                Double.TryParse(txt_PriceWholeSale.Text, out wholesalePrice);
+                Double.TryParse(txt_PriceRetailer.Text, out retailerPrice);
+                double priceDollar = 0;
+                Double.TryParse(txt_SuppierPrice.Text, out priceDollar);
+
+                #endregion
+
+                try
+                {
+                    _name = AutoName.Text;
+                    _code = txt_ProductCode.Text;
+                    _count = count;
+                    _article = txt_Article.Text;
+                    _priceRetail = retailerPrice;
+                    _priceWholesale = wholesalePrice;
+                    _priceDollar = priceDollar;
+                    _manufactureDate = Convert.ToDateTime(txt_ManufactureDate.Text);
+                    _close = true;
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
        
