@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Loading;
+using ClothWPF.Models;
 
 namespace ClothWPF.Arrival.Supplier
 {
@@ -80,6 +82,25 @@ namespace ClothWPF.Arrival.Supplier
                         KindOfResponsibility = cmb_KindOfResponsibility.Text                     
                     });
                     context.SaveChanges();
+                    ConstList._Supplier.Add( new SupplierModel
+                    {
+                        NameSupplier = txt_Name.Text,
+                        City = txt_City.Text,
+                        AdressSupplier = txt_Address.Text,
+                        NumberSupplier = txt_PhoneNumber.Text,
+                        Email = txt_Email.Text,
+                        Region = txt_Region.Text,
+                        Currency = cmb_Currency.Text,
+                        Discount = Convert.ToDouble(TxtDiscount.Text),
+                        Category = cmb_Category.Text,
+                        FullName = TxtFullName.Text,
+                        LegalAddress = TxtLegalAddress.Text,
+                        MaxAmountOfDebt = maxamountofdebt,
+                        VATPlayerNumber = txt_VATPlayerNumber.Text,
+                        ContractNumber = txt_ContractNumber.Text,
+                        ContractDate = Convert.ToDateTime(txt_ContractDate.Text),
+                        KindOfResponsibility = cmb_KindOfResponsibility.Text
+                    });
                     _supplierClose = true;
                     MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();

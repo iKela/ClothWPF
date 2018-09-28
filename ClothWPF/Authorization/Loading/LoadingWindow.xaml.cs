@@ -61,6 +61,9 @@ namespace ClothWPF.Authorization.Loading
             Load cLoad = new Load();
             context = cLoad.context;
             cLoad.loaded();
+            cLoad.loadedEnterprise();
+            cLoad.loadedGroup();
+            cLoad.loadedSuplier();
             Main main = new Main();
             main.context = this.context;
             main.Show();

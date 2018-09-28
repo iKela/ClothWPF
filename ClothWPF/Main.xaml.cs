@@ -160,8 +160,7 @@ namespace ClothWPF
                 if (clothesGrid.SelectedItem != null)
                 {
                     try
-                    {
-                       
+                    {      
                             context.Products.Remove(context.Products.Find(obj.IdProduct));
                             context.SaveChanges();
                        load.loaded();
