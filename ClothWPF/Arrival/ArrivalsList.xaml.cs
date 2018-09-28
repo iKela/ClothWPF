@@ -70,38 +70,46 @@ namespace ClothWPF.Arrival
 
         public void loaded()
         {
-            if (DateTime.TryParse(txt_DateFrom.Text, out dateArrivalfrom))
+            try
             {
-                if (DateTime.TryParse(txt_DateTo.Text, out dateArrivalTo))
+                if (DateTime.TryParse(txt_DateFrom.Text, out dateArrivalfrom))
                 {
-                    dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
-                    dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
-                    grid_ArrivalInfo.ItemsSource = null;
-                    var arrival = context.Arrivals
-                        .Include(s => s.SupplierOf)
-                        .Include(e => e.EnterpriseOf)
-                        .Where(a => a.Date >= dateArrivalfrom && a.Date <= dateArrivalTo)
-                        .Select(a => new ArrivalsModel
-                        {
-                            IdArrival = a.IdArrival,
-                            Number = a.Number,
-                            ComesTo = a.ComesTo,
-                            Date = a.Date,
-                            SupplierInvoice = a.SupplierInvoice,
-                         //PaymentType = a.PaymentType,
-                            Currency = a.Currency,
-                            TotalPurchase = a.TotalPurchase,
-                         //Comment = a.Comment,
-                            nameSupplier = a.SupplierOf.NameSupplier,
-                            nameEnterprise = a.EnterpriseOf.Name
-                        }).ToList();
-
-                    grid_Arrivals.ItemsSource = arrival;
+                    if (DateTime.TryParse(txt_DateTo.Text, out dateArrivalTo))
+                    {
+                        dateArrivalfrom = Convert.ToDateTime(txt_DateFrom.Text);
+                        dateArrivalTo = Convert.ToDateTime(txt_DateTo.Text);
+                        grid_ArrivalInfo.ItemsSource = null;
+                        var arrival = context.Arrivals
+                            .Include(s => s.SupplierOf)
+                            .Include(e => e.EnterpriseOf)
+                            .Where(a => a.Date >= dateArrivalfrom && a.Date <= dateArrivalTo)
+                            .Select(a => new ArrivalsModel
+                            {
+                                IdArrival = a.IdArrival,
+                                Number = a.Number,
+                                ComesTo = a.ComesTo,
+                                Date = a.Date,
+                                SupplierInvoice = a.SupplierInvoice,
+                             //PaymentType = a.PaymentType,
+                                Currency = a.Currency,
+                                TotalPurchase = a.TotalPurchase,
+                             //Comment = a.Comment,
+                                nameSupplier = a.SupplierOf.NameSupplier,
+                                nameEnterprise = a.EnterpriseOf.Name
+                            }).ToList();
+                
+                        grid_Arrivals.ItemsSource = arrival;
+                    }
                 }
-            }
             else
             {
                 MessageBox.Show("Введіть правильно Дату!", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                Close();
             }
         }
         public void loadedRealization()

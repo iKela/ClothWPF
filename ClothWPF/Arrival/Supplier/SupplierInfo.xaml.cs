@@ -94,5 +94,13 @@ namespace ClothWPF.Arrival.Supplier
         {
             Close();
         }
+
+        private void Txt_MaxAmountOfDebt_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

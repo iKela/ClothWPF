@@ -66,6 +66,14 @@ namespace ClothWPF.Items.Group
 
             }
         }
+
+        private void TxtNDS_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!Char.IsDigit((char) KeyInterop.VirtualKeyFromKey(e.Key)))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
            

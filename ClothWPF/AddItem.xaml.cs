@@ -183,8 +183,15 @@ namespace ClothWPF
 
         private void AutoGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = (GroupModel)AutoGroup.SelectedItem;
-            _idgroup = groupModel.FirstOrDefault(s => s.IdGroup== selected.IdGroup).IdGroup;
+            try
+            {
+
+                var selected = (GroupModel) AutoGroup.SelectedItem;
+                _idgroup = groupModel.FirstOrDefault(s => s.IdGroup == selected.IdGroup).IdGroup;
+            }
+            catch (Exception exception)
+            {
+            }
         }
 
         private void btn_NewGroup_Click(object sender, RoutedEventArgs e)

@@ -35,11 +35,11 @@
                        
                             <materialDesign:PackIcon Kind="PackageVariant" Height="20" Width="20" Margin="0 5 0 0"/>
                             <TextBlock Text="Група: " FontFamily="Timew New Roman" FontSize="14" FontWeight="Bold" Margin="2 7 0 0"/>
-                            <controls:AutoCompleteBox Name="AutoGroup" Width="150" ValueMemberPath="Name" SelectedItem="{Binding Id}"
+                            <controls:AutoCompleteBox Name="AutoGroup" Width="150" ValueMemberPath="NameGroup" SelectedItem="{Binding IdGroup}"
                                                       Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoGroup_OnSelectionChanged">
                                 <controls:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding NameGroup}"></TextBlock>
                                     </DataTemplate>
                                 </controls:AutoCompleteBox.ItemTemplate>
                             </controls:AutoCompleteBox>

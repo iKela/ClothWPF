@@ -29,7 +29,8 @@
                     <TextBox Name="TxtCode" Width="200" materialDesign:HintAssist.Hint="Код" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 10"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Name="TxtNDS" Width="200" materialDesign:HintAssist.Hint="НДС" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 10"/>
+                    <TextBox Name="TxtNDS" Width="200" materialDesign:HintAssist.Hint="НДС %" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 10"
+                             KeyDown="TxtNDS_OnKeyDown"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Name="TxtDescription" Width="475" materialDesign:HintAssist.Hint="Опис" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 10"/>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
         mc:Ignorable="d"
@@ -31,21 +32,42 @@
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  CaretIndex="0" FontSize="14"/>
-                            <!--<xctk:MaskedTextBox x:Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="00.00.0000" CaretIndex="0" FontSize="14"/>-->
+                            <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата прийому" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  CaretIndex="0" FontSize="14"/>
                         </StackPanel>
                         <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
                         <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" Visibility="Collapsed"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Supplier" Text="Виберіть поставщика" ItemsSource="{Binding Path=ListOfSuppliers}" DisplayMemberPath="NameSupplier" IsEditable="False" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="cmb_SelectSupplier"/>
+                            <Separator Margin="20 0"/>
+                            <TextBlock Text="Контрагент" FontSize="15" FontFamily="Times New Roman"/>
+                            <Separator Margin="60 0"/>
+                            <TextBlock Text="Підприємство" FontSize="15" FontFamily="Times New Roman"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <controls:AutoCompleteBox Name="AutoNameConterparty" Foreground="Gray" Width="150" ValueMemberPath="NameSupplier" SelectedItem="{Binding IdSupplier}"
+                                                      Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged" Margin="10">
+                                <controls:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NameSupplier}"/>
+                                    </DataTemplate>
+                                </controls:AutoCompleteBox.ItemTemplate>
+                            </controls:AutoCompleteBox>
                             <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Name="cmb_Enterprise" Text="Виберіть підприємство" ItemsSource="{Binding Path=ListOfEnterprises}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10" SelectionChanged="Cmb_Enterprise_OnSelectionChanged"/>
+                            <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
+                            Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged" Margin="10">
+                            <controls:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </controls:AutoCompleteBox.ItemTemplate>
+                            </controls:AutoCompleteBox>
                             <Button Name="btn_NewEnterprise" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewEnterprise_Click"/>
                         </StackPanel>
+                    </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_SupplierInvoice" Width="150" materialDesign:HintAssist.Hint="Накладна поставщика" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 10"/>
@@ -54,14 +76,6 @@
                             <ComboBoxItem Content="Банківський переказ"/>
                             <ComboBoxItem Content="Оплата платіжною карткою"/>
                             <ComboBoxItem Content="Оплата готівкою"/>
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="47" >
-                        <TextBlock Text="Валюта" VerticalAlignment="Bottom" Margin="0 7" FontFamily="Times New Roman" FontSize="14"/>
-                        <ComboBox Name="cmb_Currency" Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Center">
-                            <ComboBoxItem Content="$"/>
-                            <ComboBoxItem Content="&#8372;"/>
-                            <ComboBoxItem Content="&#8364;"/>
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>

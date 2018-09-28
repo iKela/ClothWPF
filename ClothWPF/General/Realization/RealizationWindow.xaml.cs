@@ -433,7 +433,15 @@ namespace ClothWPF.General.Realization
 
         private void realizationGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            realizationGrid.Items.Refresh();
+            try
+            {
+                realizationGrid.Items.Refresh();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+                this.Close();
+            }
         }
 
         private void RealizationGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

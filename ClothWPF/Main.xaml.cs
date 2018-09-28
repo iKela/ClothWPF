@@ -41,6 +41,10 @@ namespace ClothWPF
             InitializeComponent();
             _ProductFullInfo = ConstList.GetList;
             context = load.context;
+
+            tb_SearchByName.Visibility = Visibility.Visible;
+            tb_SearchByProductCode.Visibility = Visibility.Hidden;
+            tb_SearchByCountry.Visibility = Visibility.Hidden;
             // LoadedProvaider conn = new LoadedProvaider();
             //_ProductFullInfo = conn.loaded();
             //ConnectionProvider _connectionProvider = new ConnectionProvider();

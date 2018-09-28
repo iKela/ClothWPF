@@ -27,7 +27,7 @@
             </StackPanel>
             <Grid VerticalAlignment="Bottom" x:Name="GridCursor" Width="150" Height="3" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0 10 10"/>
         </Grid>
-        <Grid x:Name="GridGeneralInfo" Height="340" Grid.Row="2" Visibility="Visible">
+        <Grid x:Name="GridGeneralInfo" Height="340" Grid.Row="2" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -84,7 +84,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridAdditionInfo" Height="340" Grid.Row="2" Visibility="Collapsed">
+        <Grid x:Name="GridAdditionInfo" Height="340" Grid.Row="2" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -120,7 +120,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0">
-                    <TextBox Name="txt_MaxAmountOfDebt" Width="200" materialDesign:HintAssist.Hint="Макс. сума заборгованості" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
+                    <TextBox Name="txt_MaxAmountOfDebt" Width="200" materialDesign:HintAssist.Hint="Макс. сума заборгованості" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"
+                             KeyDown="Txt_MaxAmountOfDebt_OnKeyDown"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="4">

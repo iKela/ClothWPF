@@ -162,5 +162,10 @@ namespace ClothWPF.Arrival
                 MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

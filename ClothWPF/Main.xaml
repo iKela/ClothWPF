@@ -191,7 +191,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 6"/>
+            <Grid VerticalAlignment="Bottom" Width="150" Height="2" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 10"/>
         </Grid>
         <Grid Grid.Row="3">
             <DataGrid x:Name="clothesGrid" 
