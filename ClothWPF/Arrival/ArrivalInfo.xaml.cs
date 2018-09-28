@@ -78,7 +78,6 @@ namespace ClothWPF.Arrival
                         //arrInfo.EnterpriseId = cmb_Enterprise.SelectedIndex;
                         arrInfo.SupplierInvoice = txt_SupplierInvoice.Text;
                         arrInfo.PaymentType = cmb_PaymentType.Text;
-                        arrInfo.Currency = cmb_Currency.Text;
                         arrInfo.Comment = txt_Comment.Text;
                         context.SaveChanges();
                     }
@@ -93,7 +92,6 @@ namespace ClothWPF.Arrival
                             //EnterpriseId = cmb_Enterprise.SelectedIndex;
                             SupplierInvoice = txt_SupplierInvoice.Text,
                             PaymentType = cmb_PaymentType.Text,
-                            Currency = cmb_Currency.Text,
                             Comment = txt_Comment.Text,
                             TotalPurchase = totalPurchaise                            
                         });
@@ -135,20 +133,6 @@ namespace ClothWPF.Arrival
             enterprise.ShowDialog();
            loaded();
         }
-
-        private void Cmb_Enterprise_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var selected = (EnterpriseModel)cmb_Enterprise.SelectedItem;
-                _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdEnterprise).IdEnterprise;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private void AutoNameConterparty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
