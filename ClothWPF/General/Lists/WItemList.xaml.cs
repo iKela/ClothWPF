@@ -27,7 +27,7 @@ namespace ClothWPF.General.Lists
         {
             InitializeComponent();
             productListGrid.ItemsSource = ConstList.GetList;
-         
+                     
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
@@ -87,6 +87,8 @@ namespace ClothWPF.General.Lists
         {
             AddItem newItem = new AddItem();
             newItem.ShowDialog();
+            productListGrid.ItemsSource = null;
+            productListGrid.ItemsSource = ConstList.GetList;
         }
 
         private void BtnAddGroup_Click(object sender, RoutedEventArgs e)

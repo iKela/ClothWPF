@@ -8,12 +8,14 @@ using System.Windows.Forms.VisualStyles;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Models;
 using ClothWPF.Models.ArrivalInfo;
+using ClothWPF.Models.Group;
 using ProductModel = ClothWPF.Models.Main.ProductModel;
 
 namespace ClothWPF.Helpes
 {
     public class Load
     {
+        public List<GroupModel> _GroupList { get; set; }
         public List<ProductModel> _ProductFullInfo { get; set; }
         public List<EnterpriseModel> _EnterpriseModels { get; set; }
         public List<SupplierModel> _SupplierModels { get; set; }
@@ -21,6 +23,20 @@ namespace ClothWPF.Helpes
         public Load()
         {
             context = new EfContext();
+        }
+
+        public void loadedGroup()
+        {
+            _GroupList = context.GroupProducts.Select(a => new GroupModel
+            {
+                IdGroup = a.IdGroup,
+                NameGroup = a.NameGroup,
+                DescriptionGroup = a.DescriptionGroup,
+                CodeGroup = a.CodeGroup,
+                Nds = a.Nds,
+                IdSubGrop = a.IdSubGrop
+            }).ToList();
+            ConstList.InitGroup(_GroupList);
         }
 
         public void  loaded()
