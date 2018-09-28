@@ -51,8 +51,7 @@
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0">
-                    <TextBox Name="txt_PhoneNumber" Width="200" materialDesign:HintAssist.Hint="Номер телефону" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" FontFamily="Times New Roman"/>
-                    <xctk:MaskedTextBox x:Name="txt_ManufactureDate" materialDesign:HintAssist.Hint="Дата виготовлення" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="000-000-0000" CaretIndex="0" FontSize="14"/>
+                    <xctk:MaskedTextBox x:Name="txt_PhoneNumber" materialDesign:HintAssist.Hint="Номер телефону" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Mask="000-000-0000" CaretIndex="0" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Vertical">

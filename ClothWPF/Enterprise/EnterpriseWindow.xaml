@@ -90,11 +90,22 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3">
                 <ComboBox Name="cmb_LegalForm" Text="Організаційно-правова форма" IsEditable="True" IsReadOnly="True" Width="Auto" FontFamily="Timew New Roman" FontSize="14" ItemsSource="{Binding CreatingWayList}"
-                  SelectedIndex="{Binding Index}" SelectionChanged="cmb_CreatingWay_SelectionChanged" MouseDown="cmb_LegalForm_MouseDown">
-                    <ComboBox Name="cmb_EconomicPartnership" Text="Господарське товариство" IsEditable="True" IsReadOnly="True" Width="Auto"
-                                      ItemsSource="{Binding EconomicPartnershipList}" SelectionChanged="cmb_EconomicPartnership_SelectionChanged"/>
-                    <ComboBox Name="cmb_AssociationOfEnterprises" Text="Об'єднання підприємств" IsEditable="True" IsReadOnly="True" Width="Auto"
-                                      ItemsSource="{Binding AssociationOfEnterprisesList}" SelectionChanged="cmb_AssociationOfEnterprises_SelectionChanged"/>
+                   SelectionChanged="cmb_CreatingWay_SelectionChanged">
+                    <MenuItem Name="MiEconomicParthnership" Header="Господарське товариство">
+                        <MenuItem Uid="1" Header="Aкціонерне товариство" Click="MenuItem_OnClick"/>
+                        <MenuItem Uid="2" Header="Товариство з обмеженою відповідальністю"/>
+                        <MenuItem Uid="3" Header="Товариство з додатковою відповідальністю"/>
+                        <MenuItem Uid="4" Header="Командитне товариство"/>
+                        <MenuItem Uid="5" Header="Повне товариство"/>
+                    </MenuItem>
+                    <MenuItem Name="MiAssociationOfEnterprises" Header="Об'єднання підприємств">
+                        <MenuItem Header="Асоціація"/>
+                        <MenuItem Header="Концерн"/>
+                        <MenuItem Header="Консорціум"/>
+                        <MenuItem Header="Корпорація"/>
+                        <MenuItem Header="Холдинг"/>
+                        <MenuItem Header="Промислово-фінансова група"/>
+                    </MenuItem>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="4">

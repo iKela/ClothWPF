@@ -35,36 +35,7 @@ namespace ClothWPF.Enterprise
                 "Корпоративне"
             };
             }
-        }
-        public List<String> EconomicPartnershipList
-        {
-            get
-            {
-                return new List<String>
-            {
-                "Фкціонерне товариство",
-                "Товариство з обмеженою відповідальністю",
-                "Товариство з додатковою відповідальністю",
-                "Командитне товариство",
-                "Повне товариство"
-                };
-            }
-        }
-        public List<String> AssociationOfEnterprisesList
-        {
-            get
-            {
-                return new List<String>
-            {
-                "Асоціація",
-                "Концерт",
-                "Консорціум",
-                "Корпорація",
-                "Холдинг",
-                "Промислово-фінансова група"
-                };
-            }
-        }
+        }       
         public List<String> ActivityList
         {
             get

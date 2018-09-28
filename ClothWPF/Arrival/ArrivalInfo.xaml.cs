@@ -56,25 +56,11 @@ namespace ClothWPF.Arrival
             var var = DateTime.Today.ToShortDateString() ;
             txt_Date.Text = Convert.ToString(var);
             
-            cmb_Supplier.ItemsSource = null;
-            cmb_Supplier.ItemsSource = supplierModels;
-            cmb_Supplier.Items.Refresh();
-            cmb_Enterprise.ItemsSource = null;
-            cmb_Enterprise.ItemsSource = enterpriseModels;
-            cmb_Enterprise.Items.Refresh();
-        }
-        private void cmb_SelectSupplier(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var selected = (SupplierModel)cmb_Supplier.SelectedItem;
-                _idsupplier = supplierModels.FirstOrDefault(s => s.IdSupplier == selected.IdSupplier).IdSupplier;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+            AutoNameConterparty.ItemsSource = null;
+            AutoNameConterparty.ItemsSource = supplierModels;
+            AutoNameEnterprise.ItemsSource = null;
+            AutoNameEnterprise.ItemsSource = enterpriseModels;
+        }      
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
             using (EfContext context = new EfContext())
@@ -92,7 +78,7 @@ namespace ClothWPF.Arrival
                         //arrInfo.EnterpriseId = cmb_Enterprise.SelectedIndex;
                         arrInfo.SupplierInvoice = txt_SupplierInvoice.Text;
                         arrInfo.PaymentType = cmb_PaymentType.Text;
-                        arrInfo.Currency = cmb_Currency.Text;
+                        arrInfo.Currency = AutoNameConterparty.Text;
                         arrInfo.Comment = txt_Comment.Text;
                         context.SaveChanges();
                     }
@@ -107,7 +93,6 @@ namespace ClothWPF.Arrival
                             //EnterpriseId = cmb_Enterprise.SelectedIndex;
                             SupplierInvoice = txt_SupplierInvoice.Text,
                             PaymentType = cmb_PaymentType.Text,
-                            Currency = cmb_Currency.Text,
                             Comment = txt_Comment.Text,
                             TotalPurchase = totalPurchaise                            
                         });

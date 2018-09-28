@@ -128,5 +128,10 @@ namespace ClothWPF.Enterprise
         private void cmb_LegalForm_MouseDown(object sender, MouseButtonEventArgs e)
         {
         }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            cmb_LegalForm.Text = 
+        }
     }
 }
