@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Entities;
 using ClothWPF.Items.Group;
+using ClothWPF.Models.Group;
 using ClothWPF.Models.Main;
 
 namespace ClothWPF.General.Lists
@@ -29,7 +30,6 @@ namespace ClothWPF.General.Lists
             InitializeComponent();
             productListGrid.ItemsSource = ConstList.GetList;
             TVGroups.ItemsSource = ConstList.GetGroupList;
-
             tb_SearchByName.Visibility = Visibility.Visible;
             tb_SearchByProductCode.Visibility = Visibility.Hidden;
             tb_SearchByCountry.Visibility = Visibility.Hidden;
@@ -106,9 +106,9 @@ namespace ClothWPF.General.Lists
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var int = TVGroups.SelectedValuePath;           
+            var d = (GroupModel)TVGroups.SelectedItem;           
             var arrId = ConstList._FullInfo
-                .Where(ap => ap.idGroup == select)
+                .Where(ap => ap.idGroup == d.IdGroup)
                 .Select(ap => new ProductModel
                 {
                     Name = ap.Name,
