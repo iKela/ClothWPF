@@ -41,8 +41,7 @@ namespace ClothWPF.Helpes
 
         public void  loaded()
         {
-            _ProductFullInfo = context.Products
-                 
+            _ProductFullInfo = context.Products                 
                 .Select(a => new ProductModel
                 {
                     IdProduct = a.IdProduct,

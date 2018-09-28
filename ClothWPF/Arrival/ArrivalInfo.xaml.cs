@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Models;
 using ClothWPF.Models.ArrivalInfo;
 
@@ -16,8 +17,7 @@ namespace ClothWPF.Arrival
     {
        public bool _formclosing { get; set; }
         public Entities.Supplier Supplieradding { get; set; }
-        public List<SupplierModel> supplierModels;
-        public List<EnterpriseModel> enterpriseModels;
+
         EfContext context = new EfContext();
         public int _idsupplier = 0;
         public int _identerprise = 0;
@@ -29,84 +29,46 @@ namespace ClothWPF.Arrival
             InitializeComponent();
               int i  = context.Arrivals.Count()+1;
             txt_Number.Text = i.ToString();
+            loaded();
         }
         public void loaded()
         {
-            supplierModels = null;
-            supplierModels = new List<SupplierModel>();
-            enterpriseModels = null;
-            enterpriseModels = new List<EnterpriseModel>();
-
-            foreach (var e in context.Enterprises)
-            {
-                enterpriseModels.Add(new EnterpriseModel
-                {
-                    IdEnterprise = e.IdEnterprise,
-                    Name = e.Name
-                });
-            }
-            foreach (var p in context.Suppliers)
-            {
-                supplierModels.Add(new SupplierModel
-                {
-                    IdSupplier   =p.IdSupplier,
-                    NameSupplier =p.NameSupplier                                       
-                });
-            }
             var var = DateTime.Today.ToShortDateString() ;
             txt_Date.Text = Convert.ToString(var);
-            
             AutoNameConterparty.ItemsSource = null;
-            AutoNameConterparty.ItemsSource = supplierModels;
+            AutoNameConterparty.ItemsSource = ConstList.GetSupplierList;
             AutoNameEnterprise.ItemsSource = null;
-            AutoNameEnterprise.ItemsSource = enterpriseModels;
-        }      
+            AutoNameEnterprise.ItemsSource = ConstList.GetEnterpriseList;
+        }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            using (EfContext context = new EfContext())
+            var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
+            int identerprise = selected.IdEnterprise;
+            try
             {
-                try
+                context.Arrivals.Add(new Arrivals
                 {
-                    if (ArrInfoAdding != null)
-                    {
-                        var arrInfo = context.Arrivals.Where(c => c.IdArrival == ArrInfoAdding.IdArrival).FirstOrDefault();
-                        //var product = context.Products.Find(Productadding.Id);
-                        arrInfo.Date = Convert.ToDateTime(txt_Date.Text);
-                        arrInfo.Number = txt_Number.Text;
-                        arrInfo.ComesTo = txt_ComesTo.Text;
-                        //arrInfo.IdSupplier = cmb_Supplier.SelectedIndex;//дописати
-                        //arrInfo.EnterpriseId = cmb_Enterprise.SelectedIndex;
-                        arrInfo.SupplierInvoice = txt_SupplierInvoice.Text;
-                        arrInfo.PaymentType = cmb_PaymentType.Text;
-                        arrInfo.Comment = txt_Comment.Text;
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        context.Arrivals.Add(new Arrivals
-                        {
-                            Date = Convert.ToDateTime(txt_Date.Text),
-                            Number = txt_Number.Text,
-                            ComesTo = txt_ComesTo.Text,
-                            IdSupplier = _idsupplier,
-                            //EnterpriseId = cmb_Enterprise.SelectedIndex;
-                            SupplierInvoice = txt_SupplierInvoice.Text,
-                            PaymentType = cmb_PaymentType.Text,
-                            Comment = txt_Comment.Text,
-                            TotalPurchase = totalPurchaise                            
-                        });
-                        context.SaveChanges();
-                        Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
-                        _formclosing = true;
-                    }
-                    MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                    Date = Convert.ToDateTime(txt_Date.Text),
+                    Number = txt_Number.Text,
+                    ComesTo = txt_ComesTo.Text,
+                    IdSupplier = _idsupplier,
+                    EnterpriseId = identerprise,
+                    SupplierInvoice = txt_SupplierInvoice.Text,
+                    PaymentType = cmb_PaymentType.Text,
+                    Comment = txt_Comment.Text,
+                    TotalPurchase = totalPurchaise
+                });
+                context.SaveChanges();
+                Idarrival = context.Arrivals.Select(c => c.IdArrival).Max();
+                _formclosing = true;
+                MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btn_NewSupplier_Click(object sender, RoutedEventArgs e)
@@ -114,7 +76,6 @@ namespace ClothWPF.Arrival
             Supplier.SupplierInfo form = new Supplier.SupplierInfo();
             form._supplierClose = false;
             form.ShowDialog();
-            
             if (form._supplierClose == true) { loaded(); }
         }
 
@@ -131,16 +92,17 @@ namespace ClothWPF.Arrival
         {
             Enterprise.EnterpriseWindow enterprise = new Enterprise.EnterpriseWindow();
             enterprise.ShowDialog();
-           loaded();
+            AutoNameEnterprise.ItemsSource = null;
+            AutoNameEnterprise.ItemsSource = ConstList.GetEnterpriseList;
         }
         private void AutoNameConterparty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                var selected = (SupplierModel)AutoNameConterparty.SelectedItem;
-                if (enterpriseModels != null)
-                    _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdSupplier)
-                        .IdEnterprise;
+                var selected = (SupplierModel)AutoNameConterparty.SelectedItem;                
+                    _idsupplier = ConstList._Supplier.FirstOrDefault
+                            (s => s.IdSupplier == selected.IdSupplier)
+                        .IdSupplier;
             }
             catch (Exception ex)
             {
@@ -152,9 +114,9 @@ namespace ClothWPF.Arrival
         {
             try
             {
-                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
-                if (enterpriseModels != null)
-                    _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdEnterprise)
+                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;         
+                    _identerprise = ConstList._Enterprise.FirstOrDefault
+                            (s => s.IdEnterprise == selected.IdEnterprise)
                         .IdEnterprise;
             }
             catch (Exception ex)
