@@ -37,6 +37,10 @@ namespace ClothWPF.Enterprise
         public ProductList()
         {
             InitializeComponent();
+
+            tb_SearchByName.Visibility = Visibility.Visible;
+            tb_SearchByProductCode.Visibility = Visibility.Hidden;
+            tb_SearchByCountry.Visibility = Visibility.Hidden;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
