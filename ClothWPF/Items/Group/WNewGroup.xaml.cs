@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Loading;
 using ClothWPF.Entities;
+using ClothWPF.Models.Group;
 
 namespace ClothWPF.Items.Group
 {
@@ -51,14 +53,21 @@ namespace ClothWPF.Items.Group
                 }
                 catch
                 {
-                    contex.GroupProducts.Add(new GroupProduct
+                    contex.GroupProducts.Add(new GroupProduct       //без підгруп
+                    {
+                        NameGroup = TxtName.Text,
+                        CodeGroup = TxtCode.Text,
+                        Nds = nds,
+                        DescriptionGroup = TxtDescription.Text,
+                    });
+                    contex.SaveChanges();
+                    ConstList._Group.Add(new GroupModel            //без підгруп
                     {
                         NameGroup = TxtName.Text,
                         CodeGroup = TxtCode.Text,
                         Nds = nds,
                         DescriptionGroup = TxtDescription.Text
                     });
-                    contex.SaveChanges();
                     MessageBox.Show($"Група під назвою \"'{TxtName.Text}'\" успішно створена!", "Info",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
