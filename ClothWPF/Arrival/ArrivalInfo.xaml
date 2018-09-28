@@ -34,7 +34,7 @@
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBox Name="txt_Date" Width="100" materialDesign:HintAssist.Hint="Дата прийому" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  CaretIndex="0" FontSize="14"/>
                         </StackPanel>
-                        <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
+                        <TextBox Name="txt_Number" Width="50" materialDesign:HintAssist.Hint="№" IsReadOnly="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10"/>
                         <TextBox Name="txt_ComesTo" Width="150" materialDesign:HintAssist.Hint="Поступає до: " Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
@@ -47,7 +47,7 @@
                         <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
                             <controls:AutoCompleteBox Name="AutoNameConterparty" Foreground="Gray" Width="150" ValueMemberPath="NameSupplier" SelectedItem="{Binding IdSupplier}"
-                                                      Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged" Margin="10">
+                                                      Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameConterparty_SelectionChanged" Margin="10">
                                 <controls:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding NameSupplier}"/>
@@ -58,7 +58,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
-                            Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoName_SelectionChanged" Margin="10">
+                            Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameEnterprise_SelectionChanged" Margin="10">
                             <controls:AutoCompleteBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>

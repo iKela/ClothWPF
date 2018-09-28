@@ -154,7 +154,7 @@ namespace ClothWPF.Arrival
         {
             try
             {
-                var selected = (EnterpriseModel)cmb_Enterprise.SelectedItem;
+                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
                 _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdEnterprise).IdEnterprise;
             }
             catch (Exception ex)
@@ -163,9 +163,34 @@ namespace ClothWPF.Arrival
             }
         }
 
-        private void AutoName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AutoNameConterparty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            try
+            {
+                var selected = (SupplierModel)AutoNameConterparty.SelectedItem;
+                if (enterpriseModels != null)
+                    _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdSupplier)
+                        .IdEnterprise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void AutoNameEnterprise_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
+                if (enterpriseModels != null)
+                    _identerprise = enterpriseModels.FirstOrDefault(s => s.IdEnterprise == selected.IdEnterprise)
+                        .IdEnterprise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

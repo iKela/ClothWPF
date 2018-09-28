@@ -97,15 +97,10 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Name="grb_Prce" FontSize="14" FontFamily="Times New Roman" Grid.Column="1"  Header="Ціна" Margin="11,10,10,0" VerticalAlignment="Top" Height="Auto" Width="170">
+            <GroupBox Name="grb_Prce" FontSize="14" FontFamily="Times New Roman" Grid.Column="1"  Header="Ціна" Margin="11,10,10,0" VerticalAlignment="Top" Height="Auto" Width="Auto">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_PriceRetailer" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Ціна в роздріб" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <ComboBox Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Bottom">
-                            <ComboBoxItem Content="$"/>
-                            <ComboBoxItem Content="&#8372;"/>
-                            <ComboBoxItem Content="&#8364;"/>
-                        </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
@@ -116,11 +111,6 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="txt_PriceWholeSale" FontSize="14" Height="40" Width="100" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Оптова ціна" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <ComboBox Width="30" Margin="10 0" FontSize="16" VerticalAlignment="Bottom">
-                            <ComboBoxItem Content="$"/>
-                            <ComboBoxItem Content="&#8372;"/>
-                            <ComboBoxItem Content="&#8364;"/>
-                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
