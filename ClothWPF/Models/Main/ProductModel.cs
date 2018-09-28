@@ -20,5 +20,6 @@ namespace ClothWPF.Models.Main
         public double? PriceWholesale { get; set; }
         public string Country { get; set; }
         public string Namegroup { get; set; }
+        public  int? idGroup { get; set; }
     }
 }

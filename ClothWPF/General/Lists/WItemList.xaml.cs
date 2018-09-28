@@ -106,9 +106,9 @@ namespace ClothWPF.General.Lists
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var select = (ProductModel) TVGroups.SelectedItem;           
+            var int = TVGroups.SelectedValuePath;           
             var arrId = ConstList._FullInfo
-                .Where(ap => ap.Namegroup == select.Namegroup)
+                .Where(ap => ap.idGroup == select)
                 .Select(ap => new ProductModel
                 {
                     Name = ap.Name,
