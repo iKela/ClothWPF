@@ -28,6 +28,10 @@ namespace ClothWPF.General.Lists
             InitializeComponent();
             productListGrid.ItemsSource = ConstList.GetList;
             TVGroups.ItemsSource = ConstList.GetGroupList;
+
+            tb_SearchByName.Visibility = Visibility.Visible;
+            tb_SearchByProductCode.Visibility = Visibility.Hidden;
+            tb_SearchByCountry.Visibility = Visibility.Hidden;
         }
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
