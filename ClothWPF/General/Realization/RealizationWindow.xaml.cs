@@ -31,6 +31,8 @@ using DataGridCell = System.Windows.Controls.DataGridCell;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using MessageBox = System.Windows.MessageBox;
 using TextBox = System.Windows.Controls.TextBox;
+using ClothWPF.Models.ArrivalInfo;
+using ClothWPF.Authorization.Loading;
 
 namespace ClothWPF.General.Realization
 {
@@ -50,6 +52,7 @@ namespace ClothWPF.General.Realization
         private double? profit { get; set; }
         public  List<int> IdList { get; set; }
         private List<Supplier> supplier;
+        private int _identerprise = 0;
         private int getid;
         private EfContext context;
         public RealizationWindow()
@@ -469,6 +472,20 @@ namespace ClothWPF.General.Realization
             }
             catch(Exception ex)
             {
+            }
+        }
+        private void AutoNameEnterprise_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
+                _identerprise = ConstList._Enterprise.FirstOrDefault
+                        (s => s.IdEnterprise == selected.IdEnterprise)
+                    .IdEnterprise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
