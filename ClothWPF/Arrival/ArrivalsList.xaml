@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ClothWPF.Arrival"
@@ -156,15 +157,38 @@
                     <TextBox Name="txt_DateTo" LostFocus="txt_Date_LostFocus" Width="100" Margin="10 0" KeyDown="txt_DateTo_KeyDown" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBlock Text="Контрагент:" VerticalAlignment="Center" Margin="5 0"/>
+                    <controls:AutoCompleteBox Name="AutoNameConterparty" Foreground="Gray" Width="150" ValueMemberPath="NameSupplier" SelectedItem="{Binding IdSupplier}"
+                                              Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameConterparty_SelectionChanged" Margin="10 0"
+                                              >
+                        <controls:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NameSupplier}"/>
+                            </DataTemplate>
+                        </controls:AutoCompleteBox.ItemTemplate>
+                    </controls:AutoCompleteBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <TextBlock Text="Підприємство:" VerticalAlignment="Center" Margin="5 0"/>
+                    <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
+                                              Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameEnterprise_SelectionChanged" Margin="10 0">
+                        <controls:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </controls:AutoCompleteBox.ItemTemplate>
+                    </controls:AutoCompleteBox>
+                </StackPanel>
+                <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
                     <TextBlock Text="&#128113;" VerticalAlignment="Center" Margin="5 0"/>
                     <ComboBox Name="cmb_Supplier" Text="Контрагент" Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
                           SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Supplier_SelectionChanged"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                </StackPanel>-->
+                <!--<StackPanel Orientation="Horizontal" Grid.Column="2">
                     <TextBlock Text="&#127970;" VerticalAlignment="Center" Margin="5 0"/>
                     <ComboBox Name="cmb_Enterprise" Text="Підприємство"  Width="150" FontFamily="Timew New Roman" FontSize="14" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding SupplierModel}" DisplayMemberPath="Name"
                           SelectedIndex="{Binding Index}" SelectedValue="{Binding Id}" SelectionChanged="cmb_Enterprise_SelectionChanged"/>
-                </StackPanel>
+                </StackPanel>-->
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
@@ -187,16 +211,6 @@
                       Loaded="grid_Arrivals_Loaded"
                       AutoGenerateColumns="False"
                       Visibility="Collapsed" Grid.ColumnSpan="2">
-                    <DataGrid.Resources>
-                        <gen:BindingProxy x:Key="NumberVisibilityProxy"        Data="{Binding NumberVisibility}"/>
-                        <gen:BindingProxy x:Key="DateVisibilityProxy"          Data="{Binding DateVisibility}"/>
-                        <gen:BindingProxy x:Key="PurchaseTotalVisibilityProxy" Data="{Binding PurchaseTotalVisibility}"/>
-                        <gen:BindingProxy x:Key="SupplierVisibilityProxy"      Data="{Binding SupplierVisibility}"/>
-                        <gen:BindingProxy x:Key="ReceiverVisibilityProxy"      Data="{Binding ReceiverVisibility}"/>
-                        <gen:BindingProxy x:Key="WholesaleVisibilityProxy"     Data="{Binding WholesaleVisibility}"/>
-                        <gen:BindingProxy x:Key="EnterpriseVisibilityProxy"    Data="{Binding EnterpriseVisibility}"/>
-                        <gen:BindingProxy x:Key="UserVisibilityProxy"          Data="{Binding UserVisibility}"/>
-                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
