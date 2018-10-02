@@ -18,6 +18,7 @@ using ClothWPF.Models.ArrivalsList;
 using ClothWPF.Models.RealizationWindow;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Models.ArrivalInfo;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ClothWPF.Arrival
 {
@@ -37,10 +38,6 @@ namespace ClothWPF.Arrival
            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
             txt_DateTo.Text = DateTime.Today.ToShortDateString();
-            if (mi.GetType() == typeof(MenuItem))
-            {
-                MessageBox.Show(mi.ToString());
-            }
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {

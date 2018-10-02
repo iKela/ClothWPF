@@ -124,7 +124,7 @@
             <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
         </StackPanel>
         <Grid Row="1">
-        <StackPanel>
+            <StackPanel>
                 <Menu IsMainMenu="True">
                     <MenuItem Header="InSoP MS" Template="{StaticResource VsOnline}" >
                         <MenuItem Name="MIClose" Header="Вихід" Icon="Login.png" Template="{StaticResource VsMenuSub}" Click="MIClose_OnClick" />
@@ -260,13 +260,17 @@
             </DataGrid>
         </Grid>
         <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="103*"/>
+                <ColumnDefinition Width="543*"/>
+            </Grid.ColumnDefinitions>
             <DataGrid x:Name="excelInfoGrid" 
                       AutoGenerateColumns="False" 
                       HorizontalGridLinesBrush="DarkGray" 
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionMode="Single"
-                      Visibility="Collapsed"
+                      Visibility="Collapsed" Grid.ColumnSpan="2"
                   >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="&#128230;  Назва товару" Binding="{Binding Path=Name}" Width="200" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
