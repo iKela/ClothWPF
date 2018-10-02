@@ -284,6 +284,7 @@ namespace ClothWPF.General.Realization
             Double.TryParse(txt_Prepayment.Text, out prepayment);
             double totalsum = 0;
             Double.TryParse(txt_TotalSum.Text, out totalsum);
+            TotalProfit = _ListProduct.Sum(a=>a.Profit);
             using (TransactionScope scope = new TransactionScope())
             {
                 using (EfContext context = new EfContext())
