@@ -110,21 +110,28 @@ namespace ClothWPF.General.Realization
                                 if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah <=
                                     Convert.ToDouble(el.Text.Replace(".", ",")))
                                 {
-                                    profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
-                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                    profit = (Convert.ToDouble(el.Text.Replace(".", ","))
+                                              * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                             - ((((Convert.ToDouble(el.Text.Replace(".", ","))) / 100)
+                                                 * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")))
+                                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                             (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
                                 }
                                 else if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah >
                                          Convert.ToDouble(el.Text.Replace(".", ",")))
                                 {
-                                   profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
-                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                    profit = (Convert.ToDouble(el.Text.Replace(".", ","))
+                                              * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                             - ((((Convert.ToDouble(el.Text.Replace(".", ","))) / 100)
+                                                 * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")))
+                                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                             (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
                                 }
                                
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
                                 GetCell(realizationGrid, rowIndex, 9).Content = profit;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
                                 _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
-                                TotalProfit += profit;
                             }
                             catch (Exception ex)
                             {
@@ -147,8 +154,17 @@ namespace ClothWPF.General.Realization
                         if ((Convert.ToDouble(el.Text.Replace(".", ",")) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ","))))
                         { 
                             sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) - (Convert.ToDouble(el.Text.Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".",",")) / 100);
+
+                            profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")) 
+                                      * (Convert.ToDouble(el.Text.Replace(".", ",")))) 
+                                     - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")))/100) 
+                                         * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ","))) 
+                                        * Convert.ToDouble(el.Text.Replace(".", ","))) - 
+                                     (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(el.Text.Replace(".", ",")));
+                           
                             GetCell(realizationGrid, rowIndex, 8).Content = sum;
                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                            _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
                             GetColumnValue();
                             CountValues();
@@ -167,9 +183,22 @@ namespace ClothWPF.General.Realization
 
                         value = el.Text;
 
-                            sum = (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) -(Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(el.Text.Replace(".",",")) / 100);
-                            GetCell(realizationGrid, rowIndex, 8).Content = sum;
-                            _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                        sum = (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) 
+                               * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) 
+                              -(Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) 
+                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) 
+                                * Convert.ToDouble(el.Text.Replace(".",",")) / 100);
+
+                        profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))
+                                  * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                 - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))) / 100)
+                                     * Convert.ToDouble(el.Text.Replace(".", ",")))
+                                    * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                 (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
+
+                        GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                        _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                        _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
                         GetColumnValue();
                         CountValues();
