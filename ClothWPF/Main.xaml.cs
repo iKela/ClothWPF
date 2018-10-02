@@ -285,7 +285,7 @@ namespace ClothWPF
 
         private void mi_ArrivalsList_Click(object sender, RoutedEventArgs e)
         {
-            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
+            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList(sender);
             arrivalsList.Show();
         }
 
@@ -344,7 +344,7 @@ namespace ClothWPF
 
         private void MiRealizationList_OnClick(object sender, RoutedEventArgs e)
         {
-            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList();
+            Arrival.ArrivalsList arrivalsList = new Arrival.ArrivalsList(sender);
             arrivalsList.Show();
         }
 

@@ -210,7 +210,7 @@
                       SelectionChanged="grid_Arrivals_SelectionChanged" 
                       Loaded="grid_Arrivals_Loaded"
                       AutoGenerateColumns="False"
-                      Visibility="Collapsed" Grid.ColumnSpan="2">
+                      Visibility="Visible" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdArrival}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -242,7 +242,7 @@
                       SelectionChanged="GridRealization_OnSelectionChanged"
                       Loaded="grid_Arrivals_Loaded"
                       AutoGenerateColumns="False"
-                      Visibility="Visible" Grid.ColumnSpan="2">
+                      Visibility="Collapsed" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id"                                  Binding="{Binding Path=IdRealization}"         FontFamily="Times New Roman" FontSize="14" FontWeight="Bold" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="№"                                   Binding="{Binding Path=Number}" Width="50" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -283,7 +283,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionChanged="grid_ArrivalInfo_SelectionChanged"
-                      Visibility="Collapsed">
+                      Visibility="Visible">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
@@ -316,7 +316,7 @@
                       RowBackground="LightGray" 
                       AlternatingRowBackground="AliceBlue" 
                       SelectionChanged="GridRealizationItems_OnSelectionChanged"
-                      Visibility="Visible">
+                      Visibility="Collapsed">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№"                           Binding="{Binding Path=ProductNumber}"        Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128230; Назва"             Binding="{Binding Path=NameProduct}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>

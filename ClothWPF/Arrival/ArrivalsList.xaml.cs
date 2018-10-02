@@ -18,6 +18,7 @@ using ClothWPF.Models.ArrivalsList;
 using ClothWPF.Models.RealizationWindow;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Models.ArrivalInfo;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ClothWPF.Arrival
 {
@@ -32,7 +33,7 @@ namespace ClothWPF.Arrival
 
         public int _idsupplier = 0;
         public int _identerprise = 0;
-        public ArrivalsList()
+        public ArrivalsList(object mi)
         {
            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
