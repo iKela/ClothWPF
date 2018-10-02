@@ -40,8 +40,7 @@ namespace ClothWPF.Arrival
         }
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            loadedGridArrivalInfo();
-            
+            loadedGridArrivalInfo();          
         }
         private void loadedGridArrivalInfo()
         {
@@ -61,7 +60,9 @@ namespace ClothWPF.Arrival
                         PriceWholesale = ap.PriceWholesale,
                         ManufactureDate = ap.ManufactureDate,
                         Idarrival = ap.Idarrival,
-                        NameProduct = ap.ProductOf.Name
+                        NameProduct = ap.ProductOf.Name,
+                       Article = ap.ProductOf.Article,
+                       TotalPurshaise = ap.TotalPurshaise
                     }).ToList();
                 grid_ArrivalInfo.ItemsSource = arrId;
                 grid_ArrivalInfo.Items.Refresh();
@@ -87,7 +88,7 @@ namespace ClothWPF.Arrival
                             {
                                 IdArrival = a.IdArrival,
                                 Number = a.Number,
-                                ComesTo = a.ComesTo,
+                                //ComesTo = a.ComesTo,
                                 Date = a.Date,
                                 SupplierInvoice = a.SupplierInvoice,
                              //PaymentType = a.PaymentType,

@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ListBox Name="listBoxGroups" SelectedItem="{Binding Item}" ItemsSource="{Binding groupList}" SelectionChanged="listBoxGroups_SelectionChanged">
+                <ListBox Name="listBoxGroups" DisplayMemberPath="NameGroup" SelectionChanged="listBoxGroups_SelectionChanged">
                     
                 </ListBox>
             </Grid>

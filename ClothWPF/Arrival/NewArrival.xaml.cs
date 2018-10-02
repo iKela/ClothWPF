@@ -21,9 +21,7 @@ namespace ClothWPF
         private EfContext context;
         int idarrival;
         public double TotalPurchase { get; set; }
-        public List<NewArrivalModel> ArrproductModels;
-        //public List<Product> _products;
-        //public List<ProductModel> _ProductModels;
+        public List<NewArrivalModel> ArrproductModels;     
         public NewArrival(EfContext context)
         {
             this.context = context;
@@ -48,9 +46,10 @@ namespace ClothWPF
                     PriceRetailArrival = addProduct._priceRetail,
                     PriceWholesaleArrival = addProduct._priceWholesale,
                     PriceDollarArrival = addProduct._priceDollar,
-                    ManufactureDateArrival = addProduct._manufactureDate
+                    ManufactureDateArrival = addProduct._manufactureDate,
+                    TotalPurchase = (addProduct._priceDollar * addProduct._count)//модельна змінна 
                 };
-                    TotalPurchase += (addProduct._priceDollar * addProduct._count);
+                TotalPurchase += (addProduct._priceDollar * addProduct._count);
                 ArrproductModels.Add(data);
                 arrivalGrid.Items.Add(data);
             }
@@ -61,15 +60,9 @@ namespace ClothWPF
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
                 var selectedItem = arrivalGrid.SelectedItem;
-                if (selectedItem != null)
-                {
-                    arrivalGrid.Items.Remove(selectedItem);
-                }
+                if (selectedItem != null) arrivalGrid.Items.Remove(selectedItem);
             }
-            else
-            {
-                MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            else MessageBox.Show("Ви не володієте правами для видалення", "Увага!", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void btn_AddFilledArrival_Click(object sender, RoutedEventArgs e)
@@ -101,6 +94,7 @@ namespace ClothWPF
                             PriceRetail = product.PriceRetailArrival,
                             PriceWholesale = product.PriceWholesaleArrival,
                             ManufactureDate = product.ManufactureDateArrival,
+                            TotalPurshaise = product.TotalPurchase,
                             Idarrival = idarrival,
                             Idproduct = product.IdProduct
                         });

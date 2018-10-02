@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.General.Realization;
+using ClothWPF.Models.Group;
 using ClothWPF.Models.Main;
 
 namespace ClothWPF.Enterprise
@@ -22,13 +23,14 @@ namespace ClothWPF.Enterprise
     /// </summary>
     public partial class ProductList : Window
     {
-        public List<ProductModel> _ProductFullInfo;
+      
         //public object item { get; set; }
         public int _idproduct { get; set; }
         public double? _count { get; set; }
         public string _nameProduct { get; set; }
         public double? _supplierPrice { get; set; }
         public double? _priceWholesale { get; set; }
+        public double? _priceRetail { get; set; }
         public string _codeProduct { get; set; }
         bool hasBeenClicked = false;
         public bool _allow { get; set; }
@@ -63,16 +65,24 @@ namespace ClothWPF.Enterprise
             var GetId = new RealizationWindow();
             var selected = (ProductModel)productListGrid.SelectedItem;
 
-            _allow = GetId._ListProduct.Exists(a =>  a.Idproduct == _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct);
+            _allow = GetId._ListProduct.Exists(a =>  a.Idproduct == ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct);
             if (!_allow)
             {
-                _idproduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
-                _nameProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Name;
-                _count = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
-                _codeProduct = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
-                _priceWholesale = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
-                _supplierPrice = _ProductFullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceUah;
-
+                                    //===РЕАЛІЗУВАТИ ЦЕЙ МЕТОД LINQ ===//
+                //ConstList._FullInfo.Where(s => s.IdProduct == selected.IdProduct).Select(a => new 
+                //{
+                //    _idproduct = a.IdProduct,  _nameProduct = a.Name,   _count = a.Count,
+                //    _codeProduct=a.Code, _priceWholesale =a.PriceWholesale,
+                //    _supplierPrice=a.PriceUah,  _priceRetail=a.PriceRetail
+                //});
+                
+                _idproduct = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).IdProduct;
+                _nameProduct = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).Name;
+                _count = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).Count;
+                _codeProduct = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).Code;
+                _priceWholesale = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceWholesale;
+                _supplierPrice = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceUah;
+                _priceRetail = ConstList._FullInfo.Find(s => s.IdProduct == selected.IdProduct).PriceRetail;
             }
             //item = (ProductModel)productListGrid.SelectedItem;
             Close();            
@@ -99,28 +109,8 @@ namespace ClothWPF.Enterprise
         {
             productListGrid.ItemsSource = null;
             productListGrid.Items.Clear();
-            //using (EfContext context = new EfContext())
-            //{
-            //    _ProductFullInfo = context.Products
-            //     // .Include(b => b.GetGroupProduct)
-            //     .Select(a => new ProductModel
-            //     {
-            //         IdProduct = a.IdProduct,
-            //         Code = a.Code,
-            //         Name = a.Name,
-            //         Count = a.Count,
-            //         PriceDollar = a.PriceDollar,
-            //         PriceUah = a.PriceUah,
-            //         PriceRetail = a.PriceRetail,
-            //         PriceWholesale = a.PriceWholesale,
-            //         Country = a.Country,
-            //         //Namegroup = a.GetGroupProduct.NameGroup
-            //     }).ToList();
-
-            //}
-            _ProductFullInfo = ConstList.GetList;
-                productListGrid.ItemsSource = _ProductFullInfo;
-                listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
+                productListGrid.ItemsSource = ConstList._FullInfo;
+            listBoxGroups.ItemsSource = ConstList.GetGroupList;
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
@@ -132,17 +122,17 @@ namespace ClothWPF.Enterprise
         {
             if (tb_SearchByName.Visibility == Visibility.Visible)
             {
-                var filtered = _ProductFullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
+                var filtered = ConstList._FullInfo.Where(product => product.Name.StartsWith(txt_Search.Text));
                 productListGrid.ItemsSource = filtered;
             }
             if (tb_SearchByProductCode.Visibility == Visibility.Visible)
             {
-                var filtered = _ProductFullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
+                var filtered = ConstList._FullInfo.Where(product => product.Code.StartsWith(txt_Search.Text));
                 productListGrid.ItemsSource = filtered;
             }
             if (tb_SearchByCountry.Visibility == Visibility.Visible)
             {
-                var filtered = _ProductFullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
+                var filtered = ConstList._FullInfo.Where(product => product.Country.StartsWith(txt_Search.Text));
                 productListGrid.ItemsSource = filtered;
             }
         }
@@ -170,15 +160,20 @@ namespace ClothWPF.Enterprise
 
         private void listBoxGroups_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var d = (GroupModel)listBoxGroups.SelectedItem;
             if (listBoxGroups.SelectedItem != null)
             {
-                if (listBoxGroups.SelectedItem.ToString() != "Всі")
+                if (d.IdGroup != 1)
                 {
                     productListGrid.ItemsSource = null;
-                    productListGrid.ItemsSource = _ProductFullInfo.Where(v => v.Namegroup == listBoxGroups.SelectedItem.ToString());
+                    productListGrid.ItemsSource =
+                        ConstList._FullInfo.Where(item => item.idGroup == d.IdGroup);
                 }
                 else
-                    listBoxGroups.ItemsSource = _ProductFullInfo.Select(a => a.Namegroup);
+                {
+                    productListGrid.ItemsSource = null;
+                    productListGrid.ItemsSource = ConstList._FullInfo;
+                }
             }
         }
     }

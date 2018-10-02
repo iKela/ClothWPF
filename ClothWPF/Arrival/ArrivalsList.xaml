@@ -278,7 +278,7 @@
                         <DataGridTextColumn Header="&#128184; Ціна"              Binding="{Binding Path=PriceWholesale}"       Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#9287; Кількість"           Binding="{Binding Path=Count}"                Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128181; Ціна по прайсу"    Binding="{Binding Path=PriceRetail}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=Sum}"                  Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="&#128181; Сумма"             Binding="{Binding Path=TotalPurshaise}"                  Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128181; Ціна в валюті"     Binding="{Binding Path=PriceDollar}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="&#128184; Валюта"            Binding="{Binding Path=Currency}"             Width="Auto"  FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>
                         <DataGridTextColumn Header="Сумма знижкі"                Binding="{Binding Path=DiscountSum}"          Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"/>

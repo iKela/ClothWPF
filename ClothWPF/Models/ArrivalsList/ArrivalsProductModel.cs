@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClothWPF.Models
 {
-    class ArrivalsProductModel
+    public class ArrivalsProductModel
     {
         public int IdArrivalProduct { get; set; }
         public string NameProduct { get; set; }
@@ -17,6 +17,7 @@ namespace ClothWPF.Models
         public double? PriceRetail { get; set; }
         public double? PriceWholesale { get; set; }
         public DateTime? ManufactureDate { get; set; }
+        public double TotalPurshaise { get; set; }
         public int Idarrival { get; set; }
         public int Idproduct { get; set; }
     }

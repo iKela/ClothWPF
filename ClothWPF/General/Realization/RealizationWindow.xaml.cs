@@ -24,6 +24,7 @@ using ClothWPF.Enterprise;
 using ClothWPF.Entities;
 using ClothWPF.Models;
 using System.Transactions;
+using ClothWPF.Authorization.Loading;
 using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
 using DataGrid = System.Windows.Controls.DataGrid;
@@ -58,18 +59,9 @@ namespace ClothWPF.General.Realization
             _ListProduct = new List<RealizationProductModel>();
             supplier = new List<Supplier>();
             context = new EfContext();
-            foreach (var c in context.Suppliers)
-            {
-                supplier.Add(new Supplier
-                {
-                    IdSupplier = c.IdSupplier,
-                    NameSupplier = c.NameSupplier,
-                    Discount = c.Discount
-                });
-            }
             int i = context.Realizations.Count() + 1;
             txt_Number.Text = i.ToString();
-          AutoName.ItemsSource = supplier;
+          AutoName.ItemsSource = ConstList.GetSupplierList;
             IdList= new List<int>();//??
             IdList.Add(0);//??
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
@@ -325,6 +317,7 @@ namespace ClothWPF.General.Realization
                         Sum = 0,
                         Count = addProduct._count,
                         PriceWholesale = addProduct._priceWholesale,
+                        PriceRetail = addProduct._priceRetail
                     };
                // if (!_ListProduct.Where(a => a.Idproduct == data.Idproduct).)
                 if (!IdList.Contains(data.Idproduct))
@@ -411,7 +404,6 @@ namespace ClothWPF.General.Realization
             if (txt_Discount.Text == "")
             {
                 txt_DiscountSum.Text = 0.ToString();
-
             }
             else
             {
@@ -476,6 +468,8 @@ namespace ClothWPF.General.Realization
         {
             SupplierInfo customer = new SupplierInfo();
             customer.ShowDialog();
+            AutoName.ItemsSource = null;
+            AutoName.ItemsSource = ConstList.GetSupplierList;
         }
 
         private void Cmb_Organization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

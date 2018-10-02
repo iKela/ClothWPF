@@ -106,21 +106,40 @@ namespace ClothWPF.General.Lists
 
         private void TreeView_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var d = (GroupModel)TVGroups.SelectedItem;           
-            var arrId = ConstList._FullInfo
-                .Where(ap => ap.idGroup == d.IdGroup)
-                .Select(ap => new ProductModel
-                {
-                    Name = ap.Name,
-                    Article = ap.Article,
-                    Code = ap.Code,
-                    Country = ap.Country,
-                    PriceDollar = ap.PriceDollar,
-                    PriceRetail = ap.PriceRetail,
-                    PriceWholesale = ap.PriceWholesale
-                }).ToList();
-            productListGrid.ItemsSource = arrId;
-            productListGrid.Items.Refresh();
+            var d = (GroupModel)TVGroups.SelectedItem;
+            if (d.IdGroup == 1)
+            {
+                var arrId = ConstList._FullInfo                  
+                    .Select(ap => new ProductModel
+                    {
+                        Name = ap.Name,
+                        Article = ap.Article,
+                        Code = ap.Code,
+                        Country = ap.Country,
+                        PriceDollar = ap.PriceDollar,
+                        PriceRetail = ap.PriceRetail,
+                        PriceWholesale = ap.PriceWholesale
+                    }).ToList();
+                productListGrid.ItemsSource = arrId;
+                productListGrid.Items.Refresh();
+            }
+            else
+            {
+                var arrId = ConstList._FullInfo
+                    .Where(ap => ap.idGroup == d.IdGroup)
+                    .Select(ap => new ProductModel
+                    {
+                        Name = ap.Name,
+                        Article = ap.Article,
+                        Code = ap.Code,
+                        Country = ap.Country,
+                        PriceDollar = ap.PriceDollar,
+                        PriceRetail = ap.PriceRetail,
+                        PriceWholesale = ap.PriceWholesale
+                    }).ToList();
+                productListGrid.ItemsSource = arrId;
+                productListGrid.Items.Refresh();
+            }                      
         }
 
         private void btn_CloseWindow_Click(object sender, RoutedEventArgs e)
