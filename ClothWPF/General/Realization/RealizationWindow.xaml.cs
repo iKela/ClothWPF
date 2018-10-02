@@ -51,6 +51,7 @@ namespace ClothWPF.General.Realization
         private int rowIndex { get; set; }
         private double sum { get; set; }
         private double? profit { get; set; }
+        private double? TotalProfit;
         public  List<int> IdList { get; set; }
         private List<Supplier> supplier;
         private int _identerprise = 0;
@@ -122,7 +123,8 @@ namespace ClothWPF.General.Realization
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
                                 GetCell(realizationGrid, rowIndex, 9).Content = profit;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
-                                //_ListProduct.Find(a => a.Idproduct == getid).Profit = profit;   
+                                _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
+                                TotalProfit += profit;
                             }
                             catch (Exception ex)
                             {
@@ -269,7 +271,7 @@ namespace ClothWPF.General.Realization
                         PaymentSum = prepayment,
                         TotalSum = totalsum,
                         IdSupplier = idClient,
-                        Profit = profit
+                        Profit = TotalProfit
                     });
                     context.SaveChanges();
                     int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
@@ -288,6 +290,7 @@ namespace ClothWPF.General.Realization
                             TotalProductSum = product.Sum,
                             IdRealization = Idrealiz,
                             Idproduct = product.Idproduct,
+                            Profit = product.Profit
                         });
                         var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                         double? sum = std.Count - product.CountSale;

@@ -18,6 +18,7 @@ namespace ClothWPF.Entities
         public double? PriceRetail { get; set; }
         public double? PriceWholesale { get; set; }
         public double? NDS { get; set; }
+        public  double? Profit { get; set; }
         public double? DiscountProduct { get; set; }
         public double? TotalProductSum { get; set; }
         [ForeignKey("GetRealization")]
