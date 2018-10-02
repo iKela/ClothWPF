@@ -62,7 +62,17 @@
                          LostFocus="TextBox_LostFocus"
                          KeyDown="TextBox_OnKeyDown"/>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="cmb_Organization" Text="Виберіть організацію" ItemsSource="{Binding Path=ListOfOrganizations}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="200" Margin="10 0" SelectionChanged="Cmb_Organization_OnSelectionChanged"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                        <TextBlock Text="Підприємство:" VerticalAlignment="Center" Margin="5 0"/>
+                        <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
+                                                  Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameEnterprise_SelectionChanged" Margin="10 0">
+                            <controls:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </controls:AutoCompleteBox.ItemTemplate>
+                        </controls:AutoCompleteBox>
+                    </StackPanel>
                     <Button Name="btn_NewOrganization" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нову організацію" Height="25" Width="25" Click="Btn_NewOrganization_OnClick"/>
                 </StackPanel>
                 </StackPanel>

@@ -16,6 +16,8 @@ using System.Data.Entity;
 using ClothWPF.Models;
 using ClothWPF.Models.ArrivalsList;
 using ClothWPF.Models.RealizationWindow;
+using ClothWPF.Authorization.Loading;
+using ClothWPF.Models.ArrivalInfo;
 
 namespace ClothWPF.Arrival
 {
@@ -27,6 +29,9 @@ namespace ClothWPF.Arrival
         DateTime dateArrivalfrom;
         DateTime dateArrivalTo;
         EfContext context = new EfContext();
+
+        public int _idsupplier = 0;
+        public int _identerprise = 0;
         public ArrivalsList()
         {
            InitializeComponent();
@@ -37,6 +42,10 @@ namespace ClothWPF.Arrival
         {
             loaded();
             loadedRealization();
+            AutoNameConterparty.ItemsSource = null;
+            AutoNameConterparty.ItemsSource = ConstList.GetSupplierList;
+            AutoNameEnterprise.ItemsSource = null;
+            AutoNameEnterprise.ItemsSource = ConstList.GetEnterpriseList;
         }
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -275,6 +284,36 @@ namespace ClothWPF.Arrival
         private void GridRealization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             loadedGridRealizationInfo();
+        }
+
+        private void AutoNameConterparty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var selected = (SupplierModel)AutoNameConterparty.SelectedItem;
+                _idsupplier = ConstList._Supplier.FirstOrDefault
+                        (s => s.IdSupplier == selected.IdSupplier)
+                    .IdSupplier;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void AutoNameEnterprise_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
+                _identerprise = ConstList._Enterprise.FirstOrDefault
+                        (s => s.IdEnterprise == selected.IdEnterprise)
+                    .IdEnterprise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Помилка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
