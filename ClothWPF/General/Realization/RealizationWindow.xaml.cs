@@ -149,7 +149,6 @@ namespace ClothWPF.General.Realization
                             sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) - (Convert.ToDouble(el.Text.Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".",",")) / 100);
                             GetCell(realizationGrid, rowIndex, 8).Content = sum;
                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
-
                             GetColumnValue();
                             CountValues();
                         }
@@ -255,6 +254,7 @@ namespace ClothWPF.General.Realization
             Double.TryParse(txt_Prepayment.Text, out prepayment);
             double totalsum = 0;
             Double.TryParse(txt_TotalSum.Text, out totalsum);
+            TotalProfit = _ListProduct.Sum(a=>a.Profit);
             using (TransactionScope scope = new TransactionScope())
             {
                 using (EfContext context = new EfContext())
