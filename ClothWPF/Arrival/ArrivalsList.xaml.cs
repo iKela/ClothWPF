@@ -32,11 +32,15 @@ namespace ClothWPF.Arrival
 
         public int _idsupplier = 0;
         public int _identerprise = 0;
-        public ArrivalsList()
+        public ArrivalsList(object mi)
         {
            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
             txt_DateTo.Text = DateTime.Today.ToShortDateString();
+            if (mi.GetType() == typeof(MenuItem))
+            {
+                MessageBox.Show(mi.ToString());
+            }
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
