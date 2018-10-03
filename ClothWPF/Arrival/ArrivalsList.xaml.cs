@@ -18,6 +18,7 @@ using ClothWPF.Models.ArrivalsList;
 using ClothWPF.Models.RealizationWindow;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Models.ArrivalInfo;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ClothWPF.Arrival
 {
@@ -32,7 +33,7 @@ namespace ClothWPF.Arrival
 
         public int _idsupplier = 0;
         public int _identerprise = 0;
-        public ArrivalsList()
+        public ArrivalsList(object mi)
         {
            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
@@ -49,8 +50,7 @@ namespace ClothWPF.Arrival
         }
         private void grid_Arrivals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            loadedGridArrivalInfo();
-            
+            loadedGridArrivalInfo();          
         }
         private void loadedGridArrivalInfo()
         {
@@ -70,7 +70,9 @@ namespace ClothWPF.Arrival
                         PriceWholesale = ap.PriceWholesale,
                         ManufactureDate = ap.ManufactureDate,
                         Idarrival = ap.Idarrival,
-                        NameProduct = ap.ProductOf.Name
+                        NameProduct = ap.ProductOf.Name,
+                       Article = ap.ProductOf.Article,
+                       TotalPurshaise = ap.TotalPurshaise
                     }).ToList();
                 grid_ArrivalInfo.ItemsSource = arrId;
                 grid_ArrivalInfo.Items.Refresh();
@@ -96,7 +98,7 @@ namespace ClothWPF.Arrival
                             {
                                 IdArrival = a.IdArrival,
                                 Number = a.Number,
-                                ComesTo = a.ComesTo,
+                                //ComesTo = a.ComesTo,
                                 Date = a.Date,
                                 SupplierInvoice = a.SupplierInvoice,
                              //PaymentType = a.PaymentType,

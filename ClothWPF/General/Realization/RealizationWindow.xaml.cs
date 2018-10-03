@@ -24,6 +24,7 @@ using ClothWPF.Enterprise;
 using ClothWPF.Entities;
 using ClothWPF.Models;
 using System.Transactions;
+using ClothWPF.Authorization.Loading;
 using static System.Windows.Media.Brushes;
 using Binding = System.Windows.Data.Binding;
 using DataGrid = System.Windows.Controls.DataGrid;
@@ -50,6 +51,7 @@ namespace ClothWPF.General.Realization
         private int rowIndex { get; set; }
         private double sum { get; set; }
         private double? profit { get; set; }
+        private double? TotalProfit;
         public  List<int> IdList { get; set; }
         private List<Supplier> supplier;
         private int _identerprise = 0;
@@ -61,18 +63,9 @@ namespace ClothWPF.General.Realization
             _ListProduct = new List<RealizationProductModel>();
             supplier = new List<Supplier>();
             context = new EfContext();
-            foreach (var c in context.Suppliers)
-            {
-                supplier.Add(new Supplier
-                {
-                    IdSupplier = c.IdSupplier,
-                    NameSupplier = c.NameSupplier,
-                    Discount = c.Discount
-                });
-            }
             int i = context.Realizations.Count() + 1;
             txt_Number.Text = i.ToString();
-          AutoName.ItemsSource = supplier;
+          AutoName.ItemsSource = ConstList.GetSupplierList;
             IdList= new List<int>();//??
             IdList.Add(0);//??
             realizationGrid.CellEditEnding += realizationGrid_CellEditEnding;
@@ -117,20 +110,28 @@ namespace ClothWPF.General.Realization
                                 if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah <=
                                     Convert.ToDouble(el.Text.Replace(".", ",")))
                                 {
-                                    profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
-                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                    profit = (Convert.ToDouble(el.Text.Replace(".", ","))
+                                              * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                             - ((((Convert.ToDouble(el.Text.Replace(".", ","))) / 100)
+                                                 * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")))
+                                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                             (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
                                 }
                                 else if (_ListProduct.Find(a => a.Idproduct == getid).PriceUah >
                                          Convert.ToDouble(el.Text.Replace(".", ",")))
                                 {
-                                   profit = Convert.ToDouble(el.Text.Replace(".", ",")) -
-                                             _ListProduct.Find(a => a.Idproduct == getid).PriceUah;
+                                    profit = (Convert.ToDouble(el.Text.Replace(".", ","))
+                                              * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                             - ((((Convert.ToDouble(el.Text.Replace(".", ","))) / 100)
+                                                 * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")))
+                                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                             (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
                                 }
                                
                                 GetCell(realizationGrid, rowIndex, 8).Content = sum;
                                 GetCell(realizationGrid, rowIndex, 9).Content = profit;
                                 _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
-                                //_ListProduct.Find(a => a.Idproduct == getid).Profit = profit;   
+                                _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
                             }
                             catch (Exception ex)
                             {
@@ -153,8 +154,17 @@ namespace ClothWPF.General.Realization
                         if ((Convert.ToDouble(el.Text.Replace(".", ",")) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ","))))
                         { 
                             sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) - (Convert.ToDouble(el.Text.Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".",",")) / 100);
+
+                            profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")) 
+                                      * (Convert.ToDouble(el.Text.Replace(".", ",")))) 
+                                     - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")))/100) 
+                                         * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ","))) 
+                                        * Convert.ToDouble(el.Text.Replace(".", ","))) - 
+                                     (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(el.Text.Replace(".", ",")));
+                           
                             GetCell(realizationGrid, rowIndex, 8).Content = sum;
                             _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                            _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
                             GetColumnValue();
                             CountValues();
@@ -173,9 +183,22 @@ namespace ClothWPF.General.Realization
 
                         value = el.Text;
 
-                            sum = (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) -(Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(el.Text.Replace(".",",")) / 100);
-                            GetCell(realizationGrid, rowIndex, 8).Content = sum;
-                            _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                        sum = (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) 
+                               * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) 
+                              -(Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".",",")) 
+                                * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) 
+                                * Convert.ToDouble(el.Text.Replace(".",",")) / 100);
+
+                        profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))
+                                  * (Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))))
+                                 - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))) / 100)
+                                     * Convert.ToDouble(el.Text.Replace(".", ",")))
+                                    * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ","))) -
+                                 (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(GetSingleCellValue(rowIndex, 2).Replace(".", ",")));
+
+                        GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                        _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                        _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
 
                         GetColumnValue();
                         CountValues();
@@ -261,6 +284,7 @@ namespace ClothWPF.General.Realization
             Double.TryParse(txt_Prepayment.Text, out prepayment);
             double totalsum = 0;
             Double.TryParse(txt_TotalSum.Text, out totalsum);
+            TotalProfit = _ListProduct.Sum(a=>a.Profit);
             using (TransactionScope scope = new TransactionScope())
             {
                 using (EfContext context = new EfContext())
@@ -277,7 +301,7 @@ namespace ClothWPF.General.Realization
                         PaymentSum = prepayment,
                         TotalSum = totalsum,
                         IdSupplier = idClient,
-                        Profit = profit
+                        Profit = TotalProfit
                     });
                     context.SaveChanges();
                     int Idrealiz = context.Realizations.Select(c => c.IdRealization).Max();
@@ -296,6 +320,7 @@ namespace ClothWPF.General.Realization
                             TotalProductSum = product.Sum,
                             IdRealization = Idrealiz,
                             Idproduct = product.Idproduct,
+                            Profit = product.Profit
                         });
                         var std = context.Products.Where(c => c.IdProduct == product.Idproduct).FirstOrDefault();
                         double? sum = std.Count - product.CountSale;
@@ -328,6 +353,7 @@ namespace ClothWPF.General.Realization
                         Sum = 0,
                         Count = addProduct._count,
                         PriceWholesale = addProduct._priceWholesale,
+                        PriceRetail = addProduct._priceRetail
                     };
                // if (!_ListProduct.Where(a => a.Idproduct == data.Idproduct).)
                 if (!IdList.Contains(data.Idproduct))
@@ -414,7 +440,6 @@ namespace ClothWPF.General.Realization
             if (txt_Discount.Text == "")
             {
                 txt_DiscountSum.Text = 0.ToString();
-
             }
             else
             {
@@ -493,6 +518,8 @@ namespace ClothWPF.General.Realization
         {
             SupplierInfo customer = new SupplierInfo();
             customer.ShowDialog();
+            AutoName.ItemsSource = null;
+            AutoName.ItemsSource = ConstList.GetSupplierList;
         }
 
         private void Cmb_Organization_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

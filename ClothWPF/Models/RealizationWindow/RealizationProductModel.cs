@@ -22,6 +22,7 @@ namespace ClothWPF.Models.RealizationWindow
         public double? NDS { get; set; }
         public double? Discount { get; set; }
         public double? Sum { get; set; }   
+        public double? Profit { get;set; }
         public int IdRealization { get; set; }   
         public int Idproduct { get; set; }
     }
