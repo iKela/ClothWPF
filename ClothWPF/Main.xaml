@@ -124,7 +124,11 @@
             <Button Name="btn_CloseWindow" BorderThickness="0" Height="30" Width="30" Background="Transparent" Content="&#10060;" Padding="0" FontFamily="Times New Roman" FontSize="19.3" Foreground="Black" Click="btn_CloseWindow_Click"/>
         </StackPanel>
         <Grid Row="1">
-            <StackPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2">
                 <Menu IsMainMenu="True">
                     <MenuItem Header="InSoP MS" Template="{StaticResource VsOnline}" >
                         <MenuItem Name="MIClose" Header="Вихід" Icon="Login.png" Template="{StaticResource VsMenuSub}" Click="MIClose_OnClick" />
@@ -154,21 +158,23 @@
                     <MenuItem Header="Help" Template="{StaticResource VsMenuTop}">
                         <MenuItem Name="MiOpenTeamViewer" Header="TeamViewer" Template="{StaticResource VsMenuSub}" Click="mi_OpenTeamViewer_Click" />
                     </MenuItem>
-                    <Button Visibility="Collapsed" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="40" VerticalAlignment="Top" HorizontalAlignment="Right">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
-                            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                                <StackPanel IsEnabled="False">
-                                    <Button Name="btn_Account" Content="Кабінет"/>
-                                    <Button Name="btn_AccountSettings" Content="Налаштування"/>
-                                    <Button Name="btn_Help" Content="Допомога"/>
-                                    <Separator/>
-                                    <Button Name="btn_Logout" Content="Вийти з облікового запису" Click="btn_Logout_Click"/>
-                                </StackPanel>
-                            </materialDesign:PopupBox>
-                        </StackPanel>
-                    </Button>
                 </Menu>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Button Visibility="Visible" IsEnabled="True" Style="{StaticResource MainButtonStyle}"  Height="40" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
+                        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                            <StackPanel IsEnabled="False">
+                                <Button Name="btn_Account" Content="Кабінет"/>
+                                <Button Name="btn_AccountSettings" Content="Налаштування"/>
+                                <Button Name="btn_Help" Content="Допомога"/>
+                                <Separator/>
+                                <Button Name="btn_Logout" Content="Вийти з облікового запису" Click="btn_Logout_Click"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Grid>
         <Grid Row="2">
