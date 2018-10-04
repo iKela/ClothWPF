@@ -140,7 +140,7 @@ namespace ClothWPF
             Application.Current.Shutdown();
         }
         private void DeleteProduct(object sender, RoutedEventArgs e)
-        {
+        {         
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
                 var obj = ((FrameworkElement)sender).DataContext as ProductModel;

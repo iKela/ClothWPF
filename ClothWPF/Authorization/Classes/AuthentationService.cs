@@ -31,10 +31,10 @@ namespace ClothWPF.Authorization
 
         private static readonly List<InternalUserData> _users = new List<InternalUserData>()
         {
-            new InternalUserData("iKela", "kovalchuknm1997@gmail.com",
-                "mbwFiVOpXKRYog3NZ3xWsjk4i0wRR+CHrsE9WRB84Rk=", new string[] { "Administrators" }),
-            new InternalUserData("John", "john@company.com",
-                "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { })
+            new InternalUserData("admin", "kovalchuknm1997@gmail.com",
+                "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=", new string[] { "Administrators" }),
+            new InternalUserData("user", "john@company.com",
+                "BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=", new string[] { "User"})
         };
 
         public User AuthenticateUser(string username, string clearTextPassword)
