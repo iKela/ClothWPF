@@ -28,7 +28,7 @@
                 <DropShadowEffect BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <TextBlock Text="{Binding AuthenticatedUser}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"
+        <TextBlock Text="{Binding AuthenticatedUser}" VerticalAlignment="Top"
                FontSize="14" HorizontalAlignment="Right" TextWrapping="Wrap" FontWeight="Bold"
                Margin="2,2,2,2"/>
         <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0 70">
@@ -46,7 +46,6 @@
             
         </Button>
         <TextBlock Name="btn_ForgotPassword" Text="Забули логін або пароль?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" FontFamily="Times New Roman" FontSize="14" Cursor="Hand" />
-        <TextBlock Text="{Binding Status}" Grid.Row="4" Grid.Column="1"
-               HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" TextWrapping="Wrap" />
+        <TextBlock Text="{Binding Status}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" TextWrapping="Wrap" FontFamily="Times New Roman" />
     </Grid>
 </Window>
