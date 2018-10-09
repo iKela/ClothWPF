@@ -99,8 +99,10 @@ namespace ClothWPF
                                 Idgroup = _idgroup
                             });
                             context.SaveChanges();
+
                             ConstList._FullInfo.Add(new ProductModel
                             {
+                                IdProduct = context.Products.Max(a=>a.IdProduct),
                                 Name = txt_Name.Text,
                                 Article = txt_Article.Text,
                                 Code = txt_ProductCode.Text,
@@ -108,7 +110,8 @@ namespace ClothWPF
                                 PriceUah = priceUah,
                                 PriceRetail = retailerPrice,
                                 PriceWholesale = wholesalePrice,
-                                Country = cmb_Country.Text                                
+                                Country = cmb_Country.Text,
+                                idGroup = _idgroup
                             });
                         }
                         MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -130,7 +133,6 @@ namespace ClothWPF
         private void txt_PriceDollar_TextChanged(object sender, TextChangedEventArgs e)
         {
             double num;
-
             double.TryParse(txt_PriceDollar.Text.ToString(), out num);
             num = num * Properties.Settings.Default.CurrencyExchangeDol;
             txt_PriceUah.Text = num.ToString();
@@ -185,7 +187,6 @@ namespace ClothWPF
         {
             try
             {
-
                 var selected = (GroupModel) AutoGroup.SelectedItem;
                 _idgroup = groupModel.FirstOrDefault(s => s.IdGroup == selected.IdGroup).IdGroup;
             }
@@ -198,6 +199,9 @@ namespace ClothWPF
         {
             WNewGroup newGroup = new WNewGroup();
             newGroup.ShowDialog();
+            AutoGroup.ItemsSource = null;
+            AutoGroup.ItemsSource = ConstList.GetGroupList;
+
         }
     }
 }

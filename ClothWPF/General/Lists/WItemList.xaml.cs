@@ -92,6 +92,8 @@ namespace ClothWPF.General.Lists
         {
             AddItem newItem = new AddItem();
             newItem.ShowDialog();
+            TVGroups.ItemsSource = null;
+            TVGroups.ItemsSource = ConstList.GetGroupList;
             productListGrid.ItemsSource = null;
             productListGrid.ItemsSource = ConstList.GetList;
         }

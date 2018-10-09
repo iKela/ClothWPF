@@ -63,6 +63,7 @@ namespace ClothWPF.Items.Group
                     contex.SaveChanges();
                     ConstList._Group.Add(new GroupModel            //без підгруп
                     {
+                        IdGroup = contex.GroupProducts.Max(a=>a.IdGroup),
                         NameGroup = TxtName.Text,
                         CodeGroup = TxtCode.Text,
                         Nds = nds,

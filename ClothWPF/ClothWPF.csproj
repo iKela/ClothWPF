@@ -506,6 +506,7 @@
     <Compile Include="Models\ArrivalInfo\SupplierModel.cs" />
     <Compile Include="Models\RealizationWindow\RealizationModel.cs" />
     <Compile Include="Models\RealizationWindow\RealizationProductModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

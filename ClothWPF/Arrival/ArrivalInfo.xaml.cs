@@ -42,10 +42,10 @@ namespace ClothWPF.Arrival
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
-            int identerprise = selected.IdEnterprise;
             try
             {
+            var selected = (EnterpriseModel)AutoNameEnterprise.SelectedItem;
+            int identerprise = selected.IdEnterprise;
                 context.Arrivals.Add(new Arrivals
                 {
                     Date = Convert.ToDateTime(txt_Date.Text),
