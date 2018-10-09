@@ -290,6 +290,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Authorization\User\WAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CurrencyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -362,6 +366,9 @@
     <Compile Include="Authorization\Classes\DelegateCommand.cs" />
     <Compile Include="Authorization\Loading\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Authorization\User\WAccount.xaml.cs">
+      <DependentUpon>WAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="CurrencyWindow.xaml.cs">
       <DependentUpon>CurrencyWindow.xaml</DependentUpon>

@@ -53,7 +53,7 @@ namespace ClothWPF
         }
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            if (txt_PriceRetailer.Text != String.Empty || txt_PriceWholeSale.Text != String.Empty)
+            if (txt_SuppierPrice.Text != String.Empty)
             {
                 #region Double Parse
 
@@ -85,6 +85,10 @@ namespace ClothWPF
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Не вказана ціна постачальника!", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
        

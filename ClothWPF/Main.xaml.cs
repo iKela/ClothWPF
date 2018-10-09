@@ -65,19 +65,6 @@ namespace ClothWPF
         //    }));
         //}
 
-        #region IView Members
-        public IViewModel ViewModel
-        {
-            get
-            {
-                return DataContext as IViewModel;
-            }
-            set
-            {
-                DataContext = value;
-            }
-        }
-        #endregion
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {    
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
@@ -153,7 +140,7 @@ namespace ClothWPF
             Application.Current.Shutdown();
         }
         private void DeleteProduct(object sender, RoutedEventArgs e)
-        {
+        {         
             if (Thread.CurrentPrincipal.IsInRole("Administrators"))
             {
                 var obj = ((FrameworkElement)sender).DataContext as ProductModel;

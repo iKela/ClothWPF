@@ -31,32 +31,30 @@ namespace ClothWPF.Authorization
 
         private static readonly List<InternalUserData> _users = new List<InternalUserData>()
         {
-            new InternalUserData("admin", "mark@company.com",
-            "2CSU8F1pF7oC96qilonMtES7c/IDgIdssF0fN1N7eJI=", new string[] { "Administrators" }),
-            new InternalUserData("John", "john@company.com",
-            "hMaLizwzOQ5LeOnMuj+C6W75Zl5CXXYbwDSHWW9ZOXc=", new string[] { "Users"}),
-            new InternalUserData("iKela", "ikela.insop@gmail.com",
-                "qZi7q3OBp8l4i938nRx9um/sm8CstKGoDLY6z7EPam0=", new string[] {"Developers"})
+            new InternalUserData("admin", "kovalchuknm1997@gmail.com",
+                "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=", new string[] { "Administrators" }),
+            new InternalUserData("user", "john@company.com",
+                "BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=", new string[] { "User"})
         };
 
         public User AuthenticateUser(string username, string clearTextPassword)
         {
-            InternalUserData userData = _users.FirstOrDefault(u => u.Username.Equals(username)
-                && u.HashedPassword.Equals(CalculateHash(clearTextPassword, u.Username)));
+            InternalUserData userData = _users.FirstOrDefault(u => u.Username.Equals(username) && u.HashedPassword.Equals(CalculateHash(clearTextPassword)));
             if (userData == null)
-                throw new UnauthorizedAccessException("Access denied. Please provide some valid credentials.");
+                throw new UnauthorizedAccessException("В доступі відмовлено. Вкажіть будь-ласка вірні дані.");
 
             return new User(userData.Username, userData.Email, userData.Roles);
         }
 
-        private string CalculateHash(string clearTextPassword, string salt)
+        private string CalculateHash(string clearTextPassword)
         {
             // Convert the salted password to a byte array
-            byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword + salt);
+            byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword);
             // Use the hash algorithm to calculate the hash
             HashAlgorithm algorithm = new SHA256Managed();
             byte[] hash = algorithm.ComputeHash(saltedHashBytes);
-            // Return the hash as a base64 encoded string to be compared to the stored password   
+            // Return the hash as a base64 encoded string to be compared to the stored password
+
             return Convert.ToBase64String(hash);
         }
     }
