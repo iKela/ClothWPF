@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ClothWPF.Authorization.User
+namespace ClothWPF.Authorization.Users
 {
     /// <summary>
     /// Interaction logic for WAccount.xaml
@@ -53,6 +53,11 @@ namespace ClothWPF.Authorization.User
         private void Summary_MouseDown(object sender, MouseButtonEventArgs e)
         {
             
+        }
+
+        private void Btn_CloseWindow_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
