@@ -607,9 +607,11 @@
   <ItemGroup>
     <Resource Include="MinialLogo.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\MinialLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\PersonPicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

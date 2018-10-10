@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.IO;
 using ClothWPF.Arrival.Supplier;
 using ClothWPF.Authorization.Loading;
+using ClothWPF.Authorization.Users;
 using ClothWPF.Enterprise;
 using ClothWPF.Models.Main;
 using ClothWPF.Helpes;
@@ -373,6 +374,12 @@ namespace ClothWPF
         {
             EnterpriseWindow enterprise = new EnterpriseWindow();
             enterprise.Show();
+        }
+
+        private void Btn_Account_OnClick(object sender, RoutedEventArgs e)
+        {
+            WAccount account = new WAccount();
+            account.Show();
         }
     }
 }
