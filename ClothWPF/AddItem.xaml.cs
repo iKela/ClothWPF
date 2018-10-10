@@ -188,7 +188,7 @@ namespace ClothWPF
             try
             {
                 var selected = (GroupModel) AutoGroup.SelectedItem;
-                _idgroup = groupModel.FirstOrDefault(s => s.IdGroup == selected.IdGroup).IdGroup;
+                _idgroup = ConstList._Group.FirstOrDefault(s => s.IdGroup == selected.IdGroup).IdGroup;
             }
             catch (Exception exception)
             {

@@ -84,11 +84,6 @@ namespace ClothWPF.General.Lists
             tb_SearchByProductCode.Visibility = Visibility.Hidden;
             tb_SearchByCountry.Visibility = Visibility.Visible;
         }
-
-        private void btn_Add_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
         {
             AddItem newItem = new AddItem();
