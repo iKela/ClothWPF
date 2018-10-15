@@ -39,7 +39,7 @@ namespace ClothWPF.Authorization
 
         public User AuthenticateUser(string username, string clearTextPassword)
         {
-            InternalUserData userData = _users.FirstOrDefault(u => u.Username.Equals(username) && u.HashedPassword.Equals(CalculateHash(clearTextPassword)));
+            InternalUserData userData = _users.FirstOrDefault(u =>( u.Username.Equals(username) || u.Email.Equals(username)) && u.HashedPassword.Equals(CalculateHash(clearTextPassword)));
             if (userData == null)
                 throw new UnauthorizedAccessException("В доступі відмовлено. Вкажіть будь-ласка вірні дані.");
 

@@ -165,8 +165,8 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Name="txt_UserName" Text="user" VerticalAlignment="Center" Margin="2"/>
                         <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                            <StackPanel IsEnabled="False">
-                                <Button Name="btn_Account" Content="Кабінет"/>
+                            <StackPanel IsEnabled="True">
+                                <Button Name="btn_Account" Content="Кабінет" Click="Btn_Account_OnClick"/>
                                 <Button Name="btn_AccountSettings" Content="Налаштування"/>
                                 <Button Name="btn_Help" Content="Допомога"/>
                                 <Separator/>
