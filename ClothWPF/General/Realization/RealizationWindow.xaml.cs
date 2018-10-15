@@ -489,10 +489,10 @@ namespace ClothWPF.General.Realization
         {
             try
             {
-                var selected = (Supplier)AutoName.SelectedItem;
+                var selected = (SupplierModel)AutoName.SelectedItem;
                 idClient = selected.IdSupplier;
-                ClientDiscount= supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount;
-                TCPurshaise = supplier.Find(s => s.IdSupplier == selected.IdSupplier).TotalClientPurshaise;
+                ClientDiscount= ConstList._Supplier.Find(s => s.IdSupplier == selected.IdSupplier).Discount;
+                TCPurshaise = ConstList._Supplier.Find(s => s.IdSupplier == selected.IdSupplier).TotalClientPurshaise;
                 txt_ClientDiscount.Text = ClientDiscount.ToString();
             }
             catch(Exception ex)
