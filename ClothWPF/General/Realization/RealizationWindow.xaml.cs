@@ -151,29 +151,43 @@ namespace ClothWPF.General.Realization
                         // rowIndex has the row index
                         // bindingPath has the column's binding
                         // el.Text has the new, user-entered value
-                        if ((Convert.ToDouble(el.Text.Replace(".", ",")) <= Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ","))))
-                        { 
-                            sum = (Convert.ToDouble(el.Text.Replace(".", ",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",","))) - (Convert.ToDouble(el.Text.Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".",",")) * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".",",")) / 100);
+                        if (Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ",")) > 0)
+                        {
+                            if ((Convert.ToDouble(el.Text.Replace(".", ",")) <=
+                                 Convert.ToDouble(GetSingleCellValue(rowIndex, 3).Replace(".", ","))))
+                            {
+                                sum = (Convert.ToDouble(el.Text.Replace(".", ",")) *
+                                       Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))) -
+                                      (Convert.ToDouble(el.Text.Replace(".", ",")) *
+                                       Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")) *
+                                       Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")) / 100);
 
-                            profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")) 
-                                      * (Convert.ToDouble(el.Text.Replace(".", ",")))) 
-                                     - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ",")))/100) 
-                                         * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ","))) 
-                                        * Convert.ToDouble(el.Text.Replace(".", ","))) - 
-                                     (_ListProduct.Find(a => a.Idproduct == getid).PriceUah * Convert.ToDouble(el.Text.Replace(".", ",")));
-                           
-                            GetCell(realizationGrid, rowIndex, 8).Content = sum;
-                            _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
-                            _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
+                                profit = (Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))
+                                          * (Convert.ToDouble(el.Text.Replace(".", ","))))
+                                         - ((((Convert.ToDouble(GetSingleCellValue(rowIndex, 5).Replace(".", ","))) /
+                                              100)
+                                             * Convert.ToDouble(GetSingleCellValue(rowIndex, 7).Replace(".", ",")))
+                                            * Convert.ToDouble(el.Text.Replace(".", ","))) -
+                                         (_ListProduct.Find(a => a.Idproduct == getid).PriceUah *
+                                          Convert.ToDouble(el.Text.Replace(".", ",")));
 
-                            GetColumnValue();
-                            CountValues();
+                                GetCell(realizationGrid, rowIndex, 8).Content = sum;
+                                _ListProduct.Find(a => a.Idproduct == getid).Sum = sum;
+                                _ListProduct.Find(a => a.Idproduct == getid).Profit = profit;
+
+                                GetColumnValue();
+                                CountValues();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                                realizationGrid.CancelEdit();
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Вписана кількість перевищує наявну кількість !", "Увага!",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                            realizationGrid.CancelEdit();
+                            MessageBox.Show("Даного товару немає на складі!", "Увага", MessageBoxButton.OK, MessageBoxImage.Stop);
                         }
                     }
                     else if (bindingPath == "Discount")

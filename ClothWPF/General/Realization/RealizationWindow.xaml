@@ -121,7 +121,6 @@
                                         IsReadOnly="False"/>
                         <DataGridTextColumn Header="&#128230;  Id" Binding="{Binding Path = Idproduct}" Width="Auto" FontFamily="Times New Roman" FontSize="14" FontWeight="Bold"
                                         IsReadOnly="True" Visibility="Collapsed"/>
-                    <DataGridCheckBoxColumn Header="Оптова ціна" Binding="{Binding Path = WholesalePriceBool}" Width="Auto" CanUserResize="False"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
