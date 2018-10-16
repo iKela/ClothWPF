@@ -485,6 +485,10 @@
     <Compile Include="Migrations\201810011657473_tPAN.Designer.cs">
       <DependentUpon>201810011657473_tPAN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810141748537_profit.cs" />
+    <Compile Include="Migrations\201810141748537_profit.Designer.cs">
+      <DependentUpon>201810141748537_profit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArrivalInfo\EnterpriseModel.cs" />
     <Compile Include="Models\ArrivalsList\ArrivalsModel.cs" />
@@ -571,6 +575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810011657473_tPAN.resx">
       <DependentUpon>201810011657473_tPAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810141748537_profit.resx">
+      <DependentUpon>201810141748537_profit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
