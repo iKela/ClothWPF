@@ -345,6 +345,14 @@
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Api\ApiProm\GET_POST.cs" />
+    <Compile Include="Api\ApiProm\Model\Message\ModelMessageReplyPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Message\ModelSetMessageStatusPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Order\ModelSetOrderStatusPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelImportProductStatusPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelImportProductURLPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelImportProductWithFilePromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelProductEditByExternalIdPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelProductEditPromApi.cs" />
     <Compile Include="Api\ApiProm\WebRequest\ClassClient.cs" />
     <Compile Include="Api\ApiProm\ConnectionToApi.cs" />
     <Compile Include="Api\ApiProm\WebRequest\ClassGroup.cs" />

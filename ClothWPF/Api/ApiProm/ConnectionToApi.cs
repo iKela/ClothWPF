@@ -19,14 +19,7 @@ namespace ClothWPF.Api.ApiProm
     {
         public static string token = "f35277ebf3c453088467c49440020d3e2abdf711";
         public static string host = "my.prom.ua";
-
-        public void Test()
-        {
-            string status = "";  // new order status e.g. "pending"
-            int[] orderIds = { };  // list of order ids
-            int orderId = 0;  // your real order id here
-            // MessageBox.Show(cta.getOrderById(orderId));
-        }
+        
         public void getOrderList()
         {
             ClassOrder ogp = new ClassOrder();
