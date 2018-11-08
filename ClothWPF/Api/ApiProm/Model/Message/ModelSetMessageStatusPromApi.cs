@@ -13,7 +13,7 @@ namespace ClothWPF.Api.ApiProm.Model
     }
     public class ClassModelSetMessageStatusPromApi
     {
+        public Int64[] ids { get; set; }// Список уникальных идентификаторов.//P.S.хз чи це массив
         public enum status { unread, read, deleted }
-        //public Int64[] ids { get; set; }// Список уникальных идентификаторов.//P.S.хз чи це массив
     }
 }

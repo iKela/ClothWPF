@@ -72,14 +72,14 @@ namespace ClothWPF.Api.ApiProm
         public void setProductsEdit(string path, string data)
         {
             ClassProduct pgs = new ClassProduct();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListProductPromApi*/>(pgs.setProductsEdit(path, data));
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelProductEditPromApi>(pgs.setProductsEdit(path, data));
+            //
         }
         public void setProductsEditByExternalId(string path, string data, int id)
         {
             ClassProduct pgs = new ClassProduct();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListProductPromApi*/>(pgs.setProductsEditByExternalid(path, data, id));
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelProductEditByExternalIdPromApi>(pgs.setProductsEditByExternalid(path, data, id));
+            //
         }
         public void getMessagesList()
         {
@@ -96,26 +96,26 @@ namespace ClothWPF.Api.ApiProm
         public void setMessagesStatus(int[] messagesIds, string status)
         {
             ClassMessage mgp = new ClassMessage();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.setMessagesStatus(messagesIds, status));
-            List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelSetMessageStatusPromApi>(mgp.setMessagesStatus(messagesIds, status));
+            //List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
         }
         public void setMessagesStatus(int[] messagesIds, string status, string cancellationReason)
         {
             ClassMessage mgp = new ClassMessage();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.setMessagesStatus(messagesIds, status, cancellationReason));
-            List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelSetMessageStatusPromApi>(mgp.setMessagesStatus(messagesIds, status, cancellationReason));
+            //List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
         }
         public void setMessagesStatus(int[] messagesIds, string status, string cancellationReason, string cancellationText)
         {
             ClassMessage mgp = new ClassMessage();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.setMessagesStatus(messagesIds, status, cancellationReason, cancellationText));
-            List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelSetMessageStatusPromApi>(mgp.setMessagesStatus(messagesIds, status, cancellationReason, cancellationText));
+            //List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
         }
         public void replyMessages(int id, string status)
         {
             ClassMessage mgp = new ClassMessage();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.replyMessages(id, status));
-            List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
+            var parsed = JsonConvert.DeserializeObject<ClassModelMessageReplyPromApi>(mgp.replyMessagesStatus(id, status));
+            //List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
         }
         public void getClientList()
         {
