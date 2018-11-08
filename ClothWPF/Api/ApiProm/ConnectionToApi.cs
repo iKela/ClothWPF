@@ -1,5 +1,8 @@
 ﻿using ClothWPF.Api.ApiProm.Model;
+using ClothWPF.Api.ApiProm.Model.Client;
+using ClothWPF.Api.ApiProm.Model.Group;
 using ClothWPF.Api.ApiProm.Model.Message;
+using ClothWPF.Api.ApiProm.Model.PaymentOption;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -121,17 +124,29 @@ namespace ClothWPF.Api.ApiProm
             var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.replyMessages(id, status));
             List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
         }
-        public void Client(int id)
+        public void getClientList()
         {
             ClassClient cc = new ClassClient();
-            var parsed = JsonConvert.DeserializeObject</*ClassModelListMessagePromApi*/>(mgp.reply(id, status));
-            List</*ClassModelMessagePromApi*/> modelMessagePromApis = parsed.modelListMessagePromApis;
-
-
+            var parsed = JsonConvert.DeserializeObject<ClassModelListClientPromApi>(cc.getClientList());
+            List<ClassModelClientPromApi> modelMessagePromApis = parsed.modelListClientPromApis;
         }
-        public void Group()
-        { }
-        public void Paymant()
-        { }
+        public void getClientListById(int id)
+        {
+            ClassClient cc = new ClassClient();
+            var parsed = JsonConvert.DeserializeObject<ClassModelListClientPromApi>(cc.getClientById(id));
+            List<ClassModelClientPromApi> modelMessagePromApis = parsed.modelListClientPromApis;
+        }
+        public void getGroupList()
+        {
+            ClassGroup cg = new ClassGroup();
+            var parsed = JsonConvert.DeserializeObject<ClassModelListGroupPromApi>(cg.getGroupList());
+            List<ClassModelGroupPromApi> modelGroupPromApis = parsed.modelListGroupPromApis;
+        }
+        public void getPaymentOptionList()
+        {
+            ClassPaymentOption cpo = new ClassPaymentOption();
+            var parsed = JsonConvert.DeserializeObject<ClassModelListPaymentOptionPromApi>(cpo.getPaymentOptionList());
+            List<ClassModelPaymentOptionPromApi> modelPaymentOptionPromApis = parsed.modelListPaymentOptionPromApis;
+        }
      }
 }
