@@ -173,6 +173,9 @@
     <Reference Include="Microsoft.Office.Tools.Excel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -341,6 +344,27 @@
     <Compile Include="AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Api\ApiProm\GET_POST.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassClient.cs" />
+    <Compile Include="Api\ApiProm\ConnectionToApi.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassGroup.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassMessage.cs" />
+    <Compile Include="Api\ApiProm\Model\Client\ModelClientPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Group\ModelGroupPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Message\ModelMessagePromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Order\ModelDeliveryOptionFromOrderPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Order\ModelOrderPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Order\ModelPaymentOptionFromOrderPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Order\ModelProductsFromOrderPromApi .cs" />
+    <Compile Include="Api\ApiProm\Model\PaymentOption\ModelPaymentOptionPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelCategoryFromProductPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelDiscountFromProductPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelGroupFromProductPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelPricesFromProductPromApi.cs" />
+    <Compile Include="Api\ApiProm\Model\Product\ModelProductPromApi.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassOrder.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassPaymentOption.cs" />
+    <Compile Include="Api\ApiProm\WebRequest\ClassProduct.cs" />
     <Compile Include="Arrival\ArrivalInfo.xaml.cs">
       <DependentUpon>ArrivalInfo.xaml</DependentUpon>
     </Compile>
@@ -408,6 +432,7 @@
     <Compile Include="General\Realization\RealizationWindow.xaml.cs">
       <DependentUpon>RealizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpes\API.cs" />
     <Compile Include="Helpes\ConnectionProvaider.cs" />
     <Compile Include="Helpes\Load.cs" />
     <Compile Include="Items\Group\WNewGroup.xaml.cs">
@@ -584,6 +609,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClothWPF_TemporaryKey.pfx" />
+    <Compile Include="Helpes\API.net.cs" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -620,5 +646,6 @@
   <ItemGroup>
     <Resource Include="Assets\PersonPicture.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
