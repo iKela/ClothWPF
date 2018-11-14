@@ -54,7 +54,8 @@ namespace ClothWPF
             //_connectionProvider.ConnectRun();
 
             //context = new EfContext();
-           clothesGrid.ItemsSource = ConnectionToApi.getProductList();
+            clothesGrid.ItemsSource = ConnectionToApi._items();
+
 
         }
         //private void _connectionProvider_Conected(EfContext eFContext)
@@ -64,7 +65,7 @@ namespace ClothWPF
         //    Dispatcher.BeginInvoke(new Action(() => 
         //    {
         //        Lbl_load.Content = "Підключення виконано успішно";
-               
+
         //    }));
         //}
 
