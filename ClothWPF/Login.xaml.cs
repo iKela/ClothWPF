@@ -25,7 +25,7 @@ namespace ClothWPF
             //efContext.
             ViewModel = viewModel;
             InitializeComponent();
-            txt_Email.Focus();
+            //TxtEmail.Focus();
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
 
