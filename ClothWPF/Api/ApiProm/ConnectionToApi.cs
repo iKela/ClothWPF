@@ -56,6 +56,7 @@ namespace ClothWPF.Api.ApiProm
             ClassProduct pgs = new ClassProduct();
             var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsList());
             List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            
         }
         public void getProductById(int id)
         {

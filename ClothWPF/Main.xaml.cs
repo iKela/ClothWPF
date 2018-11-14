@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.IO;
+using ClothWPF.Api.ApiProm;
 using ClothWPF.Arrival.Supplier;
 using ClothWPF.Authorization.Loading;
 using ClothWPF.Authorization.Users;
@@ -53,6 +54,7 @@ namespace ClothWPF
             //_connectionProvider.ConnectRun();
 
             //context = new EfContext();
+           clothesGrid.ItemsSource = ConnectionToApi.getProductList();
 
         }
         //private void _connectionProvider_Conected(EfContext eFContext)
