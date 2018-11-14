@@ -23,7 +23,7 @@ namespace ClothWPF.Api.ApiProm
             sr.Close();
             return text;
         }
-        public string sendPost(string path, string data)
+        public string sendPost(string path, string data)//rework
         {
             Uri url = new Uri(String.Format("http://%s%s", host, path));
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
