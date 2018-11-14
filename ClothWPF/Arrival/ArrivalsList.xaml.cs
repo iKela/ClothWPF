@@ -35,9 +35,10 @@ namespace ClothWPF.Arrival
         public int _identerprise = 0;
         public ArrivalsList(object mi)
         {
-           InitializeComponent();
+            InitializeComponent();
             txt_DateFrom.Text = DateTime.Today.ToShortDateString();
             txt_DateTo.Text = DateTime.Today.ToShortDateString();
+            SetUpComesVizualization();
         }
         private void grid_Arrivals_Loaded(object sender, RoutedEventArgs e)
         {
@@ -257,6 +258,8 @@ namespace ClothWPF.Arrival
             GridRealization.Visibility = Visibility.Collapsed;
             GridRealizationItems.Visibility = Visibility.Collapsed;
             TxtTotalProfitSum.Visibility = Visibility.Collapsed;
+            TabStatus.Visibility = Visibility.Collapsed;
+            GridRealization.Margin = new Thickness(0);
         }
         private void SetUpRealizationVizualization()
         {
@@ -264,9 +267,11 @@ namespace ClothWPF.Arrival
             grid_ArrivalInfo.Visibility = Visibility.Collapsed;
             GridRealization.Visibility = Visibility.Visible;
             GridRealizationItems.Visibility = Visibility.Visible;
-
             TxtTotalProfitSum.Visibility = Visibility.Visible;
+            TabStatus.Visibility = Visibility.Visible;
+            GridRealization.Margin = new Thickness(0,20,0,0);
         }
+
         private void HamgurgerComes_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetUpComesVizualization();

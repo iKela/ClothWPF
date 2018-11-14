@@ -52,7 +52,7 @@ namespace ClothWPF.Api.ApiProm
             List<ClassModelOrderPromApi> modelOrderPromApis = parsed.modelListOrdrPromApis;
         }
 
-        public static List<ClassModelProductPromApi> _items()
+        public List<ClassModelProductPromApi> _items()
         {
             ClassProduct pgs = new ClassProduct();
             var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsList());
