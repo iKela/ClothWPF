@@ -53,6 +53,7 @@ namespace ClothWPF
             //_connectionProvider.Conected += _connectionProvider_Conected;
             //_connectionProvider.ConnectRun();
 
+            //ConnectionToApi api = new ConnectionToApi();
             //context = new EfContext();
             //clothesGrid.ItemsSource = ConnectionToApi._items();
 

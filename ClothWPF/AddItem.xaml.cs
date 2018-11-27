@@ -167,7 +167,7 @@ namespace ClothWPF
         {
             int result;
 
-            if (!(int.TryParse(e.Text, out result) || e.Text == ","))
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
             {
                 e.Handled = true;
             }

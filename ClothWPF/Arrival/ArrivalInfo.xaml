@@ -57,7 +57,7 @@
                             <Button Name="btn_NewSupplier" Content="&#xE109;" FontFamily="Segoe MDL2 Assets" Padding="0" ToolTip="Створити нового поставщика" Height="25" Width="25" Click="btn_NewSupplier_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
+                                <controls:AutoCompleteBox Name="AutoNameEnterprise" Foreground="Gray" Width="150" ValueMemberPath="Name" SelectedItem="{Binding IdEnterprise}"
                             Height="30" FontFamily="Times New Roman" FontSize="20" SelectionChanged="AutoNameEnterprise_SelectionChanged" Margin="10">
                             <controls:AutoCompleteBox.ItemTemplate>
                                 <DataTemplate>
