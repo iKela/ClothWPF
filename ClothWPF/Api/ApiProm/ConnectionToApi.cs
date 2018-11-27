@@ -17,9 +17,9 @@ namespace ClothWPF.Api.ApiProm
 {
     public class ConnectionToApi
     {
-        public static string token = "f35277ebf3c453088467c49440020d3e2abdf711";
+        public static string token = "5d626fa56376d2742a5115510d0657ef29b52011";
         public static string host = "my.prom.ua";
-        
+        public List<ClassModelProductPromApi> modelProductPromApis = new List<ClassModelProductPromApi>();
         public void getOrderList()
         {
             ClassOrder ogp = new ClassOrder();
@@ -52,30 +52,31 @@ namespace ClothWPF.Api.ApiProm
             List<ClassModelOrderPromApi> modelOrderPromApis = parsed.modelListOrdrPromApis;
         }
 
-        public static List<ClassModelProductPromApi> _items()
-        {
-            ClassProduct pgs = new ClassProduct();
-            var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsList());
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
-            return modelProductPromApis;
-        }
+        //public static List<ClassModelProductPromApi> _items()
+        //{
+        //    ClassProduct pgs = new ClassProduct();
+        //    var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsList());
+        //    List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+        //    return modelProductPromApis;
+        //}
         public void getProductList()
         {
             ClassProduct pgs = new ClassProduct();
-            var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsList());
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            string a = pgs.getProductsList();
+            ClassModelListProductPromApi parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>   (a);
+           modelProductPromApis = parsed.products;
         }
         public void getProductById(int id)
         {
             ClassProduct pgs = new ClassProduct();
             var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsById(id));
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            List<ClassModelProductPromApi> modelProductPromApis = parsed.products;
         }
         public void getProductByExternalId(int id)
         {
             ClassProduct pgs = new ClassProduct();
             var parsed = JsonConvert.DeserializeObject<ClassModelListProductPromApi>(pgs.getProductsByExternalid(id));
-            List<ClassModelProductPromApi> modelProductPromApis = parsed.modelListProductPromApis;
+            List<ClassModelProductPromApi> modelProductPromApis = parsed.products;
         }
         public void setProductsEdit(string path, string data)
         {

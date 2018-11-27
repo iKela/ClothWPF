@@ -54,7 +54,7 @@ namespace ClothWPF
             //_connectionProvider.ConnectRun();
 
             //context = new EfContext();
-            clothesGrid.ItemsSource = ConnectionToApi._items();
+            //clothesGrid.ItemsSource = ConnectionToApi._items();
 
 
         }
@@ -72,10 +72,10 @@ namespace ClothWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {    
             txt_UserName.Text = Thread.CurrentPrincipal.Identity.Name;
+                loaded();
             try
             {
                // LoadExcelInfo();
-                loaded();
             }
             catch
             {
@@ -84,7 +84,8 @@ namespace ClothWPF
         }
         public void loaded()
         {
-           
+            ConnectionToApi cta = new ConnectionToApi();
+            cta.getProductList();
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 clothesGrid.ItemsSource = null;
@@ -92,7 +93,7 @@ namespace ClothWPF
             }));  
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                clothesGrid.ItemsSource =_ProductFullInfo;
+                clothesGrid.ItemsSource =cta.modelProductPromApis;
             }));
     }
         private void LoadExcelInfo()

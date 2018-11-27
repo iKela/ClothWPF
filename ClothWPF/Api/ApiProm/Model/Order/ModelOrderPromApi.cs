@@ -26,8 +26,6 @@ namespace ClothWPF.Api.ApiProm.Model
         public string delivery_address { get; set; }//Адрес доставки.
         public ModelPaymentOptionFromOrderPromApi payment_option { get; set; }
         public enum status { pending, received, delivered, canceled, draft, paid };//Статус заказа.
-        public enum source { portal, company_site, company_cabinet, mobile_app, bigl };//Источник заказа
-
-
+        public enum source { portal, company_site, company_cabinet, mobile_app, bigl };//Источник заказа 
     }
 }

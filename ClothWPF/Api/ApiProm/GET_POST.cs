@@ -12,9 +12,9 @@ namespace ClothWPF.Api.ApiProm
     {
         public string sendGet(string path)
         {
-            Uri url = new Uri(String.Format("http://%s%s", host, path));
+            Uri url = new Uri($"https://{host}{path}");
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Headers.Add("Authorization", "Bearer" + token);
+            req.Headers.Add("Authorization", $" Bearer {token}");        
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
             Stream stream = resp.GetResponseStream();
             StreamReader sr = new StreamReader(stream);
@@ -25,7 +25,7 @@ namespace ClothWPF.Api.ApiProm
         }
         public string sendPost(string path, string data)//rework
         {
-            Uri url = new Uri(String.Format("http://%s%s", host, path));
+            Uri url = new Uri($"https://{host}{path}");
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";

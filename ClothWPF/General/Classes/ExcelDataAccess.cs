@@ -59,34 +59,30 @@ namespace ClothWPF.General.Classes
             Cmd = new OleDbCommand();
             Cmd.Connection = Conn;
             Cmd.CommandText = "Select * from [Export Products Sheet$]";
-            var Reader = await Cmd.ExecuteReaderAsync();    
-            
+            var Reader = await Cmd.ExecuteReaderAsync();               
             try
             {
                 using (EfContext contex = new EfContext())
                 {
-                    
-                //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Product]");
-                while (Reader.Read())
-                {
-                    var data = new ExcelItem()
+                    //context.Database.ExecuteSqlCommand("TRUNCATE TABLE [Product]");
+                    while (Reader.Read())
                     {
-                        //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
-                        UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Уникальный_идентификатор"] : 0),
-                        Code = Reader["Код_товара"].ToString(),
-                        Name = Reader["Название_позиции"].ToString(),
-                        PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
-                        PriceWholesale = Convert.ToDouble((Reader["Оптовая_цена"].ToString() != "") ? Convert.ToDouble(Reader["Оптовая_цена"].ToString().Replace(".", ",").Substring(0, 5 /*Довжина символів після ких буде все обрізатись виставлена в ручну!!!Потрібно визначити щоб обраізало після ;*/)) : 0), // 
-                        Count = Convert.ToInt32((Reader["Количество"].ToString() != "") ? Reader["Количество"] : 0),
-                        Country = Reader["Страна_производитель"].ToString(),
-                        //ItemDiscount = Convert.ToInt32(Reader["Скидка"])      
-                       
-                    };
-                    var uid = ConstList._FullInfo.Find(a => a.Uid == data.UId);
-                   // if(uid!=null)
+                        var data = new ExcelItem()
+                        {
+                            //Місце для присвоєння інформації з Ексель до локальних змінних в класі ExcelItem
+                            UId = Convert.ToInt64((Reader["Уникальный_идентификатор"].ToString() != "") ? Reader["Уникальный_идентификатор"] : 0),
+                            Code = Reader["Код_товара"].ToString(),
+                            Name = Reader["Название_позиции"].ToString(),
+                            PriceUah = Convert.ToDouble((Reader["Цена"].ToString() != "") ? Reader["Цена"] : 0),
+                            PriceWholesale = Convert.ToDouble((Reader["Оптовая_цена"].ToString() != "") ? Convert.ToDouble(Reader["Оптовая_цена"].ToString().Replace(".", ",").Substring(0, 5 /*Довжина символів після ких буде все обрізатись виставлена в ручну!!!Потрібно визначити щоб обраізало після ;*/)) : 0), // 
+                            Count = Convert.ToInt32((Reader["Количество"].ToString() != "") ? Reader["Количество"] : 0),
+                            Country = Reader["Страна_производитель"].ToString(),
+                            //ItemDiscount = Convert.ToInt32(Reader["Скидка"])      
+                        };
+                        var uid = ConstList._FullInfo.Find(a => a.Uid == data.UId);
+                        // if(uid!=null)
                         ConstList.excelItems.Add(data);
-                    
-                }
+                    }
                     Reader.Close();
                     Conn.Close();
                     //using (TransactionScope scope = new TransactionScope())
@@ -97,8 +93,7 @@ namespace ClothWPF.General.Classes
                     int i = 0;
                     foreach (var Eitem in ConstList.excelItems)
                     {
-                        i++;
-                       
+                        i++;                       
                         if (i<1000)
                         {
                             context.Products.Add(new Product
@@ -113,7 +108,6 @@ namespace ClothWPF.General.Classes
                                 // Idgroup = 2
                             });
                         }
-
                     }
                     context.SaveChanges();
                     //    context.Configuration.AutoDetectChangesEnabled = true;

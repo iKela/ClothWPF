@@ -9,7 +9,7 @@ namespace ClothWPF.Api.ApiProm.Model
 {
     public class ClassModelListProductPromApi
     {
-        public List<ClassModelProductPromApi> modelListProductPromApis;
+        public List<ClassModelProductPromApi> products { get; set; }
     }
     public class ClassModelProductPromApi
     {
@@ -26,9 +26,9 @@ namespace ClothWPF.Api.ApiProm.Model
         public string currency { get; set; } 
         public ModelGroupFromProductPromApi group { get; set; } 
         public ModelCategoryFromProductPromApi category { get; set; } 
-        public ModelPricesFromProductPromApi prices {get;set;}
+        //public ModelPricesFromProductPromApi prices {get;set;}
         public string main_image { get; set; }
         public enum status { on_display, draft, deleted, not_on_display, editing_required, approval_pending, deleted_by_moderator };
-        public string[] images { get; set; }       
+        //public string[] images { get; set; }       
     }
 }

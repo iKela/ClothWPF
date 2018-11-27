@@ -16,8 +16,9 @@ namespace ClothWPF.Api.ApiProm
         {                       
         public string getProductsList()
         {
-            string url = "/api/v1/products/list";
-            return this.sendGet(url);
+            string url = @"/api/v1/products/list";
+            string text = sendGet(url);
+            return text;
         }
         public string getProductsById(int id)
         {
