@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClothWPF.Authorization.Loading;
+using ClothWPF.Models.ArrivalInfo;
 
 namespace ClothWPF.Enterprise
 {
@@ -19,7 +21,7 @@ namespace ClothWPF.Enterprise
     /// </summary>
     public partial class EnterpriseWindow : Window
     {
-       
+        public bool _enterpriseClose { get; set; }
         public EnterpriseWindow()
         {
             InitializeComponent();
@@ -110,11 +112,27 @@ namespace ClothWPF.Enterprise
                         LegalForm = cmb_LegalForm.Text,//Залежно від організаційно-правової форми 
                         Activity = cmb_Activity.Text,//Вид діяльності 
                         IdentificationCode = txt_IdentificationNumber.Text,
+                        Director            = txt_Director.Text,
+                        Email               = txt_Email.Text,
+                        Fax                 = txt_Fax.Text
+                    });
+                    context.SaveChanges();
+                    ConstList._Enterprise.Add(new EnterpriseModel
+                    {
+                        Name = txt_Name.Text,
+                        City = txt_City.Text,
+                        Adress = txt_Address.Text,
+                        KodEDRPOU = txt_Code.Text,
+                        Ownership = cmb_OwnershipType.Text,
+                        CreatingWay = cmb_CreatingWay.Text,
+                        LegalForm = cmb_LegalForm.Text,
+                        Activity = cmb_Activity.Text,
+                        IdentificationCode = txt_IdentificationNumber.Text,
                         Director = txt_Director.Text,
                         Email = txt_Email.Text,
                         Fax = txt_Fax.Text
                     });
-                    context.SaveChanges();
+                    _enterpriseClose = true;
                     MessageBox.Show("Зберeженно!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }

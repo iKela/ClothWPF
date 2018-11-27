@@ -91,9 +91,9 @@ namespace ClothWPF.Arrival
         private void btn_NewEnterprise_Click(object sender, RoutedEventArgs e)
         {
             Enterprise.EnterpriseWindow enterprise = new Enterprise.EnterpriseWindow();
+            enterprise._enterpriseClose = false;
             enterprise.ShowDialog();
-            AutoNameEnterprise.ItemsSource = null;
-            AutoNameEnterprise.ItemsSource = ConstList.GetEnterpriseList;
+           if(enterprise._enterpriseClose == true) { loaded();}
         }
         private void AutoNameConterparty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
