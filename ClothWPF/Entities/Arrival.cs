@@ -27,5 +27,7 @@ namespace ClothWPF.Entities
         [ForeignKey("EnterpriseOf")]
         public int? EnterpriseId { get; set; }
         public Enterprise EnterpriseOf { get; set; }
+
+        public virtual ICollection<ArrivalProduct> ArrivalProducts { get; set; }
     }
 }

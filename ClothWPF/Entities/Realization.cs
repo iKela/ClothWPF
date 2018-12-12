@@ -14,9 +14,9 @@ namespace ClothWPF.Entities
         public int IdRealization { get; set; }
         public string Number { get; set; } 
         public DateTime DateRealization { get; set; }
+        public string Comment { get; set; }
         public string PaymentType { get; set; }
         public string Currency { get; set; }
-        public string Comment { get; set; }
         public double? PercentageDiscount { get; set; }
         public double? SumDiscount { get; set; }
         public double? Prepayment { get; set; }
@@ -25,7 +25,7 @@ namespace ClothWPF.Entities
         public double? PaymentSum { get; set; }
         public double? Profit { get; set; }
         [ForeignKey("GetSupplier")]
-        public int IdSupplier { get; set; }
-        public Supplier GetSupplier { get; set; }
+        public int IdSupplier { get; set; }//
+        public Supplier GetSupplier { get; set; }//
     }
 }

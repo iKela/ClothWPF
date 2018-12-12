@@ -25,5 +25,7 @@ namespace ClothWPF.Entities
         [ForeignKey("ProductOf")]
         public int Idproduct { get; set; }
         public Product ProductOf { get; set; }
+
+        public virtual Arrivals Arrivals { get; set; }
     }
 }

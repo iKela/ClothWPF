@@ -154,9 +154,9 @@ namespace ClothWPF
                 {
                     try
                     {      
-                            context.Products.Remove(context.Products.Find(obj.IdProduct));
-                            context.SaveChanges();
-                       load.loaded();
+                        context.Products.Remove(context.Products.Find(obj.IdProduct));
+                        context.SaveChanges();
+                        load.loaded();
                         _ProductFullInfo=ConstList.GetList;
                         loaded();
                         MessageBox.Show("Видалено!!!", "Amazon Web Service!", MessageBoxButton.OK, MessageBoxImage.Information);
